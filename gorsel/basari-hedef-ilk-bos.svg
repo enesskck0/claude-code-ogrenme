@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Başarı işareti, kazanılmamış hal (ogrenme/TASARIM.md bölüm 10C): dolgusuz, yalnız soluk gri ince çizgi ve kesik kenar; hale yok.
+     Soluk gri açık ve koyu yüzeyde en az 3:1, kazanılmış işaretin en belirgin renginden hep düşük. Düz renk; gradyan, betik, dış bağlantı, yazı tipi ve metin öğesi yok. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-labelledby="baslik">
+  <title id="baslik">İşaret: Dolu gün, henüz kazanılmadı</title>
+  <g stroke="#7A8A98" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path id="levha" d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" stroke="none"/>
+    <path d="M48.5 26 C61.15 26 71.5 36.35 71.5 49 C71.5 61.65 61.15 72 48.5 72 C35.85 72 25.5 61.65 25.5 49 C25.5 36.35 35.85 26 48.5 26 Z"/>
+    <path d="M48.5 36 C55.65 36 61.5 41.85 61.5 49 C61.5 56.15 55.65 62 48.5 62 C41.35 62 35.5 56.15 35.5 49 C35.5 41.85 41.35 36 48.5 36 Z"/>
+    <path d="M48.5 45 C52.9 45 56.5 47.7 56.5 51 C56.5 54.3 52.9 57 48.5 57 C44.1 57 40.5 54.3 40.5 51 C40.5 47.7 44.1 45 48.5 45 Z"/>
+    <path d="M49 45.1 C52.6 47.3 56.3 44.6 57 41 C53.7 39.5 49.4 40.9 49 45.1 Z"/>
+    <path id="kenar" d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" stroke-width="2.5" stroke-dasharray="7 5"/>
+  </g>
+</svg>

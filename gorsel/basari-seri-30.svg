@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Başarı işareti, kazanılmış hal (ogrenme/TASARIM.md bölüm 10C): levha yolda biten taşların renginde, mürekkep kenar, motif Çakıl'ın renkleri.
+     "hale" grubu: levhanın altında aynı biçim, açık renk, kenardan 5 birim kalın; koyu zeminde işaretin çevresini çizer, açık zeminde görünmez. Düz renk; gradyan, betik, dış bağlantı, yazı tipi ve metin öğesi yok. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-labelledby="baslik">
+  <title id="baslik">İşaret: Otuz gün</title>
+  <g id="hale" stroke="#F2F6FA" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" fill="#F2F6FA" stroke-width="8"/>
+  </g>
+  <g stroke="#22303C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path id="levha" d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" fill="#FFE08A" stroke="none"/>
+    <path d="M30 71 C40 69.5 57 69.5 67 71" fill="none" stroke-width="3"/>
+    <path d="M45 56 C45 62 44.5 65.5 43.5 70 L53.5 70 C52.5 65.5 52 62 52 56 Z" fill="#A9B6C0" stroke-width="3"/>
+    <path d="M48.5 21 C61 21 70 29.5 70 40 C70 50.5 61 57 48.5 57 C36 57 27 50.5 27 40 C27 29.5 36 21 48.5 21 Z" fill="#3F9B6E" stroke-width="3"/>
+    <path d="M37 37 C40 33.5 43.5 32 47 32" fill="none" stroke-width="2.5"/>
+    <path d="M51 45 C54.5 41.5 58 40.5 61.5 40.5" fill="none" stroke-width="2.5"/>
+    <path d="M35 47.5 C38 45.5 40.5 44.5 43.5 44.5" fill="none" stroke-width="2.5"/>
+    <path id="kenar" d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" fill="none"/>
+  </g>
+</svg>

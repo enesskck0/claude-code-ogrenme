@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Başarı işareti, kazanılmamış hal (ogrenme/TASARIM.md bölüm 10C): dolgusuz, yalnız soluk gri ince çizgi ve kesik kenar; hale yok.
+     Soluk gri açık ve koyu yüzeyde en az 3:1, kazanılmış işaretin en belirgin renginden hep düşük. Düz renk; gradyan, betik, dış bağlantı, yazı tipi ve metin öğesi yok. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-labelledby="baslik">
+  <title id="baslik">İşaret: Yolun yarısı, henüz kazanılmadı</title>
+  <g stroke="#7A8A98" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path id="levha" d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" stroke="none"/>
+    <path d="M36 62.5 C39.85 62.5 43 64.975 43 68 C43 71.025 39.85 73.5 36 73.5 C32.15 73.5 29 71.025 29 68 C29 64.975 32.15 62.5 36 62.5 Z"/>
+    <path d="M60 51.5 C63.85 51.5 67 53.975 67 57 C67 60.025 63.85 62.5 60 62.5 C56.15 62.5 53 60.025 53 57 C53 53.975 56.15 51.5 60 51.5 Z"/>
+    <path d="M38 36.5 C41.85 36.5 45 38.975 45 42 C45 45.025 41.85 47.5 38 47.5 C34.15 47.5 31 45.025 31 42 C31 38.975 34.15 36.5 38 36.5 Z"/>
+    <path d="M59 24.5 C62.85 24.5 66 26.975 66 30 C66 33.025 62.85 35.5 59 35.5 C55.15 35.5 52 33.025 52 30 C52 26.975 55.15 24.5 59 24.5 Z"/>
+    <path d="M33 68.5 L35 70.5 L39 66"/>
+    <path d="M57 57.5 L59 59.5 L63 55"/>
+    <path id="kenar" d="M52 12 C76 13 90 30 87 52 C84 73 67 86 45 84 C22 82 8 67 10 46 C12 26 29 11 52 12 Z" stroke-width="2.5" stroke-dasharray="7 5"/>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Çakıl: öğrenme uygulamasının karakteri (ogrenme/TASARIM.md bölüm 4). Düz renk; gradyan, betik, dış bağlantı, yazı tipi ve metin öğesi yok.
+     "hale" grubu: çizimin altında aynı biçimler, açık renk, çizgi 5 birim kalın; koyu zeminde Çakıl'ın çevresini çizer, açık zeminde görünmez (TASARIM bölüm 9C). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-labelledby="baslik">
+  <title id="baslik">Çakıl uykulu</title>
+  <g id="hale" stroke="#F2F6FA" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke-width="17"/>
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke-width="11"/>
+    <path d="M132 108 Q144 118 142 130" fill="none" stroke-width="17"/>
+    <path d="M132 108 Q144 118 142 130" fill="none" stroke-width="11"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M127 68 C141 94 136 128 100 142 C121 128 130 102 127 68 Z" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="50" cy="62" r="3" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="58" cy="54" r="2" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="none" stroke-width="8"/>
+    <path d="M80 34 C80 27 84 23 90 22" fill="none" stroke-width="8"/>
+    <path d="M90 22 C101 21 110 29 108 40 C99 38 92 31 90 22 Z" fill="#F2F6FA" stroke-width="8"/>
+    <ellipse cx="50" cy="104" rx="8" ry="5" fill="#F2F6FA" stroke-width="5"/>
+    <ellipse cx="112" cy="104" rx="8" ry="5" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M57 88 Q64 94 71 88" fill="none" stroke-width="8.5"/>
+    <path d="M91 88 Q98 94 105 88" fill="none" stroke-width="8.5"/>
+    <ellipse cx="81" cy="108" rx="4" ry="5" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M128 30 L140 30 L128 42 L140 42" fill="none" stroke-width="8"/>
+    <path d="M146 10 L154 10 L146 18 L154 18" fill="none" stroke-width="7.5"/>
+  </g>
+  <g stroke="#22303C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke="#22303C" stroke-width="12"/>
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke="#C5CFD7" stroke-width="6"/>
+    <path d="M132 108 Q144 118 142 130" fill="none" stroke="#22303C" stroke-width="12"/>
+    <path d="M132 108 Q144 118 142 130" fill="none" stroke="#C5CFD7" stroke-width="6"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="#C5CFD7" stroke="none"/>
+    <path d="M127 68 C141 94 136 128 100 142 C121 128 130 102 127 68 Z" fill="#A9B6C0" stroke="none"/>
+    <circle cx="50" cy="62" r="3" fill="#A9B6C0" stroke="none"/>
+    <circle cx="58" cy="54" r="2" fill="#A9B6C0" stroke="none"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="none"/>
+    <path d="M80 34 C80 27 84 23 90 22" fill="none"/>
+    <path d="M90 22 C101 21 110 29 108 40 C99 38 92 31 90 22 Z" fill="#3F9B6E"/>
+    <ellipse cx="50" cy="104" rx="8" ry="5" fill="#F2A9B7" stroke="none"/>
+    <ellipse cx="112" cy="104" rx="8" ry="5" fill="#F2A9B7" stroke="none"/>
+    <path d="M57 88 Q64 94 71 88" fill="none" stroke-width="3.5"/>
+    <path d="M91 88 Q98 94 105 88" fill="none" stroke-width="3.5"/>
+    <ellipse cx="81" cy="108" rx="4" ry="5" fill="#22303C" stroke="none"/>
+    <path d="M128 30 L140 30 L128 42 L140 42" fill="none"/>
+    <path d="M146 10 L154 10 L146 18 L154 18" fill="none" stroke-width="2.5"/>
+  </g>
+</svg>

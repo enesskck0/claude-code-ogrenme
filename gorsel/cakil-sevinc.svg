@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Çakıl: öğrenme uygulamasının karakteri (ogrenme/TASARIM.md bölüm 4). Düz renk; gradyan, betik, dış bağlantı, yazı tipi ve metin öğesi yok.
+     "hale" grubu: çizimin altında aynı biçimler, açık renk, çizgi 5 birim kalın; koyu zeminde Çakıl'ın çevresini çizer, açık zeminde görünmez (TASARIM bölüm 9C). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-labelledby="baslik">
+  <title id="baslik">Çakıl seviniyor</title>
+  <g id="hale" stroke="#F2F6FA" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 90 Q14 78 16 58" fill="none" stroke-width="17"/>
+    <path d="M30 90 Q14 78 16 58" fill="none" stroke-width="11"/>
+    <path d="M130 90 Q146 78 144 58" fill="none" stroke-width="17"/>
+    <path d="M130 90 Q146 78 144 58" fill="none" stroke-width="11"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M127 68 C141 94 136 128 100 142 C121 128 130 102 127 68 Z" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="50" cy="62" r="3" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="58" cy="54" r="2" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="none" stroke-width="8"/>
+    <path d="M80 34 C80 27 82 21 86 17" fill="none" stroke-width="8"/>
+    <path d="M86 17 C91 7 104 5 112 9 C107 18 96 22 86 17 Z" fill="#F2F6FA" stroke-width="8"/>
+    <path d="M91 15 C97 12 102 10 107 10" fill="none" stroke-width="7"/>
+    <ellipse cx="50" cy="102" rx="9" ry="6" fill="#F2F6FA" stroke-width="5"/>
+    <ellipse cx="112" cy="102" rx="9" ry="6" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M57 89 Q64 79 71 89" fill="none" stroke-width="8.5"/>
+    <path d="M91 89 Q98 79 105 89" fill="none" stroke-width="8.5"/>
+    <path d="M68 102 Q81 124 94 102 Z" fill="#F2F6FA" stroke-width="8"/>
+    <ellipse cx="81" cy="109" rx="5" ry="2.5" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M28 20 L31 29 L40 32 L31 35 L28 44 L25 35 L16 32 L25 29 Z" fill="#F2F6FA" stroke-width="7"/>
+    <path d="M134 16 L136 22 L142 24 L136 26 L134 32 L132 26 L126 24 L132 22 Z" fill="#F2F6FA" stroke-width="7"/>
+  </g>
+  <g stroke="#22303C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 90 Q14 78 16 58" fill="none" stroke="#22303C" stroke-width="12"/>
+    <path d="M30 90 Q14 78 16 58" fill="none" stroke="#C5CFD7" stroke-width="6"/>
+    <path d="M130 90 Q146 78 144 58" fill="none" stroke="#22303C" stroke-width="12"/>
+    <path d="M130 90 Q146 78 144 58" fill="none" stroke="#C5CFD7" stroke-width="6"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="#C5CFD7" stroke="none"/>
+    <path d="M127 68 C141 94 136 128 100 142 C121 128 130 102 127 68 Z" fill="#A9B6C0" stroke="none"/>
+    <circle cx="50" cy="62" r="3" fill="#A9B6C0" stroke="none"/>
+    <circle cx="58" cy="54" r="2" fill="#A9B6C0" stroke="none"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="none"/>
+    <path d="M80 34 C80 27 82 21 86 17" fill="none"/>
+    <path d="M86 17 C91 7 104 5 112 9 C107 18 96 22 86 17 Z" fill="#3F9B6E"/>
+    <path d="M91 15 C97 12 102 10 107 10" fill="none" stroke-width="2"/>
+    <ellipse cx="50" cy="102" rx="9" ry="6" fill="#F2A9B7" stroke="none"/>
+    <ellipse cx="112" cy="102" rx="9" ry="6" fill="#F2A9B7" stroke="none"/>
+    <path d="M57 89 Q64 79 71 89" fill="none" stroke-width="3.5"/>
+    <path d="M91 89 Q98 79 105 89" fill="none" stroke-width="3.5"/>
+    <path d="M68 102 Q81 124 94 102 Z" fill="#22303C"/>
+    <ellipse cx="81" cy="109" rx="5" ry="2.5" fill="#F2A9B7" stroke="none"/>
+    <path d="M28 20 L31 29 L40 32 L31 35 L28 44 L25 35 L16 32 L25 29 Z" fill="#F5B82E" stroke-width="2"/>
+    <path d="M134 16 L136 22 L142 24 L136 26 L134 32 L132 26 L126 24 L132 22 Z" fill="#F5B82E" stroke-width="2"/>
+  </g>
+</svg>

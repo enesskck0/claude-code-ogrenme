@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Çakıl: öğrenme uygulamasının karakteri (ogrenme/TASARIM.md bölüm 4). Düz renk; gradyan, betik, dış bağlantı, yazı tipi ve metin öğesi yok.
+     "hale" grubu: çizimin altında aynı biçimler, açık renk, çizgi 5 birim kalın; koyu zeminde Çakıl'ın çevresini çizer, açık zeminde görünmez (TASARIM bölüm 9C). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-labelledby="baslik">
+  <title id="baslik">Çakıl el sallıyor</title>
+  <g id="hale" stroke="#F2F6FA" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke-width="17"/>
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke-width="11"/>
+    <path d="M132 92 Q148 84 150 64" fill="none" stroke-width="17"/>
+    <path d="M132 92 Q148 84 150 64" fill="none" stroke-width="11"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M127 68 C141 94 136 128 100 142 C121 128 130 102 127 68 Z" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="50" cy="62" r="3" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="58" cy="54" r="2" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="none" stroke-width="8"/>
+    <path d="M80 34 C80 27 82 21 86 17" fill="none" stroke-width="8"/>
+    <path d="M86 17 C91 7 104 5 112 9 C107 18 96 22 86 17 Z" fill="#F2F6FA" stroke-width="8"/>
+    <path d="M91 15 C97 12 102 10 107 10" fill="none" stroke-width="7"/>
+    <ellipse cx="50" cy="104" rx="8" ry="5" fill="#F2F6FA" stroke-width="5"/>
+    <ellipse cx="112" cy="104" rx="8" ry="5" fill="#F2F6FA" stroke-width="5"/>
+    <ellipse cx="64" cy="86" rx="6" ry="8" fill="#F2F6FA" stroke-width="5"/>
+    <ellipse cx="98" cy="86" rx="6" ry="8" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="66" cy="83" r="2" fill="#F2F6FA" stroke-width="5"/>
+    <circle cx="100" cy="83" r="2" fill="#F2F6FA" stroke-width="5"/>
+    <path d="M71 104 Q81 114 91 104" fill="none" stroke-width="8"/>
+    <path d="M152 50 Q157 56 155 63" fill="none" stroke-width="7.5"/>
+    <path d="M142 46 Q146 50 145 55" fill="none" stroke-width="7.5"/>
+  </g>
+  <g stroke="#22303C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke="#22303C" stroke-width="12"/>
+    <path d="M28 108 Q16 118 18 130" fill="none" stroke="#C5CFD7" stroke-width="6"/>
+    <path d="M132 92 Q148 84 150 64" fill="none" stroke="#22303C" stroke-width="12"/>
+    <path d="M132 92 Q148 84 150 64" fill="none" stroke="#C5CFD7" stroke-width="6"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="#C5CFD7" stroke="none"/>
+    <path d="M127 68 C141 94 136 128 100 142 C121 128 130 102 127 68 Z" fill="#A9B6C0" stroke="none"/>
+    <circle cx="50" cy="62" r="3" fill="#A9B6C0" stroke="none"/>
+    <circle cx="58" cy="54" r="2" fill="#A9B6C0" stroke="none"/>
+    <path d="M80 34 C116 32 140 58 141 92 C142 124 116 146 80 146 C44 146 19 126 19 95 C19 62 44 36 80 34 Z" fill="none"/>
+    <path d="M80 34 C80 27 82 21 86 17" fill="none"/>
+    <path d="M86 17 C91 7 104 5 112 9 C107 18 96 22 86 17 Z" fill="#3F9B6E"/>
+    <path d="M91 15 C97 12 102 10 107 10" fill="none" stroke-width="2"/>
+    <ellipse cx="50" cy="104" rx="8" ry="5" fill="#F2A9B7" stroke="none"/>
+    <ellipse cx="112" cy="104" rx="8" ry="5" fill="#F2A9B7" stroke="none"/>
+    <ellipse cx="64" cy="86" rx="6" ry="8" fill="#22303C" stroke="none"/>
+    <ellipse cx="98" cy="86" rx="6" ry="8" fill="#22303C" stroke="none"/>
+    <circle cx="66" cy="83" r="2" fill="#FFFFFF" stroke="none"/>
+    <circle cx="100" cy="83" r="2" fill="#FFFFFF" stroke="none"/>
+    <path d="M71 104 Q81 114 91 104" fill="none"/>
+    <path d="M152 50 Q157 56 155 63" fill="none" stroke-width="2.5"/>
+    <path d="M142 46 Q146 50 145 55" fill="none" stroke-width="2.5"/>
+  </g>
+</svg>
