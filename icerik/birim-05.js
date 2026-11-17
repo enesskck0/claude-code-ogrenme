@@ -13,9 +13,12 @@
         "Başvuru skill'i (reference skill) ile eylem skill'ini (action skill) ayırt edebilir."
       ],
       "anlatim": [
-        "Skill, Claude'a bir işi bir kez öğreten talimat dosyasıdır; Claude sonra bu bilgiyi ilgili olduğunda kendiliğinden uygular. Claude'a aynı şeyi tekrar tekrar anlatıyorsan, o bir skill adayıdır. Bizde örnek: CLAUDE.md'nin 10. satırı \"sistem metni değişirken `sistem-metni`; kayıt satırı yazılırken `kayit-yazma`\" der; o iş gelince o skill okunur.",
-        "İki çeşit skill var. Başvuru skill'i oturum boyunca kullanılacak bilgi verir, örneğin bir API yazım kılavuzu. Eylem skill'i Claude'a belirli bir işi yaptırır, örneğin `/deploy` ile yayına alma akışı. Eylem skill'inin gövdesi adım adım talimat taşır.",
-        "Skill'in tamamı her konuşmaya yüklenmez. Claude isteğini skill açıklamalarıyla karşılaştırır ve uyanı açar; eğik çizgi komutu (slash command) gibi senin yazmanı beklemez. Proje skill'leri deponun `.claude/skills` klasöründe durur ve depoyu alan herkese gelir."
+        "Skill, Claude'a bir işi bir kez öğreten talimat dosyasıdır. Claude bu bilgiyi iş ilgili olduğunda kendiliğinden uygular.",
+        "Claude'a aynı şeyi tekrar tekrar anlatıyorsan, o bir skill adayıdır.",
+        "Skill en iyi belirli işlere özgü bilgide çalışır, örneğin commit mesajı biçimi. CLAUDE.md ise her oturumda kendiliğinden yüklenir, her zaman geçerli kural içindir.",
+        "Bizde örnek: CLAUDE.md'de \"sistem metni değişirken `sistem-metni`; kayıt satırı yazılırken `kayit-yazma`\" satırı var. O iş gelince o skill okunur.",
+        "Başvuru skill'i oturum boyunca kullanılacak bilgi verir, örneğin bir yazım kılavuzu. Eylem skill'i Claude'a belirli bir işi adım adım yaptırır, örneğin `/deploy` ile yayına alma.",
+        "Claude isteğini skill açıklamalarıyla karşılaştırır ve uyanı açar. Eğik çizgi komutu (slash command) gibi senin yazmanı beklemez."
       ],
       "terimler": [
         {"tr": "başvuru skill'i", "en": "reference skill", "aciklama": "Claude'un oturum boyunca kullandığı bilgiyi taşıyan skill; örneğin bir yazım kılavuzu."},
@@ -26,12 +29,13 @@
         {
           "id": "b05-d1-s1",
           "tur": "coktan",
-          "soru": "Resmi skill dersine göre skill en çok hangi tür bilgide işe yarar?",
+          "kart": 2,
+          "soru": "Skill en çok hangi bilgide işe yarar?",
           "secenekler": [
-            "Belirli işlere özgü bilgi, örneğin commit mesajı biçimi",
+            "Belirli işe özgü bilgi, örneğin commit mesajı biçimi",
             "Her oturumda geçerli genel proje kuralı",
             "Dış bir hizmete bağlanma",
-            "Her dosya kaydında kendiliğinden koşan iş"
+            "Her dosya kaydında koşan iş"
           ],
           "dogru": 0,
           "ipucu": "Skill her konuşmada değil, ilgili iş gelince devreye girer.",
@@ -46,6 +50,7 @@
         {
           "id": "b05-d1-s2",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Skill, Claude'a bir işi bir kez öğretir; Claude o bilgiyi iş ilgili olduğunda kendiliğinden uygular.",
           "dogru": true,
           "ipucu": "Skill'in amacı, aynı anlatımı her seferinde tekrarlamamak.",
@@ -60,13 +65,14 @@
         {
           "id": "b05-d1-s3",
           "tur": "eslestir",
+          "kart": 4,
           "soru": "Her birini ne yaptığıyla eşleştir.",
           "ciftler": [
             ["Başvuru skill'i", "Oturum boyunca kullanılacak bilgi verir"],
             ["Eylem skill'i", "Claude'a belirli bir işi yaptırır"],
             ["CLAUDE.md", "Her oturumda kendiliğinden yüklenir"]
           ],
-          "ipucu": "Örnekleri düşün: API yazım kılavuzu, /deploy akışı ve her oturum okunan giriş dosyası.",
+          "ipucu": "Örnekleri düşün: yazım kılavuzu, /deploy akışı ve her oturum okunan giriş dosyası.",
           "aciklama": "Başvuru skill'i bilgi, eylem skill'i iş verir. CLAUDE.md ise skill gibi isteğe göre değil, her oturumda yüklenir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/features-overview",
@@ -78,11 +84,12 @@
         {
           "id": "b05-d1-s4",
           "tur": "coktan",
-          "soru": "`kayit-yazma` skill'inin gövdesinde \"Adımlar\" başlığı altında 1'den 6'ya numaralı adımlar var. Bu yapı hangi çeşide daha yakın?",
+          "kart": 4,
+          "soru": "`kayit-yazma` skill'inin gövdesinde numaralı altı adım var. Bu hangi çeşide yakın?",
           "secenekler": [
-            "Başvuru skill'i: yalnız kılavuz bilgisi verir",
-            "Kanca: bir olay olunca kendiliğinden koşar",
-            "Eylem skill'i: bir işi adım adım yaptırır"
+            "Başvuru skill'i: kılavuz bilgisi verir",
+            "Kanca: olay olunca kendiliğinden koşar",
+            "Eylem skill'i: işi adım adım yaptırır"
           ],
           "dogru": 2,
           "ipucu": "Numaralı adımlar bilgi mi veriyor, yoksa bir işin nasıl yapılacağını mı sıralıyor?",
@@ -96,11 +103,17 @@
         },
         {
           "id": "b05-d1-s5",
-          "tur": "dogru-yanlis",
-          "soru": "Eğik çizgi komutu gibi, skill de ancak sen adını yazınca çalışır.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Eğik çizgi komutunu sen yazarsın. Skill için hangisi doğru?",
+          "secenekler": [
+            "Skill de yalnız sen adını yazınca çalışır",
+            "İsteğin açıklamasına uyunca Claude onu kendisi açar",
+            "Skill yalnız oturum başında bir kez çalışır"
+          ],
+          "dogru": 1,
           "ipucu": "Claude isteğini neyle karşılaştırıyordu?",
-          "aciklama": "Yanlış: eğik çizgi komutunu senin yazman gerekir, skill'i ise Claude durumu tanıyınca kendisi uygular.",
+          "aciklama": "Eğik çizgi komutunu senin yazman gerekir; skill'i ise Claude durumu tanıyınca kendisi uygular.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-agent-skills/what-are-skills",
             "kopya": "ders-skills-01-what-are-skills.md",
@@ -111,7 +124,8 @@
         {
           "id": "b05-d1-s6",
           "tur": "coktan",
-          "soru": "Diyelim ki her video incelemesinde Claude'a aynı kontrol listesini yapıştırıyorsun; bu üçüncü kez. Ne yaparsın?",
+          "kart": 1,
+          "soru": "Claude'a aynı kontrol listesini üçüncü kez yapıştırıyorsun. Ne yaparsın?",
           "secenekler": [
             "Listeyi her seferinde yine yapıştırırım",
             "Listeyi bir skill olarak kaydederim",
@@ -131,7 +145,8 @@
         {
           "id": "b05-d1-s7",
           "tur": "coktan",
-          "soru": "CLAUDE.md'nin 10. satırına göre sistem metni değişirken önce hangi skill okunur?",
+          "kart": 3,
+          "soru": "CLAUDE.md'deki skill satırına göre sistem metni değişirken önce hangi skill okunur?",
           "secenekler": [
             "kayit-yazma",
             "ajan-gorevi",
@@ -139,12 +154,13 @@
             "sistem-metni"
           ],
           "dogru": 3,
-          "ipucu": "Kartta CLAUDE.md'nin 10. satırından verilen örneği hatırla.",
-          "aciklama": "10. satır her işe bir skill eşler: sistem metni değişirken sistem-metni, ajana iş verirken ajan-gorevi, kayıt satırı yazılırken kayit-yazma okunur.",
+          "ipucu": "Kartta CLAUDE.md'den verilen örneği hatırla.",
+          "aciklama": "Bu satır her işe bir skill eşler: sistem metni değişirken sistem-metni, ajana iş verirken ajan-gorevi, kayıt satırı yazılırken kayit-yazma okunur.",
           "kaynak": {
             "adres": "CLAUDE.md:10",
-            "okuma": "2026-11-15",
-            "dayanak": "Olay anında önce okunan skill satırı, sistem metni değişirken sistem-metni, ajana iş verirken ajan-gorevi, kayıt satırı yazılırken kayit-yazma skill'ini sayar."
+            "okuma": "2026-11-17",
+            "dayanak": "Olay anında önce okunan skill satırı, sistem metni değişirken sistem-metni, ajana iş verirken ajan-gorevi, kayıt satırı yazılırken kayit-yazma skill'ini sayar.",
+            "soz": "sistem metni değişirken `sistem-metni`; ajana iş verirken `ajan-gorevi`; kayıt satırı yazılırken `kayit-yazma`"
           }
         }
       ]
@@ -158,9 +174,13 @@
         "Claude'un bir skill'i açıklamasına bakarak açtığını anlatabilir."
       ],
       "anlatim": [
-        "Proje skill'i kendi klasöründe durur: `.claude/skills/<ad>/SKILL.md`. Dosyanın en üstünde iki `---` çizgisi arasında ön bilgi, altında talimatlar yazılır. Bizde örnek: `.claude/skills/kayit-yazma/SKILL.md` dosyasının ilk dört satırı ön bilgidir; 2. satır `name: kayit-yazma`, 3. satır açıklamadır.",
-        "`name` skill'in adıdır ve `/` menüsünde görünür; yazılmazsa klasörün adı kullanılır. `description` skill'in ne yaptığını ve ne zaman kullanılacağını söyler. Oturum başında Claude yalnız adları ve açıklamaları yükler; isteğini bu açıklamalarla karşılaştırır ve uyan skill'in tamamını okur.",
-        "Skill'i adıyla da açabilirsin. Masaüstünde istem kutusuna `/` yaz ya da + düğmesine basıp \"Slash commands\" seç; listede proje skill'lerin de görünür. Seçtiğin skill kutuda belirir, işini arkasına yazıp gönderirsin."
+        "Proje skill'i kendi klasöründe, bir SKILL.md dosyasında durur: `.claude/skills/<ad>/SKILL.md`.",
+        "Dosyanın en üstünde iki `---` çizgisi arasına ön bilgi yazılır. İkinci çizginin altına talimatlar gelir.",
+        "`name` skill'in adıdır ve `/` menüsünde görünür. Yazılmazsa klasörün adı kullanılır.",
+        "`description` skill'in ne yaptığını ve ne zaman kullanılacağını söyler.",
+        "Bizde örnek: kayit-yazma skill'inin ilk dört satırı ön bilgidir. İçinde `name: kayit-yazma` satırı ve onun altında açıklama satırı var.",
+        "Oturum başında Claude yalnız adları ve açıklamaları yükler. İsteğini bu açıklamalarla karşılaştırır ve uyan skill'in tamamını okur.",
+        "Skill'i adıyla da açabilirsin: masaüstünde istem kutusuna `/` yaz ya da + düğmesinden \"Slash commands\" seç. Listede proje skill'lerin de görünür."
       ],
       "terimler": [
         {"tr": "ön bilgi", "en": "frontmatter", "aciklama": "SKILL.md'nin en üstünde iki --- çizgisi arasındaki alanlar; skill'in adı ve açıklaması burada yazılır."},
@@ -170,11 +190,12 @@
         {
           "id": "b05-d2-s1",
           "tur": "sirala",
+          "kart": 1,
           "soru": "Yeni bir proje skill'i kurmanın adımlarını sırala.",
           "adimlar": [
             ".claude/skills altında skill'in adıyla bir klasör aç",
             "Klasörün içine SKILL.md dosyasını koy",
-            "En üste iki --- arasına name ve description yaz",
+            "En üste iki --- arasına ön bilgiyi yaz",
             "İkinci --- çizgisinin altına talimatları yaz"
           ],
           "ipucu": "Önce yer, sonra dosya, sonra dosyanın içi yukarıdan aşağı.",
@@ -189,6 +210,7 @@
         {
           "id": "b05-d2-s2",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Claude bir skill'i kendiliğinden ne zaman açar?",
           "secenekler": [
             "Her oturum başında, bütün skill'leri sırayla",
@@ -209,6 +231,7 @@
         {
           "id": "b05-d2-s3",
           "tur": "dogru-yanlis",
+          "kart": 5,
           "soru": "Claude Code oturum başında bütün SKILL.md dosyalarını baştan sona okur.",
           "dogru": false,
           "ipucu": "Oturum başında bağlama skill'in ne kadarı giriyordu?",
@@ -223,25 +246,27 @@
         {
           "id": "b05-d2-s4",
           "tur": "coktan",
-          "soru": "`kayit-yazma` skill'inin 3. satırı kısaltılmış haliyle: description: \"KARARLAR maddesi ve Düzeltme satırı yazılırken açılır; rapor yazılırken kullanılmaz.\" Bu satır ne işe yarar?",
+          "kart": 4,
+          "soru": "kayit-yazma'nın açıklaması kısaca: \"KARARLAR maddesi yazılırken açılır; rapor yazılırken kullanılmaz.\" Bu satır ne işe yarar?",
           "secenekler": [
-            "Skill'in hangi araçları sormadan kullanacağını yazar",
             "Skill'i yalnız senin açabilmeni sağlar",
             "Skill'in / menüsündeki adını belirler",
             "Skill'in hangi işte açılacağını söyler"
           ],
-          "dogru": 3,
+          "dogru": 2,
           "ipucu": "Satırdaki \"açılır\" ve \"kullanılmaz\" sözcükleri neyi anlatıyor?",
-          "aciklama": "Açıklama skill'in ne zaman açılıp ne zaman kullanılmadığını söyler; Claude seçimi buna göre yapar. Adı ise 2. satırdaki name belirler.",
+          "aciklama": "Açıklama skill'in ne zaman açılıp ne zaman kullanılmadığını söyler; Claude seçimi buna göre yapar. Adı ise name alanı belirler.",
           "kaynak": {
             "adres": ".claude/skills/kayit-yazma/SKILL.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "Açıklama, skill'in KARARLAR maddesi, Düzeltme satırı ve DURUM satırı yazılırken açıldığını, devir kartı, kuyruk satırı ve rapor yazılırken kullanılmadığını söyler."
+            "okuma": "2026-11-17",
+            "dayanak": "Açıklama, skill'in KARARLAR maddesi, Düzeltme satırı ve DURUM satırı yazılırken açıldığını, devir kartı, kuyruk satırı ve rapor yazılırken kullanılmadığını söyler.",
+            "soz": "KARARLAR maddesi, Düzeltme satırı ya da hata sayacı artışı"
           }
         },
         {
           "id": "b05-d2-s5",
           "tur": "bosluk",
+          "kart": 0,
           "soru": "Proje skill'inin dosya yolu: .claude/skills/<ad>/___",
           "secenekler": [
             "README.md",
@@ -250,7 +275,7 @@
             "settings.json"
           ],
           "dogru": 1,
-          "ipucu": "Dosya adı büyük harfle yazılır ve konunun kendi adını taşır.",
+          "ipucu": "Kartta verilen yolun sonunda hangi dosya duruyordu?",
           "aciklama": "Her proje skill'i kendi adını taşıyan klasörde, SKILL.md dosyasında durur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/skills",
@@ -262,6 +287,7 @@
         {
           "id": "b05-d2-s6",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Bir SKILL.md'nin ön bilgisinde `name` alanı yoksa skill `/` menüsünde hangi adla görünür?",
           "secenekler": [
             "Skill'in durduğu klasörün adıyla",
@@ -282,11 +308,12 @@
         {
           "id": "b05-d2-s7",
           "tur": "coktan",
-          "soru": "Yeni bir skill'e açıklama yazıyorsun. Hangisi Claude'un skill'i doğru anda açmasına daha çok yardım eder?",
+          "kart": 3,
+          "soru": "Hangi açıklama skill'in doğru anda açılmasına daha çok yardım eder?",
           "secenekler": [
             "Kayıt işleri için.",
             "KARARLAR maddesi yazılırken açılır; devir kartında kullanılmaz.",
-            "Bu skill çok önemlidir; Claude onu her zaman dikkatle okumalı ve uymalı."
+            "Bu skill çok önemlidir; Claude her zaman dikkatle uymalıdır."
           ],
           "dogru": 1,
           "ipucu": "İyi açıklama iki soruyu yanıtlar: skill ne yapar, ne zaman kullanılır?",
@@ -300,11 +327,17 @@
         },
         {
           "id": "b05-d2-s8",
-          "tur": "dogru-yanlis",
-          "soru": "Masaüstü uygulamada bir skill'i adıyla açmak için istem kutusuna / yazabilir ya da + düğmesinden seçebilirsin.",
-          "dogru": true,
-          "ipucu": "Masaüstünde eğik çizgi menüsünün nereden açıldığını düşün.",
-          "aciklama": "Doğru: istem kutusuna / yazmak ya da + düğmesinde Slash commands'i seçmek listeyi açar. Proje skill'lerin de bu listededir.",
+          "tur": "coktan",
+          "kart": 6,
+          "soru": "Masaüstünde bir skill'i adıyla açmanın yolu hangisi?",
+          "secenekler": [
+            "Skill'in klasörünü çift tıklayıp açmak",
+            "Oturumu kapatıp yeniden açmak",
+            "İstem kutusuna / yazmak ya da + düğmesinden seçmek"
+          ],
+          "dogru": 2,
+          "ipucu": "Kartta skill'i adıyla açmanın iki yolu sayılıyordu.",
+          "aciklama": "İstem kutusuna / yazmak ya da + düğmesinde Slash commands'i seçmek listeyi açar. Proje skill'lerin de bu listededir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -323,9 +356,13 @@
         "Ajan dosyasındaki skills alanının skill'i ajana baştan yüklediğini anlatabilir."
       ],
       "anlatim": [
-        "`name` ve `description` dışında başka alanlar da var. `disable-model-invocation: true` yazarsan Claude skill'i kendi başına açamaz; yalnız sen adını yazınca açılır. Yayına alma, mesaj gönderme gibi yan etkisi olan işler için kullanılır. Böyle bir skill'in açıklaması da bağlama girmez.",
-        "`allowed-tools`, skill'in açıldığı turda listelenen araçlara önceden onay (pre-approve) verir: Claude onları sormadan kullanır. Öteki araçlar yasaklanmaz, her zamanki izinle sorulur; onay da sen yeni mesaj gönderince biter. `context: fork` ise skill'i ayrı bir alt ajanda (subagent) koşturur; o ajan senin konuşma geçmişini görmez.",
-        "Bizim skill'lerde bu üç alan yok. Ama ajan dosyalarında yakın bir alan var: `.claude/agents/scout.md` 9. satırda `skills:`, 10. satırda `- ajan-kimligi` yazar. Bu, `ajan-kimligi` skill'inin tamamını ajan açılırken, beklemeden yükler."
+        "Ön bilgide başka alanlar da var. `disable-model-invocation: true` yazarsan Claude skill'i kendi başına açamaz, yalnız sen adını yazınca açılır.",
+        "`disable-model-invocation` yayına alma, mesaj gönderme gibi yan etkisi olan işler içindir. Böyle bir skill'in açıklaması da bağlama girmez.",
+        "`allowed-tools`, skill'in açıldığı turda listelenen araçlara önceden onay (pre-approve) verir: Claude onları sormadan kullanır. Onay sen yeni mesaj gönderince biter.",
+        "`allowed-tools` öteki araçları yasaklamaz: listesinde olmayan araç her zamanki izinle sorulur.",
+        "`context: fork` skill'i ayrı bir alt ajanda (subagent) koşturur. O ajan senin konuşma geçmişini görmez.",
+        "Bu yüzden fork, açık bir görev veren skill'de anlamlıdır. Yalnız kılavuz alan ajan anlamlı bir sonuç döndürmez.",
+        "Bizim ajan dosyalarında yakın bir alan var: `.claude/agents/scout.md` içinde `skills:` altında `- ajan-kimligi` yazar. Bu, o skill'in tamamını ajan açılırken beklemeden yükler."
       ],
       "terimler": [
         {"tr": "önceden onay", "en": "pre-approve", "aciklama": "Bir aracın kullanımda izin sorulmadan çalışmasına önceden izin vermek; allowed-tools bunu skill'in açıldığı tur için yapar."},
@@ -335,13 +372,14 @@
         {
           "id": "b05-d3-s1",
           "tur": "eslestir",
+          "kart": 4,
           "soru": "Ön bilgi alanını etkisiyle eşleştir.",
           "ciftler": [
             ["disable-model-invocation: true", "Claude skill'i kendi başına açamaz"],
             ["allowed-tools", "Listelenen araçlar o turda sormadan kullanılır"],
             ["context: fork", "Skill ayrı bir alt ajanda koşar"]
           ],
-          "ipucu": "Alan adlarını Türkçeye çevir: model çağırmasını kapat, izinli araçlar, bağlamı ayır.",
+          "ipucu": "Her alanı tanıtan kartı ayrı ayrı hatırla.",
           "aciklama": "Her alan tek bir şeyi değiştirir: kimin açacağını, hangi aracın sorulmayacağını ya da skill'in nerede koşacağını.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/skills",
@@ -353,6 +391,7 @@
         {
           "id": "b05-d3-s2",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Bir skill uygulamayı yayına alıyor. Claude'un bunu \"kod hazır görünüyor\" diye kendi başına başlatmasını istemiyorsun. Hangi alanı eklersin?",
           "secenekler": [
             "allowed-tools: Bash(git commit *)",
@@ -372,11 +411,17 @@
         },
         {
           "id": "b05-d3-s3",
-          "tur": "dogru-yanlis",
-          "soru": "allowed-tools alanı, skill açıkken Claude'u yalnız listelenen araçlarla sınırlar.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "allowed-tools listesinde olmayan bir aracı Claude kullanmak isterse ne olur?",
+          "secenekler": [
+            "Araç yasaktır, hiç kullanılamaz",
+            "Her zamanki izinle sorulur",
+            "Sormadan kullanılır"
+          ],
+          "dogru": 1,
           "ipucu": "Alan araç ekleyip çıkarıyor mu, yoksa yalnız izin sorusunu mu atlatıyor?",
-          "aciklama": "Yanlış: alan yalnız listelenen araçlara önceden onay verir, öteki araçlar yine kullanılabilir ve her zamanki izinle sorulur. Araç kaldırmak için ayrı bir alan, disallowed-tools vardır.",
+          "aciklama": "Alan yalnız listelenen araçlara önceden onay verir; öteki araçlar yine kullanılabilir ve her zamanki izinle sorulur. Araç kaldırmak için ayrı bir alan, disallowed-tools vardır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/skills",
             "kopya": "skills.md",
@@ -387,6 +432,7 @@
         {
           "id": "b05-d3-s4",
           "tur": "coktan",
+          "kart": 2,
           "soru": "allowed-tools ile verilen önceden onay ne zaman biter?",
           "secenekler": [
             "Oturum kapanınca",
@@ -407,7 +453,8 @@
         {
           "id": "b05-d3-s5",
           "tur": "coktan",
-          "soru": "`.claude/agents/scout.md` 9-10. satırlarda `skills:` altında `ajan-kimligi` yazıyor. Bu ne sağlar?",
+          "kart": 6,
+          "soru": "scout.md'de `skills:` altında `ajan-kimligi` yazıyor. Bu ne sağlar?",
           "secenekler": [
             "ajan-kimligi skill'i ajan açılırken baştan yüklenir",
             "Ajan ajan-kimligi skill'ini hiç kullanamaz",
@@ -419,13 +466,15 @@
           "aciklama": "Ajan dosyasındaki skills listesi, skill'in tamamını ajan açılırken bağlamına koyar. Ana oturum bu skill'i çağırmaz.",
           "kaynak": {
             "adres": ".claude/skills/ajan-kimligi/SKILL.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "Ajan kimliği skill'i, ajan dosyalarının skills alanıyla ajana baştan yüklenir ve ana oturum onu çağırmaz."
+            "okuma": "2026-11-17",
+            "dayanak": "Ajan kimliği skill'i, ajan dosyalarının skills alanıyla ajana baştan yüklenir ve ana oturum onu çağırmaz.",
+            "soz": "Ajan dosyalarının skills alanıyla ajana baştan yüklenir"
           }
         },
         {
           "id": "b05-d3-s6",
           "tur": "bosluk",
+          "kart": 4,
           "soru": "context: fork yazılan skill ayrı bir alt ajanda koşar; o ajan senin ___ görmez, bu yüzden talimatlar kendi başına anlaşılır olmalı.",
           "secenekler": [
             "skill talimatlarını",
@@ -445,6 +494,7 @@
         {
           "id": "b05-d3-s7",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Hangi skill'e context: fork eklemek anlamlıdır?",
           "secenekler": [
             "Açık adımlarla bir araştırma görevi veren skill",
@@ -464,6 +514,7 @@
         {
           "id": "b05-d3-s8",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "disable-model-invocation: true olan bir skill'in açıklaması, sen açana kadar bağlama girmez.",
           "dogru": true,
           "ipucu": "Claude bu skill'i kendi açamıyorsa, açıklamasını bilmesine gerek var mı?",
@@ -486,9 +537,13 @@
         "Bizim klasördeki skill boyut tavanını okuyup anlatabilir."
       ],
       "anlatim": [
-        "Bağlam penceresi (context window), Claude'un o oturumda bildiği her şeyi tutar. Sen bir şey yazmadan önce CLAUDE.md ve skill açıklamaları buraya yüklenir. Skill'in gövdesi ise yalnız skill açılınca girer ve oturum boyunca orada kalır. Yani açılan skill'in her satırı sonraki isteklerde de yer kaplar.",
-        "Uzun oturumda bağlam dolunca Claude Code konuşmayı özetler; buna sıkıştırma denir. Açılmış skill gövdeleri özetin ardından yeniden eklenir, ama skill başına en çok 5.000, toplamda 25.000 token kadar; en eski açılan önce düşer. Kırpma dosyanın başını korur. Bu yüzden en önemli talimatı SKILL.md'nin üstüne yaz.",
-        "Gövdeyi kısa tut: resmi belge SKILL.md'yi 500 satırın altında tutmayı, ayrıntılı başvuru bilgisini ayrı dosyaya koymayı önerir. Bizde tavan bayt olarak konmuş: `denetim.py` 148. satırdaki SKILL_TAVAN 10.000 bayttır. `sistem-metni` skill'i de skill'in 10.000 bayt altında kalmasını ister."
+        "Bağlam penceresi (context window), Claude'un o oturumda bildiği her şeyi tutar. Sen bir şey yazmadan önce CLAUDE.md ile skill'lerin adı ve açıklaması buraya yüklenir.",
+        "Skill'in gövdesi ise yalnız skill açılınca girer ve oturum boyunca orada kalır. Yani her satırı sonraki isteklerde de yer kaplar.",
+        "Bağlam dolunca konuşma özetlenir; buna sıkıştırma denir. Açılmış skill gövdeleri sonra yeniden eklenir, ama skill başına en çok 5.000, toplamda 25.000 token kadar.",
+        "En eski açılan skill önce düşer, büyük skill kırpılır. Kırpma dosyanın başını korur; bu yüzden en önemli talimatı SKILL.md'nin üstüne yaz.",
+        "Sıkıştırmadan sonra skill'in yalnız başı kalabilir. Skill'i yeniden açmak tam içeriğini geri getirir.",
+        "Gövdeyi kısa tut: resmi belge SKILL.md'yi 500 satırın altında tutmayı, ayrıntılı başvuru bilgisini ayrı dosyaya koymayı önerir.",
+        "Bizde tavan bayt olarak konmuş: `denetim.py` dosyasındaki SKILL_TAVAN 10.000 bayttır. `sistem-metni` skill'i de skill'in 10.000 bayt altında kalmasını ister."
       ],
       "terimler": [
         {"tr": "bağlam penceresi", "en": "context window", "aciklama": "Claude'un bir oturumda bildiği her şeyin tutulduğu alan: talimatlar, okunan dosyalar, konuşma."},
@@ -499,6 +554,7 @@
         {
           "id": "b05-d4-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Sen hiçbir şey yazmadan, oturum başında bir skill'in nesi bağlama yüklenir?",
           "secenekler": [
             "Gövdesinin tamamı",
@@ -519,9 +575,10 @@
         {
           "id": "b05-d4-s2",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Bir skill açıldıktan sonra gövdesi bağlamda kalır; her satırı sonraki isteklerde de yer kaplar.",
           "dogru": true,
-          "ipucu": "Claude Code skill dosyasını her turda yeniden mi okuyor, yoksa bir kez mi ekliyor?",
+          "ipucu": "Claude skill dosyasını her turda yeniden mi okuyor, yoksa bir kez mi ekliyor?",
           "aciklama": "Doğru: açılan skill konuşmaya bir kez eklenir ve orada kalır. Bu yüzden gövdeyi kısa tutmak her istekte yer kazandırır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/skills",
@@ -533,7 +590,8 @@
         {
           "id": "b05-d4-s3",
           "tur": "coktan",
-          "soru": "Uzun bir oturumda sıkıştırma oldu; Claude açtığın bir skill'in sonundaki adımları artık uygulamıyor. İlk ne yaparsın?",
+          "kart": 4,
+          "soru": "Sıkıştırmadan sonra Claude bir skill'in sonundaki adımları uygulamıyor. İlk ne yaparsın?",
           "secenekler": [
             "Skill'i yeniden açıp tam içeriğini geri getiririm",
             "Skill'in açıklamasını uzatırım",
@@ -553,7 +611,8 @@
         {
           "id": "b05-d4-s4",
           "tur": "coktan",
-          "soru": "Bir skill'in en önemli kuralı dosyanın en sonunda duruyor. Claude'a hangi tarifi verirsin?",
+          "kart": 3,
+          "soru": "Bir skill'in en önemli kuralı dosyanın sonunda. Claude'a hangi tarifi verirsin?",
           "secenekler": [
             "Kuralı sona büyük harfle bir kez daha yaz.",
             "Kuralı SKILL.md'nin en üstüne taşı.",
@@ -572,7 +631,8 @@
         {
           "id": "b05-d4-s5",
           "tur": "bosluk",
-          "soru": "denetim.py'nin 148. satırına göre bizim skill dosyalarının bayt tavanı ___ bayttır.",
+          "kart": 6,
+          "soru": "denetim.py'ye göre bizim skill dosyalarının bayt tavanı ___ bayttır.",
           "secenekler": [
             "17.524",
             "3.000",
@@ -581,20 +641,27 @@
           ],
           "dogru": 3,
           "ipucu": "Kartta SKILL_TAVAN için verilen sayıyı hatırla.",
-          "aciklama": "148. satır CLAUDE_TAVAN, SKILL_TAVAN ve KART_TAVAN değerlerini 17524, 10000 ve 3000 diye koyar. Skill için tavan 10.000 bayttır.",
+          "aciklama": "denetim.py'deki satır CLAUDE_TAVAN, SKILL_TAVAN ve KART_TAVAN değerlerini 17524, 10000 ve 3000 diye koyar. Skill için tavan 10.000 bayttır.",
           "kaynak": {
-            "adres": "denetim.py:148",
-            "okuma": "2026-11-15",
-            "dayanak": "Satır CLAUDE.md tavanını 17.524 bayt, skill tavanını 10.000 bayt, devir kartı tavanını 3.000 karakter olarak koyar."
+            "adres": "denetim.py:173",
+            "okuma": "2026-11-17",
+            "dayanak": "Satır CLAUDE.md tavanını 17.524 bayt, skill tavanını 10.000 bayt, devir kartı tavanını 3.000 karakter olarak koyar.",
+            "soz": "CLAUDE_TAVAN, SKILL_TAVAN, KART_TAVAN = 17524, 10000, 3000"
           }
         },
         {
           "id": "b05-d4-s6",
-          "tur": "dogru-yanlis",
-          "soru": "Sıkıştırmadan sonra açılmış her skill'in gövdesi eksiksiz geri gelir.",
-          "dogru": false,
-          "ipucu": "Skill başına ve toplamda bir sınır vardı.",
-          "aciklama": "Yanlış: skill başına 5.000, toplamda 25.000 token sınırı var ve en eski açılan skill önce düşer. Büyük skill'in yalnız başı kalır.",
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "Sıkıştırmadan sonra açılmış skill gövdeleri yeniden eklenir, ama skill başına en çok ___ token kadar.",
+          "secenekler": [
+            "25.000",
+            "5.000",
+            "500"
+          ],
+          "dogru": 1,
+          "ipucu": "Kartta skill başına ve toplam için iki ayrı sınır vardı.",
+          "aciklama": "Skill başına 5.000, toplamda 25.000 token sınırı var ve en eski açılan skill önce düşer. Büyük skill'in yalnız başı kalır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/context-window",
             "kopya": "context-window.md",
@@ -605,10 +672,11 @@
         {
           "id": "b05-d4-s7",
           "tur": "coktan",
-          "soru": "Bir skill'e 2.000 satırlık bir API belgesi eklemek istiyorsun. Claude'a hangi tarifi verirsin?",
+          "kart": 5,
+          "soru": "Skill'e 2.000 satırlık bir API belgesi eklemek istiyorsun. Hangi tarif doğru?",
           "secenekler": [
-            "Belgenin tamamını SKILL.md'nin içine, adımların altına yapıştır.",
-            "Belgeyi ayrı dosyaya koy, SKILL.md'den bağlantı ver ve ne zaman okunacağını yaz.",
+            "Belgenin tamamını SKILL.md'ye yapıştır.",
+            "Belgeyi ayrı dosyaya koy, SKILL.md'den bağlantı ver.",
             "Belgeyi CLAUDE.md'ye ekle, her oturumda yüklensin."
           ],
           "dogru": 1,
@@ -632,9 +700,12 @@
         "Her seferinde olması gereken kuralın neden kancaya verildiğini anlatabilir."
       ],
       "anlatim": [
-        "Üç yer, üç iş. CLAUDE.md her oturumda yüklenir: \"her zaman şunu yap\" kuralları için. Skill isteğe göre yüklenir: yalnız bazı işlerde gereken bilgi ve tekrar eden iş akışı için. Kanca bir olay olunca Claude karar vermeden koşar: her seferinde olması gereken iş için.",
-        "Tetiklere (trigger) bak: Claude aynı kuralı iki kez yanlış uygularsa CLAUDE.md'ye ekle. Aynı yöntemi sohbete üçüncü kez yapıştırıyorsan skill yap. Bir şeyin sormadan her seferinde olmasını istiyorsan kanca yaz. CLAUDE.md'deki ya da skill'deki \"şunu asla yapma\" bir ricadır, garanti değil; garanti kancadır.",
-        "Bizim kural da aynı: `sistem-metni` skill'inin kontrol listesi \"Her oturum mu gerekli, tek işte mi?\" diye sorar. Tek işteyse bilgi o işin skill'ine gider, CLAUDE.md'de tek satır adres kalır. CLAUDE.md'nin 10. satırı bu adreslerdir: hangi işte hangi skill'in okunacağını sayar."
+        "CLAUDE.md her oturumda yüklenir, her zaman geçerli kural içindir. Skill isteğe göre yüklenir, yalnız bazı işlerde gereken bilgi ve iş akışı içindir.",
+        "Kanca bir olay olunca Claude karar vermeden koşar. Skill'deki talimatı ise Claude yorumlar, sonuç değişebilir.",
+        "Tetikler (trigger): Claude kuralı iki kez yanlış uygularsa CLAUDE.md, yöntemi üçüncü kez yapıştırıyorsan skill. İş sormadan her seferinde olmalıysa kanca, Claude'un göremediği veri gerekirse MCP.",
+        "CLAUDE.md'deki ya da skill'deki \"şunu asla yapma\" bir ricadır, garanti değil. Garanti kancadır.",
+        "Bizde sistem-metni skill'inin kontrol listesi sorar: \"Her oturum mu gerekli, tek işte mi?\" Tek işteyse bilgi o işin skill'ine gider, CLAUDE.md'de tek satır adres kalır.",
+        "Bizim sistem-metni skill'ine göre kanca gibi mekanizma yalnız CLAUDE.md'nin saydığı kurallara yazılır: geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim, sana ulaşıp tekrar eden hata."
       ],
       "terimler": [
         {"tr": "kanca", "en": "hook", "aciklama": "Belirli bir olay olunca Claude karar vermeden koşan otomatik iş."},
@@ -644,12 +715,13 @@
         {
           "id": "b05-d5-s1",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Durumu, eklenecek özellikle eşleştir.",
           "ciftler": [
-            ["Claude aynı kuralı iki kez yanlış uyguluyor", "CLAUDE.md'ye ekle"],
-            ["Aynı yöntemi sohbete üçüncü kez yapıştırıyorsun", "Skill olarak kaydet"],
-            ["Bir şeyin sormadan her seferinde olmasını istiyorsun", "Kanca yaz"],
-            ["Claude'un göremediği bir tarayıcı sekmesinden veri kopyalıyorsun", "Dış hizmeti MCP ile bağla"]
+            ["Claude kuralı iki kez yanlış uyguluyor", "CLAUDE.md'ye ekle"],
+            ["Aynı yöntemi üçüncü kez yapıştırıyorsun", "Skill olarak kaydet"],
+            ["Bir iş sormadan her seferinde olmalı", "Kanca yaz"],
+            ["Claude'un göremediği sekmeden veri kopyalıyorsun", "Dış hizmeti MCP ile bağla"]
           ],
           "ipucu": "Her durumda kimin hatırlaması gerektiğine bak: Claude mı, otomatik bir iş mi, dış bir bağlantı mı?",
           "aciklama": "Resmi belgedeki tetik tablosu her özelliği tanınır bir durumla eşler. Özellikler bu durumlar ortaya çıktıkça eklenir.",
@@ -663,7 +735,8 @@
         {
           "id": "b05-d5-s2",
           "tur": "coktan",
-          "soru": "\"Kayıt satırı yazmadan önce Düzeltme sayımı yapılsın\" bilgisi yalnız kayıt yazarken gerekiyor. Bizim kurala göre nereye yazılır?",
+          "kart": 4,
+          "soru": "\"Kayıttan önce Düzeltme sayımı yap\" bilgisi yalnız kayıt yazarken gerekiyor. Bizde nereye yazılır?",
           "secenekler": [
             "kayit-yazma skill'ine; CLAUDE.md'de yalnız adres kalır",
             "CLAUDE.md'nin gövdesine, uzun haliyle",
@@ -674,18 +747,25 @@
           "ipucu": "sistem-metni'nin kontrol listesi bu tür bilgi için ne soruyordu: her oturum mu gerekli, tek işte mi?",
           "aciklama": "Tek işte gereken bilgi o işin skill'ine gider, CLAUDE.md'de yalnız adres kalır. Bizde Düzeltme sayımı gerçekten kayit-yazma'nın 3. adımıdır.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:23",
-            "okuma": "2026-11-15",
-            "dayanak": "Kontrol listesi her değişiklikte sorar: her oturum mu gerekli, tek işte mi; tek işteyse o işin skill'ine gider, CLAUDE.md'de tek satır adres kalır."
+            "adres": ".claude/skills/sistem-metni/SKILL.md:20",
+            "okuma": "2026-11-17",
+            "dayanak": "Kontrol listesi her değişiklikte sorar: her oturum mu gerekli, tek işte mi; tek işteyse o işin skill'ine gider, CLAUDE.md'de tek satır adres kalır.",
+            "soz": "Her oturum mu gerekli, tek işte mi? Tek işteyse o işin skill'ine; CLAUDE.md'de tek satır adres."
           }
         },
         {
           "id": "b05-d5-s3",
-          "tur": "dogru-yanlis",
-          "soru": "CLAUDE.md'ye ya da bir skill'e yazılan \"asla .env dosyasını düzenleme\" talimatı bir garantidir.",
-          "dogru": false,
-          "ipucu": "Talimatı Claude okur ve uygular; peki atlarsa ne olur?",
-          "aciklama": "Yanlış: metindeki talimat bir ricadır. Düzenlemeyi durduran bir kanca ise kuralı zorunlu kılar.",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "CLAUDE.md'ye ya da bir skill'e yazılan \"asla .env dosyasını düzenleme\" talimatı nedir?",
+          "secenekler": [
+            "Bir garanti: her seferinde uygulanır",
+            "Bir rica: Claude atlayabilir",
+            "Bir yasak: düzenleme aracı kapanır"
+          ],
+          "dogru": 1,
+          "ipucu": "Kartta metindeki talimatla kancanın farkını hatırla.",
+          "aciklama": "Metindeki talimat bir ricadır, garanti değildir. Düzenlemeyi durduran bir kanca ise kuralı zorunlu kılar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/features-overview",
             "kopya": "features-overview.md",
@@ -696,11 +776,12 @@
         {
           "id": "b05-d5-s4",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Kanca ile skill arasındaki fark hangisi?",
           "secenekler": [
-            "Kanca her istekte bağlamda yer kaplar, skill ise hiç yer kaplamaz",
+            "Kanca her istekte yer kaplar, skill hiç kaplamaz",
             "Kanca Claude karar vermeden koşar; skill'i Claude yorumlar",
-            "Kanca yalnız sen adını yazınca çalışır, skill hiç açılmaz"
+            "Kanca yalnız sen adını yazınca çalışır"
           ],
           "dogru": 1,
           "ipucu": "Hangisinde sonuç her seferinde aynı, hangisinde Claude'un yorumuna bağlı?",
@@ -715,6 +796,7 @@
         {
           "id": "b05-d5-s5",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Her dosya düzenlemesinden sonra biçim denetiminin sormadan koşmasını istiyorsun. Hangisini kurarsın?",
           "secenekler": [
             "Bir skill",
@@ -735,6 +817,7 @@
         {
           "id": "b05-d5-s6",
           "tur": "bosluk",
+          "kart": 0,
           "soru": "Skill'ler isteğe göre yüklenir; CLAUDE.md ise ___ yüklenir.",
           "secenekler": [
             "yalnız sen istediğinde",
@@ -754,11 +837,12 @@
         {
           "id": "b05-d5-s7",
           "tur": "coktan",
-          "soru": "Claude bir skill'deki kuralı ara sıra atlıyor; oysa kural her seferinde geçerli olmalı. Hangi tarif daha doğru?",
+          "kart": 3,
+          "soru": "Claude skill'deki bir kuralı ara sıra atlıyor ama kural hep geçerli olmalı. Ne yaparsın?",
           "secenekler": [
-            "Kuralı skill'de büyük harfle ve ÖNEMLİ diye iki kez yaz.",
-            "Kuralı skill'in açıklamasına da ekle.",
-            "Kuralı Claude'dan bağımsız koşan bir kancaya taşı."
+            "Kuralı büyük harfle ve ÖNEMLİ diye yaz.",
+            "Kuralı açıklamaya ekle.",
+            "Kuralı Claude'dan bağımsız koşan kancaya taşı."
           ],
           "dogru": 2,
           "ipucu": "Claude'un uymasına bağlı kalmayan bir yol var mı?",
@@ -773,14 +857,16 @@
         {
           "id": "b05-d5-s8",
           "tur": "dogru-yanlis",
-          "soru": "Bizim sistem-metni skill'ine göre kesin kural yalnız metne bırakılmaz; her seferinde olması gereken mekanik iş kancaya verilir.",
-          "dogru": true,
-          "ipucu": "Skill'in \"Kural yazınca mekanizmasıyla\" bölümünü düşün.",
-          "aciklama": "Doğru: bizde kesin kural metinde kalmaz, mekanizmasıyla yazılır. Resmi belge de her seferinde geçerli olması gereken kural için kanca önerir.",
+          "kart": 5,
+          "soru": "Bizim sistem-metni skill'ine göre her kurala bir kanca ya da denetim kontrolü yazılır.",
+          "dogru": false,
+          "ipucu": "Kartta bizim skill'in mekanizmayı hangi kurallara ayırdığını hatırla.",
+          "aciklama": "Yanlış: mekanizma yalnız CLAUDE.md'deki koşullarda yazılır; öteki kural açıkça \"yalnız metin\" olarak kalır.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:34",
-            "okuma": "2026-11-15",
-            "dayanak": "Kesin kural yalnız metne bırakılmaz; her seferinde olması gereken mekanik iş kancaya verilir."
+            "adres": ".claude/skills/sistem-metni/SKILL.md:31",
+            "okuma": "2026-11-17",
+            "dayanak": "Satır, kanca, betik, test ya da denetim kontrolü gibi mekanizmanın yalnız CLAUDE.md bölüm 5'teki koşullarda yazıldığını, öteki kuralın açıkça yalnız metin olduğunu söyler.",
+            "soz": "yalnız CLAUDE.md bölüm 5'teki koşullarda yazılır"
           }
         }
       ]
@@ -794,9 +880,14 @@
         "Skill'deki bir adımı değiştirmeyi Claude'a nasıl tarif edeceğini anlatabilir."
       ],
       "anlatim": [
-        "Şimdi bizim bir skill'i okuyalım: `.claude/skills/kanca-denetim/SKILL.md`. 3. satırdaki açıklama ne zaman açıldığını söyler: bu klasöre yeni kanca ya da `denetim.py` kontrolü eklenirken, var olan biri değişirken ya da silinirken. Aynı satır ne zaman kullanılmadığını da yazar: kuralın metni ve mekanizma seçimi `sistem-metni`'nin işidir; ikinci beyin paketinin kancaları da bu skill'in dışındadır.",
-        "Gövde üç parça: Sınır, Adımlar, Bitiş şartı. Altı adım sırayla: aynı işi yapan kanca ya da kontrol var mı ara; kodu ve testini yan yana yaz; kancayı `.claude/settings.json`'a kaydet; gerçek kayıtta bir kez koş; bağlı belgeleri aynı işte güncelle; testleri ve `denetim.py`'yi koş. Bitiş şartı: `testler.sh` kalan 0, `denetim.py` temiz ve doğrulayıcı Geçti demiş.",
-        "Bir adımı değiştirmek istersen Claude'a dosyayı ve adımı adıyla söyle, neyin değişeceğini anlat ve bitince neye bakılacağını baştan yaz. Skill beklediğin istekte açılmıyorsa sorun çoğu zaman açıklamadadır: işi isterken kullandığın tetikleyici ifadeyi (trigger phrase) açıklamaya ekletirsin. `sistem-metni`'ne göre davranışı değişen skill commit'ten önce tetik sınamasından geçer: üç cümle, biri açılmalı, biri açılmamalı, biri sınırda."
+        "Bizim bir skill'i okuyalım: `.claude/skills/kanca-denetim/SKILL.md`. Açıklaması, yeni kanca ya da `denetim.py` kontrolü eklenirken, değişirken ya da silinirken açıldığını söyler.",
+        "Aynı açıklama ne zaman kullanılmadığını da yazar: kuralın metni ve mekanizma seçimi `sistem-metni`'nin işidir; ikinci beyin paketinin kancaları da dışarıdadır.",
+        "Altı adım: önce benzerini ara; kodu ve testini yan yana yaz; kancayı ayarlara kaydet; KARARLAR gibi gerçek kayıt dosyalarında dene; belgeleri güncelle; testleri koş.",
+        "kanca-denetim'in bitiş şartı, işin bitmiş sayılması için bütün testlerin geçmesini, `denetim.py`'nin sorun bulmamasını ve işi ayrıca kontrol eden doğrulayıcının Geçti demesini ister.",
+        "Bir adımı değiştirmek istersen Claude'a dosyayı ve adımı adıyla söyle. Neyin değişeceğini ve bitince neye bakılacağını baştan yaz.",
+        "Skill beklediğin istekte açılmıyorsa sorun çoğu zaman açıklamadadır. İşi isterken kullandığın tetikleyici ifadeyi (trigger phrase) açıklamaya ekletirsin.",
+        "`sistem-metni`'ne göre davranışı değişen skill commit'ten önce tetik sınamasından geçer: üç cümle; biri açılmalı, biri açılmamalı, biri sınırda.",
+        "Skill listede hiç görünmüyorsa önce yapıya bak: SKILL.md kendi klasöründe durmalı, adı harfi harfine SKILL.md olmalı."
       ],
       "terimler": [
         {"tr": "tetikleyici ifade", "en": "trigger phrase", "aciklama": "Bir işi isterken kullandığın ve skill'in açıklamasına eklenince skill'in açılmasını kolaylaştıran sözcükler."}
@@ -805,7 +896,8 @@
         {
           "id": "b05-d6-s1",
           "tur": "coktan",
-          "soru": "`kanca-denetim`'in 3. satırdaki açıklamasına göre bu skill hangi işte açılır?",
+          "kart": 0,
+          "soru": "`kanca-denetim`'in açıklamasına göre bu skill hangi işte açılır?",
           "secenekler": [
             "Kuralın metni ve mekanizma seçimi yapılırken",
             "Yeni kanca ya da kontrol eklenirken",
@@ -817,26 +909,35 @@
           "aciklama": "Skill kanca ya da denetim kontrolü eklenirken, değişirken ya da silinirken açılır. Kuralın metni sistem-metni'nin işidir, paketin kancaları ise bu skill'in dışındadır.",
           "kaynak": {
             "adres": ".claude/skills/kanca-denetim/SKILL.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "Açıklama, skill'in bu klasöre yeni kanca ya da denetim.py kontrolü eklenirken, var olan biri değişirken ya da silinirken açıldığını, kural metni, mekanizma seçimi, ikinci beyin paketinin kancaları ve kanca dışı betik işinde kullanılmadığını söyler."
+            "okuma": "2026-11-17",
+            "dayanak": "Açıklama, skill'in bu klasöre yeni kanca ya da denetim.py kontrolü eklenirken, var olan biri değişirken ya da silinirken açıldığını, kural metni, mekanizma seçimi, ikinci beyin paketinin kancaları ve kanca dışı betik işinde kullanılmadığını söyler.",
+            "soz": "Bu klasöre yeni kanca ya da denetim.py kontrolü eklenirken"
           }
         },
         {
           "id": "b05-d6-s2",
-          "tur": "dogru-yanlis",
-          "soru": "`kanca-denetim` skill'i, hangi kuralın kanca olacağına da kendisi karar verir.",
-          "dogru": false,
-          "ipucu": "Kanca mı, kontrol mü kararının hangi skill'e bırakıldığını düşün.",
-          "aciklama": "Yanlış: hangi kuralın kanca ya da kontrol olacağı sistem-metni'nin işidir. kanca-denetim'de yalnız mekanik adımlar var.",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "`kanca-denetim`'e göre hangi kuralın kanca olacağına karar vermek hangi skill'in işidir?",
+          "secenekler": [
+            "kanca-denetim'in kendisinin",
+            "sistem-metni'nin",
+            "kayit-yazma'nın"
+          ],
+          "dogru": 1,
+          "ipucu": "Kartta açıklamanın ne zaman kullanılmadığını söyleyen kısmını hatırla.",
+          "aciklama": "Hangi kuralın kanca ya da kontrol olacağı sistem-metni'nin işidir. kanca-denetim'de yalnız mekanik adımlar var.",
           "kaynak": {
             "adres": ".claude/skills/kanca-denetim/SKILL.md:10",
-            "okuma": "2026-11-15",
-            "dayanak": "Hangi kuralın kanca ya da kontrol olacağı sistem-metni skill'inin \"Kural yazınca mekanizmasıyla\" bölümündedir; bu skill'de yalnız mekanik adımlar vardır."
+            "okuma": "2026-11-17",
+            "dayanak": "Hangi kuralın kanca ya da kontrol olacağı sistem-metni skill'inin \"Kural yazınca mekanizmasıyla\" bölümündedir; bu skill'de yalnız mekanik adımlar vardır.",
+            "soz": "Hangi kuralın kanca ya da kontrol olacağı"
           }
         },
         {
           "id": "b05-d6-s3",
           "tur": "sirala",
+          "kart": 2,
           "soru": "Şu beş adımı `kanca-denetim`'deki sırasına koy.",
           "adimlar": [
             "Aynı işi yapan kanca ya da kontrol var mı, ara",
@@ -848,19 +949,21 @@
           "ipucu": "Önce ara, sonra yaz, en sonda sına.",
           "aciklama": "Skill önce tekrar olmasın diye aramayı, sonra kod ve testi, kaydı ve gerçek koşuyu ister; en sonda testler ve denetim koşulur. Aradaki 5. adım bağlı belgeleri günceller.",
           "kaynak": {
-            "adres": ".claude/skills/kanca-denetim/SKILL.md:14",
-            "okuma": "2026-11-15",
-            "dayanak": "Adımlar bölümü sırasıyla aramayı, kod ve testi yan yana yazmayı, settings.json kaydını, gerçek kayıtta koşuyu, bağlı belgeleri ve en sonda sınamayı sayar."
+            "adres": ".claude/skills/kanca-denetim/SKILL.md:16",
+            "okuma": "2026-11-17",
+            "dayanak": "Adımlar bölümü sırasıyla aramayı, kod ve testi yan yana yazmayı, settings.json kaydını, gerçek kayıtta koşuyu, bağlı belgeleri ve en sonda sınamayı sayar.",
+            "soz": "Önce ara: aynı işi yapan kanca ya da kontrol var mı"
           }
         },
         {
           "id": "b05-d6-s4",
           "tur": "coktan",
-          "soru": "Diyelim ki `kanca-denetim`'in 1. adımına \"README.md'ye de bak\" eklenmesini istiyorsun. Claude'a hangi tarif daha iyi?",
+          "kart": 4,
+          "soru": "`kanca-denetim`'in ilk adımına \"README.md'ye de bak\" eklensin. Hangi tarif daha iyi?",
           "secenekler": [
-            "Skill'lerdeki adımları biraz düzelt, README de bir yerde olsun; bitince haber ver.",
-            "README.md'yi bütün skill'lerin her adımına ekle.",
-            "kanca-denetim'in 1. adımına README.md'yi ekle; bitince denetim.py temiz olsun."
+            "Adımları düzelt, README bir yerde olsun.",
+            "README.md'yi bütün skill'lere ekle.",
+            "kanca-denetim'in ilk adımına ekle; bitince denetim.py temiz olsun."
           ],
           "dogru": 2,
           "ipucu": "Hangi tarif dosyayı adıyla anıyor ve bitmiş halin neye benzeyeceğini söylüyor?",
@@ -875,7 +978,8 @@
         {
           "id": "b05-d6-s5",
           "tur": "coktan",
-          "soru": "Diyelim ki \"denetime yeni kontrol ekle\" dediğinde kanca-denetim açılmıyor. Claude'a hangi tarif daha doğru?",
+          "kart": 5,
+          "soru": "\"Denetime yeni kontrol ekle\" dediğinde kanca-denetim açılmıyor. Hangi tarif doğru?",
           "secenekler": [
             "kanca-denetim'in açıklamasına bu ifadeyi ekle.",
             "kanca-denetim'in adımlarını kısalt, gövde daha kolay okunsun.",
@@ -894,6 +998,7 @@
         {
           "id": "b05-d6-s6",
           "tur": "bosluk",
+          "kart": 6,
           "soru": "sistem-metni'ne göre değişen bir skill'in tetik sınaması üç cümleyle yapılır: biri açılmalı, biri açılmamalı, biri de ___.",
           "secenekler": [
             "sınırda",
@@ -904,32 +1009,36 @@
           "ipucu": "Açılmalı ile açılmamalı arasında kalan, karar vermesi zor bir istek düşün.",
           "aciklama": "Üç cümle skill'in doğru yerde açıldığını, yanlış yerde açılmadığını ve kararsız kalınan durumu sınar. Değişen skill commit'ten önce böyle denenir.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:42",
-            "okuma": "2026-11-15",
-            "dayanak": "Yeni ya da davranışı değişen iş skill'i commit'ten önce gerçekçi istemlerle denenir ve tetik sınaması üç cümleyle yapılır: açılmalı, açılmamalı, sınırda."
+            "adres": ".claude/skills/sistem-metni/SKILL.md:39",
+            "okuma": "2026-11-17",
+            "dayanak": "Yeni ya da davranışı değişen iş skill'i commit'ten önce gerçekçi istemlerle denenir ve tetik sınaması üç cümleyle yapılır: açılmalı, açılmamalı, sınırda.",
+            "soz": "tetik sınaması üç cümleyle (açılmalı, açılmamalı, sınırda)"
           }
         },
         {
           "id": "b05-d6-s7",
           "tur": "dogru-yanlis",
+          "kart": 3,
           "soru": "`kanca-denetim`'in bitiş şartına göre iş bitmeden doğrulayıcının da Geçti demesi gerekir.",
           "dogru": true,
           "ipucu": "Kartta bitiş şartının testlerden başka neyi istediğini hatırla.",
           "aciklama": "Doğru: bitiş şartı testlerin ve denetimin temiz olmasının yanında doğrulayıcının Geçti demesini de ister.",
           "kaynak": {
             "adres": ".claude/skills/kanca-denetim/SKILL.md:25",
-            "okuma": "2026-11-15",
-            "dayanak": "Bitiş şartı kodun ve testin varlığını, testler.sh'in kalan 0 vermesini, denetim.py'nin temiz olmasını ve doğrulayıcının Geçti demesini sayar."
+            "okuma": "2026-11-17",
+            "dayanak": "Bitiş şartı kodun ve testin varlığını, testler.sh'in kalan 0 vermesini, denetim.py'nin temiz olmasını ve doğrulayıcının Geçti demesini sayar.",
+            "soz": "`denetim.py` temiz; doğrulayıcı Geçti"
           }
         },
         {
           "id": "b05-d6-s8",
           "tur": "coktan",
-          "soru": "Bir skill, Claude'a \"hangi skill'ler var\" diye sorunca listede hiç görünmüyor. İlk neye bakılır?",
+          "kart": 7,
+          "soru": "\"Hangi skill'ler var\" diye sorunca skill listede görünmüyor. İlk neye bakılır?",
           "secenekler": [
             "Açıklamanın kaç sözcük olduğuna",
-            "Bağlam penceresinin o an ne kadar dolu olduğuna",
-            "Dosyanın kendi klasöründe ve adının tam SKILL.md olmasına"
+            "Bağlamın o an ne kadar dolu olduğuna",
+            "Dosyanın kendi klasöründe, adının tam SKILL.md olmasına"
           ],
           "dogru": 2,
           "ipucu": "Skill hiç yüklenmiyorsa sorun içerikte değil, yapıdadır.",

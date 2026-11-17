@@ -13,9 +13,12 @@
         "Claude Code ile sohbetteki Claude arasındaki farkı bir cümleyle anlatabilir."
       ],
       "anlatim": [
-        "Claude Code ajan tabanlı bir kodlama aracıdır (agentic coding tool). Kod tabanını okur, dosyaları düzenler, komut koşar, gerekince webde belge arar. Terminalde, VS Code'da, JetBrains'te, webde ve Claude masaüstü uygulamasında çalışır. Bu yerlerin her birine yüzey (surface) denir; sen masaüstü uygulamasının Code sekmesini kullanıyorsun.",
-        "Fark şu: sohbette kodu sen kopyalayıp yapıştırırsın. Claude Code ise dosyalarına, terminaline ve bütün projene doğrudan erişir, işi kendisi yapar. Bu yüzden ona yapay zeka ajanı (AI agent) denir: bir hedef için ortamıyla etkileşen, döngü içinde çalışan yazılım. Claude Code kod yazmayan işlerde de, örneğin belge yazmada ya da dosya aramada, yardım eder.",
-        "Bizim klasörden örnek: CLAUDE.md'nin 5. satırı 'Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar' der. Yani klasördeki dosyaları değiştiren, sohbet penceresi değil, Claude Code'dur."
+        "Claude Code ajan tabanlı bir kodlama aracıdır (agentic coding tool). Kod tabanını okur, dosyaları düzenler, komut koşar, gerekince webde belge arar.",
+        "Terminalde, VS Code'da, JetBrains'te, webde ve masaüstü uygulamasında çalışır. Bu yerlerin her birine yüzey (surface) denir.",
+        "Sohbette kodu sen kopyalayıp yapıştırırsın. Claude Code ise dosyalarına ve terminaline doğrudan erişir, işi kendisi yapar.",
+        "CLAUDE.md, Claude'a kalıcı talimat yazdığın dosyadır. Bizim CLAUDE.md'ye göre bu klasöre yalnız Claude Code yazar: masaüstü uygulamasının Code sekmesinde, senin bilgisayarında açılan yerel oturum.",
+        "Bir hedef için ortamıyla etkileşip eylem yapan, döngü içinde çalışan yazılıma yapay zeka ajanı (AI agent) denir. Claude Code böyle bir ajandır.",
+        "Claude Code kod yazmayan işlerde de yardım eder: örneğin belge yazmada ya da dosya aramada."
       ],
       "terimler": [
         {"tr": "ajan tabanlı kodlama aracı", "en": "agentic coding tool", "aciklama": "Kod tabanını okuyan, dosya düzenleyen ve komut koşan yapay zeka aracı."},
@@ -26,6 +29,7 @@
         {
           "id": "b01-d1-s1",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Claude Code'u sohbetteki Claude'dan ayıran temel fark hangisi?",
           "secenekler": [
             "Daha uzun ve ayrıntılı cevaplar yazması",
@@ -45,6 +49,7 @@
         {
           "id": "b01-d1-s2",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Claude Code yalnız terminalde çalışır; masaüstü uygulamasında kullanılamaz.",
           "dogru": false,
           "ipucu": "Claude Code'un açılabildiği yerleri say.",
@@ -59,12 +64,13 @@
         {
           "id": "b01-d1-s3",
           "tur": "eslestir",
+          "kart": 0,
           "soru": "Claude Code'un yapabildiği işi örneğiyle eşleştir.",
           "ciftler": [
-            ["Kod tabanını okumak", "Bir özelliği açıklamak ya da bir hatanın izini sürmek"],
-            ["Dosya düzenlemek", "Bir işlevi ve onu kullanan her dosyayı güncellemek"],
+            ["Kod tabanını okumak", "Bir özelliği açıklamak, bir hatanın izini sürmek"],
+            ["Dosya düzenlemek", "Bir işlevi kullanan her dosyayı güncellemek"],
             ["Terminal komutu koşmak", "Testleri çalıştırıp çıktıya göre sonraki adımı seçmek"],
-            ["Webde aramak", "Gereken belgeyi ya da güncel başvuruyu bulmak"]
+            ["Webde aramak", "Gereken belgeyi bulmak"]
           ],
           "ipucu": "Her örnekte Claude'un neye dokunduğuna bak: dosyaya mı, terminale mi, webe mi?",
           "aciklama": "Okumak anlamak içindir, düzenlemek dosyayı değiştirir, komut koşmak test ve kurulum yapar, web araması belge bulur.",
@@ -78,24 +84,27 @@
         {
           "id": "b01-d1-s4",
           "tur": "coktan",
-          "soru": "CLAUDE.md:5 der ki: 'Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar.' Buna göre bu klasördeki bir dosyayı kim değiştirir?",
+          "kart": 3,
+          "soru": "CLAUDE.md'de 'Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar' satırı var. Buna göre bu klasördeki bir dosyayı kim değiştirir?",
           "secenekler": [
             "Masaüstü Code sekmesindeki yerel oturum",
             "Claude.ai'deki sohbet penceresi",
             "Telefondaki Claude uygulamasıyla açılan sohbet"
           ],
           "dogru": 0,
-          "ipucu": "Satırdaki parantezin içini oku.",
+          "ipucu": "Kartta talimat dosyasının bu klasöre kimin yazdığı için ne dediğini hatırla.",
           "aciklama": "Kural, yazma işini tek yere bağlar: masaüstündeki Code sekmesinde açılan yerel oturum.",
           "kaynak": {
             "adres": "CLAUDE.md:5",
             "okuma": "2026-11-15",
-            "dayanak": "Bu klasöre yalnız Claude Code, yani masaüstü Code sekmesindeki yerel oturum yazar."
+            "dayanak": "Bu klasöre yalnız Claude Code, yani masaüstü Code sekmesindeki yerel oturum yazar.",
+            "soz": "Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar"
           }
         },
         {
           "id": "b01-d1-s5",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Sohbette Claude'a bir kod parçası yazdırdın, dosyaya kendin yapıştırman gerekiyor. Aynı işi Claude Code'a verirsen ne değişir?",
           "secenekler": [
             "Kodu yine yazar, yapıştırmak sana kalır",
@@ -115,6 +124,7 @@
         {
           "id": "b01-d1-s6",
           "tur": "bosluk",
+          "kart": 4,
           "soru": "Bir hedefe ulaşmak için ortamıyla etkileşen ve eylem yapan yazılıma ___ denir.",
           "secenekler": [
             "arama motoru",
@@ -133,11 +143,17 @@
         },
         {
           "id": "b01-d1-s7",
-          "tur": "dogru-yanlis",
-          "soru": "Kod yazmayan bir iş, örneğin klasördeki dosyalarda bir sözcüğü aramak ya da belge yazmak, Claude Code'a verilemez.",
-          "dogru": false,
-          "ipucu": "Komut satırından yapılabilen işleri düşün.",
-          "aciklama": "Yanlış: Claude Code kodlamada güçlüdür ama komut satırından yapılabilen her işte, belge yazma ve dosya arama dahil, yardım eder.",
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Belge yazmak ya da dosyada sözcük aramak gibi kod yazmayan bir işi Claude Code'a verebilir misin?",
+          "secenekler": [
+            "Hayır, yalnız kod yazar",
+            "Evet, bunlarda da yardım eder",
+            "Yalnız sohbetteki Claude yapar"
+          ],
+          "dogru": 1,
+          "ipucu": "Claude Code'un dosya okuyup komut koşabildiğini hatırla.",
+          "aciklama": "Claude Code kodlamada güçlüdür ama komut satırından yapılabilen her işte, belge yazma ve dosya arama dahil, yardım eder.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/how-claude-code-works",
             "kopya": "how-claude-code-works.md",
@@ -156,9 +172,12 @@
         "Döngü sürerken araya girip yön verebileceğini anlatabilir."
       ],
       "anlatim": [
-        "Claude'a bir istem (prompt) yazıp iş verdiğinde üç evreden geçer: bağlam toplar, eylem yapar, sonucu doğrular. Evreler iç içe geçer. Kodu anlamak için dosya arar, değişiklik için dosyayı düzenler, işini sınamak için test koşar.",
-        "Döngü işe göre uzar ya da kısalır. Kod hakkında bir soru yalnız bağlam toplamayla bitebilir. Bir hata düzeltmesi üç evreyi defalarca döner. Claude her adımda bir öncekinden öğrendiğine göre sonraki adımı seçer.",
-        "Sen de döngünün içindesin. Masaüstünde durdurma düğmesine basıp Claude'u hemen durdurabilir ya da düzeltmeni yazıp Enter'a basarak onu durdurmadan yön verebilirsin. Bizim CLAUDE.md:52 doğrulama evresini kurala bağlar: 'Sınanmamış değişiklik bitmiş sayılmaz.'"
+        "Claude'a bir istem (prompt) yazıp iş verdiğinde üç evreden geçer: işi anlamak için bağlam toplar, eylem yapar, sonucu doğrular.",
+        "Sonuç istemi karşılıyorsa iş biter. Karşılamıyorsa Claude başa döner ve yeniden dener.",
+        "Evreler iç içe geçer: Claude kodu anlamak için dosya arar, değişiklik için dosyayı düzenler, işini sınamak için test koşar.",
+        "Döngü işe göre uzar ya da kısalır: kod hakkında bir soru yalnız bağlam toplamayla bitebilir. Bir hata düzeltmesi ise üç evreyi defalarca döner.",
+        "Sen de döngünün içindesin: masaüstünde durdurma düğmesiyle Claude'u hemen durdurabilirsin. Ya da düzeltmeni yazıp Enter'a basarak onu durdurmadan yön verebilirsin.",
+        "Bizim CLAUDE.md'de şu satır var: 'Sınanmamış değişiklik bitmiş sayılmaz'. Satır döngünün bir evresini kurala bağlar."
       ],
       "terimler": [
         {"tr": "ajan döngüsü", "en": "agentic loop", "aciklama": "Claude'un her işte geçtiği çevrim: bağlam topla, eylem yap, sonucu doğrula, iş bitene kadar tekrarla."},
@@ -168,7 +187,8 @@
         {
           "id": "b01-d2-s1",
           "tur": "sirala",
-          "soru": "Kurstaki ajan döngüsünün adımlarını sıraya koy.",
+          "kart": 1,
+          "soru": "Ajan döngüsünün adımlarını sıraya koy.",
           "adimlar": [
             "Sen Claude Code'a bir istem yazarsın",
             "Claude iş için gereken bağlamı toplar",
@@ -188,6 +208,7 @@
         {
           "id": "b01-d2-s2",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Ajan döngüsünün üç evresi hangisi?",
           "secenekler": [
             "Dosya okuma, dosya yazma, kaydetme",
@@ -208,6 +229,7 @@
         {
           "id": "b01-d2-s3",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "'Bozuk testleri düzelt' dedin. Claude'un yaptığı adımı ait olduğu evreyle eşleştir.",
           "ciftler": [
             ["Kodu anlamak için ilgili dosyaları aramak", "Bağlam toplama"],
@@ -226,6 +248,7 @@
         {
           "id": "b01-d2-s4",
           "tur": "dogru-yanlis",
+          "kart": 3,
           "soru": "Kod hakkında basit bir soru da her zaman üç evrenin hepsinden geçer.",
           "dogru": false,
           "ipucu": "Bir soruyu cevaplamak için Claude'un bir şey değiştirmesi gerekir mi?",
@@ -240,6 +263,7 @@
         {
           "id": "b01-d2-s5",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Claude çalışırken yanlış dosyaya yöneldiğini gördün. Masaüstünde ne yapabilirsin?",
           "secenekler": [
             "Bitirmesini beklersin, çalışırken araya girilemez",
@@ -259,7 +283,8 @@
         {
           "id": "b01-d2-s6",
           "tur": "coktan",
-          "soru": "CLAUDE.md:52 der ki: 'Sınanmamış değişiklik bitmiş sayılmaz.' Bu kural döngünün hangi evresinin atlanmamasını ister?",
+          "kart": 5,
+          "soru": "CLAUDE.md'deki 'Sınanmamış değişiklik bitmiş sayılmaz' kuralı döngünün hangi evresinin atlanmamasını ister?",
           "secenekler": [
             "Doğrulama",
             "Bağlam toplama",
@@ -271,7 +296,8 @@
           "kaynak": {
             "adres": "CLAUDE.md:52",
             "okuma": "2026-11-15",
-            "dayanak": "Değiştirdiğin şeyi basit bir testle sına ve sonucunu yaz; sınanmamış değişiklik bitmiş sayılmaz."
+            "dayanak": "Değiştirdiğin şeyi basit bir testle sına ve sonucunu yaz; sınanmamış değişiklik bitmiş sayılmaz.",
+            "soz": "Sınanmamış değişiklik bitmiş sayılmaz"
           }
         }
       ]
@@ -285,9 +311,11 @@
         "Bizim ayar dosyasındaki bir satırda geçen araç adlarının ne iş yaptığını anlatabilir."
       ],
       "anlatim": [
-        "Araç (tool), Claude'un yapabildiği bir eylemdir: dosya okumak, kod düzenlemek, komut koşmak, webde aramak, alt ajan başlatmak. Araç olmasa Claude yalnız metinle cevap verebilirdi. Her aracın sonucu döngüye döner ve bir sonraki kararı besler. Bizim .claude/settings.json:86 satırı Read, Grep ve Glob adlarını bir okuma korumasına bağlar.",
-        "Bu derste yedi aracı tanıyorsun. Read dosya okur. Edit dosyada hedefli değişiklik yapar. Write dosya yaratır ya da üzerine yazar. Bash kabuk komutu (shell command) koşar. WebFetch verilen adresten içerik çeker. Agent kendi bağlam penceresi olan bir alt ajan başlatır. Skill bir skill'i ana sohbette çalıştırır.",
-        "Araç tablosunda bir de izin gerekir (Permission required) sütunu var. Bu sütun, aracın elle onay modunda (Manual) çalışma klasörü içinde sana sorup sormadığını gösterir. Read ve Agent sormaz; Edit, Write, Bash ve WebFetch sorar. İki istisna var: Read klasör dışındaki bir yol için sorar, Bash ise yalnız okuyan bazı yerleşik komutları sormadan koşar."
+        "Araç (tool), Claude'un yapabildiği bir eylemdir. Read dosya okur, Grep dosya içeriğinde arar, Glob adı belli bir biçime uyan dosyaları bulur.",
+        "Edit dosyada hedefli değişiklik yapar. Bash kabuk komutu (shell command) koşar, WebFetch verilen adresten içerik çeker.",
+        "Write dosya yaratır ya da üzerine yazar. Agent ayrı bir işi yapan yardımcı bir alt ajan başlatır; Skill hazır bir tarifi, yani bir skill'i, çalıştırır.",
+        "Manual (elle onay) modunda değişiklikler sana onaylatılır. Resmi belgedeki araç tablosunun izin gerekir (Permission required) sütununa göre Edit, Write, Bash, WebFetch sorar; Read, Agent sormaz.",
+        "İki istisna var: Read çalışma klasörü dışındaki bir yol için sorar. Bash ise yalnız okuyan bazı yerleşik komutları sormadan koşar."
       ],
       "terimler": [
         {"tr": "araç", "en": "tool", "aciklama": "Claude'un yapabildiği bir eylem: dosya okumak, kod düzenlemek, komut koşmak, webde aramak, alt ajan başlatmak."},
@@ -298,6 +326,7 @@
         {
           "id": "b01-d3-s1",
           "tur": "eslestir",
+          "kart": 1,
           "soru": "Aracı yaptığı işle eşleştir.",
           "ciftler": [
             ["Read", "Dosyanın içeriğini okur"],
@@ -317,6 +346,7 @@
         {
           "id": "b01-d3-s2",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Bu üç aracı da işiyle eşleştir.",
           "ciftler": [
             ["Write", "Dosya yaratır ya da üzerine yazar"],
@@ -335,6 +365,7 @@
         {
           "id": "b01-d3-s3",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Araç tablosuna göre hangisi, elle onay modunda çalışma klasörü içinde senden izin istemeden çalışır?",
           "secenekler": [
             "Edit",
@@ -355,6 +386,7 @@
         {
           "id": "b01-d3-s4",
           "tur": "dogru-yanlis",
+          "kart": 4,
           "soru": "Bash tabloda 'izin gerekir' diye işaretlidir, ama yalnız okuyan bazı komutları sormadan koşar.",
           "dogru": true,
           "ipucu": "Kartta izin sütunu için anlatılan istisnaları hatırla.",
@@ -369,7 +401,8 @@
         {
           "id": "b01-d3-s5",
           "tur": "coktan",
-          "soru": "Bizim .claude/settings.json:86 satırında Read, Grep ve Glob adları birlikte geçiyor. Bu üç aracın ortak işi ne?",
+          "kart": 0,
+          "soru": "Bizim .claude/settings.json'da bir satır Read, Grep ve Glob'u birlikte anar. Üçünün ortak işi ne?",
           "secenekler": [
             "Kabuk komutu koşmak",
             "Dosya okumak ve aramak",
@@ -389,6 +422,7 @@
         {
           "id": "b01-d3-s6",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Claude'a bir web adresi verip o sayfadaki belgeyi okumasını istedin. Hangi araç kullanılır ve elle onay modunda izin ister mi?",
           "secenekler": [
             "WebFetch; önce izin ister",
@@ -409,20 +443,22 @@
         {
           "id": "b01-d3-s7",
           "tur": "coktan",
-          "soru": "Bizim .claude/settings.json:119 satırı bir korumayı şu araç adlarına bağlar: Edit, Write, MultiEdit, NotebookEdit. Bu koruma Claude hangi işi yaparken devreye girer?",
+          "kart": 2,
+          "soru": "Bizim .claude/settings.json'da bir koruma Edit, Write, MultiEdit ve NotebookEdit adlarına bağlı. Bu koruma Claude ne yaparken devreye girer?",
           "secenekler": [
-            "Claude bir dosyayı okurken",
-            "Claude bir kabuk komutu koşarken",
-            "Claude bir web adresinden içerik çekerken",
-            "Claude bir dosyaya yazarken"
+            "Dosya okurken",
+            "Kabuk komutu koşarken",
+            "Webden içerik çekerken",
+            "Dosyaya yazarken"
           ],
           "dogru": 3,
-          "ipucu": "Satırdaki Edit ve Write adlarını kartta öğrendiğin işleriyle düşün.",
-          "aciklama": "Edit dosyada değişiklik yapar, Write dosya yaratır ya da üzerine yazar; bu satıra bağlı koruma bu yüzden Claude dosyaya yazarken devreye girer.",
+          "ipucu": "Edit ve Write adlarını kartta öğrendiğin işleriyle düşün.",
+          "aciklama": "Edit dosyada değişiklik yapar, Write dosya yaratır ya da üzerine yazar; bu adlara bağlı koruma bu yüzden Claude dosyaya yazarken devreye girer.",
           "kaynak": {
-            "adres": ".claude/settings.json:119",
-            "okuma": "2026-11-15",
-            "dayanak": "Satırdaki eşleşme, bloğun korumasını Edit, Write, MultiEdit ve NotebookEdit araç adlarına bağlar."
+            "adres": ".claude/settings.json:125",
+            "okuma": "2026-11-17",
+            "dayanak": "Satırdaki eşleşme, bloğun korumasını Edit, Write, MultiEdit ve NotebookEdit araç adlarına bağlar.",
+            "soz": "Edit|Write|MultiEdit|NotebookEdit"
           }
         }
       ]
@@ -436,9 +472,13 @@
         "Okunan her dosyanın yer kapladığını ve bağlam dolunca ne olduğunu anlatabilir."
       ],
       "anlatim": [
-        "Bağlam, Claude'un çalışma belleğidir. Yazdığın her mesaj, okuduğu her dosya, koştuğu her komutun çıktısı burada yer kaplar. Alan sınırlıdır; bu yüzden onu iyi kullanmak önemlidir. Masaüstünde doluluğu Context kartında görürsün ya da istem kutusuna /context yazarsın.",
-        "Sen daha bir şey yazmadan bağlama şunlar yüklenir: CLAUDE.md, otomatik hafıza (auto memory), MCP sunucularının araç adları ve skill açıklamaları. Skill'in tam metni yalnız kullanıldığında gelir. Önceki oturumların konuşması gelmez; her yeni oturum temiz bir bağlamla başlar.",
-        "Bağlam dolmaya yaklaşınca Claude Code konuşmayı otomatik özetler; buna sıkıştırma (compaction) denir. Bu sırada ayrıntı kaybolabilir. Kalıcı kuralı bu yüzden sohbete değil CLAUDE.md'ye yazarsın. Bizim CLAUDE.md:38, bağlam 500 bini geçince Claude'un kapanışı önermesini ister."
+        "Bağlam, Claude'un çalışma belleğidir. Alan sınırlıdır; bu yüzden onu iyi kullanmak önemlidir.",
+        "Yazdığın her mesaj, okuduğu her dosya, koştuğu her komutun çıktısı bağlamda yer kaplar.",
+        "Masaüstünde bağlamın doluluğunu Context kartında görürsün ya da istem kutusuna /context yazarsın.",
+        "Sen yazmadan bağlama CLAUDE.md, otomatik hafıza (auto memory) ve skill'lerin, yani hazır tariflerin, açıklamaları yüklenir. Önceki oturumların konuşması gelmez; her oturum temiz bir bağlamla başlar.",
+        "Bir skill'in, yani hazır tarifin, tam metni oturum başında bağlama girmez; yalnız skill kullanıldığında gelir.",
+        "Bağlam dolmaya yaklaşınca Claude Code konuşmayı otomatik özetler; buna sıkıştırma (compaction) denir. Ayrıntı kaybolabilir; kalıcı kuralı bu yüzden sohbete değil CLAUDE.md'ye yazarsın.",
+        "Bizim CLAUDE.md sohbetin şişmesine dikkat ister. Bağlam 500 bini geçince Claude kapanışı, yani bu sohbeti bitirip yeni sohbete geçmeyi önerir."
       ],
       "terimler": [
         {"tr": "bağlam penceresi", "en": "context window", "aciklama": "Oturumun çalışma belleği: konuşma, dosya içerikleri, komut çıktıları, CLAUDE.md ve yüklenen skill'ler burada durur."},
@@ -449,6 +489,7 @@
         {
           "id": "b01-d4-s1",
           "tur": "bosluk",
+          "kart": 0,
           "soru": "Bağlam penceresi, oturumun ___ gibidir: konuşma, dosya içerikleri ve komut çıktıları burada tutulur.",
           "secenekler": [
             "kalıcı kayıt arşivi",
@@ -468,6 +509,7 @@
         {
           "id": "b01-d4-s2",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Sen daha hiçbir şey yazmadan oturum başında bağlama ne yüklenir?",
           "secenekler": [
             "CLAUDE.md, otomatik hafıza ve skill açıklamaları",
@@ -487,6 +529,7 @@
         {
           "id": "b01-d4-s3",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Claude'un okuduğu her dosya bağlam penceresinde yer kaplar.",
           "dogru": true,
           "ipucu": "Claude çalışırken bağlama neyin eklendiğini düşün.",
@@ -500,11 +543,17 @@
         },
         {
           "id": "b01-d4-s4",
-          "tur": "dogru-yanlis",
-          "soru": "Bir skill'in tam metni, hiç kullanılmasa bile oturum başında bağlama yüklenir.",
-          "dogru": false,
-          "ipucu": "Başta skill'in neyi görünür, neyi beklemede kalır?",
-          "aciklama": "Yanlış: oturum başında yalnız skill açıklamaları görünür; tam metin skill kullanılınca yüklenir.",
+          "tur": "bosluk",
+          "kart": 4,
+          "soru": "Oturum başında bağlamda skill'in yalnız açıklaması durur; tam metni ___ yüklenir.",
+          "secenekler": [
+            "oturum açılınca",
+            "ilk mesajını yazınca",
+            "skill kullanıldığında"
+          ],
+          "dogru": 2,
+          "ipucu": "Tam metnin ne zaman gerektiğini düşün.",
+          "aciklama": "Oturum başında yalnız skill açıklamaları görünür; tam metin skill kullanılınca yüklenir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/how-claude-code-works",
             "kopya": "how-claude-code-works.md",
@@ -515,6 +564,7 @@
         {
           "id": "b01-d4-s5",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Uzun bir oturumda bağlamın ne kadar dolduğunu masaüstünde görmek istiyorsun. Ne yaparsın?",
           "secenekler": [
             "Uygulamayı kapatıp yeniden açarsın",
@@ -534,6 +584,7 @@
         {
           "id": "b01-d4-s6",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Sohbetin başında Claude'a önemli bir kural söyledin; oturum uzadı ve sıkıştırma oldu. Kuralın kaybolmaması için en doğru yer neresiydi?",
           "secenekler": [
             "Sohbetteki ilk mesaj",
@@ -541,7 +592,7 @@
             "Sıkıştırmanın özeti"
           ],
           "dogru": 1,
-          "ipucu": "Sıkıştırmadan sonra diskten yeniden okunan yeri düşün.",
+          "ipucu": "Sıkıştırmada sohbetteki ayrıntı kaybolabilir; kuralı sohbetin dışında tutan yeri düşün.",
           "aciklama": "Sıkıştırmada sohbetin başındaki ayrıntılı talimat kaybolabilir; kalıcı kural bu yüzden CLAUDE.md'ye yazılır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/how-claude-code-works",
@@ -553,7 +604,8 @@
         {
           "id": "b01-d4-s7",
           "tur": "coktan",
-          "soru": "Bizim CLAUDE.md:38 sohbetin şişmesine dikkat edilmesini ister. Bu satıra göre Claude kapanışı hangi durumda önerir?",
+          "kart": 6,
+          "soru": "Bizim CLAUDE.md sohbetin şişmesine dikkat edilmesini ister. Buna göre Claude kapanışı hangi durumda önerir?",
           "secenekler": [
             "Her on mesajda bir",
             "Yalnız kullanıcı kapanış isteyince",
@@ -561,12 +613,13 @@
             "Bağlam 500 bini geçince"
           ],
           "dogru": 3,
-          "ipucu": "Kartta bu satırla birlikte bir sayı geçiyordu.",
+          "ipucu": "Sohbet şişince bu derste anlatılan hangi alan dolar, onu düşün.",
           "aciklama": "Satır, kapanışın bağlam 500 bini geçince, sıradaki iş yeni sohbet isteyince ya da iş kalmayınca önerileceğini söyler.",
           "kaynak": {
             "adres": "CLAUDE.md:38",
             "okuma": "2026-11-15",
-            "dayanak": "Claude kapanışı bağlam 500 bini geçince, sıradaki iş yeni sohbet isteyince ya da iş kalmayınca önerir."
+            "dayanak": "Claude kapanışı bağlam 500 bini geçince, sıradaki iş yeni sohbet isteyince ya da iş kalmayınca önerir.",
+            "soz": "kapanışı bağlam 500 bini geçince"
           }
         }
       ]
@@ -576,24 +629,30 @@
       "baslik": "Claude yanılabilir: döngüde kalmak",
       "hedefler": [
         "Claude'un üç yanılma biçimini anlatabilir.",
-        "İzinlerin ve geri alma noktalarının neden var olduğunu anlatabilir.",
+        "İzinlerin ve geri sarma noktalarının neden var olduğunu anlatabilir.",
         "Bizim klasörde izin modu ile kapıların ilişkisini anlatabilir."
       ],
       "anlatim": [
-        "Claude Code da her araç gibi kusursuz değildir. Niyetini yanlış anlayabilir, koda hata ekleyebilir ya da çözümü gereğinden karmaşık kurabilir. Döngüde kalmak (staying in the loop), yani yaptığını izleyip gerektiğinde yön vermek, bu hataları erken yakalamanı sağlar.",
-        "İki güvenlik düzeneği var. Geri alma noktası (checkpoint): Claude bir dosyayı düzenlemeden önce içeriğin anlık kopyasını alır, istersen geri sararsın. İzin modu (permission mode): Claude'un sana sormadan neyi yapabileceğini belirler. Veritabanı ya da yayın gibi uzak sistemlere giden işler geri sarılamaz; onları izinlerle sen denetlersin.",
-        "Masaüstünde izin modunu istem kutusunun altındaki mod seçiciden değiştirirsin; Manual her değişikliği sana onaylatır. Bizim CLAUDE.md:29 'İzin modunu kullanıcı seçer' der ve kapıların her modda geçerli olduğunu ekler. CLAUDE.md:25 ise Claude'dan emin değilse 'emin değilim' demesini ister."
+        "Claude Code da kusursuz değildir. Niyetini yanlış anlayabilir, koda hata ekleyebilir ya da çözümü gereğinden karmaşık kurabilir.",
+        "Döngüde kalmak (staying in the loop), Claude'un yaptığını izleyip gerektiğinde yön vermektir. İlk deneme tutmazsa baştan başlamazsın, üstüne düzeltme yazarak ilerlersin.",
+        "Geri sarma noktası (checkpoint): Claude bir dosyayı düzenlemeden önce içeriğin anlık kopyasını alır. İstersen dosyayı geri sararsın.",
+        "Veritabanı ya da yayın gibi uzak sistemlere giden işler geri sarılamaz. Onları izinlerle sen denetlersin.",
+        "İzin modu (permission mode), Claude'un sana sormadan neyi yapabileceğini belirler. Masaüstündeki mod seçicide Manual, her değişikliği sana onaylatır.",
+        "İzinleri atlarken dikkatli ol: Claude'a komut koşmada serbest yetki vermek, bir hatayı olmadan önce yakalamanı zorlaştırır.",
+        "CLAUDE.md'de 'İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir' satırı var. Kapı, Claude'un durup plan sunduğu ya da sana sorduğu kuraldır.",
+        "CLAUDE.md'deki bir satır da Claude'un bir işi yapabileceğini yalnız eminse söylemesini, değilse 'emin değilim' demesini ister."
       ],
       "terimler": [
         {"tr": "döngüde kalmak", "en": "staying in the loop", "aciklama": "Claude çalışırken ne yaptığını izleyip gerektiğinde yön vermek."},
-        {"tr": "geri alma noktası", "en": "checkpoint", "aciklama": "Claude bir dosyayı düzenlemeden önce aldığı anlık kopya; dosya değişikliğini geri sarmayı sağlar."},
+        {"tr": "geri sarma noktası", "en": "checkpoint", "aciklama": "Claude bir dosyayı düzenlemeden önce aldığı anlık kopya; dosya değişikliğini geri sarmayı sağlar."},
         {"tr": "izin modu", "en": "permission mode", "aciklama": "Claude'un sana sormadan neyi yapabileceğini belirleyen temel ayar."}
       ],
       "sorular": [
         {
           "id": "b01-d5-s1",
           "tur": "coktan",
-          "soru": "Kurs, Claude Code'un hangi üç biçimde yanılabileceğini söyler?",
+          "kart": 0,
+          "soru": "Claude Code hangi üç biçimde yanılabilir?",
           "secenekler": [
             "Dosyaları okuyamamak, komut koşamamak, webde arama yapamamak",
             "Niyeti yanlış anlamak, hata eklemek, fazla karmaşık kurmak",
@@ -612,9 +671,10 @@
         {
           "id": "b01-d5-s2",
           "tur": "dogru-yanlis",
+          "kart": 2,
           "soru": "Claude bir dosyayı düzenlemeden önce içeriğin anlık kopyasını alır; bu yüzden dosya düzenlemeleri geri alınabilir.",
           "dogru": true,
-          "ipucu": "Geri alma noktasının ne zaman alındığını düşün.",
+          "ipucu": "Geri sarma noktasının ne zaman alındığını düşün.",
           "aciklama": "Doğru: düzenlemeden önce alınan anlık kopya, işler ters giderse dosyayı önceki hâline sarmayı sağlar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/how-claude-code-works",
@@ -625,21 +685,28 @@
         },
         {
           "id": "b01-d5-s3",
-          "tur": "dogru-yanlis",
-          "soru": "Geri alma noktaları, veritabanına ya da canlı yayına giden işleri de geri sarar.",
-          "dogru": false,
-          "ipucu": "Geri alma noktası neyin kopyasını alır?",
-          "aciklama": "Yanlış: geri alma noktaları yalnız dosya değişikliklerini kapsar; uzak sistemleri etkileyen işler izin modu ve izin kurallarıyla denetlenir.",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Claude canlı yayına yanlış bir sürüm gönderdi. Geri sarma noktası bunu geri sarar mı?",
+          "secenekler": [
+            "Evet, yayın da bir dosya değişikliğidir",
+            "Hayır, uzak sistemdeki işler sarılmaz",
+            "Evet, her işin kopyası alınır"
+          ],
+          "dogru": 1,
+          "ipucu": "Geri sarma noktası neyin kopyasını alır?",
+          "aciklama": "Geri sarma noktaları yalnız dosya değişikliklerini kapsar; uzak sistemleri etkileyen işler izin modu ve izin kurallarıyla denetlenir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/how-claude-code-works",
             "kopya": "how-claude-code-works.md",
             "okuma": "2026-11-15",
-            "dayanak": "Uzak sistemleri etkileyen işler, yani veritabanları, API'ler ve yayınlar, geri alma noktasıyla geri alınamaz; onları izin modu ve izin kurallarıyla denetlersin."
+            "dayanak": "Uzak sistemleri etkileyen işler, yani veritabanları, API'ler ve yayınlar, geri sarma noktasıyla geri alınamaz; onları izin modu ve izin kurallarıyla denetlersin."
           }
         },
         {
           "id": "b01-d5-s4",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Claude'un her dosya değişikliğini ve komutunu önce sana sormasını istiyorsun. Masaüstündeki mod seçiciden hangisini seçersin?",
           "secenekler": [
             "Auto",
@@ -660,6 +727,7 @@
         {
           "id": "b01-d5-s5",
           "tur": "sirala",
+          "kart": 1,
           "soru": "İlk deneme tam olmadığında ne olur? Konuşmanın adımlarını sıraya koy.",
           "adimlar": [
             "Kısaca istediğini yazarsın: giriş hatasını düzelt",
@@ -679,7 +747,8 @@
         {
           "id": "b01-d5-s6",
           "tur": "coktan",
-          "soru": "CLAUDE.md:29: 'İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir.' Kullanıcı Auto modunu seçerse plan kapısı ne olur?",
+          "kart": 6,
+          "soru": "CLAUDE.md'de 'İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir' satırı var. Kullanıcı Auto modunu seçerse plan kapısı ne olur?",
           "secenekler": [
             "Yine geçerlidir; mod kapıyı kaldırmaz",
             "Kalkar; Auto modda Claude sormadan devam eder",
@@ -691,13 +760,15 @@
           "kaynak": {
             "adres": "CLAUDE.md:29",
             "okuma": "2026-11-15",
-            "dayanak": "İzin modunu kullanıcı seçer ve bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir."
+            "dayanak": "İzin modunu kullanıcı seçer ve bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir.",
+            "soz": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir"
           }
         },
         {
           "id": "b01-d5-s7",
           "tur": "coktan",
-          "soru": "Bizim CLAUDE.md:25'e göre Claude bir işi yapabileceğinden emin değilse ne yapar?",
+          "kart": 7,
+          "soru": "Bizim CLAUDE.md'ye göre Claude bir işi yapabileceğinden emin değilse ne yapar?",
           "secenekler": [
             "Yapabilirim der, dener",
             "Açıkça 'emin değilim' der",
@@ -709,13 +780,15 @@
           "kaynak": {
             "adres": "CLAUDE.md:25",
             "okuma": "2026-11-15",
-            "dayanak": "Bir işi yapabileceğimi yalnız eminsem söylerim, emin değilsem 'emin değilim' derim."
+            "dayanak": "Bir işi yapabileceğimi yalnız eminsem söylerim, emin değilsem 'emin değilim' derim.",
+            "soz": "Bir işi yapabileceğimi yalnız eminsem söylerim"
           }
         },
         {
           "id": "b01-d5-s8",
           "tur": "coktan",
-          "soru": "Kurs, izinleri atlarken neden dikkatli olmanı söyler?",
+          "kart": 5,
+          "soru": "İzinleri atlarken neden dikkatli olmalısın?",
           "secenekler": [
             "Bir hatayı olmadan önce yakalaman zorlaşır",
             "İzinler kapalıyken Claude dosya okuyamaz",
@@ -741,15 +814,19 @@
         "Her terimi bir cümleyle tanımlayıp birbirinden ayırt edebilir."
       ],
       "anlatim": [
-        "Ajan döngüsü: Claude'un her işte bağlam toplayıp eylem yaptığı, sonucu doğrulayıp bitene kadar tekrarladığı çevrim. Sıkıştırma: bağlam sınıra yaklaşınca konuşmanın otomatik özetlenmesi. CLAUDE.md: senin yazdığın, her oturum başında yüklenen kalıcı talimat dosyası; proje kökündeki CLAUDE.md sıkıştırmadan sonra diskten yeniden okunur.",
-        "Kanca: Claude Code'un belli bir anında, örneğin bir araç çalışmadan önce, kendiliğinden koşan işleyici; modelin o anki kararına bağlı değildir. Alt ajan: kendi bağlam penceresinde ayrı bir işi yapıp ana sohbete özet döndüren yardımcı. MCP: Claude'u dış veri kaynaklarına ve hizmetlere bağlayan açık standart.",
-        "Bizim CLAUDE.md:82, Claude'dan sana iç terim yerine sade Türkçe karşılığını yazmasını ister: 'doğrulayıcı onayladı', 'kaydedildi' gibi. Bu derste o karşılıkları öğreniyorsun."
+        "CLAUDE.md, senin yazdığın ve her oturum başında yüklenen kalıcı talimat dosyasıdır. Otomatik hafıza ise Claude'un senin düzeltme ve tercihlerinden kendisi için yazdığı notlardır.",
+        "Sıkıştırma (compaction): bağlam sınıra yaklaşınca konuşmanın otomatik özetlenmesi. Proje kökündeki CLAUDE.md sıkıştırmadan sonra diskten yeniden okunur.",
+        "Kanca (hook): Claude Code'un belli bir anında, örneğin bir araç çalışmadan önce, kendiliğinden koşan, senin tanımladığın komut. Modelin o anki kararına bağlı değildir.",
+        "Alt ajan (subagent): kendi bağlam penceresinde ayrı bir işi yapıp ana sohbete özet döndüren yardımcı.",
+        "Ajan döngüsü (agentic loop): Claude'un her işte bağlam toplayıp eylem yaptığı, sonucu doğrulayıp bitene kadar tekrarladığı çevrim.",
+        "MCP (Model Context Protocol): Claude'u dış veri kaynaklarına ve hizmetlere bağlayan açık standart.",
+        "Bizim CLAUDE.md'de 'Sade Türkçe yaz: iç terim yerine karşılığı' satırı var. Satır örnek olarak 'doğrulayıcı onayladı' ve 'kaydedildi' sözlerini verir."
       ],
       "terimler": [
         {"tr": "ajan döngüsü", "en": "agentic loop", "aciklama": "Claude'un her işte geçtiği bağlam toplama, eylem ve doğrulama çevrimi; iş bitene kadar tekrarlanır."},
         {"tr": "sıkıştırma", "en": "compaction", "aciklama": "Bağlam sınıra yaklaşınca konuşmanın otomatik özetlenmesi; elle /compact ile de başlatılır."},
         {"tr": "CLAUDE.md", "en": "CLAUDE.md", "aciklama": "Senin Claude için yazdığın, her oturum başında yüklenen kalıcı talimat dosyası."},
-        {"tr": "kanca", "en": "hook", "aciklama": "Claude Code'un belli bir anında kendiliğinden koşan, senin tanımladığın işleyici."},
+        {"tr": "kanca", "en": "hook", "aciklama": "Claude Code'un belli bir anında kendiliğinden koşan, senin tanımladığın komut."},
         {"tr": "alt ajan", "en": "subagent", "aciklama": "Kendi bağlam penceresinde ayrı bir işi yapıp ana sohbete özet döndüren yardımcı."},
         {"tr": "MCP, model bağlam protokolü", "en": "Model Context Protocol", "aciklama": "Yapay zeka araçlarını dış veri kaynaklarına ve hizmetlere bağlayan açık standart."}
       ],
@@ -757,12 +834,13 @@
         {
           "id": "b01-d6-s1",
           "tur": "eslestir",
+          "kart": 4,
           "soru": "Terimi tanımıyla eşleştir.",
           "ciftler": [
-            ["Ajan döngüsü", "Bağlam topla, eylem yap, sonucu doğrula, bitene kadar tekrarla"],
+            ["Ajan döngüsü", "Bağlam topla, eylem yap, doğrula, bitene kadar tekrarla"],
             ["Sıkıştırma", "Bağlam dolmaya yaklaşınca konuşmanın otomatik özetlenmesi"],
-            ["Kanca", "Belli bir anda kendiliğinden koşan, modelin kararına bağlı olmayan işleyici"],
-            ["Alt ajan", "Kendi bağlamında ayrı bir iş yapıp ana sohbete özet döndüren yardımcı"]
+            ["Kanca", "Belli bir anda kendiliğinden koşan komut"],
+            ["Alt ajan", "Kendi bağlamında iş yapıp ana sohbete özet döndüren yardımcı"]
           ],
           "ipucu": "Tanımlardaki anahtar sözcüğe bak: hangisi tekrar, hangisi özet, hangisi ayrı bir yardımcı?",
           "aciklama": "Döngü işi yürütür, sıkıştırma bağlamı küçültür, kanca belli anda kendiliğinden çalışır, alt ajan işi kendi bağlamında yapar.",
@@ -776,6 +854,7 @@
         {
           "id": "b01-d6-s2",
           "tur": "coktan",
+          "kart": 5,
           "soru": "MCP ne işe yarar?",
           "secenekler": [
             "Konuşmayı otomatik özetler",
@@ -796,6 +875,7 @@
         {
           "id": "b01-d6-s3",
           "tur": "dogru-yanlis",
+          "kart": 2,
           "soru": "Kancalar, modelin o anki kararına göre bazen çalışır, bazen çalışmaz.",
           "dogru": false,
           "ipucu": "Kancanın ne zaman çalıştığını kim belirler?",
@@ -810,6 +890,7 @@
         {
           "id": "b01-d6-s4",
           "tur": "bosluk",
+          "kart": 1,
           "soru": "Sıkıştırmadan sonra proje kökündeki ___ diskten yeniden okunur; yalnız sohbette verilen talimat kaybolabilir.",
           "secenekler": [
             "CLAUDE.md dosyası",
@@ -829,6 +910,7 @@
         {
           "id": "b01-d6-s5",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Claude'a 'Bu araştırmayı bir alt ajana ver' dedin. Ana sohbetin bundan kazancı ne?",
           "secenekler": [
             "Alt ajan ana sohbetin bağlam penceresini büyütür",
@@ -848,7 +930,8 @@
         {
           "id": "b01-d6-s6",
           "tur": "coktan",
-          "soru": "Bizim CLAUDE.md:82 'Sade Türkçe yaz: iç terim yerine karşılığı' der. Claude sana bir işin onaylandığını hangi biçimde yazmalı?",
+          "kart": 6,
+          "soru": "Bizim CLAUDE.md 'Sade Türkçe yaz: iç terim yerine karşılığı' der. Claude sana bir işin onaylandığını hangi biçimde yazmalı?",
           "secenekler": [
             "Verifier PASS döndü",
             "D27 yeşil, commit hazır",
@@ -860,12 +943,14 @@
           "kaynak": {
             "adres": "CLAUDE.md:82",
             "okuma": "2026-11-15",
-            "dayanak": "Sade Türkçe yaz: iç terim yerine karşılığını kullan, örneğin 'doğrulayıcı onayladı' ya da 'kaydedildi'."
+            "dayanak": "Sade Türkçe yaz: iç terim yerine karşılığını kullan, örneğin 'doğrulayıcı onayladı' ya da 'kaydedildi'.",
+            "soz": "Sade Türkçe yaz: iç terim yerine karşılığı"
           }
         },
         {
           "id": "b01-d6-s7",
           "tur": "coktan",
+          "kart": 0,
           "soru": "CLAUDE.md ile otomatik hafıza arasındaki fark ne?",
           "secenekler": [
             "CLAUDE.md'yi sen, otomatik hafızayı Claude yazar",

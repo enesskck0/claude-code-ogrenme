@@ -13,9 +13,12 @@
         "Web araması ve takvim gibi bir MCP örneğini ne işe yaradığıyla anlatabilir."
       ],
       "anlatim": [
-        "MCP (Model Context Protocol), Claude Code'u dış araçlara ve veri kaynaklarına bağlayan açık bir standarttır. Bağlanan her MCP sunucusu (MCP server) Claude'a yeni araçlar (tool) verir: Claude o sistemi okuyup orada iş yapabilir. Başka bir uygulamadan sohbete sürekli veri kopyalıyorsan, o sistemi bağlamanın zamanı gelmiştir.",
-        "Belgedeki örneklere göre sunucu bağlıyken şunları isteyebilirsin: iş takip aracındaki bir kaydın anlattığı özelliği eklemek, izleme panelinden bir özelliğin kullanımını incelemek, veritabanından kullanıcı bilgisi sorgulamak, e-postada davet taslakları hazırlamak.",
-        "Bizim klasörde örnek var: araştırma ajanı kaynak bulmak için Exa adlı MCP sunucusunu kullanır (.claude/agents/arastirmaci.md satır 8-11). Masaüstündeki bağlayıcılar (connector) da MCP sunucusudur; takvimi bağlarsan Claude takvimini okuyabilir. Bir uyarı: sunucuya güvenmeden bağlama, dış içerik çeken sunucu istem enjeksiyonu (prompt injection) riski taşır."
+        "MCP (Model Context Protocol), Claude Code'u dış araçlara ve veri kaynaklarına bağlayan açık bir standarttır.",
+        "Bağlanan her MCP sunucusu (MCP server) Claude'a yeni araçlar (tool) verir. Claude o sistemi okuyup orada iş yapabilir.",
+        "Başka bir uygulamadan sohbete sürekli veri kopyalıyorsan, o sistemi bağlamanın zamanı gelmiştir.",
+        "Sunucu bağlıyken Claude'dan iş takip aracındaki bir kaydın anlattığı özelliği eklemesini, izleme panelinde kullanımı incelemesini, veritabanında kullanıcı bilgisi sorgulamasını, e-postada davet taslağı hazırlamasını isteyebilirsin.",
+        "Bizim klasörde araştırma ajanı kaynak bulmak için Exa adlı MCP sunucusunu kullanır. Ajanın dosyasında 'Kaynakları Exa ile bulursun' yazar.",
+        "Sunucuya güvenmeden bağlama. Dış içerik çeken sunucu istem enjeksiyonu (prompt injection) riski taşır."
       ],
       "terimler": [
         {"tr": "MCP", "en": "Model Context Protocol", "aciklama": "Claude Code'u dış araçlara ve veri kaynaklarına bağlayan açık standart."},
@@ -28,6 +31,7 @@
         {
           "id": "b08-d1-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "MCP (Model Context Protocol) en kısa haliyle nedir?",
           "secenekler": [
             "Claude'un yazdığı kodu otomatik olarak test eden program",
@@ -48,6 +52,7 @@
         {
           "id": "b08-d1-s2",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Bir MCP sunucusu bağlandığında Claude yalnız yazıyla cevap verir; o sistemde iş yapamaz.",
           "dogru": false,
           "ipucu": "Bağlantıdan sonra Claude'un o sistemle neler yapabildiğini düşün.",
@@ -62,6 +67,7 @@
         {
           "id": "b08-d1-s3",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Her sabah bir izleme panelinden sayıları kopyalayıp sohbete yapıştırıyorsun. Belgeye göre ne yapmak uygun?",
           "secenekler": [
             "O paneli bir MCP sunucusu olarak bağlamak",
@@ -82,6 +88,7 @@
         {
           "id": "b08-d1-s4",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Sunucu bağlıyken isteyebileceğin işleri, işin yapıldığı servisle eşleştir.",
           "ciftler": [
             ["İş takip aracı", "Kayıttaki özelliği eklemek"],
@@ -101,6 +108,7 @@
         {
           "id": "b08-d1-s5",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Araştırma ajanının dosyasında mcpServers altında exa tanımlı. Bu ajan Exa'yı ne için kullanır?",
           "secenekler": [
             "Takvime etkinlik eklemek için",
@@ -113,17 +121,24 @@
           "aciklama": "Araştırma ajanı web'i okuyan ajandır. Dosyası ona kaynakları Exa ile bulmasını söyler.",
           "kaynak": {
             "adres": ".claude/agents/arastirmaci.md:17",
-            "okuma": "2026-11-15",
-            "dayanak": "Araştırma ajanı kaynakları Exa ile bulur ve karar taşıyan her kaynağın sayfasını açıp okur."
+            "okuma": "2026-11-17",
+            "dayanak": "Araştırma ajanı kaynakları Exa ile bulur ve karar taşıyan her kaynağın sayfasını açıp okur.",
+            "soz": "Kaynakları Exa ile bulursun"
           }
         },
         {
           "id": "b08-d1-s6",
-          "tur": "dogru-yanlis",
-          "soru": "Belgeye göre her MCP sunucusuna düşünmeden bağlanabilirsin; dış içerik çeken sunucular bir risk taşımaz.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Belgeye göre bir MCP sunucusunu bağlamadan önce ne yapmalısın?",
+          "secenekler": [
+            "Claude Code'u yeniden başlatmalısın",
+            "Ona güvendiğini doğrulamalısın",
+            "Sunucunun adını CLAUDE.md'ye yazmalısın"
+          ],
+          "dogru": 1,
           "ipucu": "Dışarıdan gelen bir metnin Claude'a ne söyleyebileceğini düşün.",
-          "aciklama": "Yanlış. Belge, bağlamadan önce sunucuya güvendiğini doğrulamanı ister; dış içerik çeken sunucu istem enjeksiyonu riski taşır.",
+          "aciklama": "Belge, bağlamadan önce sunucuya güvendiğini doğrulamanı ister. Dış içerik çeken sunucu istem enjeksiyonu riski taşır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/mcp",
             "kopya": "mcp.md",
@@ -141,9 +156,13 @@
         "Bizde proje MCP dosyası olmadığını, Exa'nın ajan dosyalarında tanımlandığını anlatabilir."
       ],
       "anlatim": [
-        "Terminalde sunucu claude mcp add komutuyla eklenir. Masaüstünde ise bağlayıcıyı (connector) yazı kutusunun yanındaki + düğmesinden eklersin; yönetmek için kenar çubuğunda Customize, sonra Connectors. Listede olmayan sunucu ayar dosyalarına elle yazılır.",
-        "Sunucu üç kapsamdan (scope) birine yazılır. Yerel: yalnız sen, yalnız bu proje; varsayılan budur, ~/.claude.json içinde bu projenin kaydında durur. Proje: proje kökündeki .mcp.json, projeyi kopyalayan herkes kullanır; Claude Code böyle bir sunucuyu ilk gördüğünde sana onay sorar. Kullanıcı: yalnız sen, bütün projeler; ~/.claude.json içinde en üstteki mcpServers anahtarında.",
-        "Bizde .mcp.json yok. Exa, araştırma ve hukuk ajanlarının dosyalarında, mcpServers alanında tanımlı (.claude/agents/arastirmaci.md satır 8-11). Tanımdaki type: http, ağ üzerinden bağlanılan uzak bir servis demektir; bilgisayarında çalışan yerel programlar için başka bir tür kullanılır. Böyle tanımlanan sunucu ajan başlarken bağlanır, ajan bitince bağlantı kesilir; araçlarını yalnız ajan alır, ana sohbet almaz."
+        "Terminalde sunucu claude mcp add ile eklenir. Masaüstünde bağlayıcıyı (connector) yazı kutusunun yanındaki + düğmesinden eklersin, kenar çubuğunda Customize, Connectors bölümünden yönetirsin.",
+        "Sunucu üç kapsamdan (scope) birine yazılır. Yerel kapsam yalnız sana ve yalnız bu projeye açıktır; varsayılan budur.",
+        "Proje kapsamı proje kökündeki .mcp.json dosyasıdır; projeyi kopyalayan herkes kullanır. Claude Code böyle bir sunucuyu ilk gördüğünde sana onay sorar.",
+        "Kullanıcı kapsamı yalnız sana ama bütün projelerine açıktır. Kaydı ev klasöründeki ~/.claude.json dosyasında, en üstteki mcpServers bölümünde durur.",
+        "Bizde .mcp.json yok. Exa, araştırma ve hukuk ajanlarının dosyalarında, mcpServers alanında tanımlı.",
+        "Exa'nın tanımındaki type: http, ağ üzerinden bağlanılan uzak bir servis demektir. Bilgisayarında çalışan yerel programlar için başka bir tür kullanılır.",
+        "Ajan dosyasında böyle tanımlanan sunucu ajan başlarken bağlanır, ajan bitince bağlantı kesilir. Araçlarını yalnız ajan alır, ana sohbet almaz."
       ],
       "terimler": [
         {"tr": "kapsam", "en": "scope", "aciklama": "Bir MCP sunucusunun kime ve hangi projelere açık olduğu."},
@@ -156,6 +175,7 @@
         {
           "id": "b08-d2-s1",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Kapsamları, kimin kullanabildiği ve kaydın nerede durduğuyla eşleştir.",
           "ciftler": [
             ["Yerel kapsam", "Yalnız sen, yalnız bu proje; varsayılan"],
@@ -174,6 +194,7 @@
         {
           "id": "b08-d2-s2",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Terminalde claude mcp add ile kapsam belirtmeden bir sunucu eklersen sunucu hangi kapsama yazılır?",
           "secenekler": [
             "Kullanıcı kapsamına",
@@ -194,19 +215,22 @@
         {
           "id": "b08-d2-s3",
           "tur": "dogru-yanlis",
+          "kart": 4,
           "soru": "Bizim klasörün kökünde, Exa'yı tanımlayan bir .mcp.json dosyası var.",
           "dogru": false,
           "ipucu": "Exa'nın tanımının hangi dosyada durduğunu hatırla.",
           "aciklama": "Yanlış. Bizde .mcp.json yok; Exa ajan dosyalarında tanımlı.",
           "kaynak": {
             "adres": "inceleme/2026-11-07-buluttan-calisma.md:37",
-            "okuma": "2026-11-15",
-            "dayanak": "Depomuzda .mcp.json dosyası yoktur ve bu ls -a ile ölçülmüştür."
+            "okuma": "2026-11-17",
+            "dayanak": "Depomuzda .mcp.json dosyası yoktur ve bu ls -a ile ölçülmüştür.",
+            "soz": "Depomuzda `.mcp.json` yok"
           }
         },
         {
           "id": "b08-d2-s4",
           "tur": "coktan",
+          "kart": 6,
           "soru": "arastirmaci.md'de Exa, mcpServers alanında satır içi tanımlı. Belgeye göre böyle tanımlanan sunucu ne zaman bağlanır?",
           "secenekler": [
             "Claude Code her açıldığında, ana sohbet için",
@@ -227,6 +251,7 @@
         {
           "id": "b08-d2-s5",
           "tur": "bosluk",
+          "kart": 5,
           "soru": "Exa'nın tanımında type: http yazıyor. Belgeye göre HTTP sunucuları ___ içindir.",
           "secenekler": [
             "uzaktaki servisler",
@@ -245,11 +270,17 @@
         },
         {
           "id": "b08-d2-s6",
-          "tur": "dogru-yanlis",
-          "soru": "Bir projenin .mcp.json dosyasındaki sunucu, Claude Code onu ilk gördüğünde sana sormadan çalışmaya başlar.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Bir projenin .mcp.json dosyasındaki sunucuyu Claude Code ilk gördüğünde ne olur?",
+          "secenekler": [
+            "Sunucu sormadan çalışmaya başlar",
+            "Claude Code sana onay sorar",
+            "Sunucu kullanıcı kapsamına taşınır"
+          ],
+          "dogru": 1,
           "ipucu": "Başkasının deposunu açtığında neyin korunması gerektiğini düşün.",
-          "aciklama": "Yanlış. Claude Code proje kapsamlı sunucuyu ilk gördüğünde onay sorar; böylece kopyaladığın bir depo bilgisayarında izinsiz program başlatamaz.",
+          "aciklama": "Claude Code proje kapsamlı sunucuyu ilk gördüğünde onay sorar. Böylece kopyaladığın bir depo bilgisayarında izinsiz program başlatamaz.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/mcp-quickstart",
             "kopya": "mcp-quickstart.md",
@@ -260,6 +291,7 @@
         {
           "id": "b08-d2-s7",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Masaüstü uygulamasında bağlı bağlayıcıları görmek ya da birinin bağlantısını kesmek istiyorsun. Nereye bakarsın?",
           "secenekler": [
             "Yazı kutusunun altındaki model seçicisine",
@@ -287,9 +319,12 @@
         "settings.json'daki bir reddetme kuralının (deny rule) hangi işi engellediğini anlatabilir."
       ],
       "anlatim": [
-        "Her MCP aracının tam adı aynı kalıptadır: mcp__<sunucu>__<araç>. Önce mcp__, sonra sunucunun adı, iki alt çizgi, en sonda aracın adı. Örnek: mcp__github__search_repositories, GitHub sunucusunun arama aracıdır. Ajan dosyasının tools satırında sondaki yıldız o sunucunun bütün araçları demektir: mcp__exa__*. Kancanın eşleştiricisinde (matcher) ise sona .* gelir: mcp__memory__.* gibi; düz yazılan mcp__memory hiçbir araçla eşleşmez.",
-        "İzin kuralları üç türdür: izin ver (allow), sor (ask), reddet (deny). Sıra her zaman önce reddet, sonra sor, sonra izin ver; ilk eşleşen kazanır. Bizim .claude/settings.json dosyasında 32-45. satırlar bağlı hesapların yazan araçlarını reddeder: Drive'da dosya oluşturmak, takvime etkinlik eklemek gibi.",
-        "Bağlı hesabın sunucu adı okunur bir ad değil, uzun bir kimliktir. Satır 37'de mcp__<kimlik>__create_event biçiminde bir ad durur: sunucu takvim hesabı, araç create_event, yani etkinlik oluşturmak. Reddetme kuralı Claude Code'un bu aracı kullanmasını engeller; kuralı model değil Claude Code uygular."
+        "Her MCP aracının tam adı aynı kalıptadır: mcp__<sunucu>__<araç>. Örnek: mcp__github__search_repositories, GitHub sunucusunun arama aracıdır.",
+        "İzin kuralları üç türdür: izin ver (allow), sor (ask), reddet (deny). Sıra her zaman önce reddet, sonra sor, sonra izin ver; ilk eşleşen kazanır.",
+        "Bizim .claude/settings.json dosyası bağlı hesapların yazan araçlarını reddeder: Drive'da dosya oluşturmak, takvime etkinlik eklemek gibi. Reddetme kuralı aracı engeller; kuralı model değil Claude Code uygular.",
+        "Bağlı hesabın sunucu adı okunur bir ad değil, uzun bir kimliktir. Reddetme listesinde mcp__<kimlik>__create_event var: sunucu takvim hesabı, araç create_event, yani etkinlik oluşturmak.",
+        "Ajan dosyasının tools satırında sondaki yıldız o sunucunun bütün araçları demektir: mcp__exa__*.",
+        "Kancanın eşleştiricisinde (matcher) ise sona .* gelir: mcp__memory__.* gibi. Düz yazılan mcp__memory hiçbir araçla eşleşmez."
       ],
       "terimler": [
         {"tr": "reddetme kuralı", "en": "deny rule", "aciklama": "Belirtilen aracın kullanılmasını engelleyen izin kuralı."},
@@ -301,6 +336,7 @@
         {
           "id": "b08-d3-s1",
           "tur": "eslestir",
+          "kart": 0,
           "soru": "mcp__github__search_repositories adını parçalarıyla eşleştir.",
           "ciftler": [
             ["mcp__", "Her MCP aracında aynı olan baş"],
@@ -319,7 +355,8 @@
         {
           "id": "b08-d3-s2",
           "tur": "coktan",
-          "soru": "settings.json satır 39'da mcp__<kimlik>__delete_event biçiminde bir ad var; <kimlik> takvim hesabının uzun kimliğidir. Bu adda aracın adı hangi parça?",
+          "kart": 3,
+          "soru": "settings.json'daki reddetme listesinde mcp__<kimlik>__delete_event adı da var; <kimlik> takvim hesabının uzun kimliğidir. Bu adda aracın adı hangi parça?",
           "secenekler": [
             "Takvim hesabının kimliği",
             "mcp__<kimlik>",
@@ -331,13 +368,15 @@
           "aciklama": "Ad son iki alt çizgiden bölünür; sondaki delete_event araçtır. Ortadaki uzun kimlik bağlı hesabın sunucu adıdır.",
           "kaynak": {
             "adres": ".claude/hooks/mcp_yazma.py:3",
-            "okuma": "2026-11-15",
-            "dayanak": "MCP yazma kancası araç adını mcp__<sunucu>__<araç> diye ayırır ve son iki alt çizgiden böler."
+            "okuma": "2026-11-17",
+            "dayanak": "MCP yazma kancası araç adını mcp__<sunucu>__<araç> diye ayırır ve son iki alt çizgiden böler.",
+            "soz": "Araç adı mcp__<sunucu>__<araç> diye ayrılır"
           }
         },
         {
           "id": "b08-d3-s3",
           "tur": "coktan",
+          "kart": 2,
           "soru": "settings.json'daki reddetme listesinde takvim hesabının create_event aracı var. Claude bu araçla takvime etkinlik eklemeye çalışırsa ne olur?",
           "secenekler": [
             "Claude Code aracın kullanılmasını engeller",
@@ -358,6 +397,7 @@
         {
           "id": "b08-d3-s4",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Bir araç hem geniş bir reddetme kuralına hem de daha dar bir izin kuralına uyuyorsa dar olan kazanır ve araç çalışır.",
           "dogru": false,
           "ipucu": "Kuralların hangi sırayla okunduğunu hatırla.",
@@ -372,6 +412,7 @@
         {
           "id": "b08-d3-s5",
           "tur": "sirala",
+          "kart": 1,
           "soru": "Claude Code izin kurallarını hangi sırayla değerlendirir? İlk bakılandan sona doğru sırala.",
           "adimlar": [
             "Reddetme kuralları",
@@ -390,6 +431,7 @@
         {
           "id": "b08-d3-s6",
           "tur": "bosluk",
+          "kart": 5,
           "soru": "Bir kancanın memory sunucusunun bütün araçlarında çalışması için eşleştirici (matcher) ___ yazılır.",
           "secenekler": [
             "mcp__memory",
@@ -410,6 +452,7 @@
         {
           "id": "b08-d3-s7",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Araştırma ajanının dosyasında tools satırında mcp__exa__* yazıyor. Bu ne demek?",
           "secenekler": [
             "Ajan yalnız exa adlı tek bir aracı kullanabilir",
@@ -437,9 +480,11 @@
         "Kullanmadığın sunucuyu kapatma önerisinin nedenini anlatabilir."
       ],
       "anlatim": [
-        "Bağlam penceresi (context window), Claude'un oturumda bildiği her şeyin durduğu yerdir. Sen yazmadan önce oraya CLAUDE.md, otomatik hafıza, MCP araç adları ve skill açıklamaları yüklenir. Bağlı MCP sunucusu yalnız araç adlarını ve talimatlarını yükler. Araç araması (tool search) varsayılan açık olduğundan bir aracın tam tanımı, Claude ona ihtiyaç duyana kadar bağlama girmez.",
-        "Yine de her sunucu biraz yer kaplar; kullanmasan bile. Bu yüzden belge, bu işle ilgisi olmayan sunucuları kapatmayı önerir. Terminalde /mcp ile neyin bağlı olduğunu görüp kullanmadığını devre dışı bırakırsın; masaüstünde bağlayıcıları kenar çubuğundaki Customize, Connectors bölümünden kesersin.",
-        "Bizde bir örnek: Exa, .mcp.json'da değil, araştırma ve hukuk ajanlarının dosyalarında tanımlı (.claude/agents/arastirmaci.md ve hukukcu.md, satır 8-11). Belgeye göre sunucuyu böyle alt ajanda tanımlamak, araç açıklamalarının ana sohbetin bağlamında yer tutmasını önler. Ayrıca bir aracın komut satırı (CLI) karşılığı varsa, örneğin GitHub için gh, o daha az bağlam harcar."
+        "Bağlam penceresi (context window), Claude'un oturumda bildiği her şeyin durduğu yerdir. Sen yazmadan önce oraya CLAUDE.md, otomatik hafıza, MCP araç adları ve skill açıklamaları yüklenir.",
+        "Araç araması (tool search) varsayılan olarak açıktır. Bir MCP aracının tam tanımı, Claude ona ihtiyaç duyana kadar bağlama girmez.",
+        "Yine de her sunucu araç adlarını ve talimatlarını yükler; kullanmasan bile biraz yer kaplar. Bu yüzden belge, işle ilgisi olmayan sunucuları kapatmayı önerir.",
+        "Exa, .mcp.json'da değil, araştırma ve hukuk ajanlarının dosyalarında tanımlı. Sunucuyu böyle alt ajanda tanımlamak, araç açıklamalarının ana sohbetin bağlamında yer tutmasını önler.",
+        "Bir aracın komut satırı (CLI) karşılığı varsa, örneğin GitHub için gh, o daha az bağlam harcar."
       ],
       "terimler": [
         {"tr": "bağlam penceresi", "en": "context window", "aciklama": "Claude'un oturumda bildiği her şeyin durduğu yer."},
@@ -450,6 +495,7 @@
         {
           "id": "b08-d4-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Belgeye göre sen daha bir şey yazmadan bağlama hangisi yüklenir?",
           "secenekler": [
             "Her MCP aracının bütün ayrıntıları",
@@ -470,6 +516,7 @@
         {
           "id": "b08-d4-s2",
           "tur": "dogru-yanlis",
+          "kart": 2,
           "soru": "Bağlı bir MCP sunucusunu hiç kullanmasan da bağlamda biraz yer kaplar.",
           "dogru": true,
           "ipucu": "Oturum başında sunucudan neyin yüklendiğini hatırla.",
@@ -484,6 +531,7 @@
         {
           "id": "b08-d4-s3",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Bu projede hiç kullanmadığın üç sunucu bağlı duruyor. Belgenin önerisi hangisi?",
           "secenekler": [
             "Açık tut, kullanılmayan sunucu yer kaplamaz",
@@ -504,6 +552,7 @@
         {
           "id": "b08-d4-s4",
           "tur": "coktan",
+          "kart": 4,
           "soru": "GitHub'la çalışacaksın ve bilgisayarında gh komut satırı aracı kurulu. Bağlam açısından hangisi daha az yer tutar?",
           "secenekler": [
             "gh komut satırı aracı",
@@ -523,11 +572,17 @@
         },
         {
           "id": "b08-d4-s5",
-          "tur": "dogru-yanlis",
-          "soru": "Exa gibi, .mcp.json yerine yalnız ajan dosyasında satır içi tanımlanan bir sunucunun araç açıklamaları ana sohbetin bağlamında yer tutmaz.",
-          "dogru": true,
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Exa, .mcp.json yerine yalnız ajan dosyasında tanımlı. Exa'nın araç açıklamaları ana sohbetin bağlamında ne olur?",
+          "secenekler": [
+            "Her oturumun başında yüklenir",
+            "Yer tutmaz",
+            "Ajan başlayınca oraya da yüklenir"
+          ],
+          "dogru": 1,
           "ipucu": "Sunucunun nerede tanımlandığına ve araçlarını kimin aldığına bak.",
-          "aciklama": "Doğru. Alt ajanda satır içi tanımlanan sunucunun araçlarını yalnız o ajan alır; ana sohbetin bağlamı bu açıklamaları taşımaz.",
+          "aciklama": "Alt ajanda satır içi tanımlanan sunucunun araçlarını yalnız o ajan alır. Ana sohbetin bağlamı bu açıklamaları taşımaz.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
@@ -538,6 +593,7 @@
         {
           "id": "b08-d4-s6",
           "tur": "bosluk",
+          "kart": 1,
           "soru": "Araç araması varsayılan olarak açıkken bir MCP aracının tam tanımı, Claude ___ bağlama girmez.",
           "secenekler": [
             "işini bitirene kadar",
@@ -565,9 +621,11 @@
         "MCP yazma koruması kancasının görevini settings.json kaydından ve baş yorumundan anlatabilir."
       ],
       "anlatim": [
-        "CLAUDE.md satır 46, her seferinde sorulan işleri sayar; önceki onay geçmez. Bunlardan biri dış sisteme yazmadır: takvim, hatırlatıcı, zamanlanmış görev, git'i uzağa gönderme (yedek deposuna kapanış gönderimi hariç). Yani Claude takvimine etkinlik eklemeden önce her defasında sana sorar; dün onay vermiş olman bugün geçerli değildir.",
-        "Kural yalnız yazıda kalmaz, kanca da korur. Belgeye göre CLAUDE.md yol gösterir; izinler ve kancalar ise Claude ne karar verirse versin sınırı uygular. settings.json satır 130'da araç öncesi kanca (PreToolUse), eşleştirici (matcher) mcp__.* ile her MCP aracı çağrılmadan önce mcp_yazma.py dosyasını koşar. Kaydın durum iletisi: Hesap ve Apple yazma koruması.",
-        "Kancanın baş yorumu ne yaptığını söyler (.claude/hooks/mcp_yazma.py satır 1-15). İki işi durdurur: bağlı hesaba yazan aracı, örneğin Drive'da dosya oluşturmayı; Apple Hatırlatıcılar ve Takvim'de okuma dışı işlemi. Okuma araçları geçer. Durdurunca nedenini yazar ve işin sana sorulmasını ister."
+        "CLAUDE.md her seferinde sorulan işleri sayar; önceki onay geçmez. Bunlardan biri dış sisteme yazmadır: takvim, hatırlatıcı, zamanlanmış görev, git'i uzağa gönderme.",
+        "Kural yalnız yazıda kalmaz, kanca da korur. Belgeye göre CLAUDE.md yol gösterir; izinler ve kancalar ise Claude ne karar verirse versin sınırı uygular.",
+        "İzin kurallarında da seçim var: reddetme kuralı aracı engeller, sor kuralı ise Claude aracı kullanmaya çalıştığında onay ister.",
+        "settings.json'daki araç öncesi kanca (PreToolUse) kaydı, eşleştirici (matcher) mcp__.* ile her MCP aracı çağrılmadan önce mcp_yazma.py dosyasını koşar.",
+        "Kanca, bağlı hesapta adı okuma listesinde olmayan aracı ve Apple Hatırlatıcılar ile Takvim'de okuma dışı işlemi durdurur. Liste kanca dosyasındadır: get, list, read gibi adlar."
       ],
       "terimler": [
         {"tr": "araç öncesi kanca", "en": "PreToolUse", "aciklama": "Claude bir aracı çağırmadan hemen önce çalışan kanca olayı."},
@@ -577,19 +635,22 @@
         {
           "id": "b08-d5-s1",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Dün takvime etkinlik eklemeye onay verdiysen, bugün yeni bir etkinlik için Claude sana yeniden sormaz.",
           "dogru": false,
           "ipucu": "Önceki onayın bir sonraki işe geçip geçmediğini hatırla.",
           "aciklama": "Yanlış. Dış sisteme yazma her seferinde sorulur; önceki onay bir sonraki işe geçmez.",
           "kaynak": {
             "adres": "CLAUDE.md:46",
-            "okuma": "2026-11-15",
-            "dayanak": "Her seferinde basitçe sorulan ve önceki onayın geçmediği işler arasında dış sisteme yazma, örneğin takvim ve hatırlatıcı, vardır."
+            "okuma": "2026-11-17",
+            "dayanak": "Her seferinde basitçe sorulan ve önceki onayın geçmediği işler arasında dış sisteme yazma, örneğin takvim ve hatırlatıcı, vardır.",
+            "soz": "Her seferinde basitçe sorulanlar, önceki onay geçmez"
           }
         },
         {
           "id": "b08-d5-s2",
           "tur": "coktan",
+          "kart": 0,
           "soru": "CLAUDE.md'ye göre hangisi her seferinde sorulan bir dış sisteme yazmadır?",
           "secenekler": [
             "Klasördeki bir notu düzeltmek",
@@ -602,14 +663,16 @@
           "aciklama": "Takvim dış bir sistemdir ve ona yazmak her seferinde sorulur. Okumak ve klasör içinde düzeltme yapmak bu listede yok.",
           "kaynak": {
             "adres": "CLAUDE.md:46",
-            "okuma": "2026-11-15",
-            "dayanak": "Dış sisteme yazma, yani takvim, hatırlatıcı, zamanlanmış görev ve git'i uzağa gönderme (yedek deposuna kapanış gönderimi hariç), her seferinde sorulur ve önceki onay geçmez."
+            "okuma": "2026-11-17",
+            "dayanak": "Dış sisteme yazma, yani takvim, hatırlatıcı, zamanlanmış görev ve git'i uzağa gönderme (yedek deposuna kapanış gönderimi hariç), her seferinde sorulur ve önceki onay geçmez.",
+            "soz": "dış sisteme yazma (takvim, hatırlatıcı, zamanlanmış görev"
           }
         },
         {
           "id": "b08-d5-s3",
           "tur": "coktan",
-          "soru": "settings.json satır 130-136'daki kayıt: eşleştirici mcp__.*, komut mcp_yazma.py, durum iletisi Hesap ve Apple yazma koruması. Bu kanca ne zaman çalışır?",
+          "kart": 3,
+          "soru": "settings.json'daki kayıt: eşleştirici mcp__.*, komut mcp_yazma.py, durum iletisi Hesap ve Apple yazma koruması. Bu kanca ne zaman çalışır?",
           "secenekler": [
             "Oturum açılırken bir kez",
             "Her MCP aracı çağrılmadan önce",
@@ -621,34 +684,43 @@
           "aciklama": "Kayıt araç öncesi kanca olayının altındadır ve mcp__.* her MCP aracının adıyla eşleşir. Bu yüzden kanca her MCP aracı çağrılmadan önce çalışır.",
           "kaynak": {
             "adres": ".claude/hooks/mcp_yazma.py:1",
-            "okuma": "2026-11-15",
-            "dayanak": "mcp_yazma.py, PreToolUse olayında mcp__.* ile eşleşen araçlar için çalışan bağlı hesap ve Apple yazma kontrolüdür."
+            "okuma": "2026-11-17",
+            "dayanak": "mcp_yazma.py, PreToolUse olayında mcp__.* ile eşleşen araçlar için çalışan bağlı hesap ve Apple yazma kontrolüdür.",
+            "soz": "Bağlı hesap ve Apple yazma kontrolü (PreToolUse, mcp__.*"
           }
         },
         {
           "id": "b08-d5-s4",
           "tur": "eslestir",
+          "kart": 4,
           "soru": "Kartta anlatılan mcp_yazma.py kancasına göre her işi, kancanın ne yaptığıyla eşleştir.",
           "ciftler": [
-            ["Drive'da dosya oluşturmak", "Durur: bağlı hesaba yazma"],
+            ["Drive'da dosya oluşturmak", "Durur: bağlı hesapta okuma dışı araç"],
             ["Apple Takvim'e etkinlik eklemek", "Durur: Apple'da okuma dışı işlem"],
             ["Apple Hatırlatıcılar'daki listeyi okumak", "Geçer: okuma işlemi"]
           ],
           "ipucu": "Her işin okuma mı yazma mı olduğuna, Apple'da mı bağlı hesapta mı yapıldığına bak.",
-          "aciklama": "Kanca bağlı hesaba yazmayı ve Apple'da okuma dışı işlemi durdurur, okumayı geçirir. Apple araçlarında okumayı action alanının read olmasından anlar.",
+          "aciklama": "Kanca bağlı hesapta okuma listesinde olmayan aracı ve Apple'da okuma dışı işlemi durdurur, okumayı geçirir. Apple araçlarında okumayı action alanının read olmasından anlar.",
           "kaynak": {
             "adres": ".claude/hooks/mcp_yazma.py:14",
-            "okuma": "2026-11-15",
-            "dayanak": "Kanca bağlı hesaba yazan aracı ve Apple Hatırlatıcılar ile Takvim'de action read olmayan işlemi durdurur; okuma araçları, Apple'da action read ve yalnız okuyan calendar_calendars geçer."
+            "okuma": "2026-11-17",
+            "dayanak": "Kanca bağlı hesapta adı okuma listesinde olmayan aracı ve Apple Hatırlatıcılar ile Takvim'de action read olmayan işlemi durdurur; okuma listesindeki araçlar, Apple'da action read ve yalnız okuyan calendar_calendars geçer.",
+            "soz": "Apple Hatırlatıcılar ve Takvim: araç adı reminders_tasks"
           }
         },
         {
           "id": "b08-d5-s5",
-          "tur": "dogru-yanlis",
-          "soru": "Belgeye göre izinler ve kancalar, Claude ne karar verirse versin sınırı uygular; CLAUDE.md ise yol gösterir.",
-          "dogru": true,
+          "tur": "bosluk",
+          "kart": 1,
+          "soru": "Belgeye göre CLAUDE.md yol gösterir; izinler ve kancalar ise Claude ne karar verirse versin ___.",
+          "secenekler": [
+            "sınırı uygular",
+            "yalnız öneride bulunur",
+            "kararı Claude'a bırakır"
+          ],
+          "dogru": 0,
           "ipucu": "Güvence ile yol göstermenin farkını düşün.",
-          "aciklama": "Doğru. Belge, hiç olmaması gereken işler için CLAUDE.md yerine izin ya da kanca kullanmayı önerir.",
+          "aciklama": "Belge, hiç olmaması gereken işler için CLAUDE.md yerine izin ya da kanca kullanmayı önerir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/debug-your-config",
             "kopya": "debug-your-config.md",
@@ -659,6 +731,7 @@
         {
           "id": "b08-d5-s6",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Bir aracın engellenmesini değil, her kullanımda sana sorulmasını istiyorsun. Claude'a hangi izin kuralı türünü yazmasını tarif edersin?",
           "secenekler": [
             "İzin ver kuralı",
@@ -686,9 +759,12 @@
         "Sunucu çalışmadığında bakılacak yerlerin sırasını anlatabilir."
       ],
       "anlatim": [
-        "Bir sunucu çalışmıyorsa ilk iş durumuna bakmaktır. Terminalde oturum içinde /mcp, sunucuları ve bağlantı durumlarını (connection status) gösterir; aynı panelden yeniden bağlanır ya da giriş yaparsın. Masaüstünde Claude'a oturumda hangi bağlayıcıların olduğunu sorabilir, Customize, Connectors bölümüne bakabilirsin.",
-        "Belgedeki sıra: önce /mcp ile durumu gör, sonra belirtiye göre ilerle. Bağlı görünüp sıfır araç gösteren sunucuda yeniden bağlan (Reconnect) seç; sayı sıfırda kalırsa terminalde claude --debug=mcp ile açıp hata kaydındaki sunucu çıktısını oku. Başlamayan sunucu /mcp içinde başarısız görünür; sık neden komuttaki göreli dosya yoludur (relative path), çünkü yol Claude Code'u başlattığın klasöre göre okunur.",
-        "Proje sunucusu kapalıysa ilk onay sorusunu kapatmış olabilirsin; terminalde claude mcp reset-project-choices çalıştırıp Claude Code'u yeniden başlatınca soru tekrar gelir. Exa gibi ajan dosyasında tanımlı sunucu için ek bir koşul var: Claude Code onu ancak dosyanın geldiği klasöre güvendiğini onayladıktan sonra yükler. Onay yoksa o dosyadaki satır içi sunucuları atlar."
+        "Bir sunucu çalışmıyorsa ilk iş durumuna bakmaktır. Terminalde oturum içinde /mcp, sunucuları ve bağlantı durumlarını (connection status) gösterir.",
+        "Masaüstünde Claude'a oturumda hangi bağlayıcıların olduğunu sorabilir, Customize, Connectors bölümüne bakabilirsin.",
+        "Sıfır araç gösteren bağlı sunucuda /mcp içinden yeniden bağlan (Reconnect) seç. Hâlâ sıfırsa Claude Code'u terminalde claude --debug=mcp ile başlat; hata kaydında sunucunun yazdıklarını oku.",
+        "Proje sunucusu kapalıysa ilk onay sorusunu kapatmış olabilirsin. Terminalde claude mcp reset-project-choices çalıştırıp Claude Code'u yeniden başlatınca soru tekrar gelir.",
+        "Başlamayan sunucu /mcp içinde başarısız görünür. Sık neden komuttaki göreli dosya yoludur (relative path): yol Claude Code'u başlattığın klasöre göre okunur.",
+        "Exa gibi ajan dosyasında tanımlı sunucuyu Claude Code, ancak dosyanın geldiği klasöre güvendiğini onayladıktan sonra yükler. Onay yoksa o dosyadaki satır içi sunucuları atlar."
       ],
       "terimler": [
         {"tr": "bağlantı durumu", "en": "connection status", "aciklama": "Sunucunun bağlı, başarısız ya da giriş bekliyor olduğunu gösteren bilgi."},
@@ -699,6 +775,7 @@
         {
           "id": "b08-d6-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Terminalde bir oturumun içindeyken /mcp komutu sana ne gösterir?",
           "secenekler": [
             "Bütün izin kurallarını ve geldikleri dosyaları",
@@ -719,15 +796,16 @@
         {
           "id": "b08-d6-s2",
           "tur": "sirala",
+          "kart": 2,
           "soru": "Sunucu bağlı görünüyor ama sıfır araç listeliyor. Belgedeki adımları sırala.",
           "adimlar": [
             "/mcp ile sunucunun durumuna bak",
             "/mcp içinden Reconnect seç",
             "Sayı sıfırda kalırsa terminalde claude --debug=mcp ile başlat",
-            "Hata kaydında sunucunun çıktısını oku"
+            "Hata kaydında sunucunun yazdıklarını oku"
           ],
           "ipucu": "Önce bak, sonra en kolay çareyi dene, en son kayda in.",
-          "aciklama": "Belge önce /mcp ile durumu görmeyi, sonra Reconnect'i söyler. Sayı sıfırda kalırsa hata kaydında sunucunun çıktısı okunur.",
+          "aciklama": "Belge önce /mcp ile durumu görmeyi, sonra Reconnect'i söyler. Sayı sıfırda kalırsa hata kaydında sunucunun yazdıkları okunur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/debug-your-config",
             "kopya": "debug-your-config.md",
@@ -738,6 +816,7 @@
         {
           "id": "b08-d6-s3",
           "tur": "dogru-yanlis",
+          "kart": 3,
           "soru": "Bir projenin .mcp.json sunucusu için ilk onay sorusunu kapattıysan, o sunucu kapalı kalır.",
           "dogru": true,
           "ipucu": "Proje sunucusunun ilk açılışta senden ne istediğini hatırla.",
@@ -752,6 +831,7 @@
         {
           "id": "b08-d6-s4",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Masaüstündesin ve bir bağlayıcının bu oturumda olup olmadığını merak ediyorsun. Belgeye göre hangisini yapabilirsin?",
           "secenekler": [
             "Model seçicisine bakmak",
@@ -772,6 +852,7 @@
         {
           "id": "b08-d6-s5",
           "tur": "eslestir",
+          "kart": 4,
           "soru": "Belirtiyi, kartta anlatılan ilk yapılacak işle eşleştir.",
           "ciftler": [
             ["Proje sunucusu kapalı, ilk onay sorusunu kapatmıştın", "Terminalde onay seçimlerini sıfırla, yeniden başlat"],
@@ -790,6 +871,7 @@
         {
           "id": "b08-d6-s6",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Exa araştırma ajanının dosyasında tanımlı ama ajan çalışınca Exa araçları gelmiyor. Belgeye göre olası neden hangisi?",
           "secenekler": [
             "Klasöre henüz güven onayı verilmemiş",
@@ -809,11 +891,17 @@
         },
         {
           "id": "b08-d6-s7",
-          "tur": "dogru-yanlis",
-          "soru": "Bir sunucu bağlanmıyorsa belgeye göre ilk adım onu silip yeniden eklemektir.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 0,
+          "soru": "Bir sunucu bağlanmıyor. Belgeye göre ilk adımın hangisi olmalı?",
+          "secenekler": [
+            "Sunucuyu silip yeniden eklemek",
+            "Durumuna /mcp ile bakmak",
+            "Claude Code'u yeniden kurmak"
+          ],
+          "dogru": 1,
           "ipucu": "Bir şeyi değiştirmeden önce neyi görmen gerektiğini düşün.",
-          "aciklama": "Yanlış. Belge önce oturum içinde /mcp ya da terminalde claude mcp list ile durumu görmeyi, sonra belirtiyi eşleştirmeyi söyler.",
+          "aciklama": "Belge önce oturum içinde /mcp ya da terminalde claude mcp list ile durumu görmeyi, sonra belirtiyi eşleştirmeyi söyler.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/mcp-quickstart",
             "kopya": "mcp-quickstart.md",

@@ -11,12 +11,17 @@
       "hedefler": [
         "Claude'un okuyup karar verdiği talimat ile Claude Code'un her seferinde uyguladığı kuralı ayırt edebilir.",
         "Bir CLAUDE.md satırına vurgu eklemek işe yaramıyorsa o satırın neden kancaya taşınacağını anlatabilir.",
-        "Bizim \"mekanizmasız kural dilektir\" ilkesinin resmi öneriyle nasıl eşleştiğini anlatabilir."
+        "Bizim CLAUDE.md'nin mekanizmayı hangi kurallara ayırdığını anlatabilir."
       ],
       "anlatim": [
-        "Claude'a verdiğin talimat iki türlüdür. İstem, CLAUDE.md ya da skill'i Claude okur ve ne yapacağına kendisi karar verir; çoğu zaman uyar ama garanti yoktur. Kanca (hook), yasak kuralı (deny rule) ya da kurum ayarını ise Claude Code, yani uygulamanın kendisi her seferinde uygular; modelin ne düşündüğüne bakmaz.",
-        "Resmi belge, Claude Code'un kesin uyguladığı aracı konuya göre sayar: ne yapılacağı için kanca, neye dokunabileceği için yasak kuralı, ne zaman bittiği için test, ne kadar harcayacağı için harcama sınırı. Bir CLAUDE.md satırına vurgu ekleyip durduğun halde Claude onu kaçırıyorsa satırın yeri kancadır. Tersi de geçerli: yalnız tercih için kancan varsa sil, kararı Claude'a bırak.",
-        "Bizim CLAUDE.md satır 53 aynı fikri şöyle söyler: \"Mekanizmasız kural dilektir, aynı hata tekrar eder.\" Mekanizma denetim kontrolü, damga ya da betik olabilir. sistem-metni skill'i de ekler: kesin kural yalnız metne bırakılmaz, her seferinde olması gereken mekanik iş kancaya verilir."
+        "Claude'a verdiğin talimat iki türlüdür. İstem, CLAUDE.md ya da skill'i Claude okur ve ne yapacağına kendisi karar verir.",
+        "Claude bu talimata çoğu zaman uyar ama garanti yoktur. Satırı ne kadar güçlü yazarsan yaz, uyup uymamak yine onun kararıdır.",
+        "Kanca (hook), yasak kuralı (deny rule) ya da kurum ayarını ise Claude Code, yani uygulamanın kendisi her seferinde uygular. Modelin ne düşündüğüne bakmaz.",
+        "Belge kesin araçları konuya göre sayar. Ne yapılacağını kanca, neye dokunulacağını yasak kuralı, ne zaman bittiğini test, ne kadar harcanacağını harcama sınırı belirler.",
+        "Bir CLAUDE.md satırına vurgu ekleyip durduğun halde Claude onu kaçırıyorsa satırın yeri kancadır.",
+        "Tersi de geçerli: yalnız bir tercih için kancan varsa onu sil, kararı Claude'a bırak.",
+        "CLAUDE.md'de şu satır var: 'Biçim ve üslup kuralına mekanizma yazılmaz.' Mekanizma yalnız geri alınamaz zarar, güvenlik, para, dışa gönderim ve tekrar eden hataya yazılır.",
+        "sistem-metni skill'i de aynı sınırı koyar: bu koşulların dışındaki kural açıkça 'yalnız metin'dir."
       ],
       "terimler": [
         {"tr": "kanca", "en": "hook", "aciklama": "Claude Code'un belli bir anda (araç çağrısından önce, tur biterken gibi) her seferinde çalıştırdığı betik."},
@@ -26,14 +31,15 @@
         {
           "id": "b12-d1-s1",
           "tur": "coktan",
-          "soru": "Resmi belgeye göre CLAUDE.md'ye yazdığın bir talimat için hangisi doğru?",
+          "kart": 0,
+          "soru": "CLAUDE.md'ye yazdığın bir talimat için hangisi doğru?",
           "secenekler": [
             "Claude Code onu her seferinde, modelden bağımsız uygular",
             "Yalnız izin penceresi açıldığında devreye girer",
             "Claude okur ve ne yapacağına kendisi karar verir"
           ],
           "dogru": 2,
-          "ipucu": "CLAUDE.md'yi kimin okuduğunu, kancayı kimin çalıştırdığını düşün.",
+          "ipucu": "Talimatı kimin okuduğunu düşün.",
           "aciklama": "CLAUDE.md, istem ve skill modelin okuduğu talimattır; çoğu zaman uyulur ama garantisi yoktur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
@@ -45,6 +51,7 @@
         {
           "id": "b12-d1-s2",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Her konuyu, Claude Code'un o konuda kesin uyguladığı araçla eşle.",
           "ciftler": [
             ["Ne yapılacağı", "Kanca"],
@@ -64,6 +71,7 @@
         {
           "id": "b12-d1-s3",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Bir CLAUDE.md satırını büyük harfle ve 'ASLA' diye yazarsan Claude'un her seferinde uyacağı garanti olur.",
           "dogru": false,
           "ipucu": "Satırı kimin okuyup kimin karar verdiğini hatırla.",
@@ -78,6 +86,7 @@
         {
           "id": "b12-d1-s4",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Claude bir CLAUDE.md satırını kaçırıyor; satıra 'ÖNEMLİ' ekledin, yine kaçırdı. Belgeye göre sıradaki adım ne?",
           "secenekler": [
             "Satırı daha büyük harfle bir kez daha yazmak",
@@ -96,9 +105,15 @@
         },
         {
           "id": "b12-d1-s5",
-          "tur": "dogru-yanlis",
-          "soru": "Belgeye göre yalnız bir tercih için kanca yazdıysan o kancayı silip kararı Claude'a bırakabilirsin.",
-          "dogru": true,
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Yalnız bir tercih için kanca yazdın. Belgeye göre o kancayla ne yaparsın?",
+          "secenekler": [
+            "Kancayı silip kararı Claude'a bırakırım",
+            "Kancayı daha sıkı bir kuralla güçlendiririm",
+            "Tercihi CLAUDE.md'ye büyük harfle de yazarım"
+          ],
+          "dogru": 0,
           "ipucu": "Kancanın hangi tür kural için olduğunu hatırla.",
           "aciklama": "Kanca istisnası olmayan kural içindir; tercihlerde Claude önündeki koda bakarak çoğu zaman daha iyi karar verir.",
           "kaynak": {
@@ -111,15 +126,16 @@
         {
           "id": "b12-d1-s6",
           "tur": "coktan",
-          "soru": "CLAUDE.md satır 53 \"Mekanizmasız kural dilektir\" der. Resmi belgedeki hangi öneri bu ilkeyle aynı yöne bakar?",
+          "kart": 2,
+          "soru": "Bir kuralın her seferinde uygulanması gerekiyor. Resmi belgeye göre doğru yol hangisi?",
           "secenekler": [
             "Her seferinde olacak işi kancaya ya da yasak kuralına taşımak",
             "Bütün kuralları tek bir CLAUDE.md dosyasında toplamak",
             "Önemli kuralı her istemde yeniden yazmak"
           ],
           "dogru": 0,
-          "ipucu": "Hangi seçenek kuralı modelin hafızasından çıkarıyor?",
-          "aciklama": "İkisi de aynı şeyi söyler: her seferinde olması gereken kural metinde kalmaz, onu uygulayan bir mekanizmaya bağlanır.",
+          "ipucu": "Hangi seçenek kuralı modelin kararından çıkarıyor?",
+          "aciklama": "CLAUDE.md yönergeler içindir ve Claude bir yönergeye uymamaya karar verebilir; her seferinde olacak işi Claude Code uygulamalıdır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -130,29 +146,33 @@
         {
           "id": "b12-d1-s7",
           "tur": "bosluk",
-          "soru": "CLAUDE.md satır 53: Bir kural yazdığında ihlalini yakalayacak ___ da yaz.",
-          "secenekler": ["açıklamayı", "mekanizmayı", "yorum satırını"],
+          "kart": 6,
+          "soru": "Bizim CLAUDE.md'ye göre ___ kuralına mekanizma yazılmaz.",
+          "secenekler": ["güvenlik sınırı", "biçim ve üslup", "dışa gönderim"],
           "dogru": 1,
-          "ipucu": "Satır üç örnek sayar: denetim kontrolü, damga ya da betik.",
-          "aciklama": "Satır ihlali yakalayacak bir denetim kontrolü, damga ya da betik ister; yoksa aynı hata tekrar eder.",
+          "ipucu": "Hangi kural kayınca zarar doğmaz, yalnız görünüş bozulur?",
+          "aciklama": "Mekanizma (kanca, denetim kontrolü, betik) zarar, güvenlik, para, dışa gönderim ve tekrar eden hata kuralına yazılır; biçim ve üslup kayarsa sen söylersin.",
           "kaynak": {
             "adres": "CLAUDE.md:53",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md satır 53 kural yazılınca ihlalini yakalayacak mekanizmanın da (denetim kontrolü, damga ya da betik) yazılmasını ister ve mekanizmasız kuralı dilek sayar."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md, mekanizmanın yalnız geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim ve tekrar eden hata kurallarına yazılacağını, biçim ve üslup kuralına yazılmayacağını söyler.",
+            "soz": "Biçim ve üslup kuralına mekanizma yazılmaz"
           }
         },
         {
           "id": "b12-d1-s8",
           "tur": "coktan",
-          "soru": "sistem-metni skill'ine göre her seferinde olması gereken mekanik iş nereye verilir?",
-          "secenekler": ["CLAUDE.md'ye ek satır olarak", "Ajan dosyasına", "Kancaya"],
-          "dogru": 2,
-          "ipucu": "Bu derste her seferinde uygulanan araç hangisiydi, hatırla.",
-          "aciklama": "Skill kesin kuralı yalnız metne bırakmaz; her seferinde olması gereken mekanik işi kancaya verir.",
+          "kart": 7,
+          "soru": "sistem-metni skill'ine göre mekanizma koşulunu taşımayan bir kural ne olur?",
+          "secenekler": ["Açıkça yalnız metin olarak kalır", "Yine de bir kancaya verilir", "CLAUDE.md'den çıkarılır"],
+          "dogru": 0,
+          "ipucu": "Mekanizma yazılmayan kuralın nasıl anıldığını hatırla.",
+          "aciklama": "Skill mekanizmayı CLAUDE.md'deki koşullara bağlar; o koşulların dışındaki kural açıkça yalnız metindir.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:34",
-            "okuma": "2026-11-15",
-            "dayanak": "sistem-metni skill'ine göre kesin kural yalnız metne bırakılmaz ve her seferinde olması gereken mekanik iş kancaya verilir."
+            "adres": ".claude/skills/sistem-metni/SKILL.md:31",
+            "okuma": "2026-11-17",
+            "dayanak": "sistem-metni skill'ine göre mekanizma yalnız CLAUDE.md'deki koşullarda yazılır ve öteki kural açıkça yalnız metindir.",
+            "soz": "öteki kural açıkça \"yalnız metin\"dir"
           }
         }
       ]
@@ -161,14 +181,18 @@
       "id": "b12-d2",
       "baslik": "Kurulumu zamanla büyütmek",
       "hedefler": [
-        "Resmi tetik tablosunda hangi durumun hangi özelliği eklettiğini anlatabilir.",
+        "Resmi tetiklerde hangi durumun hangi özelliği eklettiğini anlatabilir.",
         "Bizim üçüncü görülüşte kural eşiğini resmi iki kez yanlış tetiğinden ayırt edebilir.",
         "Düzeltme satırının ve D19 kontrolünün görülüş sayımındaki yerini anlatabilir."
       ],
       "anlatim": [
-        "Her şeyi baştan kurman gerekmez. Resmi belgede her özelliğin bir tetiği (trigger) var: Claude bir kuralı iki kez yanlış yaparsa CLAUDE.md'ye ekle; aynı yönergeyi üçüncü kez yapıştırıyorsan skill yap; yan iş sohbeti bir daha bakmayacağın çıktıyla dolduruyorsa alt ajana (subagent) ver; bir şey her seferinde sormadan olsun istiyorsan kanca yaz; aynı kurulum ikinci depoda gerekiyorsa eklenti (plugin) yap.",
-        "Bizim eşik biraz farklı. CLAUDE.md satır 113: aynı hata ya da düzeltme üçüncü kez görülünce kural ve mekanizması yazılır; ilk iki görülüşte KARARLAR'daki Düzeltme satırı yeter. Yani resmi öneri ikinci yanlışta CLAUDE.md'ye yazar; biz ilk ikisini kayda geçirir, üçüncüde kuralı mekanizmasıyla birlikte yazarız.",
-        "Görülüşü saymak için Düzeltme satırının biçimi sabittir (KARARLAR.md satır 3): konu öneki, ne yanlış yapıldı, doğrusu, kaçıncı görülüş olduğu ve fark eden. denetim.py'deki D19 kontrolü bu biçimi denetler, çünkü satır başında olmayan ya da öneki farklı yazılan Düzeltme sayımdan kaçar."
+        "Her şeyi baştan kurman gerekmez. Resmi belgede her özelliğin bir tetiği (trigger) var; özellik o durum gelince eklenir.",
+        "Tetikler: iki kez yanlış yapılan kural CLAUDE.md'ye, üçüncü kez yapıştırılan yönerge skill'e, her seferinde sormadan olacak iş kancaya, ikinci depodaki kurulum eklentiye (plugin) gider.",
+        "Bir yan iş sohbeti bir daha bakmayacağın çıktıyla dolduruyorsa onu alt ajana (subagent) ver.",
+        "Bizim eşik farklı. CLAUDE.md'de şu satır var: 'Aynı konu üçüncü kez kullanıcıya ulaşınca kural yazılır.'",
+        "İlk iki görülüşte kural yazılmaz. Sana ulaşan ya da doğrulayıcının yakaladığı hata KARARLAR'a Düzeltme satırı olarak girer.",
+        "Düzeltme satırının biçimi sabittir: konu, ne yanlış yapıldığı, doğrusu, kaçıncı görülüş olduğu ve fark eden.",
+        "denetim.py'deki D19 kontrolü bu biçimi denetler. Satır başında olmayan Düzeltme, görülüş sayımından kaçar."
       ],
       "terimler": [
         {"tr": "tetik", "en": "trigger", "aciklama": "Bir özelliği ekleme zamanının geldiğini gösteren, tanınır durum."},
@@ -179,12 +203,13 @@
         {
           "id": "b12-d2-s1",
           "tur": "eslestir",
-          "soru": "Resmi tetiklere göre her durumu eklenecek özellikle eşle.",
+          "kart": 1,
+          "soru": "Her durumu resmi tetikteki özellikle eşle.",
           "ciftler": [
             ["Claude bir kuralı iki kez yanlış yapıyor", "CLAUDE.md'ye ekle"],
-            ["Aynı yönergeyi üçüncü kez sohbete yapıştırıyorsun", "Skill olarak yaz"],
-            ["Bir şey her seferinde sormadan olsun istiyorsun", "Kanca yaz"],
-            ["Aynı kurulum ikinci bir depoda gerekiyor", "Eklenti olarak paketle"]
+            ["Aynı yönergeyi üçüncü kez yapıştırıyorsun", "Skill yaz"],
+            ["Bir şey her seferinde sormadan olsun", "Kanca yaz"],
+            ["Aynı kurulum ikinci depoda gerekiyor", "Eklenti yap"]
           ],
           "ipucu": "Önce her durumun ne sıklıkta ve nerede tekrarlandığına bak.",
           "aciklama": "Her özelliğin tanınır bir tetiği var; özellik tetik gelince eklenir, önceden değil.",
@@ -198,6 +223,7 @@
         {
           "id": "b12-d2-s2",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Bir yan iş, sohbetini bir daha bakmayacağın çıktıyla dolduruyor. Resmi tetiklere göre ne yaparsın?",
           "secenekler": [
             "Yan işi alt ajana vermek",
@@ -217,6 +243,7 @@
         {
           "id": "b12-d2-s3",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Resmi belgeye göre Claude Code'daki her özelliği işin en başında kurman gerekir.",
           "dogru": false,
           "ipucu": "Tetik bir tarih mi, bir durum mu?",
@@ -231,7 +258,8 @@
         {
           "id": "b12-d2-s4",
           "tur": "coktan",
-          "soru": "Claude aynı hatayı ikinci kez yaptı. Bizim kurala göre ne olur?",
+          "kart": 4,
+          "soru": "Claude'un aynı hatası ikinci kez sana ulaştı. Bizim kurala göre ne olur?",
           "secenekler": [
             "Kural ve mekanizması hemen yazılır",
             "Kayıt tutulmaz, üçüncü görülüş beklenir",
@@ -239,25 +267,27 @@
           ],
           "dogru": 2,
           "ipucu": "Bizim eşikte kuralın yazılması için kaç görülüş gerekiyordu?",
-          "aciklama": "Hata iki kez görüldüyse Düzeltme satırı yeter; kural ve mekanizma üçüncü görülüşte yazılır.",
+          "aciklama": "Kural, aynı konu üçüncü kez sana ulaşınca yazılır; ondan önce hata Düzeltme satırı olarak kayda geçer.",
           "kaynak": {
             "adres": "CLAUDE.md:113",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md satır 113'e göre aynı hata ya da düzeltme üçüncü kez görülünce kural ve mekanizması yazılır, ilk iki görülüşte KARARLAR'daki Düzeltme satırı yeter."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre Düzeltme satırı kullanıcıya ulaşan ya da kullanıcının ve doğrulayıcının yakaladığı hatada yazılır, aynı konu üçüncü kez kullanıcıya ulaşınca kural yazılır.",
+            "soz": "Aynı konu üçüncü kez kullanıcıya ulaşınca kural yazılır"
           }
         },
         {
           "id": "b12-d2-s5",
           "tur": "coktan",
-          "soru": "Resmi tetik ile bizim eşik arasındaki fark hangisi?",
+          "kart": 3,
+          "soru": "Resmi tetikle bizim eşiğin farkı hangisi?",
           "secenekler": [
-            "Resmi öneri üçüncü yanlışı bekler, biz ilk yanlışta kanca yazarız",
+            "Resmi öneri üçüncü yanlışı bekler, biz ilkinde kanca yazarız",
             "Resmi öneri ikinci yanlışta CLAUDE.md'ye yazar, biz üçüncüde",
-            "İkisi de ilk yanlışta CLAUDE.md'ye satır eklemeyi ister"
+            "İkisi de ilk yanlışta CLAUDE.md'ye yazmayı ister"
           ],
           "dogru": 1,
           "ipucu": "Resmi tetikte kaç yanlış yetiyordu, bizim eşikte kaç görülüş gerekiyordu?",
-          "aciklama": "Resmi öneri iki yanlışta CLAUDE.md'ye eklemeyi önerir; bizde iki görülüşe kadar Düzeltme satırı yeter, üçüncüde kural mekanizmasıyla yazılır.",
+          "aciklama": "Resmi öneri iki yanlışta CLAUDE.md'ye eklemeyi önerir; bizde kural, aynı konu üçüncü kez sana ulaşınca yazılır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/features-overview",
             "kopya": "features-overview.md",
@@ -268,20 +298,23 @@
         {
           "id": "b12-d2-s6",
           "tur": "bosluk",
-          "soru": "KARARLAR.md satır 3'e göre Düzeltme satırı, kaçıncı ___ olduğunu ve fark edeni taşır.",
+          "kart": 5,
+          "soru": "KARARLAR.md'deki Düzeltme satırı, kaçıncı ___ olduğunu ve fark edeni taşır.",
           "secenekler": ["döngü turu", "görülüş", "commit"],
           "dogru": 1,
           "ipucu": "Üçüncü kez kuralı tetikleyen sayımı düşün.",
-          "aciklama": "Satırdaki görülüş sayısı, üçüncü görülüş kuralının ne zaman işleyeceğini gösterir.",
+          "aciklama": "Satırdaki görülüş sayısı, kuralın ne zaman yazılacağını gösterir.",
           "kaynak": {
             "adres": "KARARLAR.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "KARARLAR.md satır 3'e göre Düzeltme satırı konu önekini, ne yanlış yapıldığını, doğrusunu, kaçıncı görülüş olduğunu ve fark edeni taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "KARARLAR.md'nin baş açıklamasına göre Düzeltme satırı konu önekini, ne yanlış yapıldığını, doğrusunu, kaçıncı görülüş olduğunu ve fark edeni taşır.",
+            "soz": "N. görülüş (fark eden: kullanıcı / Claude"
           }
         },
         {
           "id": "b12-d2-s7",
           "tur": "coktan",
+          "kart": 6,
           "soru": "denetim.py'deki D19 kontrolü neye bakar?",
           "secenekler": [
             "KARARLAR.md'deki Düzeltme satırlarının biçimine",
@@ -290,11 +323,12 @@
           ],
           "dogru": 0,
           "ipucu": "D19 olmasa görülüş sayımından ne kaçabilirdi, hatırla.",
-          "aciklama": "D19, Düzeltme satırının konu öneki, görülüş ve fark eden alanlarını taşıyıp taşımadığını denetler; biçimi bozuk satır sayımdan kaçar.",
+          "aciklama": "D19, Düzeltme satırının konu önekini, görülüşünü ve fark edenini taşıyıp taşımadığına bakar; satır başında olmayan Düzeltme sayımdan kaçar.",
           "kaynak": {
-            "adres": "denetim.py:68",
-            "okuma": "2026-11-15",
-            "dayanak": "denetim.py satır 68'e göre D19, KARARLAR.md'de Düzeltme ile başlayan satırın konu önekini, görülüş sayısını ve fark eden alanını taşıyıp taşımadığını denetler."
+            "adres": "denetim.py:84",
+            "okuma": "2026-11-17",
+            "dayanak": "denetim.py baş yorumuna göre D19, KARARLAR.md'de Düzeltme ile başlayan satırın konu önekini, görülüş sayısını ve fark eden alanını taşımasını denetler, satır başında olmayan Düzeltme bulgudur.",
+            "soz": "D19: Düzeltme satırı biçimi"
           }
         }
       ]
@@ -308,9 +342,14 @@
         "denetim.py'nin ne yaptığını baş yorumundan anlatabilir."
       ],
       "anlatim": [
-        "Claude iş bitmiş göründüğünde durur. Koşabileceği bir kontrol yoksa tek dayanağı bu görüntüdür; test eden sen olursun. Ona geçti ya da kaldı diyen bir şey verirsen, örneğin bir test dosyası ya da betiğin çıkış kodu (exit code), Claude değişikliği yapar, kontrolü koşar, bozulan varsa çıktıyı okuyup düzeltir ve yeniden koşar.",
-        "Kontrolün sıkılığı sana kalmış. İstemde \"testler geçene kadar devam et\" dersen kararı Claude verir. Stop kancası (Stop hook) ise Claude turu bitirmeye çalıştığında betiğini koşar; betik 2 koduyla çıkarsa Claude işe geri döner ve bunu Claude Code uygular. Hangisini seçersen seç kanıt iste: koşulan komut ve çıktısı.",
-        "Bizde bu işin bir parçası denetim.py'dedir. Baş yorumu otuz kontrolü (D1-D30) sayar ve \"Yalnız okur, hiçbir dosyayı değiştirmez\" der; çıkış 0 temiz, 1 bulgu, 2 kullanım hatasıdır. Yeni kancada kanca-denetim skill'i testler.sh'te kalan 0 ve denetim.py temiz ister. CLAUDE.md satır 52: değişikliği basit bir testle sına, sonucunu yaz; sınanmamış değişiklik bitmiş sayılmaz."
+        "Claude iş bitmiş göründüğünde durur. Koşabileceği bir kontrol yoksa tek dayanağı bu görüntüdür ve test eden sen olursun.",
+        "Ona geçti ya da kaldı diyen bir kontrol ver, örneğin çıkış kodu (exit code). Claude değişikliği yapar, kontrolü koşar, bozulanı düzeltir ve yeniden koşar.",
+        "'Testler geçene kadar devam et' istemiyle kararı Claude verir. Stop kancasını (Stop hook) ise Claude Code uygular: betik 2 koduyla çıkarsa Claude işe döner.",
+        "Hangisini seçersen seç kanıt iste: koşulan komut ve çıktısı.",
+        "Bizde bu işin bir parçası denetim.py'dedir. Baş yorumuna göre çıkış kodu 0 temiz, 1 bulgu, 2 kullanım hatasıdır.",
+        "Baş yorumu şunu da der: 'Yalnız okur, hiçbir dosyayı değiştirmez.' Her bulguyu, ne yapılması gerektiğiyle tek satırda bildirir.",
+        "CLAUDE.md'de şu söz var: 'Sınanmamış değişiklik bitmiş sayılmaz.' Değiştirdiğin şeyi basit bir testle sınar, sonucunu yazarsın.",
+        "Yeni kancada kanca-denetim skill'i iki ölçüt ister: testler.sh'te kalan, yani geçemeyen test sayısı 0 ve denetim.py temiz."
       ],
       "terimler": [
         {"tr": "Stop kancası", "en": "Stop hook", "aciklama": "Claude turu bitirmeye çalıştığında çalışan kanca; betik 2 koduyla çıkarsa Claude işe geri döner."},
@@ -320,6 +359,7 @@
         {
           "id": "b12-d3-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Resmi belgeye göre Claude'un koşabileceği bir kontrol yoksa ne olur?",
           "secenekler": [
             "Claude işi bitirmeyi reddeder",
@@ -339,6 +379,7 @@
         {
           "id": "b12-d3-s2",
           "tur": "sirala",
+          "kart": 1,
           "soru": "Geçti ya da kaldı diyen bir kontrol verildiğinde Claude'un döngüsünü sırala.",
           "adimlar": [
             "Değişikliği yapar",
@@ -358,9 +399,10 @@
         {
           "id": "b12-d3-s3",
           "tur": "dogru-yanlis",
+          "kart": 2,
           "soru": "Stop kancasının betiği 2 koduyla çıkarsa Claude turu bitirmek yerine işe geri gönderilir.",
           "dogru": true,
-          "ipucu": "Kancada hangi çıkış kodunun durdurduğunu hatırla.",
+          "ipucu": "Kancada hangi çıkış kodunun Claude'u işe döndürdüğünü hatırla.",
           "aciklama": "Stop kancası Claude turu bitirmeye çalışınca koşar; 2 koduyla çıkış Claude'u çalışmaya geri gönderir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
@@ -372,6 +414,7 @@
         {
           "id": "b12-d3-s4",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Claude \"Tüm testler geçti\" dedi. Belgeye göre ondan ne istemelisin?",
           "secenekler": [
             "Testlerin geçtiğini söyleyen kısa bir özet",
@@ -391,64 +434,77 @@
         {
           "id": "b12-d3-s5",
           "tur": "bosluk",
+          "kart": 4,
           "soru": "denetim.py baş yorumuna göre betik 0 koduyla çıkarsa sonuç ___ demektir.",
           "secenekler": ["temiz", "bulgu var", "kullanım hatası"],
           "dogru": 0,
           "ipucu": "Üç kodun her biri ayrı bir sonuç anlatır; sorun çıkmadığında hangisi döner, düşün.",
           "aciklama": "denetim.py'de 0 temiz, 1 bulgu, 2 kullanım hatası demektir.",
           "kaynak": {
-            "adres": "denetim.py:23",
-            "okuma": "2026-11-15",
-            "dayanak": "denetim.py satır 23'e göre çıkış kodu 0 temiz, 1 bulgu, 2 kullanım hatası anlamına gelir."
+            "adres": "denetim.py:25",
+            "okuma": "2026-11-17",
+            "dayanak": "denetim.py baş yorumuna göre çıkış kodu 0 temiz, 1 bulgu, 2 kullanım hatası anlamına gelir.",
+            "soz": "Çıkış: 0 temiz, 1 bulgu, 2 kullanım hatası."
           }
         },
         {
           "id": "b12-d3-s6",
-          "tur": "dogru-yanlis",
-          "soru": "denetim.py bulduğu hatayı kendisi düzeltir.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "denetim.py bir bulgu bulunca ne yapar?",
+          "secenekler": [
+            "Hatalı dosyayı kendisi düzeltip kaydeder",
+            "Bulguyu bildirir, dosyaya dokunmaz",
+            "Hatalı satırı dosyadan siler"
+          ],
+          "dogru": 1,
           "ipucu": "denetim.py'nin dosyalara dokunup dokunmadığını hatırla.",
           "aciklama": "denetim.py yalnız okur, hiçbir dosyayı değiştirmez; bulguyu ne yapılması gerektiğiyle birlikte tek satırda bildirir.",
           "kaynak": {
-            "adres": "denetim.py:16",
-            "okuma": "2026-11-15",
-            "dayanak": "denetim.py satır 16'ya göre betik yalnız okur ve hiçbir dosyayı değiştirmez."
+            "adres": "denetim.py:17",
+            "okuma": "2026-11-17",
+            "dayanak": "denetim.py baş yorumuna göre betik yalnız okur ve hiçbir dosyayı değiştirmez.",
+            "soz": "Yalnız okur, hiçbir dosyayı değiştirmez."
           }
         },
         {
           "id": "b12-d3-s7",
           "tur": "coktan",
-          "soru": "CLAUDE.md satır 52'ye göre hangi değişiklik bitmiş sayılır?",
+          "kart": 6,
+          "soru": "Bizim CLAUDE.md'ye göre hangi değişiklik bitmiş sayılır?",
           "secenekler": [
             "Claude'un bitti dediği ve özetini yazdığı",
             "Testle sınanıp sonucu yazılan",
             "Commit'e girip devir kartına yazılan"
           ],
           "dogru": 1,
-          "ipucu": "Satır 52 hangi değişikliği bitmiş saymıyordu, onun tersini düşün.",
+          "ipucu": "Satır hangi değişikliği bitmiş saymıyordu, onun tersini düşün.",
           "aciklama": "Satır değişikliğin basit bir testle sınanmasını ve sonucun yazılmasını ister; sınanmamış değişiklik bitmiş sayılmaz.",
           "kaynak": {
             "adres": "CLAUDE.md:52",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md satır 52'ye göre değiştirdiğin şey basit bir testle sınanır ve sonucu yazılır, sınanmamış değişiklik bitmiş sayılmaz."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre değiştirdiğin şey basit bir testle sınanır ve sonucu yazılır, sınanmamış değişiklik bitmiş sayılmaz.",
+            "soz": "Sınanmamış değişiklik bitmiş sayılmaz"
           }
         },
         {
           "id": "b12-d3-s8",
           "tur": "coktan",
+          "kart": 7,
           "soru": "kanca-denetim skill'i yeni bir kancayı sınarken hangi ölçütü ister?",
           "secenekler": [
             "testler.sh'te kalan 0 ve denetim.py temiz",
-            "kullanıcının ekranda bir kez denemesi",
-            "Kancanın bir hafta hatasız çalışması"
+            "Senin ekranda bir kez denemen",
+            "Kancanın bir hafta boyunca hiç hata vermeden çalışması"
           ],
           "dogru": 0,
           "ipucu": "Bitti sözünü kanıta bağlayan ölçütün komutla sınanabildiğini hatırla.",
           "aciklama": "Sınama adımı iki ölçüt verir: test betiğinde kalan 0 ve denetimin temiz çıkması.",
           "kaynak": {
             "adres": ".claude/skills/kanca-denetim/SKILL.md:21",
-            "okuma": "2026-11-15",
-            "dayanak": "kanca-denetim skill'inin sınama adımına göre bash araclar/testler.sh kalan 0 vermeli ve python3 denetim.py temiz çıkmalıdır."
+            "okuma": "2026-11-17",
+            "dayanak": "kanca-denetim skill'inin sınama adımına göre bash araclar/testler.sh kalan 0 vermeli ve python3 denetim.py temiz çıkmalıdır.",
+            "soz": "`bash araclar/testler.sh` kalan 0; `python3 denetim.py` temiz"
           }
         }
       ]
@@ -462,13 +518,19 @@
         "Bizim döngünün hangi işi aldığını ve nerede durduğunu anlatabilir."
       ],
       "anlatim": [
-        "Uzun işte iki alışkanlık var: başlamadan kapsamı belirle, koşarken yönlendir. Plan modunda (plan mode) Claude dosyaya dokunmadan araştırıp plan verir; planı gerçekten oku. Sıkıştırırken (compaction) /compact arkasına odak yaz, özet onu tutar. Claude saparsa geri sar (rewind). Aynı şeyi iki kez düzelttin ve hâlâ yanlışsa üçüncü düzeltme yerine /clear ile baştan başla, öğrendiğini yeni isteme kat.",
-        "Gözetimsiz koşuda ölçü basit: ne kadar az izlediysen o kadar çok doğrula. İzlediğin kısa oturumda hızlı bir bakış yeter. Gece kendi başına koşacak işi bırakmadan önce sor: Claude bitti'nin neye benzediğini biliyor mu? Testleri kancayla zorunlu kıl. Koşu bitince özetle değil değişiklik farkıyla (diff) başla ve işi görmemiş taze bir gözden ikinci görüş al.",
-        "Bizim döngü, sen yokken kuyruktan iş koşar. dongu skill'ine göre döngüye yalnız bitti ölçütü makineyle ölçülen, geri alınabilir iş girer. Durma iki eşiklidir: yumuşak eşikte yeni iş başlamaz, açık iş biter; sert eşikte açık iş güvenli noktada durur. Döngüde sana soru açılmaz."
+        "Uzun işte iki alışkanlık var. Başlamadan plan modunda (plan mode) kapsamı belirle ve planı oku; koşarken sıkıştırma (compaction) ve geri sarmayla (rewind) yönlendir.",
+        "Sıkıştırırken /compact komutunun arkasına odak yaz; özet o odağı tutar.",
+        "Plan modunda Claude dosyaya dokunmadan araştırıp plan verir. Claude yanlış yola saparsa geri sarma menüsüyle önceki isteme dönersin.",
+        "Aynı şeyi iki kez düzelttin ve hâlâ yanlışsa üçüncü düzeltmeyi yazma. /clear ile baştan başla, öğrendiğini yeni isteme kat.",
+        "Gözetimsiz koşuda ölçü basit: ne kadar az izlediysen o kadar çok doğrula. İzlediğin kısa oturumda hızlı bir bakış yeter.",
+        "Gece kendi başına koşacak işi bırakmadan önce sor: Claude bitti'nin neye benzediğini biliyor mu? Testleri kancayla zorunlu kıl.",
+        "Koşu bitince özetle değil değişiklik farkıyla (diff) başla. Sonra işi görmemiş taze bir gözden ikinci görüş al.",
+        "Bizim döngü sen yokken kuyruktan iş koşar. dongu skill'ine göre ona yalnız bitti ölçütü makineyle ölçülen, geri alınabilir iş girer.",
+        "Döngüde durma iki eşiklidir. Yumuşak eşikte yeni iş başlamaz, açık iş biter; sert eşikte açık iş güvenli noktada durur."
       ],
       "terimler": [
         {"tr": "plan modu", "en": "plan mode", "aciklama": "Claude'un dosyaya dokunmadan araştırıp plan sunduğu izin modu."},
-        {"tr": "sıkıştırma", "en": "compaction", "aciklama": "Konuşmanın özetlenip özetin yeni bağlam olarak kullanılması; eski mesajlar silinir."},
+        {"tr": "sıkıştırma", "en": "compaction", "aciklama": "Konuşmanın özetlenip bu özetin eski mesajların yerine yeni bağlam olarak kullanılması."},
         {"tr": "geri sarma", "en": "rewind", "aciklama": "Önceki bir istemdeki geri sarma noktasına (checkpoint) kodu, konuşmayı ya da ikisini birden geri almak."},
         {"tr": "değişiklik farkı", "en": "diff", "aciklama": "Bir dosyada eklenen ve silinen satırları gösteren karşılaştırma."}
       ],
@@ -476,6 +538,7 @@
         {
           "id": "b12-d4-s1",
           "tur": "sirala",
+          "kart": 0,
           "soru": "Uzun bir işi derste anlatılan alışkanlıklara göre sırala.",
           "adimlar": [
             "Plan modunda Claude'dan plan iste",
@@ -494,6 +557,7 @@
         {
           "id": "b12-d4-s2",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Her durumu derste önerilen araçla eşle.",
           "ciftler": [
             ["İşe başlamadan yaklaşımı görmek istiyorsun", "Plan modu"],
@@ -512,6 +576,7 @@
         {
           "id": "b12-d4-s3",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "/compact komutunun arkasına yazdığın odak, özetin neyi tutacağını belirler.",
           "dogru": true,
           "ipucu": "Komutun arkasına yazdığın sözün özete etkisini düşün.",
@@ -526,6 +591,7 @@
         {
           "id": "b12-d4-s4",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Aynı şeyi iki kez düzelttin, Claude hâlâ yanlış yapıyor. Belgeye göre en iyi hamle ne?",
           "secenekler": [
             "Daha uzun ve ayrıntılı bir üçüncü düzeltme yazmak",
@@ -545,6 +611,7 @@
         {
           "id": "b12-d4-s5",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Derse göre gözetimsiz bir koşuyu ne kadar doğrulamalısın?",
           "secenekler": [
             "Ne kadar az izlediysen o kadar çok",
@@ -563,9 +630,15 @@
         },
         {
           "id": "b12-d4-s6",
-          "tur": "dogru-yanlis",
-          "soru": "Gözetimsiz bir koşudan sonra işe Claude'un yazdığı özeti okuyarak başlamalısın.",
-          "dogru": false,
+          "tur": "coktan",
+          "kart": 6,
+          "soru": "Gözetimsiz bir koşu bitti. Derse göre incelemeye neyle başlarsın?",
+          "secenekler": [
+            "Claude'un yazdığı derli toplu özetle",
+            "Değişiklik farkının kendisiyle",
+            "Claude'a ne yaptığını sorarak"
+          ],
+          "dogru": 1,
           "ipucu": "Özet sana hangi dosyaya dokunulduğunu her zaman söyler mi?",
           "aciklama": "Derli toplu bir özet, beklemediğin bir dosyaya dokunulduğunu göstermeyebilir; bunu değişiklik farkı gösterir.",
           "kaynak": {
@@ -578,12 +651,13 @@
         {
           "id": "b12-d4-s7",
           "tur": "coktan",
-          "soru": "Bir işi gece kendi başına koşmaya bırakmadan önce resmi belge hangi soruyu sormanı ister?",
+          "kart": 5,
+          "soru": "Gece koşacak işi bırakmadan önce belge hangi soruyu sormanı ister?",
           "secenekler": [
             "Hangi modelle koşacağını biliyor mu?",
-            "Kaç dosya okuyacağını biliyor mu?",
+            "Kaç dosyayı okuması gerektiğini biliyor mu?",
             "Bitti'nin neye benzediğini biliyor mu?",
-            "Özetinin ne kadar uzun olacağını biliyor mu?"
+            "Özetinin uzunluğunu biliyor mu?"
           ],
           "dogru": 2,
           "ipucu": "İşin sonunu tarif eden soruyu ara.",
@@ -598,6 +672,7 @@
         {
           "id": "b12-d4-s8",
           "tur": "coktan",
+          "kart": 7,
           "soru": "dongu skill'ine göre hangi iş döngüye girebilir?",
           "secenekler": [
             "Bitti ölçütü senin görünüş onayına bağlı iş",
@@ -609,13 +684,15 @@
           "aciklama": "Döngüde sen yoksun; bu yüzden yalnız sonucu makineyle ölçülen ve geri alınabilen iş girer, görünüş onayı ve müşteri metni girmez.",
           "kaynak": {
             "adres": ".claude/skills/dongu/SKILL.md:18",
-            "okuma": "2026-11-15",
-            "dayanak": "dongu skill'ine göre döngüye girebilen işin bitti ölçütü makineyle ölçülür, kullanıcının kararını gerektirmez ve iş geri alınabilir."
+            "okuma": "2026-11-17",
+            "dayanak": "dongu skill'ine göre döngüye girebilen işin bitti ölçütü makineyle ölçülür, kullanıcının kararını gerektirmez ve iş geri alınabilir.",
+            "soz": "Bitti ölçütü makineyle ölçülür"
           }
         },
         {
           "id": "b12-d4-s9",
           "tur": "bosluk",
+          "kart": 8,
           "soru": "dongu skill'ine göre ___ eşikte yeni iş başlamaz, açık iş biter.",
           "secenekler": ["yumuşak", "sert", "haftalık"],
           "dogru": 0,
@@ -623,8 +700,9 @@
           "aciklama": "Yumuşak eşikte açık iş bitirilir; sert eşikte açık iş güvenli noktada durur.",
           "kaynak": {
             "adres": ".claude/skills/dongu/SKILL.md:34",
-            "okuma": "2026-11-15",
-            "dayanak": "dongu skill'ine göre yumuşak eşikte yeni iş başlamaz ve açık iş biter, sert eşikte açık iş güvenli noktada durur."
+            "okuma": "2026-11-17",
+            "dayanak": "dongu skill'ine göre yumuşak eşikte yeni iş başlamaz ve açık iş biter, sert eşikte açık iş güvenli noktada durur.",
+            "soz": "yumuşak eşikte yeni iş başlamaz, açık iş biter"
           }
         }
       ]
@@ -638,9 +716,14 @@
         "Masaüstünde stilin nasıl seçildiğini ve bizde bu ayarın neden sorulduğunu anlatabilir."
       ],
       "anlatim": [
-        "Çıktı stili (output style), bir oturumdaki her cevapta Claude'un rolünü, tonunu ve cevap biçimini belirleyen talimatlardır; aynı isteği her istemde tekrarlamazsın. Varsayılan (Default) stil dışında dört yerleşik stil var: Proactive sormadan başlar, Concise sonuçla açar ve kısa yazar, Explanatory ve Learning ise açıklama ekler.",
-        "Explanatory stilinde Claude işi her zamanki gibi yapar, seçimlerinin nedenini sohbette kısa Insight bloklarıyla anlatır; bu açıklamalar dosyana yorum olarak yazılmaz. Learning stilinde aynı bloklara ek olarak, gerçek bir tasarım kararı olan küçük bir kod parçasını sana bırakır, yeri TODO(human) ile işaretler ve sen yazana kadar bekler.",
-        "Stil bir talimattır, garanti değildir; her seferinde olması gereken iş için kanca gerekir. Masaüstünde stil, bir ayar dosyasındaki outputStyle alanıyla seçilir (örneğin .claude/settings.local.json); terminalde /output-style komutu da vardır. Değer büyük-küçük harfe duyarlıdır; stil adıyla tam eşleşmeyen değer varsayılan stili verir. Bizde bu dosyaların değişikliği CLAUDE.md satır 46'ya göre her seferinde sana sorulur."
+        "Çıktı stili (output style) bir oturumdaki her cevapta Claude'un rolünü, tonunu ve cevap biçimini belirler. Aynı isteği her istemde tekrarlamazsın.",
+        "Varsayılan (Default) stil dışında dört yerleşik stil var. Proactive sormadan başlar, Concise sonuçla açar ve kısa yazar.",
+        "Explanatory stilinde Claude işi yapar, seçimlerinin nedenini sohbette kısa Insight bloklarıyla anlatır. Bu açıklamalar dosyana yorum olarak yazılmaz.",
+        "Learning stili Insight bloklarına ek olarak, tasarım kararı olan küçük bir kod parçasını sana bırakır. Yerini kodda TODO(human) notuyla işaretler, sen yazana kadar bekler.",
+        "Stil bir talimattır, garanti değildir. Her seferinde olması gereken iş için kanca gerekir.",
+        "Masaüstünde stil, bir ayar dosyasındaki outputStyle alanıyla seçilir; örneğin .claude/settings.local.json dosyasında.",
+        "Bu değer büyük-küçük harfe duyarlıdır. Stil adıyla tam eşleşmeyen değer varsayılan stili verir.",
+        "Bizde bu ayar dosyalarının değişikliği her seferinde sana sorulur. CLAUDE.md onları 'Her seferinde basitçe sorulanlar' listesine koyar."
       ],
       "terimler": [
         {"tr": "çıktı stili", "en": "output style", "aciklama": "Bir oturum boyunca Claude'un rolünü, tonunu ve cevap biçimini belirleyen talimatlar."},
@@ -651,6 +734,7 @@
         {
           "id": "b12-d5-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Çıktı stili neyi değiştirir?",
           "secenekler": [
             "Claude'un izin modunu",
@@ -670,6 +754,7 @@
         {
           "id": "b12-d5-s2",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Her yerleşik stili yaptığı işle eşle.",
           "ciftler": [
             ["Proactive", "Sormadan başlar, sıradan kararlarda makul varsayım yapar"],
@@ -688,10 +773,16 @@
         },
         {
           "id": "b12-d5-s3",
-          "tur": "dogru-yanlis",
-          "soru": "Explanatory stilindeki açıklamalar dosyalarına yorum satırı olarak yazılır.",
-          "dogru": false,
-          "ipucu": "Insight blokları nerede görünüyordu?",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Explanatory stilindeki açıklamalar nerede görünür?",
+          "secenekler": [
+            "Sohbette, kısa Insight bloklarında",
+            "Değişen dosyalarına yorum satırı olarak",
+            "Ayrı bir rapor dosyasında"
+          ],
+          "dogru": 0,
+          "ipucu": "Açıklamanın koda mı, konuşmaya mı eklendiğini düşün.",
           "aciklama": "Açıklamalar sohbette, kodun önünde ya da arkasında Insight bloğu olarak görünür; dosyaya yorum olarak yazılmaz.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/output-styles",
@@ -703,6 +794,7 @@
         {
           "id": "b12-d5-s4",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Kod yazmayı elinle denemek istiyorsun ama iş de bitsin. Hangi stil uygun?",
           "secenekler": ["Concise", "Proactive", "Learning"],
           "dogru": 2,
@@ -718,6 +810,7 @@
         {
           "id": "b12-d5-s5",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Cevaplar sana fazla uzun geliyor ve her istemde \"kısa yaz\" demekten yoruldun. Ne yaparsın?",
           "secenekler": [
             "Concise stilini seçerim",
@@ -736,9 +829,11 @@
         },
         {
           "id": "b12-d5-s6",
-          "tur": "dogru-yanlis",
-          "soru": "Bir çıktı stili, bir şeyin her seferinde olacağını garanti eder.",
-          "dogru": false,
+          "tur": "bosluk",
+          "kart": 4,
+          "soru": "Çıktı stili garanti vermez; her seferinde olması gereken iş için ___ gerekir.",
+          "secenekler": ["kanca", "daha sert bir stil", "uzun bir istem"],
+          "dogru": 0,
           "ipucu": "Bu birimde gördüğün iki talimat türünü hatırla.",
           "aciklama": "Stil Claude'un uyduğu bir talimattır; her seferinde olması gereken iş için kanca kullanılır.",
           "kaynak": {
@@ -751,10 +846,11 @@
         {
           "id": "b12-d5-s7",
           "tur": "bosluk",
+          "kart": 5,
           "soru": "Masaüstü uygulamasında stil, bir ayar dosyasındaki ___ alanıyla seçilir.",
           "secenekler": ["permissions", "outputStyle", "hooks"],
           "dogru": 1,
-          "ipucu": "Alan adı stilin İngilizce adından gelir.",
+          "ipucu": "Kartta stilin masaüstünde nasıl seçildiğini hatırla.",
           "aciklama": "Belgeye göre masaüstünde stil, örneğin .claude/settings.local.json dosyasındaki bu alanla seçilir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/output-styles",
@@ -766,6 +862,7 @@
         {
           "id": "b12-d5-s8",
           "tur": "coktan",
+          "kart": 6,
           "soru": "Ayar dosyasına outputStyle değerini küçük harfle 'explanatory' yazarsan ne olur?",
           "secenekler": [
             "Explanatory stili açılır",
@@ -785,14 +882,16 @@
         {
           "id": "b12-d5-s9",
           "tur": "dogru-yanlis",
+          "kart": 7,
           "soru": "Bizde Claude, .claude/settings.local.json dosyasına outputStyle eklemeden önce sana sorar.",
           "dogru": true,
           "ipucu": "Bizde ayar dosyalarına dokunmanın kuralını hatırla.",
           "aciklama": "Bu dosyanın değişikliği her seferinde sorulanlar listesindedir; yalnız kanca ekleme ve değiştirme bu sorudan muaftır.",
           "kaynak": {
             "adres": "CLAUDE.md:46",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md satır 46'ya göre .claude/settings.json ve .claude/settings.local.json değişikliği, kanca ekleme ve değiştirme hariç, her seferinde sorulur."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre .claude/settings.json ve .claude/settings.local.json değişikliği, kanca ekleme ve değiştirme hariç, her seferinde basitçe sorulur.",
+            "soz": "`.claude/settings.local.json` (kanca ekleme ve değiştirme hariç"
           }
         }
       ]
@@ -801,14 +900,18 @@
       "id": "b12-d6",
       "baslik": "Bitirme görevi: oku, anlat, tarif et",
       "hedefler": [
-        "CLAUDE.md satır 53'ü sistem-metni ve kanca-denetim skill'leriyle birbirine bağlayarak anlatabilir.",
+        "CLAUDE.md'nin mekanizma kuralını sistem-metni ve kanca-denetim skill'leriyle birbirine bağlayarak anlatabilir.",
         "Bir değişikliği görev kalıbıyla Claude'a nasıl yazacağını anlatabilir.",
         "Belirsiz bir istemle somut bir istemi birbirinden ayırt edebilir."
       ],
       "anlatim": [
-        "Zinciri izle. CLAUDE.md satır 53 kuralı koyar: mekanizmasız kural dilektir. sistem-metni skill'i hangi kuralın kanca ya da kontrol olacağını söyler ve her durdurma için bir bozma ve bir yanlış alarm testi ister. kanca-denetim skill'i mekanik adımları verir: önce ara, kanca ile testini yan yana yaz, settings.json'a kaydet, gerçek kayıtta koş, testler ve denetim temiz çıksın.",
-        "Değişikliği Claude'a görev kalıbıyla yazarsın (ajan-gorevi skill'i): amaç ve neden, dokunulacak yollar, önce okunacaklar, bitti ölçütü (definition of done) ve kenar durumları. Nasıl yapılacağını yazmazsın. Resmi öneri de benzer: dosyayı adıyla an, belirtiyi anlat, düzeldi'nin neye benzediğini baştan söyle.",
-        "Son bir test: istemini (prompt) işi az bilen bir iş arkadaşına göster; o karışırsa Claude da karışır. Claude'u zeki ama bizim alışkanlıklarımızı bilmeyen yeni bir çalışan gibi düşün. Ne istediğini ne kadar açık söylersen sonuç o kadar iyi olur."
+        "Zinciri izle: CLAUDE.md mekanizmanın hangi kurallara yazılacağını söyler. sistem-metni skill'i, kanca yazılınca her durdurma için bir bozma ve bir yanlış alarm testi ister.",
+        "kanca-denetim skill'i yalnız mekanik adımları verir. Hangi kuralın kanca ya da kontrol olacağını sistem-metni skill'ine bırakır.",
+        "Mekanik adımlar sırayla: önce ara, kanca ile testini yan yana yaz, settings.json'a ekle, bir kez gerçek kayıtta koş, testler ve denetimle sına.",
+        "Değişikliği Claude'a görev kalıbıyla yazarsın (ajan-gorevi skill'i). Görev kısa yazılır; nasıl yapılacağı yazılmaz.",
+        "Kalıbın alanları: amaç ve neden, dokunulacak yollar, önce okunacaklar, bitti ölçütü (definition of done) ve kenar durumları. Bitti ölçütü ölçülebilir, komutla sınanabilir bir şarttır.",
+        "Resmi öneri de benzer: dosyayı adıyla an, belirtiyi anlat, düzeldi'nin neye benzediğini baştan söyle.",
+        "Son test: istemini (prompt) işi az bilen bir iş arkadaşına göster; o karışırsa Claude da karışır. Claude'u bağlamı bilmeyen yeni bir çalışan gibi düşün."
       ],
       "terimler": [
         {"tr": "bitti ölçütü", "en": "definition of done", "aciklama": "İşin bittiğini gösteren, ölçülebilir ve mümkünse komutla sınanabilir şart."},
@@ -818,9 +921,10 @@
         {
           "id": "b12-d6-s1",
           "tur": "sirala",
-          "soru": "kanca-denetim skill'ine göre bizde yeni bir kanca eklemenin adımlarını sırala.",
+          "kart": 2,
+          "soru": "kanca-denetim skill'ine göre yeni kanca eklemenin adımlarını sırala.",
           "adimlar": [
-            "Aynı işi yapan kanca ya da kontrol var mı diye ara",
+            "Aynı işi yapan kanca var mı diye ara",
             "Kancayı ve testini yan yana yaz",
             "Kancayı settings.json'a olayı ve eşleşmesiyle kaydet",
             "Bir kez gerçek kayıtta koş",
@@ -830,13 +934,15 @@
           "aciklama": "Skill önce aynı işi yapan kanca olup olmadığına bakar, en sonda test betiği ve denetimle sınar.",
           "kaynak": {
             "adres": ".claude/skills/kanca-denetim/SKILL.md:16",
-            "okuma": "2026-11-15",
-            "dayanak": "kanca-denetim skill'inin adımları sırayla aramak, kanca ile testini yan yana yazmak, settings.json'a kaydetmek, gerçek kayıtta koşmak, bağlı belgeleri güncellemek ve testler ile denetimle sınamaktır."
+            "okuma": "2026-11-17",
+            "dayanak": "kanca-denetim skill'inin adımları sırayla aramak, kanca ile testini yan yana yazmak, settings.json'a kaydetmek, gerçek kayıtta koşmak, bağlı belgeleri güncellemek ve testler ile denetimle sınamaktır.",
+            "soz": "Önce ara: aynı işi yapan kanca ya da kontrol var mı"
           }
         },
         {
           "id": "b12-d6-s2",
           "tur": "coktan",
+          "kart": 1,
           "soru": "kanca-denetim skill'ine göre hangi kuralın kanca ya da kontrol olacağı hangi skill'de yazar?",
           "secenekler": ["sistem-metni", "kanca-denetim", "ajan-gorevi"],
           "dogru": 0,
@@ -844,26 +950,31 @@
           "aciklama": "kanca-denetim yalnız mekanik adımları taşır; mekanizma seçimi ve test şartı öteki skill'dedir.",
           "kaynak": {
             "adres": ".claude/skills/kanca-denetim/SKILL.md:10",
-            "okuma": "2026-11-15",
-            "dayanak": "kanca-denetim skill'ine göre hangi kuralın kanca ya da kontrol olacağı ve test şartı sistem-metni skill'inin kural yazma bölümündedir, kanca-denetim yalnız mekanik adımları taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "kanca-denetim skill'ine göre hangi kuralın kanca ya da kontrol olacağı ve test şartı sistem-metni skill'inin kural yazma bölümündedir, kanca-denetim yalnız mekanik adımları taşır.",
+            "soz": "Hangi kuralın kanca ya da kontrol olacağı"
           }
         },
         {
           "id": "b12-d6-s3",
-          "tur": "dogru-yanlis",
-          "soru": "sistem-metni skill'ine göre bir kanca yazılınca her durdurma için bir bozma testi ve bir yanlış alarm testi de yazılır.",
-          "dogru": true,
-          "ipucu": "Mekanizma seçen skill'in teste dair şartını hatırla.",
+          "tur": "bosluk",
+          "kart": 0,
+          "soru": "sistem-metni skill'ine göre her durdurma için bir bozma testi ve bir ___ testi yazılır.",
+          "secenekler": ["yanlış alarm", "performans", "geri yükleme"],
+          "dogru": 0,
+          "ipucu": "Kanca gerektiğinde durdurmalı, gereksiz yere de durdurmamalı.",
           "aciklama": "Skill kanca ya da kontrol yazılınca testinin de yazılmasını ister: her durdurma için bir bozma ve bir yanlış alarm testi.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:36",
-            "okuma": "2026-11-15",
-            "dayanak": "sistem-metni skill'ine göre kanca ya da kontrol yazılınca testi de yazılır, her durdurma için bir bozma testi ve bir yanlış alarm testi."
+            "adres": ".claude/skills/sistem-metni/SKILL.md:33",
+            "okuma": "2026-11-17",
+            "dayanak": "sistem-metni skill'ine göre kanca ya da kontrol yazılınca testi de yazılır, her durdurma için bir bozma testi ve bir yanlış alarm testi.",
+            "soz": "her durdurma için bir bozma testi ve bir yanlış alarm testi"
           }
         },
         {
           "id": "b12-d6-s4",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Hangisi Claude'a daha iyi bir tarif?",
           "secenekler": [
             "Giriş hatasını düzelt",
@@ -883,6 +994,7 @@
         {
           "id": "b12-d6-s5",
           "tur": "bosluk",
+          "kart": 4,
           "soru": "ajan-gorevi skill'ine göre görevdeki ___ alanı ölçülebilir, komutla sınanabilir bir şarttır.",
           "secenekler": ["Bitti ölçütü", "Amaç ve neden", "Kenar durumları"],
           "dogru": 0,
@@ -890,30 +1002,34 @@
           "aciklama": "Bu alan komutla sınanabildiği için işin bitip bitmediği ölçülerek anlaşılır.",
           "kaynak": {
             "adres": ".claude/skills/ajan-gorevi/SKILL.md:21",
-            "okuma": "2026-11-15",
-            "dayanak": "ajan-gorevi skill'ine göre Bitti ölçütü alanı ölçülebilir ve komutla sınanabilir bir şarttır."
+            "okuma": "2026-11-17",
+            "dayanak": "ajan-gorevi skill'ine göre Bitti ölçütü alanı ölçülebilir ve komutla sınanabilir bir şarttır.",
+            "soz": "ölçülebilir, komutla sınanabilir şart"
           }
         },
         {
           "id": "b12-d6-s6",
           "tur": "dogru-yanlis",
+          "kart": 3,
           "soru": "ajan-gorevi skill'ine göre görevde işin nasıl yapılacağı adım adım yazılır.",
           "dogru": false,
           "ipucu": "Görev kalıbında neyin yazılmadığını hatırla.",
           "aciklama": "Görev kısa yazılır ve nasıl yapılacağı yazılmaz; görev amacı, yolları ve bitti ölçütünü taşır.",
           "kaynak": {
             "adres": ".claude/skills/ajan-gorevi/SKILL.md:16",
-            "okuma": "2026-11-15",
-            "dayanak": "ajan-gorevi skill'ine göre görev kısa yazılır ve nasıl yapılacağı yazılmaz."
+            "okuma": "2026-11-17",
+            "dayanak": "ajan-gorevi skill'ine göre görev kısa yazılır ve nasıl yapılacağı yazılmaz.",
+            "soz": "Görev kısa yazılır; nasıl yapılacağı yazılmaz."
           }
         },
         {
           "id": "b12-d6-s7",
           "tur": "coktan",
+          "kart": 4,
           "soru": "kanca-denetim skill'ine bir adım ekletmek istiyorsun. Hangi tarif görev kalıbına uyar?",
           "secenekler": [
             "kanca-denetim'i iyileştir, gerisini sen bil",
-            "Önce 14. satırı oku, sonra şu sözcüğü değiştir, sonra dosyayı kaydet",
+            "Önce şu satırı oku, sonra şu sözcüğü değiştir, sonra dosyayı kaydet",
             "Amacı, dokunulacak dosyayı, bitti ölçütünü ve kenar durumunu yaz"
           ],
           "dogru": 2,
@@ -921,13 +1037,15 @@
           "aciklama": "Kalıp amacı, yolları, bitti ölçütünü ve kenar durumlarını ister; adım tarifi yazdırmaz, belirsiz istek de ölçüt vermez.",
           "kaynak": {
             "adres": ".claude/skills/ajan-gorevi/SKILL.md:16",
-            "okuma": "2026-11-15",
-            "dayanak": "ajan-gorevi skill'ine göre görev kısa yazılır, nasıl yapılacağı yazılmaz ve görev amaç, dokunulacak yollar, bitti ölçütü ve kenar durumları alanlarını taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "ajan-gorevi skill'ine göre görev kısa yazılır, nasıl yapılacağı yazılmaz ve görev amaç, dokunulacak yollar, bitti ölçütü ve kenar durumları alanlarını taşır.",
+            "soz": "Görev kısa yazılır; nasıl yapılacağı yazılmaz."
           }
         },
         {
           "id": "b12-d6-s8",
           "tur": "coktan",
+          "kart": 6,
           "soru": "Resmi istem rehberindeki ana test hangisi?",
           "secenekler": [
             "İstemi olabildiğince kısa tut",

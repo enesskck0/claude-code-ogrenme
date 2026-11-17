@@ -14,9 +14,12 @@
         "Bizim 'durum diskte yaşar' kuralını ve 500 bin kapanış önerisini anlatabilir."
       ],
       "anlatim": [
-        "Bağlam penceresi (context window) Claude'un çalışma belleğidir. Yazdığın her istem, okuduğu her dosya, koştuğu her araç burada yer kaplar ve yer sınırlıdır. Sınıra yaklaşınca Claude Code sohbeti kendiliğinden sıkıştırır: önemli ayrıntıları özetler, gereksiz araç sonuçlarını çıkarır. Böylece dolan bağlam oturumu bitirmez, iş sürer.",
-        "Bedeli var: özetlemede ayrıntı kaybolabilir. Sıkıştırma sohbet geçmişini özetler; diskteki dosya yerinde durur. Bizim kural da diske dayanır: 'Durum diskte yaşar. Önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez' (CLAUDE.md satır 37).",
-        "Sıkıştırmayı /compact komutuyla elle de başlatabilirsin; otomatik sıkıştırma onunla aynı biçimde çalışır. Otomatik sıkıştırmanın tam hangi noktada koşacağı modele ve ayarlara bağlıdır. Bizde ayrıca bir eşik var: bağlam 500 bini geçince Claude kapanışı önerir (CLAUDE.md satır 38). Kapanışta iş, devir kartıyla yeni sohbete aktarılır."
+        "Bağlam penceresi (context window) Claude'un sınırlı çalışma belleğidir. Sınıra yaklaşınca Claude Code sohbeti kendiliğinden sıkıştırır; dolan bağlam oturumu bitirmez.",
+        "Yazdığın her istem, okuduğu her dosya, koştuğu her araç bağlamda yer kaplar. Sıkıştırma önemli ayrıntıları özetler, gereksiz araç sonuçlarını çıkarır.",
+        "Sıkıştırmanın bedeli var: özetlemede ayrıntı kaybolabilir. Sıkıştırma sohbet geçmişini özetler; diskteki dosya yerinde durur.",
+        "Bizim kural da diske dayanır: CLAUDE.md'de 'Durum diskte yaşar. Önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez' satırı var.",
+        "Sıkıştırmayı /compact komutuyla elle de başlatabilirsin. Otomatik sıkıştırma onunla aynı biçimde çalışır.",
+        "Bizde ayrıca bir eşik var: CLAUDE.md'ye göre Claude kapanışı bağlam 500 bini geçince önerir. Kapanışta iş, devir kartıyla yeni sohbete aktarılır."
       ],
       "terimler": [
         {"tr": "sıkıştırma", "en": "compaction", "aciklama": "Bağlam dolarken sohbet geçmişinin özetlenip yer açılması."},
@@ -26,6 +29,7 @@
         {
           "id": "b09-d1-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Bağlam penceresi sınıra yaklaşınca Claude Code ne yapar?",
           "secenekler": [
             "Oturumu kapatır, yeni sohbet açmanı ister",
@@ -46,6 +50,7 @@
         {
           "id": "b09-d1-s2",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Otomatik sıkıştırma bağlamda yer açmak için ne yapar?",
           "secenekler": [
             "Önemli ayrıntıları özetler, gereksiz araç sonuçlarını çıkarır",
@@ -66,6 +71,7 @@
         {
           "id": "b09-d1-s3",
           "tur": "dogru-yanlis",
+          "kart": 2,
           "soru": "Sıkıştırmada ayrıntı kaybolmaz; özet sohbetteki her şeyi taşır.",
           "dogru": false,
           "ipucu": "Özetlemenin bir bedeli olup olmadığını düşün.",
@@ -79,10 +85,17 @@
         },
         {
           "id": "b09-d1-s4",
-          "tur": "dogru-yanlis",
-          "soru": "Otomatik sıkıştırma, elle /compact yazdığında olan işin aynısını yapar.",
-          "dogru": true,
-          "ipucu": "Kartta elle başlatılan sıkıştırmanın otomatik olanla nasıl karşılaştırıldığını hatırla.",
+          "tur": "bosluk",
+          "kart": 4,
+          "soru": "Otomatik sıkıştırma, elle ___ yazdığında olan işin aynısını yapar.",
+          "secenekler": [
+            "/clear",
+            "/context",
+            "/rewind",
+            "/compact"
+          ],
+          "dogru": 3,
+          "ipucu": "Kartta sıkıştırmayı elle nasıl başlattığını hatırla.",
           "aciklama": "Belgeye göre otomatik geçiş, /compact adımıyla aynı biçimde çalışır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/context-window",
@@ -94,7 +107,8 @@
         {
           "id": "b09-d1-s5",
           "tur": "coktan",
-          "soru": "CLAUDE.md satır 37'ye göre önemli bir çıktı ne zaman diske yazılır?",
+          "kart": 3,
+          "soru": "CLAUDE.md'deki 'Durum diskte yaşar' kuralına göre önemli bir çıktı ne zaman diske yazılır?",
           "secenekler": [
             "Kapanışta, toplu olarak",
             "Bağlam 500 bini geçince",
@@ -102,17 +116,19 @@
             "Sen isteyince"
           ],
           "dogru": 2,
-          "ipucu": "Satır kapanışı beklemekle ilgili ne diyor, ona bak.",
+          "ipucu": "Kuralın kapanışı beklemek için ne dediğini hatırla.",
           "aciklama": "Kural durumun diskte yaşadığını söyler; önemli çıktı üretildiği anda yazılır, kapanış beklenmez.",
           "kaynak": {
             "adres": "CLAUDE.md:37",
-            "okuma": "2026-11-15",
-            "dayanak": "Durum diskte yaşar; önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez."
+            "okuma": "2026-11-17",
+            "dayanak": "Durum diskte yaşar; önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez.",
+            "soz": "Durum diskte yaşar. Önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez"
           }
         },
         {
           "id": "b09-d1-s6",
           "tur": "sirala",
+          "kart": 1,
           "soru": "Uzun bir oturumda olanları sırala.",
           "adimlar": [
             "Her istem, dosya ve araç sonucu bağlama eklenir",
@@ -132,7 +148,8 @@
         {
           "id": "b09-d1-s7",
           "tur": "coktan",
-          "soru": "CLAUDE.md satır 38'e göre Claude kapanışı bağlam hangi büyüklüğü geçince önerir?",
+          "kart": 5,
+          "soru": "CLAUDE.md'ye göre Claude kapanışı bağlam hangi büyüklüğü geçince önerir?",
           "secenekler": [
             "100 bin",
             "200 bin",
@@ -144,8 +161,9 @@
           "aciklama": "Satır kapanışın bağlam 500 bini geçince, yeni sohbet gerektiren işte ya da iş kalmayınca önerildiğini söyler.",
           "kaynak": {
             "adres": "CLAUDE.md:38",
-            "okuma": "2026-11-15",
-            "dayanak": "Claude kapanışı bağlam 500 bini geçince, sıradaki iş yeni sohbet isteyince ya da iş kalmayınca önerir."
+            "okuma": "2026-11-17",
+            "dayanak": "Claude kapanışı bağlam 500 bini geçince, sıradaki iş yeni sohbet isteyince ya da iş kalmayınca önerir.",
+            "soz": "kapanışı bağlam 500 bini geçince"
           }
         }
       ]
@@ -159,9 +177,12 @@
         "/compact komutuna odak yazmanın ne işe yaradığını anlatabilir."
       ],
       "anlatim": [
-        "Üç komut, üç iş. /compact sohbeti o ana kadar özetler; yer açar ama ne üzerinde çalıştığını hatırlar. /clear her şeyi kaldırır, sıfırdan başlarsın. /context bağlamın boyunu, en çok yer kaplayan kategorileri ve bir dökümünü gösterir. Masaüstünde /context ve /compact'ı istem kutusuna yazarsın.",
-        "Kaba kural: aynı işe devam ediyorsan ve sınıra dayandıysan /compact. Yeni bir işe başlıyorsan /clear; eski sohbet yeni işe önyargı taşımasın. Her oturumda bilinmesi gereken şeyi CLAUDE.md'ye yaz; Claude onu her seferinde baştan keşfetmek zorunda kalmaz.",
-        "/compact'a odak da yazabilirsin; buna odaklı sıkıştırma (compact with a focus) denir. Örnek: /compact birim 9 yazımına odaklan. O zaman özet, otomatik geçişin önemli sandığını değil senin seçtiğini tutar. Bizde ayrıca her iş geçişinde bağlam ölçülür (is-gecisi skill'i, Bağlam bölümü)."
+        "/compact sohbeti o ana kadar özetler; yer açar ama ne üzerinde çalıştığını hatırlar. Aynı işe devam ediyorsan ve sınıra dayandıysan onu seç.",
+        "/clear her şeyi kaldırır, sıfırdan başlarsın. Yeni bir işe başlıyorsan onu seç; eski sohbet yeni işe önyargı taşımasın.",
+        "/context bağlamın boyunu, en çok yer kaplayan kategorileri ve bir dökümünü gösterir. Masaüstünde /context ve /compact'ı istem kutusuna yazarsın.",
+        "Uzun oturumu toparlarken kursun önerisi: önce /context ile ölç, sonra işe göre /compact ya da /clear koş, sonra yeniden ölç.",
+        "Odaklı sıkıştırma (compact with a focus): /compact'ın ardına odağı yazarsın, ör. /compact birim 9 yazımına odaklan. Özet, otomatik geçişin önemli sandığını değil senin seçtiğini tutar.",
+        "Bizde her iş geçişinde bağlam ölçülür. is-gecisi skill'i: 'Bir saatten uzun aradan sonra 250 bin üstü bağlamla devam edilmez, yeni sohbet önerilir.'"
       ],
       "terimler": [
         {"tr": "odaklı sıkıştırma", "en": "compact with a focus", "aciklama": "/compact komutuna ne tutulacağını yazarak özeti senin seçtiğin konuya yöneltmek."}
@@ -170,6 +191,7 @@
         {
           "id": "b09-d2-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Uzun bir işin ortasındasın, bağlam sınıra dayandı ama aynı işe devam edeceksin. Hangi komutu yazarsın?",
           "secenekler": [
             "/clear",
@@ -190,6 +212,7 @@
         {
           "id": "b09-d2-s2",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Bir işi bitirdin, ilgisiz yeni bir işe başlayacaksın. Eski sohbetin yeni işe önyargı katmasını istemiyorsun. Hangi komut?",
           "secenekler": [
             "/compact",
@@ -210,6 +233,7 @@
         {
           "id": "b09-d2-s3",
           "tur": "bosluk",
+          "kart": 2,
           "soru": "Bağlamın boyunu ve en çok yer kaplayan kategorileri görmek için istem kutusuna ___ yazarsın.",
           "secenekler": [
             "/context",
@@ -230,6 +254,7 @@
         {
           "id": "b09-d2-s4",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "/clear sohbeti özetler ve ne üzerinde çalıştığını hatırlar.",
           "dogru": false,
           "ipucu": "Özetleyen komut ile her şeyi kaldıran komutu ayır.",
@@ -244,6 +269,7 @@
         {
           "id": "b09-d2-s5",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Aynı işte uzun bir adıma geçmeden sıkıştıracaksın ve özetin neyi tutacağını sen seçmek istiyorsun. Ne yazarsın?",
           "secenekler": [
             "Yalnız /compact",
@@ -264,7 +290,8 @@
         {
           "id": "b09-d2-s6",
           "tur": "coktan",
-          "soru": "is-gecisi skill'i: 'Bir saatten uzun aradan sonra 250 bin üstü bağlamla devam edilmez, yeni sohbet önerilir.' İki saat ara verdin, bağlam 280 bin. Ne olur?",
+          "kart": 5,
+          "soru": "İki saat ara verdin ve bağlam 280 bin. is-gecisi'nin kuralına göre ne olur?",
           "secenekler": [
             "Yeni sohbet önerilir",
             "Aynı sohbette devam edilir",
@@ -276,13 +303,15 @@
           "aciklama": "Ara bir saatten uzun ve bağlam 250 binin üstünde; kural bu durumda yeni sohbet önerir.",
           "kaynak": {
             "adres": ".claude/skills/is-gecisi/SKILL.md:32",
-            "okuma": "2026-11-15",
-            "dayanak": "Bir saatten uzun aradan sonra 250 bin üstü bağlamla devam edilmez, yeni sohbet önerilir."
+            "okuma": "2026-11-17",
+            "dayanak": "Bir saatten uzun aradan sonra 250 bin üstü bağlamla devam edilmez, yeni sohbet önerilir.",
+            "soz": "Bir saatten uzun aradan sonra 250 bin üstü bağlamla devam edilmez, yeni sohbet önerilir."
           }
         },
         {
           "id": "b09-d2-s7",
           "tur": "sirala",
+          "kart": 3,
           "soru": "Uzun süredir çalıştığın bir oturumda bağlamı toparlayacaksın. Kursun önerdiği adımları sırala.",
           "adimlar": [
             "/context ile en çok neyin yer kapladığına bak",
@@ -309,9 +338,12 @@
         "Büyük bir skill'de önemli talimatın neden üste yazıldığını anlatabilir."
       ],
       "anlatim": [
-        "Sıkıştırma sohbet geçmişini özetler ama her şeyi aynı biçimde ele almaz. Proje kökündeki CLAUDE.md diskten yeniden yüklenir; bizim kurallar sıkıştırmadan sonra da tam metniyle durur. Claude'un okuduğu ya da düzenlediği dosyalardan en son değişen beşe kadarı yeniden okunur.",
-        "Kancaların daha önce eklediği bağlam ise sohbetin geri kalanıyla birlikte özetlenir. Buna karşılık kaynağı 'compact' olan açılış kancası (SessionStart hook) sıkıştırmadan sonra koşar, çıktısı yeni bağlama eklenir. Bizim acilis.py bunu kullanır: kaynak 'compact' ise ve döngü işareti varsa saatin altına 'döngü sürüyor, sohbet özetlendi' satırını ekler.",
-        "Daha önce açılmış skill'lerin gövdesi de geri eklenir, ama skill başına ve toplamda bir üst sınırla. Büyük skill kırpılır, sınır aşılınca en eski açılan önce düşer. Kırpma dosyanın başını tutar; bu yüzden en önemli talimat SKILL.md'nin üstüne yazılır."
+        "Proje kökündeki CLAUDE.md sıkıştırmadan sonra diskten yeniden yüklenir, tam metniyle durur. Okunan ya da düzenlenen dosyalardan en son değişen beşe kadarı yeniden okunur.",
+        "Kancaların daha önce eklediği bağlam ise sohbetin geri kalanıyla birlikte özetlenir.",
+        "Buna karşılık kaynağı 'compact' olan açılış kancası (SessionStart hook) sıkıştırmadan sonra koşar. Çıktısı sıkıştırılmış bağlama eklenir.",
+        "Bizim acilis.py bunu kullanır: kaynak 'compact' ise ve döngü işareti varsa saatin altına 'döngü sürüyor, sohbet özetlendi' satırını ekler.",
+        "Önceden açılmış skill'lerin gövdesi de geri eklenir, ama skill başına ve toplamda bir üst sınırla. Sınır aşılınca en eski açılan önce düşer.",
+        "Büyük skill kırpılır ve kırpma dosyanın başını tutar. Bu yüzden en önemli talimat SKILL.md'nin üstüne yazılır."
       ],
       "terimler": [
         {"tr": "açılış kancası", "en": "SessionStart hook", "aciklama": "Oturum başlarken ya da sıkıştırmadan sonra koşan, bağlama not ekleyebilen kanca."}
@@ -320,6 +352,7 @@
         {
           "id": "b09-d3-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Sıkıştırmadan sonra proje kökündeki CLAUDE.md'ye ne olur?",
           "secenekler": [
             "Özete karışır, tam metni kaybolur",
@@ -340,6 +373,7 @@
         {
           "id": "b09-d3-s2",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Kancaların daha önce bağlama eklediği notlar sıkıştırmada aynen korunur.",
           "dogru": false,
           "ipucu": "Kanca notunun sohbetin bir parçası mı, diskteki bir dosya mı olduğunu düşün.",
@@ -353,9 +387,15 @@
         },
         {
           "id": "b09-d3-s3",
-          "tur": "dogru-yanlis",
-          "soru": "Kaynağı compact olan açılış kancaları sıkıştırmadan sonra koşar ve çıktıları sıkıştırılmış bağlama eklenir.",
-          "dogru": true,
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "Kaynağı compact olan açılış kancası sıkıştırmadan ___ koşar; çıktısı sıkıştırılmış bağlama eklenir.",
+          "secenekler": [
+            "sonra",
+            "önce",
+            "sırasında"
+          ],
+          "dogru": 0,
           "ipucu": "Önceki notun özetlenmesi ile kancanın yeniden koşmasını ayır.",
           "aciklama": "Claude Code compact kaynağıyla eşleşen açılış kancalarını koşar ve çıktılarını sıkıştırılmış bağlama ekler.",
           "kaynak": {
@@ -368,6 +408,7 @@
         {
           "id": "b09-d3-s4",
           "tur": "eslestir",
+          "kart": 4,
           "soru": "Sıkıştırmadan sonra ne olur? Eşleştir.",
           "ciftler": [
             ["Kök CLAUDE.md", "Diskten yeniden eklenir"],
@@ -387,6 +428,7 @@
         {
           "id": "b09-d3-s5",
           "tur": "coktan",
+          "kart": 3,
           "soru": "acilis.py'nin baş yorumu: olayın kaynağı 'compact' ise ve döngü işareti varsa saatin altına bir satır eklenir. Bu satır ne zaman basılır?",
           "secenekler": [
             "Her yeni sohbetin ilk mesajında",
@@ -399,13 +441,15 @@
           "aciklama": "compact kaynağı sıkıştırmadan sonraki açılışı anlatır; döngü işareti de varsa satır basılır.",
           "kaynak": {
             "adres": ".claude/hooks/acilis.py:4",
-            "okuma": "2026-11-15",
-            "dayanak": "Olayın source alanı compact ise ve kökte .claude/dongu-baglam.json işareti varsa saatin altına bir satır eklenir."
+            "okuma": "2026-11-17",
+            "dayanak": "Olayın source alanı compact ise ve kökte .claude/dongu-baglam.json işareti varsa saatin altına bir satır eklenir.",
+            "soz": "olayın \"source\" alanı \"compact\" ise ve kökte"
           }
         },
         {
           "id": "b09-d3-s6",
           "tur": "coktan",
+          "kart": 3,
           "soru": "acilis.py'nin döngüde eklediği satır: 'döngü sürüyor, sohbet özetlendi; devir kartı ve kuyruk dosyası baştan okunur'. Özetten sonra Claude nerede kaldığını nereden bulur?",
           "secenekler": [
             "Yalnız sohbetin özetinden, başka yere bakmadan",
@@ -418,13 +462,15 @@
           "aciklama": "Satır döngünün sürdüğünü söyler ve Claude'u devir kartı ile kuyruk dosyasını baştan okumaya yönlendirir.",
           "kaynak": {
             "adres": ".claude/hooks/acilis.py:6",
-            "okuma": "2026-11-15",
-            "dayanak": "Eklenen satır döngünün sürdüğünü, sohbetin özetlendiğini, devir kartı ile kuyruk dosyasının baştan okunacağını söyler."
+            "okuma": "2026-11-17",
+            "dayanak": "Eklenen satır döngünün sürdüğünü, sohbetin özetlendiğini, devir kartı ile kuyruk dosyasının baştan okunacağını söyler.",
+            "soz": "döngü sürüyor, sohbet özetlendi; devir kartı ve kuyruk dosyası baştan okunur"
           }
         },
         {
           "id": "b09-d3-s7",
           "tur": "bosluk",
+          "kart": 5,
           "soru": "Sıkıştırmada büyük bir skill kırpılırsa dosyanın başı kalır; bu yüzden en önemli talimat SKILL.md'nin ___ yazılır.",
           "secenekler": [
             "sonuna",
@@ -452,9 +498,13 @@
         "Masaüstünde bağlamın ne kadar dolu olduğunu nereden göreceğini anlatabilir."
       ],
       "anlatim": [
-        "Oturum (session), bir proje klasörüne bağlı, kaydedilmiş bir sohbettir. Claude Code onu sen çalışırken sürekli kaydeder; çıksan da kaldığın yerden dönebilirsin. Terminalde 'claude --continue' bu klasördeki en son oturumu açar; 'claude --resume' ise oturum seçiciyi (session picker) açar, listeden seçersin.",
-        "Sen masaüstündesin. Orada bu iki komutun karşılığı kenar çubuğundaki listede bir oturuma tıklamaktır. Oturumu yeniden adlandırmak için onu açıp başlık çubuğundaki adına tıklarsın. Bağlamın doluluğunu yeni düzende oturum ayrıntıları panelindeki Context kartının başlığında yüzde olarak görürsün; istem kutusuna /context yazınca kategori dökümü gelir.",
-        "Bizde her sohbete numaralı ad verilir: açılışta 'N · açılış', kapanışta 'N · iş adı'. Adı elle verdiysen seninki esas kalır (acilis skill'i, adım 0). Açıklayıcı ad, oturumu listede bulmanı kolaylaştırır."
+        "Oturum (session), bir proje klasörüne bağlı, kaydedilmiş bir sohbettir. Claude Code onu sen çalışırken sürekli kaydeder; çıksan da kaldığın yerden dönebilirsin.",
+        "Terminalde 'claude --continue' bu klasördeki en son oturumu, 'claude --resume' oturum seçiciyi (session picker) açar. Masaüstünde ikisinin karşılığı kenar çubuğundaki listede bir oturuma tıklamaktır.",
+        "'claude --resume oturum-adı' adı verilen oturumu doğrudan sürdürür. /resume ise açık oturumun içinden başka oturuma geçirir.",
+        "Oturumu yeniden adlandırmak için onu açıp başlık çubuğundaki adına tıklarsın.",
+        "Bağlamın doluluğunu yeni düzende oturum ayrıntıları panelindeki Context kartının başlığında yüzde olarak görürsün. İstem kutusuna /context yazınca kategori dökümü gelir.",
+        "Bizde her sohbete numaralı ad verilir: açılışta 'N · açılış', kapanışta 'N · iş adı'. N sohbetin numarasıdır.",
+        "Adı elle verdiysen acilis skill'ine göre seninki esas kalır. Açıklayıcı ad, oturumu listede bulmanı kolaylaştırır."
       ],
       "terimler": [
         {"tr": "oturum", "en": "session", "aciklama": "Bir proje klasörüne bağlı, sürekli kaydedilen sohbet; kaldığın yerden sürdürülebilir."},
@@ -464,6 +514,7 @@
         {
           "id": "b09-d4-s1",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Terminalde: komutu işiyle eşleştir.",
           "ciftler": [
             ["claude --continue", "Bu klasördeki en son oturumu açar"],
@@ -483,6 +534,7 @@
         {
           "id": "b09-d4-s2",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Masaüstündesin ve dünkü bir oturuma dönmek istiyorsun. Terminaldeki --resume ve --continue'nun masaüstü karşılığı hangisi?",
           "secenekler": [
             "İstem kutusuna /clear yazıp göndermek",
@@ -503,9 +555,10 @@
         {
           "id": "b09-d4-s3",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Claude Code'dan çıkınca oturum kaybolur; kaldığın yere dönemezsin.",
           "dogru": false,
-          "ipucu": "Oturumun çalışırken nereye kaydedildiğini düşün.",
+          "ipucu": "Kartın oturumun kaydedilmesi hakkında ne dediğini hatırla.",
           "aciklama": "Oturumlar çalışırken yerel döküm dosyalarına sürekli kaydedilir, bu yüzden çıktıktan sonra da dönebilirsin.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sessions",
@@ -517,6 +570,7 @@
         {
           "id": "b09-d4-s4",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Masaüstünde bir oturumun adını değiştirmek istiyorsun. Ne yaparsın?",
           "secenekler": [
             "Açıp başlık çubuğundaki adına tıklarsın",
@@ -536,6 +590,7 @@
         {
           "id": "b09-d4-s5",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Masaüstünün yeni düzeninde bu oturumun bağlamının ne kadar dolu olduğunu nerede görürsün?",
           "secenekler": [
             "Ayarlar penceresindeki hesap sayfasında",
@@ -556,7 +611,8 @@
         {
           "id": "b09-d4-s6",
           "tur": "coktan",
-          "soru": "acilis skill'i adım 0: ad set_session_title ile 'N · açılış' yapılır. 190 numaralı sohbeti açtın; oturumun adı ne olur?",
+          "kart": 5,
+          "soru": "acilis skill'inde ad set_session_title ile 'N · açılış' yapılır. 190 numaralı sohbeti açtın; oturumun adı ne olur?",
           "secenekler": [
             "açılış · 190",
             "proje — açılış",
@@ -568,21 +624,29 @@
           "aciklama": "Açılışta ad 'N · açılış' kalıbıyla verilir; N sohbet numarasıdır.",
           "kaynak": {
             "adres": ".claude/skills/acilis/SKILL.md:12",
-            "okuma": "2026-11-15",
-            "dayanak": "Açılışta ad set_session_title ile 'N · açılış' yapılır, N sohbetin numarasıdır."
+            "okuma": "2026-11-17",
+            "dayanak": "Açılışta ad set_session_title ile 'N · açılış' yapılır, N sohbetin numarasıdır.",
+            "soz": "Ad `set_session_title` ile \"N · açılış\""
           }
         },
         {
           "id": "b09-d4-s7",
-          "tur": "dogru-yanlis",
-          "soru": "acilis skill'ine göre oturumun adını elle verdiysen, açılış kendi verdiği adı değil seninkini esas alır.",
-          "dogru": true,
-          "ipucu": "Elle verdiğin ad ile açılışın verdiği ad çakışınca hangisinin kaldığını düşün.",
+          "tur": "bosluk",
+          "kart": 6,
+          "soru": "acilis skill'ine göre oturumun adını elle verdiysen ___ esas kalır.",
+          "secenekler": [
+            "açılışın verdiği ad",
+            "senin verdiğin ad",
+            "en son verilen ad"
+          ],
+          "dogru": 1,
+          "ipucu": "İki ad çakışınca kimin seçiminin kaldığını düşün.",
           "aciklama": "Skill açıkça söyler: adı elle verdiysen seninki esastır.",
           "kaynak": {
             "adres": ".claude/skills/acilis/SKILL.md:12",
-            "okuma": "2026-11-15",
-            "dayanak": "Kullanıcı adı elle verdiyse onun verdiği ad esastır."
+            "okuma": "2026-11-17",
+            "dayanak": "Kullanıcı adı elle verdiyse onun verdiği ad esastır.",
+            "soz": "kullanıcı adı elle verdiyse onunki esas"
           }
         }
       ]
@@ -596,18 +660,24 @@
         "Yalnız kabuk komutuyla değişen dosyanın ve alt ajanın öteki dosyalardaki düzenlemesinin geri gelmediğini, bunun için git gerektiğini anlatabilir."
       ],
       "anlatim": [
-        "Claude Code, Claude'un dosya düzenlemelerini kendiliğinden izler. Bir tur başlatan her istemden önce kodun hali kaydedilir; buna kontrol noktası (checkpoint) denir. Kontrol noktaları sohbetle birlikte kaydedilir; oturumu sonradan sürdürsen de /rewind çalışır. Geri dönmek için /rewind yazarsın ya da istem kutusu boşken iki kez Esc'ye basarsın. Menüde gönderdiğin istemler listelenir; birini seçip ne yapılacağını seçersin.",
-        "Menüdeki seçenekler: kodu ve sohbeti birlikte geri al; yalnız sohbeti geri al, kod kalır; yalnız kodu geri al, sohbet kalır; buradan sonrasını ya da buraya kadarını özetle; vazgeç. Özetleme seçenekleri dosyalara dokunmaz, bağlamda yer açar; hedefli bir /compact gibidir.",
-        "Sınırları var. Yalnız kabuk komutuyla (Bash) değişen dosya izlenmez, olduğu gibi kalır. Alt ajanın düzenlediği öteki dosyalar da genelde geri gelmez. Bunlar için git gibi sürüm denetimi gerekir. Bizde her iş bitince commit atılır (CLAUDE.md satır 112). Kontrol noktası oturum içi hızlı kurtarmadır, git'in yerini tutmaz."
+        "Claude Code, bir tur başlatan her istemden önce kodun halini kaydeder; buna geri sarma noktası (checkpoint) denir. Bunlar sohbetle kaydedilir, sürdürdüğün oturumda da durur.",
+        "Geri dönmek için /rewind yazarsın ya da istem kutusu boşken iki kez Esc'ye basarsın. Menüde gönderdiğin istemler listelenir; birini seçip ne yapılacağını seçersin.",
+        "Üç geri alma seçeneği var: kodu ve sohbeti birlikte, yalnız sohbeti (kod kalır) ya da yalnız kodu (sohbet kalır) geri al.",
+        "Özetleme seçenekleri de var: buradan sonrasını ya da buraya kadarını özetle. Dosyalara dokunmaz, bağlamda yer açar; hedefli bir /compact gibidir.",
+        "Claude Code, Claude'un dosya düzenlemelerini kendiliğinden izler. Yalnız kabuk komutuyla (Bash) değişen dosya izlenmez, olduğu gibi kalır.",
+        "Alt ajanın düzenlediği öteki dosyalar da genelde geri gelmez. Bunlar için git gibi sürüm denetimi gerekir.",
+        "Bizim kural: CLAUDE.md'de 'klasör git ile tutulur, her iş bitince commit atılır' satırı var.",
+        "Geri sarma noktası oturum içi hızlı kurtarmadır, git'in yerini tutmaz. Kalıcı geçmiş için git kullanılmaya devam edilir."
       ],
       "terimler": [
-        {"tr": "kontrol noktası", "en": "checkpoint", "aciklama": "Bir tur başlatan her istemden önce kodun kaydedilen hali; geri sarınca buna dönülür."},
+        {"tr": "geri sarma noktası", "en": "checkpoint", "aciklama": "Bir tur başlatan her istemden önce kodun kaydedilen hali; geri sarınca buna dönülür."},
         {"tr": "geri sarma", "en": "rewind", "aciklama": "Kodu, sohbeti ya da ikisini birden önceki bir istemin noktasına döndürmek."}
       ],
       "sorular": [
         {
           "id": "b09-d5-s1",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Geri sarma menüsünü nasıl açarsın?",
           "secenekler": [
             "/clear yazıp sohbeti sıfırlayarak",
@@ -616,7 +686,7 @@
             "/context yazıp listeden istem seçerek"
           ],
           "dogru": 1,
-          "ipucu": "Komutun adı menünün işini söyler.",
+          "ipucu": "Kartta geri dönmenin nasıl başlatıldığını hatırla.",
           "aciklama": "Menü /rewind ile ya da istem kutusu boşken iki kez Esc ile açılır; kutuda yazı varsa çift Esc onu temizler.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/checkpointing",
@@ -628,12 +698,13 @@
         {
           "id": "b09-d5-s2",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Menü seçeneğini sonucuyla eşleştir.",
           "ciftler": [
-            ["Kodu ve sohbeti geri al (Restore code and conversation)", "Kod da sohbet de o noktaya döner"],
-            ["Sohbeti geri al (Restore conversation)", "Sohbet o mesaja döner, kod olduğu gibi kalır"],
-            ["Kodu geri al (Restore code)", "Dosya değişiklikleri geri alınır, sohbet kalır"],
-            ["Buradan sonrasını özetle (Summarize from here)", "O noktadan sonrası özete sıkışır, yer açılır"]
+            ["Kodu ve sohbeti geri al (Restore code and conversation)", "İkisi de döner"],
+            ["Sohbeti geri al (Restore conversation)", "Kod kalır"],
+            ["Kodu geri al (Restore code)", "Sohbet kalır"],
+            ["Buradan sonrasını özetle (Summarize from here)", "Yer açılır"]
           ],
           "ipucu": "Her seçenekte neyin geri gidip neyin yerinde kaldığına bak.",
           "aciklama": "Üç geri alma seçeneği kodu, sohbeti ya da ikisini döndürür; özetleme seçeneği ise bağlamda yer açar.",
@@ -647,9 +718,10 @@
         {
           "id": "b09-d5-s3",
           "tur": "dogru-yanlis",
+          "kart": 4,
           "soru": "Claude'un yalnız kabuk komutuyla (Bash) değiştirdiği bir dosyayı /rewind geri getirir.",
           "dogru": false,
-          "ipucu": "Kontrol noktasının hangi araçla yapılan değişikliği izlediğini düşün.",
+          "ipucu": "Geri sarma noktasının hangi araçla yapılan değişikliği izlediğini düşün.",
           "aciklama": "Yalnız kabuk komutlarının değiştirdiği dosya izlenmez ve olduğu gibi kalır; onu git gibi sürüm denetimiyle geri alırsın.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/checkpointing",
@@ -660,31 +732,38 @@
         },
         {
           "id": "b09-d5-s4",
-          "tur": "dogru-yanlis",
-          "soru": "Kontrol noktaları sohbetle birlikte kaydedilir; oturuma sonradan dönsen de /rewind kullanabilirsin.",
-          "dogru": true,
-          "ipucu": "Kontrol noktasının neyle birlikte kaydedildiğini düşün.",
-          "aciklama": "Kontrol noktaları sohbetle kaydedildiği için sürdürdüğün oturumda da /rewind çalışır.",
+          "tur": "bosluk",
+          "kart": 0,
+          "soru": "Geri sarma noktaları ___ birlikte kaydedilir; bu yüzden oturuma sonradan dönsen de geri sarabilirsin.",
+          "secenekler": [
+            "sohbetle",
+            "git geçmişiyle",
+            "proje ayarlarıyla"
+          ],
+          "dogru": 0,
+          "ipucu": "Geri sarma noktasının neyle birlikte kaydedildiğini düşün.",
+          "aciklama": "Geri sarma noktaları sohbetle kaydedildiği için sürdürdüğün oturumda da geri sarabilirsin.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/checkpointing",
             "kopya": "checkpointing.md",
             "okuma": "2026-11-15",
-            "dayanak": "Claude Code kontrol noktalarını sohbetle birlikte kaydeder, bu yüzden oturumu sürdürdükten sonra da /rewind koşabilirsin."
+            "dayanak": "Claude Code geri sarma noktalarını sohbetle birlikte kaydeder, bu yüzden oturumu sürdürdükten sonra da /rewind koşabilirsin."
           }
         },
         {
           "id": "b09-d5-s5",
           "tur": "coktan",
-          "soru": "Arka planda çalışan bir alt ajan, Claude'un bu sohbette hiç düzenlemediği dosyaları değiştirdi. /rewind bu değişiklikleri geri alır mı?",
+          "kart": 5,
+          "soru": "Bir alt ajan, Claude'un bu sohbette hiç düzenlemediği dosyaları değiştirdi. /rewind bu değişiklikleri geri alır mı?",
           "secenekler": [
-            "Evet, her düzenleme kontrol noktasında durur",
+            "Evet, her düzenleme geri sarma noktasında durur",
             "Evet, ama yalnız sohbeti geri al seçilirse",
             "Hayır, alt ajanın düzenlemeleri kalır, git gerekir",
-            "Evet, ama yalnız ilk 30 gün içinde"
+            "Evet, ama yalnız ilk 30 günde"
           ],
           "dogru": 2,
-          "ipucu": "Alt ajanın düzenlemelerinin senin oturumunun kontrol noktalarına girip girmediğini düşün.",
-          "aciklama": "Alt ajanın öteki dosyalardaki düzenlemeleri kontrol noktasına girmez ve kalır; bunları git ile geri alırsın.",
+          "ipucu": "Alt ajanın düzenlemelerinin senin oturumunun geri sarma noktalarına girip girmediğini düşün.",
+          "aciklama": "Alt ajanın öteki dosyalardaki düzenlemeleri geri sarma noktasına girmez ve kalır; bunları git ile geri alırsın.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/checkpointing",
             "kopya": "checkpointing.md",
@@ -695,26 +774,28 @@
         {
           "id": "b09-d5-s6",
           "tur": "coktan",
-          "soru": "Bizde her iş bitince commit atılır (CLAUDE.md satır 112). Kontrol noktası varken bu neden hâlâ gerekli?",
+          "kart": 7,
+          "soru": "Bizde her iş bitince commit atılır. Geri sarma noktası varken bu neden hâlâ gerekli?",
           "secenekler": [
-            "Kontrol noktası oturum içi kurtarmadır; kalıcı geçmiş git'te",
-            "Kontrol noktası yalnız sohbeti geri alır, kodu hiç almaz",
-            "Kontrol noktası kalıcıdır; commit atmak yalnız bir alışkanlıktır"
+            "Geri sarma noktası oturum içi kurtarmadır; kalıcı geçmiş git'te",
+            "Geri sarma noktası yalnız sohbeti geri alır, kodu hiç almaz",
+            "Geri sarma noktası kalıcıdır; commit atmak yalnız bir alışkanlıktır"
           ],
           "dogru": 0,
-          "ipucu": "Kontrol noktasının ne kadar süreli bir kurtarma için tasarlandığını düşün.",
-          "aciklama": "Belge kontrol noktalarını oturum düzeyinde hızlı kurtarma diye tanımlar; kalıcı geçmiş için git kullanılmaya devam edilir.",
+          "ipucu": "Geri sarma noktasının ne kadar süreli bir kurtarma için tasarlandığını düşün.",
+          "aciklama": "Belge geri sarma noktalarını oturum düzeyinde hızlı kurtarma diye tanımlar; kalıcı geçmiş için git kullanılmaya devam edilir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/checkpointing",
             "kopya": "checkpointing.md",
             "okuma": "2026-11-15",
-            "dayanak": "Kontrol noktaları oturum düzeyinde hızlı kurtarma içindir; kalıcı sürüm geçmişi için git gibi sürüm denetimi kullanılmaya devam edilir."
+            "dayanak": "Geri sarma noktaları oturum düzeyinde hızlı kurtarma içindir; kalıcı sürüm geçmişi için git gibi sürüm denetimi kullanılmaya devam edilir."
           }
         },
         {
           "id": "b09-d5-s7",
           "tur": "coktan",
-          "soru": "CLAUDE.md satır 112'ye göre bizde commit ne zaman atılır?",
+          "kart": 6,
+          "soru": "CLAUDE.md'ye göre bizde commit ne zaman atılır?",
           "secenekler": [
             "Yalnız kapanışta",
             "Her iş bitince",
@@ -726,13 +807,15 @@
           "aciklama": "Satır klasörün git ile tutulduğunu ve her iş bitince commit atıldığını söyler.",
           "kaynak": {
             "adres": "CLAUDE.md:112",
-            "okuma": "2026-11-15",
-            "dayanak": "Klasör git ile tutulur, her iş bitince commit atılır."
+            "okuma": "2026-11-17",
+            "dayanak": "Klasör git ile tutulur, her iş bitince commit atılır.",
+            "soz": "klasör git ile tutulur, her iş bitince commit atılır"
           }
         },
         {
           "id": "b09-d5-s8",
           "tur": "sirala",
+          "kart": 2,
           "soru": "Claude yanlış bir düzenleme yaptı; kodu son isteminden önceki hale döndüreceksin. Adımları sırala.",
           "adimlar": [
             "/rewind yaz ya da boş istemde iki kez Esc'ye bas",
@@ -759,9 +842,15 @@
         "300 ve 500 bin bağlam eşiklerinde ne olduğunu anlatabilir."
       ],
       "anlatim": [
-        "Açılışta sen 'proje — açılış' yazarsın, acilis skill'i devir kartını, açık işleri ve son kararları okur. Bir iş bitip sıradakine geçerken is-gecisi skill'i commit atar, DURUM satırını yazar, bağlamı ölçer. Sen 'sohbeti kapatıyoruz' deyince kapanis skill'i açılır; sırası: devir testi, devir kartı ve DURUM.md, KARARLAR.md, denetim, commit, kapanış mesajı. Döngünün kayıt noktasında ise dongu skill'i açılır.",
-        "Devir kartını kapanış yazar, sonraki açılış okur. Satırları: Bitti, Açık, Neden, Sonraki adım, Kaynaklar, Belirsiz, Karar, Bitti sayılır, kullanıcı bloğu, Ders, Beyin. Sonraki adım sıradaki işi, Bitti sayılır onun bitti ölçütünü yazar. Kart yalnız klasörde olmayanı yazar: bilginin yerini verir, CLAUDE.md, skill ve rapordaki metni kopyalamaz. İşe başlamadan devir kartı ve DURUM.md okunur (CLAUDE.md satır 91).",
-        "İş geçişinde bağlam ölçülür. 500 bin üstünde yeni işten önce kapanış önerilir. 300 ile 500 bin arasında kapanış yalnız sıradaki iş birden çok ajanlı büyük işse önerilir, öteki işler sürer. Saat damgası kancası (UserPromptSubmit) 300 ve 500 bin aşılınca eşik başına bir kez 'Bağlam:' satırı basar. Oturumun geçici alanındaki her şey sohbetle ölür; kapanıştaki devir testi gerekeni diske indirir."
+        "CLAUDE.md'ye göre işe başlamadan devir kartı ve DURUM.md okunur. Açılışta acilis skill'i devir kartını, açık işleri ve son kararları okur.",
+        "Bir iş bitip sıradakine geçerken is-gecisi, sen 'sohbeti kapatıyoruz' deyince kapanis açılır. Sen yokken kuyruktan iş koşan döngüde, kayıtların güncellendiği kayıt noktasında dongu açılır.",
+        "Kapanışın sırası: devir testi, devir kartı ve DURUM.md, KARARLAR.md, denetim, commit, kapanış mesajı.",
+        "Oturumun geçici alanı, indirilen dosyaların durduğu ve sohbet bitince silinen yerdir. Kapanıştaki devir testi, devam etmek için neyin gerektiğini sorar ve gerekeni diske indirir.",
+        "Devir kartını kapanış yazar, sonraki açılış okur. Sonraki adım satırı sıradaki işi, Bitti sayılır onun bitti ölçütünü yazar.",
+        "Bitti satırı kapanan işi ve kaynak yolunu, Açık yalnız bu oturumdan kalanı, Neden gerekçeyi yazar. Beyin, sıradaki ana oturumun modelini ve eforunu (çaba düzeyi) yazar.",
+        "İş geçişinde bağlam ölçülür. 500 bin üstünde yeni işten önce kapanış önerilir.",
+        "300 ile 500 bin arasında kapanış yalnız sıradaki iş birden çok ajanlı büyük işse önerilir, öteki işler sürer.",
+        "Saat damgası kancası (UserPromptSubmit) 300 ve 500 bin aşılınca eşik başına bir kez 'Bağlam:' satırı basar. Kancanın dosyası saat_damgasi.py."
       ],
       "terimler": [
         {"tr": "kullanıcı turu kancası", "en": "UserPromptSubmit", "aciklama": "Her kullanıcı mesajında koşan kanca olayı; saat_damgasi.py bununla bağlama saat ve gerekirse bağlam satırı ekler."}
@@ -770,6 +859,7 @@
         {
           "id": "b09-d6-s1",
           "tur": "eslestir",
+          "kart": 1,
           "soru": "Anı, o anda açılan skill'le eşleştir.",
           "ciftler": [
             ["Oturum açılışı", "acilis"],
@@ -781,13 +871,15 @@
           "aciklama": "is-gecisi yalnız iki iş arasında açılır; açılış, kapanış ve döngünün kayıt noktası kendi skill'lerindedir.",
           "kaynak": {
             "adres": ".claude/skills/is-gecisi/SKILL.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "is-gecisi bir iş bitip sıradakine geçilirken açılır, oturum açılışında acilis, kapanışta kapanis, döngünün kayıt noktasında dongu kullanılır."
+            "okuma": "2026-11-17",
+            "dayanak": "is-gecisi bir iş bitip sıradakine geçilirken açılır, oturum açılışında acilis, kapanışta kapanis, döngünün kayıt noktasında dongu kullanılır.",
+            "soz": "Oturum açılışında (acilis), kapanışta (kapanis), döngünün kayıt noktasında (dongu)"
           }
         },
         {
           "id": "b09-d6-s2",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Devir kartında sıradaki işin ne olduğu hangi satırda yazar?",
           "secenekler": [
             "Bitti:",
@@ -800,13 +892,15 @@
           "aciklama": "Sonraki adım satırı sıradaki işi adıyla ve kaynak kararının numarasıyla yazar; Bitti sayılır ise o işin bitti ölçütüdür.",
           "kaynak": {
             "adres": ".claude/skills/kapanis/SKILL.md:29",
-            "okuma": "2026-11-15",
-            "dayanak": "Sonraki adım satırı iş adıyla ve işin kaynak kararının numarasıyla yazılır, sıradaki iş yoksa 'Sonraki adım: yok' yazılır."
+            "okuma": "2026-11-17",
+            "dayanak": "Sonraki adım satırı iş adıyla ve işin kaynak kararının numarasıyla yazılır, sıradaki iş yoksa 'Sonraki adım: yok' yazılır.",
+            "soz": "iş adıyla ve işin kaynak kararının numarasıyla"
           }
         },
         {
           "id": "b09-d6-s3",
           "tur": "eslestir",
+          "kart": 5,
           "soru": "Devir kartı satırını taşıdığı bilgiyle eşleştir.",
           "ciftler": [
             ["Bitti:", "Kapanan iş ve kaynak dosya yolu"],
@@ -818,13 +912,15 @@
           "aciklama": "Kartta biten iş, kalan iş, gerekçe ve sıradaki sohbetin modeli ayrı satırlarda durur.",
           "kaynak": {
             "adres": ".claude/skills/kapanis/SKILL.md:26",
-            "okuma": "2026-11-15",
-            "dayanak": "Bitti satırı kapanan işi ve kaynak dosya yolunu, Açık satırı yalnız bu oturumdan kalan işi, Neden satırı kararların gerekçesini, Beyin satırı sıradaki sohbetin modelini ve eforunu taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "Bitti satırı kapanan işi ve kaynak dosya yolunu, Açık satırı yalnız bu oturumdan kalan işi, Neden satırı kararların gerekçesini, Beyin satırı sıradaki sohbetin modelini ve eforunu taşır.",
+            "soz": "kapanan iş ve kaynak dosya yolu"
           }
         },
         {
           "id": "b09-d6-s4",
           "tur": "coktan",
+          "kart": 6,
           "soru": "İş geçişinde bağlam 540 bin ölçüldü. is-gecisi'ne göre ne olur?",
           "secenekler": [
             "Yeni işten önce kapanış önerilir",
@@ -837,13 +933,15 @@
           "aciklama": "500 binin üstünde kural yeni işten önce kapanış önerir.",
           "kaynak": {
             "adres": ".claude/skills/is-gecisi/SKILL.md:30",
-            "okuma": "2026-11-15",
-            "dayanak": "500 bin üstü bağlamda yeni işten önce kapanış önerilir."
+            "okuma": "2026-11-17",
+            "dayanak": "500 bin üstü bağlamda yeni işten önce kapanış önerilir.",
+            "soz": "500 bin üstü: yeni işten önce kapanış önerilir."
           }
         },
         {
           "id": "b09-d6-s5",
           "tur": "coktan",
+          "kart": 7,
           "soru": "İş geçişinde bağlam 400 bin, sıradaki iş tek dosyalık küçük bir düzeltme. is-gecisi'ne göre ne olur?",
           "secenekler": [
             "Kapanış önerilir",
@@ -856,39 +954,50 @@
           "aciklama": "300-500 bin arasında kapanış yalnız birden çok ajanlı büyük işte önerilir; küçük iş sürer.",
           "kaynak": {
             "adres": ".claude/skills/is-gecisi/SKILL.md:31",
-            "okuma": "2026-11-15",
-            "dayanak": "300-500 bin arasında kapanış yalnız sıradaki iş birden çok ajanlı büyük işse önerilir, öteki işler sürer."
+            "okuma": "2026-11-17",
+            "dayanak": "300-500 bin arasında kapanış yalnız sıradaki iş birden çok ajanlı büyük işse önerilir, öteki işler sürer.",
+            "soz": "300-500 bin: kapanış yalnız sıradaki iş birden çok ajanlı büyük işse önerilir"
           }
         },
         {
           "id": "b09-d6-s6",
           "tur": "dogru-yanlis",
+          "kart": 8,
           "soru": "saat_damgasi.py bağlam 300 bini aştıktan sonra her turda yeniden 'Bağlam:' satırı basar.",
           "dogru": false,
           "ipucu": "Kancanın aynı eşik için kaç kez yazdığına bak.",
           "aciklama": "Satır eşik başına bir kez basılır; bağlam eşiğin altına inip yeniden aşmadıkça tekrarlanmaz.",
           "kaynak": {
             "adres": ".claude/hooks/saat_damgasi.py:12",
-            "okuma": "2026-11-15",
-            "dayanak": "Satır eşik başına bir kez basılır, bağlam o satırdan sonra eşiğin altına inmediyse yeniden basılmaz."
+            "okuma": "2026-11-17",
+            "dayanak": "Satır eşik başına bir kez basılır, bağlam o satırdan sonra eşiğin altına inmediyse yeniden basılmaz.",
+            "soz": "Eşik başına bir kez: dökümde"
           }
         },
         {
           "id": "b09-d6-s7",
-          "tur": "dogru-yanlis",
-          "soru": "CLAUDE.md'ye göre işe başlamadan önce devir kartı ve DURUM.md okunur.",
-          "dogru": true,
+          "tur": "bosluk",
+          "kart": 0,
+          "soru": "CLAUDE.md'ye göre işe başlamadan devir kartı ve ___ okunur.",
+          "secenekler": [
+            "SKILL.md",
+            "README.md",
+            "DURUM.md"
+          ],
+          "dogru": 2,
           "ipucu": "Kartta işe başlamadan neyin okunduğunu hatırla.",
           "aciklama": "Satır işe başlamadan proje-baglam skill'inin, devir kartının ve DURUM.md'nin okunmasını ister.",
           "kaynak": {
             "adres": "CLAUDE.md:91",
-            "okuma": "2026-11-15",
-            "dayanak": "İşe başlamadan proje-baglam skill'i, devir kartı ve DURUM.md okunur."
+            "okuma": "2026-11-17",
+            "dayanak": "İşe başlamadan proje-baglam skill'i, devir kartı ve DURUM.md okunur.",
+            "soz": "İşe başlamadan proje-baglam skill'ini, devir kartını"
           }
         },
         {
           "id": "b09-d6-s8",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Oturumda geçici alana bir kaynak metin indirdin; sıradaki iş onun üstünde çalışacak. Kapanıştaki devir testine göre ne yapılır?",
           "secenekler": [
             "Geçici alanda kalır, sonraki sohbet oradan okur",
@@ -900,13 +1009,15 @@
           "aciklama": "Geçici alandaki her şey sohbetle ölür; sonraki iş kaynak metne dayanacaksa kaynak da diske iner.",
           "kaynak": {
             "adres": ".claude/skills/kapanis/SKILL.md:20",
-            "okuma": "2026-11-15",
-            "dayanak": "Sonraki iş kaynak metin üstünde çalışacaksa kaynak da diske iner."
+            "okuma": "2026-11-17",
+            "dayanak": "Sonraki iş kaynak metin üstünde çalışacaksa kaynak da diske iner.",
+            "soz": "Sonraki iş kaynak metin üstünde çalışacaksa kaynak da diske iner"
           }
         },
         {
           "id": "b09-d6-s9",
           "tur": "sirala",
+          "kart": 2,
           "soru": "Kapanış adımlarını sırala.",
           "adimlar": [
             "Devir testi yapılır",
@@ -918,9 +1029,10 @@
           "ipucu": "Önce neyin diske inmesi gerektiğine bakılır, en sonda sohbete yazılır.",
           "aciklama": "kapanis skill'i adımları sırayla yapar: devir testi, kart ve DURUM, KARARLAR, denetim, commit ve kapanış mesajı.",
           "kaynak": {
-            "adres": ".claude/skills/kapanis/SKILL.md:8",
-            "okuma": "2026-11-15",
-            "dayanak": "Adımlar sırayla yapılır: devir testi, devir kartı ve DURUM.md, KARARLAR.md, denetim, commit ve yedek, kapanış mesajı."
+            "adres": ".claude/skills/kapanis/SKILL.md:3",
+            "okuma": "2026-11-17",
+            "dayanak": "Kapanış sırasıyla devir testi, devir kartı ve DURUM, KARARLAR kaydı, denetim, commit ve kapanış mesajından oluşur.",
+            "soz": "devir testi, devir kartı (Last-Session üst kartı) ve DURUM açık işler, KARARLAR kaydı, denetim, commit ve kullanıcıya kapanış mesajı"
           }
         }
       ]

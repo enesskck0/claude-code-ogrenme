@@ -1,5 +1,5 @@
 // Öğrenme motoru: saf mantık, ekrana dokunmaz (ogrenme/ICERIK-BICIMI.md; kurallar inceleme/2026-11-15-ogrenme-arastirmasi-2-b.md T1-T10 ve beynin kararları).
-// Dışa verilenler: AYARLAR, gunAnahtari, gunEkle, gunFarki, haftaBasi, icerikDizini, yeniDurum, durumGecerli, dersSorulari, yol, dersBaslat, tekrarBaslat, birimTekrariBaslat, yerlesimBaslat, birimSinaviBaslat, mevcutSoru, soruGorunumu, ipucuAl, cevapla, oturumBitir, acilis, seriBilgisi, onarimHakki, gunlukHedef, hedefAyarla, vadesiGelenler, tekrarSonucu, ogrenildiMi, puan, anlasilmadiIsaretle, anlasilmadiOrani, yerlesimGeriAl, BASARILAR, basariDurumu, basariGuncelle, haftalikOzet
+// Dışa verilenler: AYARLAR, gunAnahtari, gunEkle, gunFarki, haftaBasi, icerikDizini, yeniDurum, durumGecerli, dersSorulari, dersAkisi, yol, dersBaslat, siradakiKart, kartGec, dersIlerleme, tekrarBaslat, birimTekrariBaslat, yerlesimBirimleri, yerlesimBaslat, birimSinaviBaslat, mevcutSoru, soruGorunumu, ipucuAl, cevapla, oturumBitir, acilis, seriBilgisi, onarimHakki, gunlukHedef, hedefAyarla, vadesiGelenler, tekrarSonucu, ogrenildiMi, puan, anlasilmadiIsaretle, anlasilmadiOrani, yerlesimGeriAl, yerlesimBilgisi, BASARILAR, basariDurumu, basariGuncelle, haftalikOzet
 // Saat (simdi: ms ya da Date) ve rastgelelik (tohum: sayı) parametreyle gelir. Durum ve oturum değiştirilmez, yenisi döner.
 // Gün sınırı cihazın yerel gece yarısı, hafta pazartesi başlar. Tekrar birimi soru (içerikte kavram alanı yok).
 // Tarayıcıda klasik betik: globalThis.OGRENME_MOTOR. Node'da: module.exports. Dış kütüphane yok.
@@ -16,8 +16,10 @@
     seriTekrarSoru: 5,              // T4: seri günü için tekrar oturumu en az 5 soru
     kopusGun: 3,                    // T4: üç gün ve üstü ara seriyi sıfırlar
     donumNoktalari: [7, 30, 100],   // T4
-    yerlesimSoru: 3,                // T6: birim başına 3 soru, 3'ü doğru
-    birimSinaviSoru: 5,             // T6: birimi sınavla geç, 5 soru, 5'i doğru
+    yerlesimSoru: 4,                // KARARLAR 1411: seviye belirlemede birim başına en çok 4 soru
+    yerlesimGecme: 3,               // KARARLAR 1411: 3 doğru birimi geçirir (2. yanlışta birim biter)
+    birimSinaviSoru: 5,             // KARARLAR 1411: birimi sınavla geç, 5 soru
+    birimSinaviGecme: 4,            // KARARLAR 1411: 4 doğru yeter (2. yanlışta biter)
     yerlesimKutu: 2,                // T3, T6: sınavla geçilen soru kutu 2'ye girer
     ogrenildiGun: 3,                // T3, karar 1: 3 ayrı günde ilk denemede doğru
     ogrenildiKutu: 4,               // T3: kutu 4'e ulaşmış
@@ -107,7 +109,9 @@
       var b = x.b;
       var bk = { id: b.id, baslik: b.baslik, dersIdleri: [] };
       (b.dersler || []).forEach(function (d) {
-        var dk = { id: d.id, baslik: d.baslik, birimId: b.id, sira: dizin.dersler.length, soruIdleri: [] };
+        // kartSayisi: anlatım kartı sayısı (TASARIM bölüm 14: kartlı ders akışı).
+        var dk = { id: d.id, baslik: d.baslik, birimId: b.id, sira: dizin.dersler.length, soruIdleri: [],
+          kartSayisi: Array.isArray(d.anlatim) ? d.anlatim.length : 0 };
         (d.sorular || []).forEach(function (s) {
           dizin.soruMap[s.id] = s;
           dizin.soruDers[s.id] = d.id;
@@ -165,6 +169,19 @@
       if (!nesne(q) || !tamSayi(q.gorulme) || !Array.isArray(q.ilkDogruGunler) || !tamSayi(q.anlasilmadi)) return false;
     }
     if (d.yerlesim !== null && !nesne(d.yerlesim)) return false;
+    // TASARIM bölüm 13: kalanBirimler ve sonuclar isteğe bağlı (bu sürümden önceki biçim { gun, gecilenBirimler, takilanBirim } geçerli kalır).
+    if (d.yerlesim !== null) {
+      var y = d.yerlesim;
+      if (y.kalanBirimler !== undefined && !Array.isArray(y.kalanBirimler)) return false;
+      if (y.sonuclar !== undefined) {
+        if (!nesne(y.sonuclar)) return false;
+        var yids = Object.keys(y.sonuclar);
+        for (var yi = 0; yi < yids.length; yi++) {
+          var ys = y.sonuclar[yids[yi]];
+          if (!nesne(ys) || !tamSayi(ys.dogru) || !tamSayi(ys.sorulan) || ys.dogru > ys.sorulan) return false;
+        }
+      }
+    }
     // basarilar isteğe bağlı: 15.11 biçimindeki kayıtta ve kodda yok, o kayıt geçerli kalır.
     if (d.basarilar !== undefined) {
       if (!nesne(d.basarilar)) return false;
@@ -203,6 +220,9 @@
     return gk[dersId] || (gk[dersId] = { cevap: 0, dogru: 0, yanlis: 0, anlasilmadi: 0 });
   }
   function dersBittiMi(durum, dersId) { return !!durum.dersler[dersId]; } // tamam ya da atlandi
+  function birimBittiMi(dizin, durum, birimId) {
+    return dizin.birimMap[birimId].dersIdleri.every(function (id) { return dersBittiMi(durum, id); });
+  }
 
   // ---------- ders içi sıra (T2, karar 3 ve 02:53 düzeltmesi) ----------
 
@@ -221,8 +241,12 @@
   function dersSorulari(dizin, dersId) {
     var ders = dizin.dersMap[dersId];
     if (!ders) throw new Error('ders yok: ' + dersId);
+    return turSirasi(dizin, ders.soruIdleri);
+  }
+  // dersSorulari'nın kuralı, verilen soru listesine (bütün ders ya da tek kartın soruları) uygulanır.
+  function turSirasi(dizin, ids) {
     var gruplar = [[], [], [], [], []], dyler = [], coktan = 0;
-    ders.soruIdleri.forEach(function (id) {
+    ids.forEach(function (id) {
       var tur = dizin.soruMap[id].tur;
       if (tur === 'dogru-yanlis') dyler.push(id);
       else if (tur === 'coktan') { gruplar[coktan < 2 ? 0 : 4].push(id); coktan++; }
@@ -234,6 +258,32 @@
   }
 
   function dyMi(dizin, id) { return dizin.soruMap[id].tur === 'dogru-yanlis'; }
+
+  // TASARIM bölüm 14: kart ve hemen sorusu. Sorunun kart alanı geçerli mi (tam sayı, 0 ile kart sayısı arası).
+  function kartGecerli(k, kartSayisi) { return typeof k === 'number' && Math.floor(k) === k && k >= 0 && k < kartSayisi; }
+  // Döner: { kartli, sira: soru kimlikleri, once: { soruId: [kart no] } (o sorudan hemen önce gösterilecek kartlar),
+  // son: [kart no] (son sorudan sonra; sorusu olmayan son kartlar ya da hiç soru yoksa bütün kartlar) }.
+  // Dersin bütün sorularında geçerli kart varsa kart 0, soruları, kart 1, soruları; yoksa (ya da yarım kullanımda) önce bütün
+  // kartlar, sonra dersSorulari sırası. Yarım ya da geçersiz kullanımı içerik denetimi yakalar; burada eski akışa düşülür.
+  function dersAkisi(dizin, dersId) {
+    var ders = dizin.dersMap[dersId];
+    if (!ders) throw new Error('ders yok: ' + dersId);
+    var K = ders.kartSayisi || 0;
+    var kartli = K > 0 && ders.soruIdleri.length > 0 && ders.soruIdleri.every(function (id) { return kartGecerli(dizin.soruMap[id].kart, K); });
+    var sira = [], once = {}, bekleyen = [];
+    if (kartli) {
+      for (var k = 0; k < K; k++) {
+        bekleyen.push(k);
+        var grup = turSirasi(dizin, ders.soruIdleri.filter(function (id) { return dizin.soruMap[id].kart === k; }));
+        if (grup.length) { once[grup[0]] = bekleyen; bekleyen = []; sira = sira.concat(grup); }
+      }
+    } else {
+      sira = dersSorulari(dizin, dersId);
+      bekleyen = sirali(K);
+      if (sira.length && K) { once[sira[0]] = bekleyen; bekleyen = []; }
+    }
+    return { kartli: kartli, sira: sira, once: once, son: bekleyen };
+  }
 
   // T1, karar 3: önceki derslerden 1 eski soru; ilk 2 ve son 2 sıraya konmaz; doğru-yanlışsa yanında doğru-yanlış olmaz.
   // Döner: { sira: soru kimlikleri, eskiKonum: eski sorunun sıra no'su ya da -1 }.
@@ -277,19 +327,50 @@
     if (dersBittiMi(durum, dersId)) return true;
     return d.sira === 0 || dersBittiMi(durum, dizin.dersler[d.sira - 1].id);
   }
-  function siradakiBirim(dizin, durum) {
-    for (var i = 0; i < dizin.dersler.length; i++) if (!dersBittiMi(durum, dizin.dersler[i].id)) return dizin.dersler[i].birimId;
-    return null;
-  }
 
   function dersBaslat(dizin, durum, dersId, simdi, tohum) {
     var ders = dizin.dersMap[dersId];
     if (!ders) throw new Error('ders yok: ' + dersId);
     if (!dersAcik(dizin, durum, dersId)) throw new Error('ders kilitli: ' + dersId);
     var rnd = rastgele(tohum);
-    var e = eskiSoruEkle(dizin, ders, dersSorulari(dizin, dersId), rnd);
+    var a = dersAkisi(dizin, dersId);
+    var e = eskiSoruEkle(dizin, ders, a.sira, rnd);
     var ogeler = e.sira.map(function (id, i) { return oge(id, i === e.eskiKonum ? 'eski' : 'ders'); });
-    return yeniOturum('ders', dersId, ogeler, simdi);
+    // TASARIM bölüm 14: kartPlan[i] = { kart, once }: kart, sıra no'su "once" olan sorudan hemen önce gösterilir
+    // (once = asıl soru sayısı: son sorudan sonra). Eski soru ve sona eklenen yeniden soru kart taşımaz.
+    var plan = [];
+    e.sira.forEach(function (id, i) {
+      if (i !== e.eskiKonum && a.once[id]) a.once[id].forEach(function (k) { plan.push({ kart: k, once: i }); });
+    });
+    a.son.forEach(function (k) { plan.push({ kart: k, once: e.sira.length }); });
+    var o = yeniOturum('ders', dersId, ogeler, simdi);
+    o.kartPlan = plan;
+    o.kartGecilen = 0;
+    o.kartToplam = ders.kartSayisi || 0;
+    return o;
+  }
+
+  // Şimdi gösterilecek kartın sıra no'su (0'dan) ya da null (sıra soruda). Kartsız oturumda (tekrar, sınav) hep null.
+  function siradakiKart(oturum) {
+    if (!oturum || !Array.isArray(oturum.kartPlan)) return null;
+    var p = oturum.kartPlan[oturum.kartGecilen];
+    return p && p.once <= oturum.konum ? p.kart : null;
+  }
+  // Gösterilen kartı geçer; yeni oturum döner (eskisi değişmez).
+  function kartGec(oturum) {
+    if (siradakiKart(oturum) === null) throw new Error('sırada kart yok');
+    var o = kopya(oturum);
+    o.kartGecilen++;
+    return o;
+  }
+  // İlerleme çubuğunun oranı: (geçilen kart + kesinleşen soru) / (kart + soru). Yeniden soru payı ve paydayı birlikte
+  // artırır, çubuk geri gitmez; ders bitip kartlar geçilince 1.
+  function dersIlerleme(oturum) {
+    if (!oturum || !oturum.ogeler) return 0;
+    var kart = Array.isArray(oturum.kartPlan) ? oturum.kartPlan.length : 0;
+    var gecilen = Array.isArray(oturum.kartPlan) ? oturum.kartGecilen : 0;
+    var toplam = kart + oturum.ogeler.length;
+    return toplam ? (gecilen + oturum.konum) / toplam : 0;
   }
 
   // T3: vadesi gelen sorular, en gecikmiş önce.
@@ -331,14 +412,19 @@
   }
 
   // T6: birimin farklı derslerinden soru; en az 1 üretim (boşluk ya da sıralama); doğru-yanlış yok (2 seçenek tahmine açık, T2 ve T7 madde 6 dayanağı B8).
+  function sinavaUygun(dizin, id) { var t = dizin.soruMap[id].tur; return !!TURLER[t] && t !== 'dogru-yanlis'; }
+  function sinavSoruSayisi(dizin, birimId) {
+    var n = 0;
+    dizin.birimMap[birimId].dersIdleri.forEach(function (d) {
+      dizin.dersMap[d].soruIdleri.forEach(function (id) { if (sinavaUygun(dizin, id)) n++; });
+    });
+    return n;
+  }
   function sinavSorulari(dizin, birimId, adet, rnd) {
     var b = dizin.birimMap[birimId];
     var havuzlar = karistir(b.dersIdleri, rnd).map(function (d) {
       return {
-        ids: karistir(dizin.dersMap[d].soruIdleri.filter(function (id) {
-          var t = dizin.soruMap[id].tur;
-          return TURLER[t] && t !== 'dogru-yanlis';
-        }), rnd),
+        ids: karistir(dizin.dersMap[d].soruIdleri.filter(function (id) { return sinavaUygun(dizin, id); }), rnd),
         kullanildi: false
       };
     });
@@ -356,27 +442,54 @@
     return karistir(secilen, rnd);
   }
 
-  function yerlesimBaslat(dizin, durum, simdi, tohum) {
-    var rnd = rastgele(tohum), ogeler = [];
-    dizin.birimler.forEach(function (b) {
-      sinavSorulari(dizin, b.id, AYARLAR.yerlesimSoru, rnd).forEach(function (id) { ogeler.push(oge(id, 'sinav', b.id)); });
+  // TASARIM bölüm 13: sınav oturumu birim birim; her birimin soru sayısı, geçme eşiği (soru sayısını aşmaz), doğru ve sorulan sayısı.
+  // Soru sayısı 0 olan birim oturuma girmez.
+  function sinavOturumu(dizin, tur, hedef, birimIdleri, adet, esik, simdi, rnd) {
+    var ogeler = [], sira = [], sonuc = {};
+    birimIdleri.forEach(function (bId) {
+      var ids = sinavSorulari(dizin, bId, adet, rnd);
+      if (!ids.length) return;
+      sira.push(bId);
+      sonuc[bId] = { soru: ids.length, esik: Math.min(esik, ids.length), dogru: 0, sorulan: 0 };
+      ids.forEach(function (id) { ogeler.push(oge(id, 'sinav', bId)); });
     });
-    var o = yeniOturum('yerlesim', null, ogeler, simdi);
+    var o = yeniOturum(tur, hedef, ogeler, simdi);
+    o.birimler = sira;
+    o.birimSonuc = sonuc;
     o.gecilenBirimler = [];
-    o.takilanBirim = null;
+    o.kalanBirimler = [];
     return o;
   }
 
-  // T6: "bu birimi sınavla geç" yalnız sıradaki birim için; 5 soru, 5'i doğru.
+  // TASARIM bölüm 13: konu seçme listesi, yol sırasıyla. bitti: bütün dersleri tamam ya da atlandı; secilebilir: bitmemiş ve sorusu var.
+  function yerlesimBirimleri(dizin, durum) {
+    return dizin.birimler.map(function (b) {
+      var bitti = birimBittiMi(dizin, durum, b.id), soru = sinavSoruSayisi(dizin, b.id);
+      return { birim: b.id, baslik: b.baslik, bitti: bitti, soru: soru, secilebilir: !bitti && soru > 0 };
+    });
+  }
+
+  // KARARLAR 1411: yalnız seçilen birimler, yol sırasıyla. birimIdleri verilmezse seçilebilir birimlerin hepsi.
+  function yerlesimBaslat(dizin, durum, simdi, tohum, birimIdleri) {
+    var rnd = rastgele(tohum);
+    var secilebilir = yerlesimBirimleri(dizin, durum).filter(function (x) { return x.secilebilir; }).map(function (x) { return x.birim; });
+    var istenen = birimIdleri === undefined ? secilebilir : birimIdleri;
+    if (!Array.isArray(istenen)) throw new TypeError('birimIdleri dizi olmalı');
+    istenen.forEach(function (id) {
+      if (!dizin.birimMap[id]) throw new Error('birim yok: ' + id);
+      if (secilebilir.indexOf(id) < 0) throw new Error('birim seçilemez (dersleri bitmiş ya da sorusu yok): ' + id);
+    });
+    var sirali = secilebilir.filter(function (id) { return istenen.indexOf(id) >= 0; });
+    return sinavOturumu(dizin, 'yerlesim', null, sirali, AYARLAR.yerlesimSoru, AYARLAR.yerlesimGecme, simdi, rnd);
+  }
+
+  // KARARLAR 1411: "bu birimi sınavla geç" bütün dersleri bitmemiş her birim için; 5 soru, 4 doğru yeter.
   function birimSinaviBaslat(dizin, durum, birimId, simdi, tohum) {
     if (!dizin.birimMap[birimId]) throw new Error('birim yok: ' + birimId);
-    if (siradakiBirim(dizin, durum) !== birimId) throw new Error('birim sınavı yalnız sıradaki birim için: ' + birimId);
+    if (birimBittiMi(dizin, durum, birimId)) throw new Error('birim sınavı yalnız dersleri bitmemiş birim için: ' + birimId);
+    if (!sinavSoruSayisi(dizin, birimId)) throw new Error('birim sınavı için soru yok: ' + birimId);
     var rnd = rastgele(tohum);
-    var ogeler = sinavSorulari(dizin, birimId, AYARLAR.birimSinaviSoru, rnd).map(function (id) { return oge(id, 'sinav', birimId); });
-    var o = yeniOturum('birim-sinavi', birimId, ogeler, simdi);
-    o.gecilenBirimler = [];
-    o.takilanBirim = null;
-    return o;
+    return sinavOturumu(dizin, 'birim-sinavi', birimId, [birimId], AYARLAR.birimSinaviSoru, AYARLAR.birimSinaviGecme, simdi, rnd);
   }
 
   // ---------- gösterim (karar 5: seçenek sırası her gösterimde tohumla karışır, cevap asıl sıra numarasıyla verilir) ----------
@@ -409,6 +522,15 @@
     g.sira = oturum.konum + 1;
     g.toplam = oturum.ogeler.length;
     g.ipucuVar = !sinavMi(oturum) && !!soru.ipucu;  // T6: sınavda ipucu yok
+    if (sinavMi(oturum) && oturum.birimSonuc && oturum.birimSonuc[og.birim]) {
+      // TASARIM bölüm 13: hangi konu (kaçıncı, toplam) ve o konudaki soru sırası (birimin en çok soru sayısı içinde).
+      var bs = oturum.birimSonuc[og.birim];
+      g.birim = og.birim;
+      g.konu = oturum.birimler.indexOf(og.birim) + 1;
+      g.konuToplam = oturum.birimler.length;
+      g.birimSira = bs.sorulan + 1;
+      g.birimToplam = bs.soru;
+    }
     return g;
   }
 
@@ -494,11 +616,18 @@
     if (o.konum >= o.ogeler.length) o.bitti = true;
   }
 
+  // KARARLAR 1411, TASARIM bölüm 13: birim, doğru sayısı eşiğe ulaşınca geçer; yanlış sayısı (soru - eşik)'i aşınca kalır
+  // (4 soruda 3: 2. yanlışta; 5 soruda 4: 2. yanlışta). Birim bitince kalan soruları atlanır; sınav ilk yanlışta bitmez.
   function sinavIlerle(o, og, dogru) {
+    var s = o.birimSonuc[og.birim];
+    s.sorulan++;
+    if (dogru) s.dogru++;
+    var gecti = s.dogru >= s.esik, kaldi = s.sorulan - s.dogru > s.soru - s.esik;
     o.konum++;
-    if (!dogru) { o.takilanBirim = og.birim; o.bitti = true; return; }  // T6: ilk takılmada biter
-    var sonraki = o.ogeler[o.konum];
-    if (!sonraki || sonraki.birim !== og.birim) o.gecilenBirimler.push(og.birim);
+    if (gecti || kaldi) {
+      while (o.konum < o.ogeler.length && o.ogeler[o.konum].birim === og.birim) o.konum++;
+      (gecti ? o.gecilenBirimler : o.kalanBirimler).push(og.birim);
+    }
     if (o.konum >= o.ogeler.length) o.bitti = true;
   }
 
@@ -659,11 +788,14 @@
       if (asil.length >= AYARLAR.seriTekrarSoru) olaylar.seri = seriGunu(d, gun);
     } else {
       oturum.gecilenBirimler.forEach(function (b) { birimiAtla(dizin, d, b, gun, oturum.tur); });
-      if (oturum.tur === 'yerlesim') {
-        d.yerlesim = { gun: gun, gecilenBirimler: oturum.gecilenBirimler.slice(), takilanBirim: oturum.takilanBirim };
-      }
+      if (oturum.tur === 'yerlesim') d.yerlesim = yerlesimKaydi(dizin, d.yerlesim, oturum, gun);
       olaylar.gecilenBirimler = oturum.gecilenBirimler.slice();
-      olaylar.takilanBirim = oturum.takilanBirim;
+      olaylar.kalanBirimler = oturum.kalanBirimler.slice();
+      // TASARIM bölüm 13: sonuç ekranında seçilen her birim için bir satır, yol sırasıyla.
+      olaylar.birimSonuclari = oturum.birimler.map(function (b) {
+        var s = oturum.birimSonuc[b];
+        return { birim: b, dogru: s.dogru, sorulan: s.sorulan, gecti: oturum.gecilenBirimler.indexOf(b) >= 0 };
+      });
       // T6: sonuç ekranında yanlışların doğrusu.
       olaylar.yanlislar = oturum.ogeler.filter(function (x) { return x.sonuc === 'yanlis'; }).map(function (x) {
         var s = dizin.soruMap[x.soru];
@@ -671,6 +803,30 @@
       });
     }
     return { durum: d, olaylar: olaylar };
+  }
+
+  // TASARIM bölüm 13: yeniden yapılınca geçilenler öncekilerle birleşir; kalanlardan sonradan geçilen çıkar; sonuçta son sınav yazılır.
+  // Eski biçimin (bu sürümden önceki) takilanBirim'i kalanlara katılır. Birimler yol sırasıyla (dizinde olmayan sonda, geldiği sırayla).
+  function yerlesimKaydi(dizin, eski, oturum, gun) {
+    var e = nesne(eski) ? eski : {};
+    var sira = function (liste) {
+      var yolda = dizin.birimler.map(function (b) { return b.id; }).filter(function (id) { return liste.indexOf(id) >= 0; });
+      return yolda.concat(liste.filter(function (id, i) { return !dizin.birimMap[id] && liste.indexOf(id) === i; }));
+    };
+    var gecilen = sira((Array.isArray(e.gecilenBirimler) ? e.gecilenBirimler : []).concat(oturum.gecilenBirimler));
+    var eskiKalan = Array.isArray(e.kalanBirimler) ? e.kalanBirimler : (typeof e.takilanBirim === 'string' ? [e.takilanBirim] : []);
+    var kalan = sira(eskiKalan.concat(oturum.kalanBirimler)).filter(function (id) { return gecilen.indexOf(id) < 0; });
+    var sonuclar = nesne(e.sonuclar) ? kopya(e.sonuclar) : {};
+    oturum.birimler.forEach(function (b) { sonuclar[b] = { dogru: oturum.birimSonuc[b].dogru, sorulan: oturum.birimSonuc[b].sorulan }; });
+    return { gun: gun, gecilenBirimler: gecilen, kalanBirimler: kalan, sonuclar: sonuclar };
+  }
+
+  // E10 bilgisi (TASARIM bölüm 13): iki biçimde de geçilen birim sayısı gecilenBirimler'in uzunluğu. Seviye belirleme yoksa null.
+  function yerlesimBilgisi(durum) {
+    var y = durum.yerlesim;
+    if (!nesne(y)) return null;
+    var kalan = Array.isArray(y.kalanBirimler) ? y.kalanBirimler.length : (typeof y.takilanBirim === 'string' ? 1 : 0);
+    return { gun: gunMu(y.gun) ? y.gun : null, gecilen: Array.isArray(y.gecilenBirimler) ? y.gecilenBirimler.length : 0, kalan: kalan };
   }
 
   // T6: yerleştirme geri alınır; yerleştirmeyle atlanan dersler açılır, hiç tekrar edilmemiş kutu 2 kayıtları silinir.
@@ -696,7 +852,7 @@
     var gelenler = vadesiGelenler(durum, simdi).filter(function (id) { return dizin.soruMap[id]; });
     var birimBekleyen = {};
     gelenler.forEach(function (id) { var b = dizin.soruBirim[id]; birimBekleyen[b] = (birimBekleyen[b] || 0) + 1; });
-    var siradaki = siradakiBirim(dizin, durum), etkinVar = false;
+    var etkinVar = false;
     return dizin.birimler.map(function (b) {
       var dugumler = [];
       b.dersIdleri.forEach(function (dId, i) {
@@ -709,9 +865,11 @@
           dugumler.push({ tur: 'kisisel-tekrar', id: b.id + '-kt' + ((i + 1) / AYARLAR.kisiselTekrarAralik), durum: k ? 'acik' : 'kilitli', bekleyen: gelenler.length });
         }
       });
-      var hepsi = b.dersIdleri.every(function (id) { return dersBittiMi(durum, id); });
+      var hepsi = birimBittiMi(dizin, durum, b.id);
       dugumler.push({ tur: 'birim-tekrari', id: b.id + '-bt', durum: durum.birimTekrari[b.id] ? 'tamam' : (hepsi ? 'acik' : 'kilitli') });
-      return { birimId: b.id, baslik: b.baslik, sinavAcik: siradaki === b.id, bekleyenTekrar: birimBekleyen[b.id] || 0, dugumler: dugumler };
+      // KARARLAR 1411: birim sınavı dersleri bitmemiş (ve sınava uygun sorusu olan) her birimde açılır.
+      var sinavAcik = !hepsi && sinavSoruSayisi(dizin, b.id) > 0;
+      return { birimId: b.id, baslik: b.baslik, sinavAcik: sinavAcik, bekleyenTekrar: birimBekleyen[b.id] || 0, dugumler: dugumler };
     });
   }
 
@@ -894,10 +1052,15 @@
     yeniDurum: yeniDurum,
     durumGecerli: durumGecerli,
     dersSorulari: dersSorulari,
+    dersAkisi: dersAkisi,
     yol: yol,
     dersBaslat: dersBaslat,
+    siradakiKart: siradakiKart,
+    kartGec: kartGec,
+    dersIlerleme: dersIlerleme,
     tekrarBaslat: tekrarBaslat,
     birimTekrariBaslat: birimTekrariBaslat,
+    yerlesimBirimleri: yerlesimBirimleri,
     yerlesimBaslat: yerlesimBaslat,
     birimSinaviBaslat: birimSinaviBaslat,
     mevcutSoru: mevcutSoru,
@@ -917,6 +1080,7 @@
     anlasilmadiIsaretle: anlasilmadiIsaretle,
     anlasilmadiOrani: anlasilmadiOrani,
     yerlesimGeriAl: yerlesimGeriAl,
+    yerlesimBilgisi: yerlesimBilgisi,
     BASARILAR: BASARILAR,
     basariDurumu: basariDurumu,
     basariGuncelle: basariGuncelle,

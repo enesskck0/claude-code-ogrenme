@@ -13,9 +13,12 @@
         "CLAUDE.md'yi otomatik hafızadan (auto memory) kim yazdığı ve ne taşıdığıyla ayırt edebilir."
       ],
       "anlatim": [
-        "Her Claude Code oturumu boş bir bağlam penceresiyle (context window) başlar; önceki konuşmayı kendiliğinden bilmez. Resmi belgeye göre bilgiyi oturumdan oturuma iki düzenek taşır: senin yazdığın CLAUDE.md dosyası ve Claude'un kendi tuttuğu otomatik hafıza.",
-        "CLAUDE.md düz metin bir talimat dosyasıdır; Claude onu her oturumun başında okur. Bizim dosyanın ilk satırı: 'proje — bu klasörde çalışan asistanın giriş dosyası'. Masaüstü Code sekmesi de aynı dosyayı kullanır.",
-        "Fark kısaca şöyle: CLAUDE.md'yi sen yazarsın, içinde talimatlar ve kurallar olur. Otomatik hafızayı Claude yazar, içinde öğrendikleri ve senin düzeltmelerin olur. İkisi de her konuşmanın başında yüklenir. 'Bunu hatırla' dersen Claude onu otomatik hafızaya yazar; CLAUDE.md'ye girmesini istiyorsan bunu açıkça söylersin."
+        "Her Claude Code oturumu boş bir bağlam penceresiyle (context window) başlar. Önceki konuşmayı kendiliğinden bilmez.",
+        "Bilgiyi oturumdan oturuma iki düzenek taşır: senin yazdığın CLAUDE.md dosyası ve Claude'un kendi tuttuğu otomatik hafıza.",
+        "CLAUDE.md düz metin bir talimat dosyasıdır; Claude onu her oturumun başında okur. Masaüstü uygulamasının Code sekmesi de aynı dosyayı kullanır.",
+        "CLAUDE.md'yi sen yazarsın, içinde talimatlar ve kurallar olur. Otomatik hafızayı Claude yazar, içinde öğrendikleri ve senin düzeltmelerin olur.",
+        "CLAUDE.md de otomatik hafıza da her konuşmanın başında yüklenir.",
+        "'Bunu hatırla' dersen Claude onu otomatik hafızaya yazar. CLAUDE.md'ye girmesini istiyorsan bunu açıkça söylersin."
       ],
       "terimler": [
         {"tr": "otomatik hafıza", "en": "auto memory", "aciklama": "Claude'un senin düzeltmelerine ve tercihlerine göre kendi yazdığı notlar."},
@@ -25,6 +28,7 @@
         {
           "id": "b04-d1-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Resmi belgeye göre her Claude Code oturumu nasıl başlar?",
           "secenekler": ["Boş bir bağlam penceresiyle", "Önceki konuşmayla", "Son üç oturumun özetiyle"],
           "dogru": 0,
@@ -39,11 +43,13 @@
         },
         {
           "id": "b04-d1-s2",
-          "tur": "dogru-yanlis",
-          "soru": "CLAUDE.md'yi Claude yazar, otomatik hafızayı ise sen yazarsın.",
-          "dogru": false,
-          "ipucu": "Kartta iki düzeneği kimin yazdığını anlatan cümleyi hatırla.",
-          "aciklama": "Tersi doğru: CLAUDE.md'yi sen yazarsın, otomatik hafızayı Claude yazar.",
+          "tur": "bosluk",
+          "kart": 1,
+          "soru": "CLAUDE.md'yi sen yazarsın; otomatik hafızayı ise ___ yazar.",
+          "secenekler": ["Claude kendisi", "şirketin BT ekibi", "ekip arkadaşların"],
+          "dogru": 0,
+          "ipucu": "Kartta iki düzeneği kimin tuttuğunu anlatan cümleyi hatırla.",
+          "aciklama": "CLAUDE.md'yi sen yazarsın, otomatik hafızayı Claude kendisi yazar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/memory",
             "kopya": "memory.md",
@@ -54,6 +60,7 @@
         {
           "id": "b04-d1-s3",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Her satırı doğru karşılığıyla eşle.",
           "ciftler": [
             ["CLAUDE.md'yi yazan", "Sen"],
@@ -73,6 +80,7 @@
         {
           "id": "b04-d1-s4",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Bizim CLAUDE.md'nin ilk satırı: 'proje — bu klasörde çalışan asistanın giriş dosyası'. Claude bu dosyayı ne zaman okur?",
           "secenekler": ["Yalnız sen 'CLAUDE.md'yi oku' dediğinde", "Yalnız klasördeki ilk oturumda, bir kez", "Her oturumun başında, kendiliğinden", "Bir dosyayı düzenlemeden hemen önce"],
           "dogru": 2,
@@ -88,6 +96,7 @@
         {
           "id": "b04-d1-s5",
           "tur": "dogru-yanlis",
+          "kart": 4,
           "soru": "CLAUDE.md de otomatik hafıza da her konuşmanın başında yüklenir.",
           "dogru": true,
           "ipucu": "İki hafıza sisteminin ne zaman yüklendiğini anlatan cümleyi düşün.",
@@ -102,6 +111,7 @@
         {
           "id": "b04-d1-s6",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Bir kuralın otomatik hafızaya değil CLAUDE.md'ye girmesini istiyorsun. Claude'a hangisini yazarsın?",
           "secenekler": ["'Bunu hatırla' yazarım", "'Bunu CLAUDE.md'ye ekle' yazarım", "Bir şey yazmam; Claude düzeltmeyi kendisi CLAUDE.md'ye taşır"],
           "dogru": 1,
@@ -117,6 +127,7 @@
         {
           "id": "b04-d1-s7",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Sen Claude Code'u masaüstü uygulamasının Code sekmesinde kullanıyorsun. Projedeki CLAUDE.md orada da okunur mu?",
           "secenekler": ["Evet, terminaldeki gibi okunur", "Hayır, yalnız terminal sürümü okur", "Yalnız @ ile elle eklersen okunur"],
           "dogru": 0,
@@ -140,9 +151,12 @@
         "Katmanların üst üste eklendiğini, birbirinin yerine geçmediğini ayırt edebilir."
       ],
       "anlatim": [
-        "CLAUDE.md dört yerde durabilir, her birinin kapsamı (scope) farklıdır. Kurum politikası (managed policy): şirketin BT ekibi yönetir. Kullanıcı: ~/.claude/CLAUDE.md, bütün projelerinde yalnız senin için. Proje: klasör kökündeki CLAUDE.md, ekiple git üzerinden paylaşılır. Yerel: CLAUDE.local.md, yalnız sen ve yalnız bu proje.",
-        "Bulunan dosyalar birbirinin yerine geçmez, arka arkaya bağlama eklenir. Sıra genelden özele gider: önce kurum, sonra kullanıcı, sonra proje. Aynı klasörde CLAUDE.local.md, CLAUDE.md'den sonra okunur. Alt klasördeki bir CLAUDE.md ise Claude o klasörde bir dosyayı okuyunca ya da düzenleyince yüklenir.",
-        "Bizim CLAUDE.md bu klasörün kökünde durur ve klasör git ile tutulur. Yani bizimki proje katmanıdır. Bu klasörde CLAUDE.local.md yok."
+        "CLAUDE.md dört yerde durabilir ve her yerin kapsamı (scope) farklıdır. En genişi kurum politikası (managed policy): şirketin BT ekibi yönetir, bir sistem klasöründe durur.",
+        "Kullanıcı katmanı ev klasöründeki ~/.claude/CLAUDE.md dosyasıdır; bütün projelerinde yalnız senin için geçerlidir.",
+        "Proje katmanı kökteki (proje klasörünün en üstü, ./) CLAUDE.md ya da .claude/CLAUDE.md'dir, git ile ekiple paylaşılır. Yerel ./CLAUDE.local.md yalnız senin ve bu projenindir, git'e girmez.",
+        "Bizim CLAUDE.md bu klasörün kökünde durur ve klasör git ile tutulur. Bu klasörde CLAUDE.local.md yok.",
+        "Bulunan dosyalar birbirinin yerine geçmez, arka arkaya bağlama eklenir. Sıra genelden özele gider: kurum, kullanıcı, proje, sonra aynı klasördeki CLAUDE.local.md.",
+        "Alt klasördeki bir CLAUDE.md açılışta yüklenmez. Claude o klasörde bir dosyayı okuyunca ya da düzenleyince yüklenir."
       ],
       "terimler": [
         {"tr": "kapsam", "en": "scope", "aciklama": "Bir CLAUDE.md'nin kimi ve hangi projeleri etkilediği."},
@@ -152,6 +166,7 @@
         {
           "id": "b04-d2-s1",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Her katmanı dosyasının yeriyle eşle.",
           "ciftler": [
             ["Kurum politikası", "Sistem klasörü; BT ekibi yönetir"],
@@ -171,6 +186,7 @@
         {
           "id": "b04-d2-s2",
           "tur": "sirala",
+          "kart": 4,
           "soru": "Claude CLAUDE.md dosyalarını bağlama hangi sırayla ekler? İlk geleni en üste koy.",
           "adimlar": ["Kurum politikası", "Kullanıcı talimatları", "Proje talimatları", "Yerel talimatlar"],
           "ipucu": "Sıra en geniş kapsamdan en dar kapsama gider.",
@@ -185,6 +201,7 @@
         {
           "id": "b04-d2-s3",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Bizim CLAUDE.md bu klasörün kökünde duruyor ve klasör git ile tutuluyor. Bu dosya hangi katmandadır?",
           "secenekler": ["Kullanıcı katmanı", "Kurum politikası", "Yerel katman", "Proje katmanı"],
           "dogru": 3,
@@ -200,6 +217,7 @@
         {
           "id": "b04-d2-s4",
           "tur": "dogru-yanlis",
+          "kart": 4,
           "soru": "Birden çok CLAUDE.md bulunursa en özel olanı ötekilerin yerine geçer, ötekiler okunmaz.",
           "dogru": false,
           "ipucu": "Bulunan dosyaların bağlama nasıl girdiğini anlatan cümleyi hatırla.",
@@ -214,6 +232,7 @@
         {
           "id": "b04-d2-s5",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Yalnız bu projede ve yalnız senin için geçerli bir not yazacaksın; git'e girmesin. Hangi dosyaya yazarsın?",
           "secenekler": ["./CLAUDE.local.md", "~/.claude/CLAUDE.md", "./CLAUDE.md", "Kurum politikası dosyası"],
           "dogru": 0,
@@ -229,6 +248,7 @@
         {
           "id": "b04-d2-s6",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Bütün projelerinde geçerli olacak kişisel bir tercihin var. Hangi dosyaya yazılır?",
           "secenekler": ["./CLAUDE.local.md", "~/.claude/CLAUDE.md", "./CLAUDE.md", "./docs/CLAUDE.md"],
           "dogru": 1,
@@ -244,6 +264,7 @@
         {
           "id": "b04-d2-s7",
           "tur": "bosluk",
+          "kart": 0,
           "soru": "Kurum politikası dosyasını ___ yönetir ve sen onu dışarıda bırakamazsın.",
           "secenekler": ["her çalışan kendisi", "Anthropic'in kurumsal destek ekibi", "şirketin platform ya da BT ekibi"],
           "dogru": 2,
@@ -258,11 +279,13 @@
         },
         {
           "id": "b04-d2-s8",
-          "tur": "dogru-yanlis",
-          "soru": "Alt klasördeki bir CLAUDE.md, Claude o alt klasörde bir dosyayı okuyunca ya da düzenleyince yüklenir.",
-          "dogru": true,
-          "ipucu": "Açılışta yüklenen dosyalarla sonradan yüklenenleri ayıran cümleyi düşün.",
-          "aciklama": "Alt klasördeki CLAUDE.md açılışta yüklenmez. Claude o klasörde bir dosyayla çalışınca yüklenir.",
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Alt klasördeki bir CLAUDE.md ne zaman yüklenir?",
+          "secenekler": ["Oturum açılırken, kökteki dosyayla birlikte", "Claude o klasördeki bir dosyayla çalışınca", "Yalnız sen o klasörde yeni oturum açınca"],
+          "dogru": 1,
+          "ipucu": "Kartta açılışta yüklenen dosyalarla sonradan yüklenenleri ayıran cümleyi düşün.",
+          "aciklama": "Alt klasördeki CLAUDE.md açılışta yüklenmez. Claude o klasörde bir dosyayı okuyunca ya da düzenleyince yüklenir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/memory",
             "kopya": "memory.md",
@@ -281,9 +304,13 @@
         "Vurgu eklemek yerine kancaya (hook) taşınacak kuralı ayırt edebilir."
       ],
       "anlatim": [
-        "Claude CLAUDE.md'yi zorunlu bir ayar gibi değil, bağlam olarak okur. Satır somut ve sınanabilir olunca daha iyi uyar: 'Kodu düzgün biçimlendir' yerine '2 boşluklu girinti kullan'. Her dosyada 200 satırın altı hedeflenir; uzun dosya daha çok yer kaplar ve uyumu düşürür. Bizde denetim betiği (denetim.py), D1 kontrolünde CLAUDE.md için satır değil bayt tavanı koyar.",
-        "Yazmadan önce iki soru sor: Claude bunu kodu okuyarak bulabilir mi? Gidip bakar mı? İkisi de evetse yazma. Bizde aynı fikir sistem-metni skill'inin ilk maddesinde: 'Model bunu kendi bilir mi? Biliyorsa yazılmaz.'",
-        "Bir satıra ÖNEMLİ diye vurgu ekliyorsun ve Claude yine kaçırıyorsa, o satır kancaya aittir. Kanca belli bir anda kendiliğinden koşar ve eylemi gerçekten durdurabilir. Bizde de sistem-metni skill'i 'kesin kural yalnız metne bırakılmaz' der."
+        "Claude CLAUDE.md'yi zorunlu bir ayar gibi değil, bağlam olarak okur.",
+        "Satır somut ve sınanabilir olunca Claude daha iyi uyar: 'Kodu düzgün biçimlendir' yerine '2 boşluklu girinti kullan'.",
+        "Her CLAUDE.md dosyası için 200 satırın altı hedeflenir. Uzun dosya bağlamda daha çok yer kaplar ve uyumu düşürür.",
+        "Bizde denetim.py adlı denetim betiği (küçük program), D1 adlı kontrolünde CLAUDE.md'nin boyut tavanını aşıp aşmadığına bakar. Tavan satırla değil, dosya boyutu birimi baytla ölçülür.",
+        "Yazmadan önce iki soru sor: Claude bunu kodu okuyarak bulabilir mi, gidip bakar mı? İkisi de evetse yazma.",
+        "Bizde sistem-metni skill'inin kontrol listesi şu maddeyle başlar: 'Model bunu kendi bilir mi? Biliyorsa yazılmaz.'",
+        "Bir satıra ÖNEMLİ diye vurgu ekledin ve Claude yine kaçırıyorsa, o satır kancaya aittir. Kanca belli bir anda kendiliğinden koşar ve eylemi gerçekten durdurabilir."
       ],
       "terimler": [
         {"tr": "kanca", "en": "hook", "aciklama": "Belli bir anda kendiliğinden koşan komut; Claude ne karar verirse versin uygulanır ve bir eylemi durdurabilir."}
@@ -292,6 +319,7 @@
         {
           "id": "b04-d3-s1",
           "tur": "bosluk",
+          "kart": 2,
           "soru": "Resmi belge her CLAUDE.md dosyası için ___ satırın altını hedeflemeyi önerir.",
           "secenekler": ["50", "500", "200", "1000"],
           "dogru": 2,
@@ -307,6 +335,7 @@
         {
           "id": "b04-d3-s2",
           "tur": "coktan",
+          "kart": 1,
           "soru": "CLAUDE.md'ye hangi satırı yazarsan Claude daha güvenilir uyar?",
           "secenekler": ["Değişikliklerini mutlaka test et", "Kodu her zaman düzgün biçimlendir", "Her zaman çok dikkatli ol", "Commit'ten önce npm test koş"],
           "dogru": 3,
@@ -322,6 +351,7 @@
         {
           "id": "b04-d3-s3",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Klasör düzenin dosyalarda açıkça görünüyor ve Claude her işte dosyalara zaten bakıyor. İki soruluk teste göre bunu CLAUDE.md'ye yazar mısın?",
           "secenekler": ["Evet, her şey CLAUDE.md'de olmalı", "Hayır, iki cevap da evet; kendisi bulur", "Evet, ama ÖNEMLİ diye işaretleyerek"],
           "dogru": 1,
@@ -337,6 +367,7 @@
         {
           "id": "b04-d3-s4",
           "tur": "dogru-yanlis",
+          "kart": 4,
           "soru": "Ekibin toplantıda aldığı ve hiçbir dosyada yazmayan bir karar, CLAUDE.md'ye yazılmaya uygundur.",
           "dogru": true,
           "ipucu": "Claude bu bilgiyi kodu okuyarak bulabilir mi?",
@@ -351,6 +382,7 @@
         {
           "id": "b04-d3-s5",
           "tur": "coktan",
+          "kart": 6,
           "soru": "CLAUDE.md'de 'src/gen/ klasörünü düzenleme' satırı var, başına ÖNEMLİ de ekledin; Claude yine arada düzenliyor. Ne yaparsın?",
           "secenekler": ["Satırı kancaya taşırım, kanca durdurur", "Satırı büyük harfle bir kez daha yazarım", "Satırı dosyanın en başına taşırım", "Aynı satırı üç ayrı yere kopyalarım"],
           "dogru": 0,
@@ -365,9 +397,11 @@
         },
         {
           "id": "b04-d3-s6",
-          "tur": "dogru-yanlis",
-          "soru": "Claude, CLAUDE.md'deki talimatlara zorunlu bir ayar gibi her seferinde uymak zorundadır.",
-          "dogru": false,
+          "tur": "bosluk",
+          "kart": 0,
+          "soru": "Claude CLAUDE.md'yi zorunlu bir ayar gibi değil, ___ olarak okur.",
+          "secenekler": ["bağlam", "komut listesi", "kesin kural"],
+          "dogru": 0,
           "ipucu": "Kartta Claude'un CLAUDE.md'yi nasıl okuduğunu anlatan cümleyi hatırla.",
           "aciklama": "Claude CLAUDE.md'yi bağlam olarak okur, zorunlu ayar olarak değil. Kesin uyulması gereken kural için kanca gerekir.",
           "kaynak": {
@@ -380,29 +414,33 @@
         {
           "id": "b04-d3-s7",
           "tur": "coktan",
-          "soru": "denetim.py'nin 148. satırı CLAUDE_TAVAN için 17524 değerini verir, yorumunda 'D1: bayt' yazar. Bu satır ne işe yarar?",
-          "secenekler": ["CLAUDE.md'nin en çok kaç satır olabileceğini söyler", "Claude'un bir oturumda kaç dosya okuyacağını sınırlar", "CLAUDE.md için bayt cinsinden boyut tavanı koyar", "CLAUDE.md'yi her oturumda yeniden yazdırır"],
+          "kart": 3,
+          "soru": "denetim.py'de CLAUDE_TAVAN 17524 değerini alır; yorumda 'D1: bayt' yazar. Bu değer ne yapar?",
+          "secenekler": ["CLAUDE.md'ye satır tavanı koyar", "Okunacak dosya sayısını sınırlar", "CLAUDE.md'ye bayt tavanı koyar", "CLAUDE.md'yi yeniden yazdırır"],
           "dogru": 2,
           "ipucu": "Kartta denetim betiğinin CLAUDE.md için koyduğu tavanın birimini hatırla.",
           "aciklama": "Değer satır değil bayt cinsinden bir tavandır. Denetim betiği D1 kontrolünde CLAUDE.md'nin bu tavanı aşıp aşmadığına bakar.",
           "kaynak": {
-            "adres": "denetim.py:148",
-            "okuma": "2026-11-15",
-            "dayanak": "denetim.py 148. satır CLAUDE.md tavanını 17524 bayt olarak tanımlar ve satırın notu bunu D1 kontrolüne bağlar."
+            "adres": "denetim.py:173",
+            "okuma": "2026-11-17",
+            "dayanak": "denetim.py CLAUDE_TAVAN değerini 17524 bayt olarak tanımlar ve satırın notu bunu D1 kontrolüne bağlar.",
+            "soz": "CLAUDE_TAVAN, SKILL_TAVAN, KART_TAVAN = 17524, 10000, 3000 # D1: bayt"
           }
         },
         {
           "id": "b04-d3-s8",
           "tur": "coktan",
+          "kart": 5,
           "soru": "sistem-metni skill'inin kontrol listesi 'Model bunu kendi bilir mi? Biliyorsa yazılmaz.' maddesiyle başlar. Bu madde neyi sağlar?",
-          "secenekler": ["Her kuralın büyük harfle yazılmasını", "Modelin zaten bildiği şeyin yazılmamasını", "Talimat dosyasının 200 satıra tamamlanmasını"],
+          "secenekler": ["Kuralların büyük harfle yazılmasını", "Modelin zaten bildiği şeyin yazılmamasını", "Dosyanın 200 satıra tamamlanmasını"],
           "dogru": 1,
           "ipucu": "Maddedeki soruya cevap evet olunca ne yapıldığını düşün.",
           "aciklama": "Madde, modelin kendi bildiği şeyi talimattan dışarıda bırakır. Resmi belgedeki 'kodu okuyarak bulabilir mi' testiyle aynı yöne bakar.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:19",
-            "okuma": "2026-11-15",
-            "dayanak": "sistem-metni skill'inin kontrol listesindeki ilk madde, modelin kendi bildiği şeyin yazılmamasını söyler."
+            "adres": ".claude/skills/sistem-metni/SKILL.md:16",
+            "okuma": "2026-11-17",
+            "dayanak": "sistem-metni skill'inin kontrol listesindeki ilk madde, modelin kendi bildiği şeyin yazılmamasını söyler.",
+            "soz": "Model bunu kendi bilir mi? Biliyorsa yazılmaz."
           }
         }
       ]
@@ -416,9 +454,13 @@
         "İçe aktarmanın dosyayı düzenlediğini ama bağlam yükünü azaltmadığını ayırt edebilir."
       ],
       "anlatim": [
-        "CLAUDE.md içine @ ve bir dosya yolu yazarsan, o dosya da açılır ve CLAUDE.md ile birlikte bağlama yüklenir, örneğin '@README.md'. Göreli yol, @ satırını yazan dosyanın yerine göre çözülür. Aktarılan dosya da başka dosya aktarabilir, en çok dört adım derinliğe kadar.",
-        "Bizim CLAUDE.md'nin son satırı tek başına '@AGENTS.md'. Yani AGENTS.md her oturumda CLAUDE.md ile birlikte yüklenir. Claude aktarılan dosyayı @ satırının durduğu yere açar; bizde bu yer dosyanın sonu.",
-        "İçe aktarma uzun bir dosyayı düzenler ama yükü azaltmaz: aktarılan her şey açılışta yine okunur. Bir yolu yalnız anmak, aktarmamak istersen onu ters tırnak (backtick) içine yaz. Boşluklu yolda her boşluktan önce ters bölü gerekir. Proje dosyasındaki bir aktarma proje dışını, örneğin ev klasörünü gösteriyorsa, Claude Code ilk karşılaşmada onay penceresi açar."
+        "CLAUDE.md içine @ ve bir dosya yolu yazarsan, örneğin '@README.md', o dosya da CLAUDE.md ile birlikte bağlama yüklenir.",
+        "Göreli yol, '@README.md' gibi tam adresi olmayan kısa yoldur. Claude onu çözerken, yani hangi dosya olduğunu bulurken, @ satırını yazan dosyanın yerini esas alır.",
+        "Aktarılan dosya da başka dosya aktarabilir, en çok dört adım derinliğe kadar.",
+        "Bizim CLAUDE.md'nin son satırı tek başına '@AGENTS.md'. Yani AGENTS.md her oturumda CLAUDE.md ile birlikte yüklenir.",
+        "Claude aktarılan dosyayı @ satırının durduğu yere açar. Bizde bu yer dosyanın sonu.",
+        "İçe aktarma uzun bir dosyayı düzenler ama yükü azaltmaz: aktarılan her şey açılışta yine okunur.",
+        "Üç özel durum: ters tırnak (backtick) içindeki @yol aktarılmaz; boşluklu yolda boşluktan önce ters bölü (\\) gelir; proje dışı yolda ilk seferde onay sorulur."
       ],
       "terimler": [
         {"tr": "içe aktarma", "en": "import", "aciklama": "CLAUDE.md içinde @ ve dosya yoluyla başka bir dosyayı da bağlama yükletmek."},
@@ -428,6 +470,7 @@
         {
           "id": "b04-d4-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "CLAUDE.md'ye '@docs/git-talimatlari.md' satırını eklersen ne olur?",
           "secenekler": ["Claude yalnız dosyanın adını görür, içini okumaz", "O dosya da CLAUDE.md ile birlikte yüklenir", "Dosya CLAUDE.md'nin içine kalıcı olarak kopyalanır", "Claude o dosyayı yalnız sen isteyince açar"],
           "dogru": 1,
@@ -443,20 +486,23 @@
         {
           "id": "b04-d4-s2",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Bizim CLAUDE.md'nin son satırında hangi dosya içe aktarılıyor?",
           "secenekler": ["DURUM.md", "KARARLAR.md", "AGENTS.md", "README.md"],
           "dogru": 2,
           "ipucu": "Kartta her oturumda CLAUDE.md ile birlikte yüklenen dosyayı hatırla.",
-          "aciklama": "116. satırda yalnız '@AGENTS.md' yazar. Bu yüzden AGENTS.md her oturumda CLAUDE.md ile birlikte yüklenir.",
+          "aciklama": "Son satırda yalnız '@AGENTS.md' yazar. Bu yüzden AGENTS.md her oturumda CLAUDE.md ile birlikte yüklenir.",
           "kaynak": {
             "adres": "CLAUDE.md:116",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md'nin 116. satırı yalnız @AGENTS.md içe aktarmasını taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'nin son satırı yalnız @AGENTS.md içe aktarmasını taşır.",
+            "soz": "Europe/Istanbul date`). @AGENTS.md"
           }
         },
         {
           "id": "b04-d4-s3",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Bizde '@AGENTS.md' CLAUDE.md'nin en son satırında. AGENTS.md'nin metni bağlamda nereye açılır?",
           "secenekler": ["@ satırının durduğu yere, yani sona", "Her zaman CLAUDE.md'nin en başına", "Ayrı bir oturumda, CLAUDE.md'den bağımsız", "Hiç açılmaz; yalnız adı görünür"],
           "dogru": 0,
@@ -472,6 +518,7 @@
         {
           "id": "b04-d4-s4",
           "tur": "dogru-yanlis",
+          "kart": 5,
           "soru": "Uzun bir CLAUDE.md'yi @ ile parçalara bölmek, Claude'un okuduğu bağlamı azaltır.",
           "dogru": false,
           "ipucu": "Aktarılan dosyaların ne zaman yüklendiğini düşün.",
@@ -486,6 +533,7 @@
         {
           "id": "b04-d4-s5",
           "tur": "coktan",
+          "kart": 1,
           "soru": "@ satırına göreli bir yol yazdın. Claude bu yolu neye göre çözer?",
           "secenekler": ["Claude'u başlattığın klasöre göre", "Ev klasörüne göre", "@ satırını yazan dosyanın yerine göre"],
           "dogru": 2,
@@ -501,6 +549,7 @@
         {
           "id": "b04-d4-s6",
           "tur": "eslestir",
+          "kart": 6,
           "soru": "CLAUDE.md'deki her yazımı sonucuyla eşle.",
           "ciftler": [
             ["@README.md", "README dosyasını bağlama yükler"],
@@ -520,6 +569,7 @@
         {
           "id": "b04-d4-s7",
           "tur": "bosluk",
+          "kart": 2,
           "soru": "Aktarılan bir dosya da başka dosya aktarabilir; bu zincir en çok ___ adım derin olabilir.",
           "secenekler": ["dört", "iki", "on", "sekiz"],
           "dogru": 0,
@@ -542,9 +592,13 @@
         "Otomatik hafızanın bizde neden kapalı olduğunu iki satırdan okuyup anlatabilir."
       ],
       "anlatim": [
-        "Otomatik hafızada notları Claude kendisi yazar, dört türde: rolün ve tercihlerin (user), verdiğin düzeltmeler (feedback), koddan çıkmayan proje bilgisi (project), dış kaynakların yeri (reference). Notlar ev klasöründe, ~/.claude/projects/<proje>/memory/ altında durur ve makineye yereldir. Yerel oturumlarda varsayılan olarak açıktır.",
-        "Klasörde MEMORY.md adlı dizin dosyası (index) ve konu başına birer not dosyası olur. MEMORY.md'nin ilk 200 satırı ya da ilk 25KB'ı her konuşmanın başında yüklenir. Konu dosyalarını Claude gerektiğinde okur.",
-        "Bizde otomatik hafıza kapalı: .claude/settings.json'un 2. satırı autoMemoryEnabled değerini false yapar. Nedeni CLAUDE.md'nin 16. satırında: Claude Code'un kendi hafıza klasörü kullanılmaz, her şey bu klasörde yaşar. Bu klasördeki kayıt dosyalarını son derste göreceksin."
+        "Otomatik hafızada notları Claude kendisi yazar; senin düzeltmelerine ve tercihlerine göre tutar.",
+        "Notlar dört türdedir: rolün ve tercihlerin (user), verdiğin düzeltmeler (feedback), koddan çıkmayan proje bilgisi (project), dış kaynakların yeri (reference).",
+        "Notlar ev klasöründe, ~/.claude/projects/<proje>/memory/ altında durur ve makineye yereldir.",
+        "Otomatik hafıza yerel oturumlarda varsayılan olarak açıktır.",
+        "Otomatik hafıza klasöründe MEMORY.md adlı dizin dosyası (index) durur. MEMORY.md'nin ilk 200 satırı ya da ilk 25KB'ı (kilobayt, dosya boyutu) her konuşmanın başında yüklenir.",
+        "Tek bir projede kapatmak için o projenin ayar dosyasına autoMemoryEnabled değeri false yazılır.",
+        "Bizde otomatik hafıza kapalı: .claude/settings.json'da autoMemoryEnabled değeri false. Nedeni CLAUDE.md'deki şu satır: 'Claude Code'un kendi hafıza klasörü kullanılmaz; her şey bu klasörde yaşar.'"
       ],
       "terimler": [
         {"tr": "otomatik hafıza", "en": "auto memory", "aciklama": "Claude'un oturumlar arasında kendi tuttuğu notlar; bizde kapalı."},
@@ -554,6 +608,7 @@
         {
           "id": "b04-d5-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Otomatik hafıza nedir?",
           "secenekler": ["Senin elle yazdığın bir talimat dosyası", "Claude'un kendi tuttuğu notlar", "Bir oturumun konuşma kaydının tamamı", "Şirketin BT ekibinin yazdığı kurallar"],
           "dogru": 1,
@@ -569,6 +624,7 @@
         {
           "id": "b04-d5-s2",
           "tur": "eslestir",
+          "kart": 1,
           "soru": "Claude'un tuttuğu dört not türünü içerikleriyle eşle.",
           "ciftler": [
             ["user", "Rolün, uzmanlığın, çalışma tercihlerin"],
@@ -588,6 +644,7 @@
         {
           "id": "b04-d5-s3",
           "tur": "dogru-yanlis",
+          "kart": 3,
           "soru": "Otomatik hafıza, yerel oturumlarda varsayılan olarak açıktır.",
           "dogru": true,
           "ipucu": "Kartta otomatik hafızanın yerel oturumlardaki varsayılan durumunu hatırla.",
@@ -602,20 +659,23 @@
         {
           "id": "b04-d5-s4",
           "tur": "coktan",
+          "kart": 6,
           "soru": "Bizim .claude/settings.json dosyasında otomatik hafızayı kapatan ayarın adı hangisi?",
           "secenekler": ["autoMemoryEnabled", "sandbox", "permissions", "autoMemoryDirectory"],
           "dogru": 0,
           "ipucu": "Kapatmak için açık ya da kapalı değeri alan ayar gerekir; adında 'açık' anlamı olanı düşün.",
-          "aciklama": "Dosyanın 2. satırı autoMemoryEnabled değerini false yapar, yani bu projede otomatik hafıza kapalıdır. autoMemoryDirectory ise notların duracağı yeri değiştirir.",
+          "aciklama": "Dosyada autoMemoryEnabled değeri false, yani bu projede otomatik hafıza kapalıdır. autoMemoryDirectory ise notların duracağı yeri değiştirir.",
           "kaynak": {
             "adres": ".claude/settings.json:2",
-            "okuma": "2026-11-15",
-            "dayanak": ".claude/settings.json dosyasının 2. satırı autoMemoryEnabled değerini false yapar."
+            "okuma": "2026-11-17",
+            "dayanak": ".claude/settings.json dosyası autoMemoryEnabled değerini false yapar.",
+            "soz": "\"autoMemoryEnabled\": false"
           }
         },
         {
           "id": "b04-d5-s5",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Bir projenin kendi ayar dosyasında autoMemoryEnabled değeri false yapılırsa ne olur?",
           "secenekler": ["Bütün projelerde otomatik hafıza kapanır", "CLAUDE.md artık yüklenmez", "Yalnız o projede otomatik hafıza kapanır", "Claude var olan notları siler"],
           "dogru": 2,
@@ -631,20 +691,23 @@
         {
           "id": "b04-d5-s6",
           "tur": "coktan",
-          "soru": "CLAUDE.md'nin 16. satırı: 'Claude Code'un kendi hafıza klasörü kullanılmaz; her şey bu klasörde yaşar.' Buna göre kalıcı bilgi nerede tutulur?",
+          "kart": 6,
+          "soru": "CLAUDE.md'de şu satır var: 'Claude Code'un kendi hafıza klasörü kullanılmaz; her şey bu klasörde yaşar.' Buna göre kalıcı bilgi nerede tutulur?",
           "secenekler": ["Claude Code'un hafıza klasöründe", "Bu proje klasörünün kendi dosyalarında", "Yalnız konuşmanın içinde", "Ayrı bir bulut hesabında"],
           "dogru": 1,
           "ipucu": "Satırın noktalı virgülden sonraki yarısına bak.",
-          "aciklama": "Satır Claude Code'un hafıza klasörünü dışarıda bırakır ve her şeyin bu klasörde yaşamasını ister. Ayar dosyasının 2. satırı da otomatik hafızayı kapatır.",
+          "aciklama": "Satır Claude Code'un hafıza klasörünü dışarıda bırakır ve her şeyin bu klasörde yaşamasını ister. Ayar dosyasındaki autoMemoryEnabled false değeri de otomatik hafızayı kapatır.",
           "kaynak": {
             "adres": "CLAUDE.md:16",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md 16. satıra göre Claude Code'un kendi hafıza klasörü kullanılmaz ve her şey bu klasörde yaşar."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre Claude Code'un kendi hafıza klasörü kullanılmaz ve her şey bu klasörde yaşar.",
+            "soz": "Claude Code'un kendi hafıza klasörü kullanılmaz; her şey bu klasörde yaşar."
           }
         },
         {
           "id": "b04-d5-s7",
           "tur": "bosluk",
+          "kart": 4,
           "soru": "MEMORY.md'nin ilk 200 satırı ya da ilk 25KB'ı, hangisi önce dolarsa, ___ yüklenir.",
           "secenekler": ["yalnız sen istediğinde", "haftada bir kez", "her konuşmanın başında"],
           "dogru": 2,
@@ -660,6 +723,7 @@
         {
           "id": "b04-d5-s8",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Otomatik hafıza notları nerede durur?",
           "secenekler": ["Proje kökündeki CLAUDE.md'nin içinde", "Proje içindeki .claude/memory/ klasöründe", "Anthropic'in sunucusunda", "~/.claude/projects/<proje>/memory/"],
           "dogru": 3,
@@ -682,9 +746,13 @@
         "Ev klasöründeki ~/.claude ile projedeki .claude klasörünün farkını ayırt edebilir."
       ],
       "anlatim": [
-        "Claude Code ayarlarını iki yerden okur: proje klasöründen ve ev klasöründeki ~/.claude'dan. Proje dosyaları git'e girer ve ekiple paylaşılabilir; settings.local.json ise senin kişisel ayar değişikliklerin içindir ve git dışında tutulur. ~/.claude içindekiler kişiseldir, bütün projelerinde geçerlidir.",
-        "Hangi iş hangi dosyada: CLAUDE.md proje bağlamı ve kurallar; settings.json izinler, kancalar ve ortam ayarları; skills/<ad>/SKILL.md /ad ile çağrılan ya da kendiliğinden açılan yetenek; agents/*.md kendi araçları olan alt ajan (subagent) tanımı. Çoğu kullanıcı yalnız CLAUDE.md ve settings.json'u düzenler; klasörün geri kalanı isteğe bağlıdır, gerektikçe eklenir.",
-        "Bizde ajanlar .claude/agents/ altında, skill'ler .claude/skills/ altında. Kancalar .claude/settings.json'un 48. satırında başlayan hooks bölümünde kayıtlı. Örneğin oturum açılınca koşan acilis.py betiği .claude/hooks/ içinde durur."
+        "Claude Code ayarlarını iki yerden okur: proje klasöründen ve ev klasöründeki ~/.claude'dan. ~/.claude içindekiler kişiseldir, bütün projelerinde geçerlidir.",
+        "Proje dosyaları git'e girer ve ekiple paylaşılabilir. settings.local.json ise kişisel ayar değişikliklerin içindir, git dışında tutulur.",
+        "Claude'un kendine tuttuğu otomatik hafıza notları ev klasöründeki ~/.claude içinde, projects/<proje>/memory/ altında durur.",
+        "CLAUDE.md bağlam ve kurallar; settings.json izinler ve kancalar; skills/<ad>/SKILL.md /ad ile çağrılan yetenek; agents/*.md alt ajan (subagent) tanımı. <ad> ve * yerine bir ad gelir.",
+        "Çoğu kullanıcı yalnız CLAUDE.md ve settings.json'u düzenler. Klasörün geri kalanı isteğe bağlıdır, gerektikçe eklenir.",
+        "Bizde ajanlar .claude/agents/ altında, skill'ler .claude/skills/ altında durur.",
+        "Bizde kancalar .claude/settings.json içindeki hooks bölümünde kayıtlı. Örneğin oturum açılınca koşan acilis.py betiği .claude/hooks/ içinde durur."
       ],
       "terimler": [
         {"tr": "kanca", "en": "hook", "aciklama": "Belli bir anda kendiliğinden koşan komut; bizde settings.json'daki hooks bölümünde kayıtlı."},
@@ -694,6 +762,7 @@
         {
           "id": "b04-d6-s1",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Yapmak istediğin işi düzenleyeceğin dosyayla eşle.",
           "ciftler": [
             ["Claude'a proje bağlamı ve kurallar vermek", "CLAUDE.md"],
@@ -713,6 +782,7 @@
         {
           "id": "b04-d6-s2",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Bizim klasörde alt ajan tanımları nerede durur?",
           "secenekler": [".claude/skills/", ".claude/agents/", ".claude/hooks/", "kuyruk/"],
           "dogru": 1,
@@ -720,27 +790,31 @@
           "aciklama": "CLAUDE.md ajanların .claude/agents/ altında olduğunu söyler. Bu, resmi belgedeki agents/*.md yeriyle aynıdır.",
           "kaynak": {
             "adres": "CLAUDE.md:107",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md 107. satıra göre ajanlar .claude/agents/ altındadır."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre ajanlar .claude/agents/ altındadır.",
+            "soz": "Ajanlar `.claude/agents/` altında"
           }
         },
         {
           "id": "b04-d6-s3",
           "tur": "coktan",
+          "kart": 6,
           "soru": "Bizim kancalarımız hangi dosyada kayıtlı?",
           "secenekler": ["CLAUDE.md'nin sonunda", "AGENTS.md içinde", "DURUM.md'nin açık işler bölümünde", ".claude/settings.json içinde"],
           "dogru": 3,
           "ipucu": "Kartta kancaların hangi dosyanın hangi bölümünde kayıtlı olduğunu hatırla.",
           "aciklama": "Kancalar .claude/settings.json'daki hooks bölümünde kayıtlıdır. Koşturdukları betikler, örneğin acilis.py, .claude/hooks/ içinde durur.",
           "kaynak": {
-            "adres": ".claude/settings.json:48",
-            "okuma": "2026-11-15",
-            "dayanak": ".claude/settings.json dosyasının 48. satırında hooks bölümü başlar."
+            "adres": ".claude/settings.json:54",
+            "okuma": "2026-11-17",
+            "dayanak": ".claude/settings.json dosyasında kancalar hooks bölümünde kayıtlıdır.",
+            "soz": "\"hooks\": { \"SessionStart\": ["
           }
         },
         {
           "id": "b04-d6-s4",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Ev klasöründeki ~/.claude içindeki dosyalar kimi etkiler?",
           "secenekler": ["Yalnız seni, bütün projelerinde", "Bu projede ekipteki herkesi", "Yalnız şirketin BT ekibini"],
           "dogru": 0,
@@ -756,6 +830,7 @@
         {
           "id": "b04-d6-s5",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "settings.local.json dosyası git'e girer ve ekiple paylaşılır.",
           "dogru": false,
           "ipucu": "Dosya adındaki 'local' sözcüğünü düşün.",
@@ -770,6 +845,7 @@
         {
           "id": "b04-d6-s6",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Otomatik hafıza notları proje .claude klasöründe mi, ev klasöründeki ~/.claude'da mı durur?",
           "secenekler": ["Proje .claude klasöründe, git'e girer", "İkisinde de birer kopya olur", "Yalnız ev klasöründeki ~/.claude'da"],
           "dogru": 2,
@@ -784,11 +860,13 @@
         },
         {
           "id": "b04-d6-s7",
-          "tur": "dogru-yanlis",
-          "soru": "Çoğu kullanıcı yalnız CLAUDE.md ve settings.json'u düzenler; klasörün geri kalanı isteğe bağlıdır.",
-          "dogru": true,
+          "tur": "bosluk",
+          "kart": 4,
+          "soru": "Çoğu kullanıcı yalnız CLAUDE.md ve ___ dosyasını düzenler; klasörün geri kalanı isteğe bağlıdır.",
+          "secenekler": ["settings.json", "settings.local.json", "agents/*.md"],
+          "dogru": 0,
           "ipucu": "Kartta çoğu kullanıcının hangi dosyaları düzenlediğini anlatan cümleyi hatırla.",
-          "aciklama": "Çoğu kullanıcı yalnız bu iki dosyayı düzenler. Skill, kural ve alt ajan gerektikçe eklenir.",
+          "aciklama": "Çoğu kullanıcı yalnız CLAUDE.md ve settings.json'u düzenler. Skill, kural ve alt ajan gerektikçe eklenir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/claude-directory",
             "kopya": "claude-directory.md",
@@ -806,9 +884,14 @@
         "Bir KARARLAR maddesinin ve Düzeltme satırının biçimini okuyup anlatabilir."
       ],
       "anlatim": [
-        "Bu üç dosya Claude Code özelliği değil, bizim düzenimiz. Devir kartı Last-Session.md'nin üst kartıdır; bir kanca onu oturuma basar. İşe başlamadan proje-baglam skill'i, devir kartı ve DURUM.md okunur. Güncel durum kartta; görev alanı, öncelikler ve açık işler DURUM.md'de yaşar. Soru kapısı: cevabı kullanıcıda olan ve bir işi bekleten soru DURUM.md'nin Sorulacaklar bölümünde kendi satırını taşır.",
-        "KARARLAR.md karar ve düzeltme günlüğüdür. Karar, tarih başlığı altında numaralı maddedir; numara 1001'den sırayla artar. Kullanıcının sözü kullanıcı: ile başlayıp tırnak içinde aynen yazılır, yorum ayrı bir 'Claude okuması:' parçasındadır. kayit-yazma skill'ine göre Claude kayıt dosyalarını Edit ya da Write aracıyla yazar; kabuk komutuyla ya da Python gibi bir yorumlayıcıyla yazmayı koruma.py kancası durdurur.",
-        "Hata, maddenin altına tek satırlık Düzeltme olarak yazılır: '- Düzeltme:', konu öneki (prefix), ne yanlış yapıldı, doğrusu, kaçıncı görülüş ve fark eden. Aynı hata üçüncü kez görülünce kural ve mekanizması yazılır."
+        "İşe başlamadan proje-baglam skill'i, devir kartı (son oturumdan kalan kart) ve DURUM.md okunur. Güncel durum devir kartında; görev alanı, öncelikler ve açık işler DURUM.md'de yaşar.",
+        "Soru kapısı: cevabı kullanıcıda olan ve bir işi bekleten soru, DURUM.md'nin Sorulacaklar bölümünde kendi satırını taşır.",
+        "KARARLAR.md karar ve düzeltme günlüğüdür. Karar, tarih başlığı altında numaralı maddedir; numara 1001'den sırayla artar.",
+        "Maddede kullanıcının sözü kullanıcı: ile başlar ve tırnak içinde aynen yazılır. Claude'un yorumu ayrı bir 'Claude okuması:' parçasındadır.",
+        "kayit-yazma skill'ine göre Claude kayıt dosyalarını Edit ya da Write aracıyla yazar. Kabuk komutuyla ya da Python gibi bir programla yazmayı koruma.py kancası durdurur.",
+        "Hata, maddenin altına tek satırlık Düzeltme olarak yazılır: '- Düzeltme:', konu öneki (prefix), ne yanlış yapıldı, doğrusu, kaçıncı görülüş ve fark eden.",
+        "CLAUDE.md'ye göre yanlış yönlendirme KARARLAR'a '- Düzeltme: yönlendirme:' önekiyle yazılır.",
+        "Aynı konudaki hata üçüncü kez kullanıcıya ulaşınca kural yazılır. Biçim ve üslup kuralına kanca gibi mekanizma baştan yazılmaz; kayarsa söylenir, tekrar ederse mekanizmayı hak eder."
       ],
       "terimler": [
         {"tr": "önek", "en": "prefix", "aciklama": "Düzeltme satırında konuyu gösteren baş parça, örneğin 'yönlendirme:'."}
@@ -817,23 +900,26 @@
         {
           "id": "b04-d7-s1",
           "tur": "eslestir",
-          "soru": "CLAUDE.md'nin 91. satırına göre her bilgiyi tutulduğu ya da okunduğu yerle eşle.",
+          "kart": 0,
+          "soru": "CLAUDE.md'ye göre her bilgiyi tutulduğu ya da okunduğu yerle eşle.",
           "ciftler": [
             ["Güncel durum", "Devir kartı"],
             ["Görev alanı, öncelikler ve açık işler", "DURUM.md"],
             ["İşe başlamadan okunan bağlam skill'i", "proje-baglam"]
           ],
-          "ipucu": "Satır güncel durumu ve açık işleri iki ayrı yere koyar.",
+          "ipucu": "Kart güncel durumu ve açık işleri iki ayrı yere koyar.",
           "aciklama": "Güncel durum kartta, görev alanı, öncelikler ve açık işler DURUM'da yaşar. İşe başlamadan üçü birlikte okunur.",
           "kaynak": {
             "adres": "CLAUDE.md:91",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md 91. satıra göre işe başlamadan proje-baglam skill'i, devir kartı ve DURUM.md okunur; güncel durum kartta, görev alanı, öncelikler ve açık işler DURUM'da yaşar."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre işe başlamadan proje-baglam skill'i, devir kartı ve DURUM.md okunur; güncel durum kartta, görev alanı, öncelikler ve açık işler DURUM'da yaşar.",
+            "soz": "Güncel durum kartta, görev alanı, öncelikler ve açık işler DURUM'da"
           }
         },
         {
           "id": "b04-d7-s2",
           "tur": "coktan",
+          "kart": 2,
           "soru": "KARARLAR.md kendini başlığında nasıl tanımlar?",
           "secenekler": ["Görev alanı, öncelikler ve açık işler", "Tek giriş noktası", "Karar ve düzeltme günlüğü", "Oturum özeti"],
           "dogru": 2,
@@ -841,26 +927,30 @@
           "aciklama": "KARARLAR.md'nin başlığı onu karar ve düzeltme günlüğü diye tanımlar. 'Tek giriş noktası' ise DURUM.md'nin kendi tanımıdır.",
           "kaynak": {
             "adres": "KARARLAR.md:1",
-            "okuma": "2026-11-15",
-            "dayanak": "KARARLAR.md'nin ilk satırı dosyayı karar ve düzeltme günlüğü olarak adlandırır."
+            "okuma": "2026-11-17",
+            "dayanak": "KARARLAR.md'nin ilk satırı dosyayı karar ve düzeltme günlüğü olarak adlandırır.",
+            "soz": "KARARLAR — karar ve düzeltme günlüğü"
           }
         },
         {
           "id": "b04-d7-s3",
           "tur": "sirala",
+          "kart": 5,
           "soru": "Bir Düzeltme satırının parçalarını yazılış sırasına koy.",
           "adimlar": ["- Düzeltme:", "Konu öneki, örneğin yönlendirme:", "Ne yanlış yapıldı", "Doğrusu", "Kaçıncı görülüş ve fark eden"],
           "ipucu": "Kartta Düzeltme satırının parçalarının sayıldığı cümleyi soldan sağa düşün.",
           "aciklama": "Kalıp '- Düzeltme:' ve konu önekiyle başlar, ardından ne yanlış yapıldığı, doğrusu ve görülüş sayısı gelir. Fark eden parantezde yazılır.",
           "kaynak": {
             "adres": "KARARLAR.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "KARARLAR.md 3. satıra göre Düzeltme satırı konu önekiyle, ne yanlış yapıldığıyla, doğrusuyla ve kaçıncı görülüş olduğuyla yazılır, fark eden parantezde gösterilir."
+            "okuma": "2026-11-17",
+            "dayanak": "KARARLAR.md'ye göre Düzeltme satırı konu önekiyle, ne yanlış yapıldığıyla, doğrusuyla ve kaçıncı görülüş olduğuyla yazılır, fark eden parantezde gösterilir.",
+            "soz": "`- Düzeltme: <konu>: <ne yanlış yapıldı>"
           }
         },
         {
           "id": "b04-d7-s4",
           "tur": "coktan",
+          "kart": 6,
           "soru": "Bir satır '- Düzeltme: yönlendirme:' ile başlıyor ve '2. görülüş (fark eden: kullanıcı)' ile bitiyor. Bu satır neyi kaydeder?",
           "secenekler": ["Kullanıcının onayladığı yeni ve numaralı bir kararı", "İkinci kez görülen bir yanlış yönlendirmeyi", "Kancanın durdurduğu bir hatayı", "Cevap bekleyen açık bir soruyu"],
           "dogru": 1,
@@ -868,27 +958,31 @@
           "aciklama": "'yönlendirme' öneki kullanıcıya yaptırılan adımdaki yanlış yönlendirme içindir. Satırın sonundaki 2. görülüş, aynı düzeltmenin iki kez yaşandığını söyler.",
           "kaynak": {
             "adres": "CLAUDE.md:24",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md 24. satıra göre yanlış yönlendirme KARARLAR'a '- Düzeltme: yönlendirme:' önekiyle yazılır."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre yanlış yönlendirme KARARLAR'a '- Düzeltme: yönlendirme:' önekiyle yazılır.",
+            "soz": "Yanlış yönlendirme KARARLAR'a `- Düzeltme: yönlendirme:` önekiyle yazılır."
           }
         },
         {
           "id": "b04-d7-s5",
           "tur": "coktan",
-          "soru": "Aynı düzeltme üçüncü kez görüldü. Kurala göre ne yapılır?",
-          "secenekler": ["Kural ve mekanizması yazılır", "Yalnız bir Düzeltme satırı daha eklenir", "Eski Düzeltme satırları silinir", "Kullanıcıya haber vermeden geçilir"],
+          "kart": 7,
+          "soru": "Aynı konudaki bir hata üçüncü kez kullanıcıya ulaştı. Kurala göre ne yapılır?",
+          "secenekler": ["Kural yazılır", "Yalnız bir Düzeltme satırı daha eklenir", "Eski Düzeltme satırları silinir", "Kullanıcıya haber vermeden geçilir"],
           "dogru": 0,
-          "ipucu": "Kartta aynı hatanın tekrar tekrar görülmesi için söylenen kuralı hatırla.",
-          "aciklama": "Düzeltme satırı iki görülüşe kadar yeter. Aynı düzeltme bir kez daha görülünce kural ve onu yakalayacak mekanizma yazılır.",
+          "ipucu": "Kartta aynı konunun üçüncü kez kullanıcıya ulaşması için söylenen kuralı hatırla.",
+          "aciklama": "Aynı konu üçüncü kez kullanıcıya ulaşınca kural yazılır. Mekanizma ise yalnız belli koşullarda eklenir.",
           "kaynak": {
             "adres": "CLAUDE.md:113",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md 113. satıra göre aynı hata ya da düzeltme üçüncü kez görülünce kural ve mekanizması yazılır, ilk iki görülüşte Düzeltme satırı yeter."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre aynı konu üçüncü kez kullanıcıya ulaşınca kural yazılır, mekanizma ise yalnız bölüm 5'teki koşullarda eklenir.",
+            "soz": "Aynı konu üçüncü kez kullanıcıya ulaşınca kural yazılır"
           }
         },
         {
           "id": "b04-d7-s6",
           "tur": "bosluk",
+          "kart": 1,
           "soru": "Cevabı kullanıcıda olan ve bir işi bekleten soru, DURUM.md'nin ___ bölümünde kendi satırını taşır.",
           "secenekler": ["Açık işler", "Kapanış denetimi", "Sorulacaklar"],
           "dogru": 2,
@@ -896,13 +990,15 @@
           "aciklama": "Soru kapısı bu tür her soruya DURUM'da kendi satırını verir. Cevaplanan soru silinmez, arşiv bölümüne iner.",
           "kaynak": {
             "adres": "CLAUDE.md:49",
-            "okuma": "2026-11-15",
-            "dayanak": "CLAUDE.md 49. satıra göre cevabı kullanıcıda olan ve bir işi bekleten her soru DURUM'un Sorulacaklar bölümünde kendi satırını taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "CLAUDE.md'ye göre cevabı kullanıcıda olan ve bir işi bekleten her soru DURUM'un Sorulacaklar bölümünde kendi satırını taşır.",
+            "soz": "kendi satırını taşır; cevaplanan soru arşiv bölümüne düşer, silinmez"
           }
         },
         {
           "id": "b04-d7-s7",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Claude KARARLAR.md'ye yeni bir satır ekleyecek. kayit-yazma skill'ine göre hangi yolla yazar?",
           "secenekler": ["Kabuk komutuyla", "Python betiğiyle", "Otomatik hafıza notuyla", "Edit ya da Write aracıyla"],
           "dogru": 3,
@@ -910,13 +1006,15 @@
           "aciklama": "Kayıt dosyaları Edit ya da Write aracıyla yazılır. Kabukla ve yorumlayıcıyla yazmayı koruma.py kancası durdurur.",
           "kaynak": {
             "adres": ".claude/skills/kayit-yazma/SKILL.md:14",
-            "okuma": "2026-11-15",
-            "dayanak": "kayit-yazma skill'inin ilk adımına göre kayıt dosyası Edit ya da Write aracıyla yazılır, kabukla ve yorumlayıcıyla yazmayı koruma.py durdurur."
+            "okuma": "2026-11-17",
+            "dayanak": "kayit-yazma skill'inin ilk adımına göre kayıt dosyası Edit ya da Write aracıyla yazılır, kabukla ve yorumlayıcıyla yazmayı koruma.py durdurur.",
+            "soz": "Edit ya da Write aracıyla yazılır. Kabukla ve yorumlayıcıyla yazmayı `koruma.py` durdurur."
           }
         },
         {
           "id": "b04-d7-s8",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Bir KARARLAR maddesinde kullanıcının sözü nasıl yazılır?",
           "secenekler": ["Claude'un kendi cümleleriyle özetlenerek", "Kullanıcı: ile, tırnak içinde ve aynen", "Yalnız onay durumu yazılır, sözün kendisi yazılmaz"],
           "dogru": 1,
@@ -924,8 +1022,9 @@
           "aciklama": "Kullanıcının sözü tırnakla aynen yazılır, böylece yorumla karışmaz. Claude'un yorumu ayrı 'Claude okuması:' parçasındadır.",
           "kaynak": {
             "adres": "KARARLAR.md:3",
-            "okuma": "2026-11-15",
-            "dayanak": "KARARLAR.md 3. satıra göre maddede kullanıcının sözü kullanıcı: ile tırnak içinde aynen, yorum ise ayrı Claude okuması: parçasıyla yazılır."
+            "okuma": "2026-11-17",
+            "dayanak": "KARARLAR.md'ye göre maddede kullanıcının sözü kullanıcı: ile tırnak içinde aynen, yorum ise ayrı Claude okuması: parçasıyla yazılır.",
+            "soz": "yorum ayrı `Claude okuması:` ile"
           }
         }
       ]

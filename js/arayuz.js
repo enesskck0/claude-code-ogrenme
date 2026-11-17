@@ -41,29 +41,45 @@
         'Yanlışta önce ipucu gelir; ikinci denemeden sonra doğrusunu ve nedenini görürsün.'
       ],
       sinav: 'Bildiğim yerleri atla',
-      sinavAciklama: 'Kısa bir sınav bildiğin birimleri atlar; takıldığın birimden başlarsın.',
+      sinavAciklama: 'Bildiğini düşündüğün konuları seçersin; her konuda en çok {soru} soru gelir, {gecme} doğru o konuyu atlatır.',
       bastan: 'Baştan başla',
       aktar: 'Başka cihazdaki ilerlemeni getir'
     },
+    // Seviye belirleme (TASARIM bölüm 13; kod içi ad yerlesim). Birim sınavı aynı ekranları kullanır.
     sinav: {
-      yerlesimUst: 'Yerleştirme: soru {sira} / {toplam}',
+      yerlesimAd: 'Seviye belirleme',
+      konuBaslik: 'Bildiğin konuları seç',
+      konuAciklama: 'Bildiğini düşündüğün konuları işaretle; yalnız onlar sorulur. Her konuda en çok {soru} soru gelir, {gecme} doğru yeter.',
+      konuAciklama2: 'Geçtiğin konunun dersleri atlanır, soruları tekrarda karşına çıkar. Kaldığın konu yolda olduğu gibi kalır.',
+      konuListe: 'Konular',
+      konuBitti: 'Bitti',
+      konuSayac: '{sayi} konu seçtin.',
+      konuSayacYok: 'Henüz konu seçmedin.',
+      konuYok: 'Bütün konuların dersleri bitmiş; sorulacak konu kalmadı.',
+      konuSor: 'Seçtiğin konuları sor',
+      cakilKonu: 'Bildiğin konuları seç; gerisini yolda birlikte yürürüz.',
+      yerlesimUst: 'Konu {konu} / {konuToplam}, {birim}',
+      konuSoru: 'Soru {sira} / {toplam}',
       birimUst: 'Birim sınavı: soru {sira} / {toplam}',
       birak: 'Sınavı bırak',
       cevapla: 'Cevapla',
       cakil: 'Bu sınavda ipucu yok; her soruya bir kez cevap verirsin.',
-      sonucBaslik: 'Yerleştirme bitti',
+      sonucBaslik: 'Seviye belirleme bitti',
       birimSonucBaslik: 'Birim sınavı bitti',
       cakilSonuc: 'Bildiklerini ayırdık. Kaldığın taş yolda seni bekliyor.',
-      gecilenBaslik: 'Sınavla geçtiğin birimler',
-      gecilenYok: 'Bu sınavda birim geçilmedi; yol ilk dersten başlıyor.',
-      takilan: 'Başlangıç birimin {no}. birim, {baslik}.',
-      hepsi: 'Bütün birimleri sınavla geçtin.',
+      cakilSonucYok: 'Bu konular yolda duruyor. Ders ders ilerleriz.',
+      sonucListe: 'Konuların sonucu',
+      gecti: 'Geçti: {sorulan} soruda {dogru} doğru.',
+      kaldi: 'Kaldı: {sorulan} soruda {dogru} doğru.',
+      gecilenYok: 'Bu sınavda konu geçilmedi; yol olduğu gibi kaldı.',
+      siradaki: 'Yolda sıradaki ders: {ders}, {birim}.',
+      hepsi: 'Yoldaki bütün dersler bitti.',
       birimGecti: 'Bu birimi sınavla geçtin; soruları tekrarda karşına çıkacak.',
       birimKaldi: 'Bu birimde kalıyorsun; dersleri sırayla açabilirsin.',
-      yanlisBaslik: 'Takıldığın soru',
+      yanlisBaslik: 'Yanlış cevapladığın soru',
       senin: 'Senin cevabın:',
       dogru: 'Doğru cevap:',
-      geriAlBilgi: "Yerleştirmeyi istersen Ayarlar'dan geri alabilirsin."
+      geriAlBilgi: "Seviye belirlemeyi istersen Ayarlar'dan geri alabilirsin."
     },
     yol: {
       baslik: 'Yol',
@@ -116,7 +132,6 @@
     },
     ders: {
       cakil: 'Bu derste şunları öğreneceksin.',
-      hedefGiris: 'Bu dersin sonunda şunları yapabilirsin:',
       kartSayac: 'Kart {sira} / {toplam}',
       terimler: 'Bu karttaki terimler',
       terimAc: '{tr}: açıklamayı aç',
@@ -240,13 +255,15 @@
       onayBaslik: 'İlerleme değişecek',
       onayMetin: 'Bu cihazdaki ilerleme silinip koddakiyle değişecek.',
       degistir: 'Değiştir',
-      yerlesim: 'Yerleştirme',
-      yerlesimBilgi: 'Yerleştirme sınavıyla geçilen birim: {sayi}.',
-      yerlesimGeriAl: 'Yerleştirmeyi geri al',
-      yerlesimOnayBaslik: 'Yerleştirme geri alınacak',
-      yerlesimOnayMetin: 'Yerleştirmeyle geçilen dersler bitmemiş sayılır; o derslerin henüz tekrar edilmemiş soruları tekrar listesinden çıkar.',
+      yerlesim: 'Seviye belirleme',
+      yerlesimBilgi: 'Seviye belirlemeyle geçtiğin konu: {sayi}.',
+      yerlesimAciklama: 'Bildiğin konuları seçip kısa sorularla atlayabilirsin. Yeniden yapınca geçtiğin konular öncekilere eklenir.',
+      yerlesimYeniden: 'Seviye belirlemeyi yeniden yap',
+      yerlesimGeriAl: 'Seviye belirlemeyi geri al',
+      yerlesimOnayBaslik: 'Seviye belirleme geri alınacak',
+      yerlesimOnayMetin: 'Seviye belirlemeyle geçilen dersler bitmemiş sayılır; o derslerin henüz tekrar edilmemiş soruları tekrar listesinden çıkar.',
       geriAl: 'Geri al',
-      geriAlindi: 'Yerleştirme geri alındı.',
+      geriAlindi: 'Seviye belirleme geri alındı.',
       sifirla: 'Her şeyi sıfırla',
       sifirlaOnayBaslik: 'Her şey sıfırlanacak',
       sifirlaOnayMetin: 'Bu cihazdaki bütün ilerleme silinir ve uygulama ilk açılıştaki gibi başlar. Önce dışa aktarma kodunu almak istersen vazgeç.',
@@ -446,13 +463,15 @@
     return t;
   }
 
-  // E4 kartları: önce hedef kartı, sonra anlatım kartları. Her terim, adının geçtiği ilk karta; geçmiyorsa son karta.
+  // E4 kartları: yalnız anlatım kartları, içerikteki sırayla (TASARIM bölüm 14: hedef kartı yok; kart no motorun kart no'su).
+  // Her terim, adının geçtiği ilk karta; geçmiyorsa son karta.
   function kartlar(ders) {
-    var liste = [{ tur: 'hedef', hedefler: ((ders && ders.hedefler) || []).map(hedefSen), terimler: [] }];
+    var liste = [];
     ((ders && ders.anlatim) || []).forEach(function (m) { liste.push({ tur: 'anlatim', metin: m, terimler: [] }); });
     ((ders && ders.terimler) || []).forEach(function (t) {
+      if (!liste.length) return;
       var yer = -1;
-      for (var i = 1; i < liste.length && yer < 0; i++) {
+      for (var i = 0; i < liste.length && yer < 0; i++) {
         var m = kucukTr(liste[i].metin);
         if ((t.tr && m.indexOf(kucukTr(t.tr)) >= 0) || (t.en && m.indexOf(kucukTr(t.en)) >= 0)) yer = i;
       }
@@ -550,11 +569,11 @@
 
     var U = {
       durum: depo.durum, ekran: null, ekranTur: null, duyuru: null,
-      oturum: null, oturumTur: null, ders: null, kartlar: [], kart: 0,
+      oturum: null, oturumTur: null, ders: null, kartlar: [],
       g: null, tohum: 0, secim: null, panel: null, ipucu: null, ardArda: 0, bugunlukTamam: false,
       anlasilmadiDendi: false, eslestirUyari: false, odak: {}, govdeEl: null, kontrolEl: null, solCakil: null,
       dersSonrasi: null, altOnceki: null, sozlukSorgu: '', sozlukSecili: null, aktarim: null, aktarimMesaj: null, yolKaydir: true,
-      anlik: null, oncekiOran: null, yolSonrasi: null, canliCakil: null, nabizTas: null
+      anlik: null, oncekiOran: null, yolSonrasi: null, canliCakil: null, nabizTas: null, konuSecim: null, konuDonus: null
     };
 
     function saklamaOku(anahtar) {
@@ -896,12 +915,12 @@
       var h = baslikEl('h1', 'buyuk-baslik', METIN.karsilama.baslik);
       var cumleler = el('div', 'cumleler');
       METIN.karsilama.cumleler.forEach(function (c) { cumleler.appendChild(el('p', null, yaz(c, { dakika: dk }))); });
-      var sinavB = dugme('dugme birincil', METIN.karsilama.sinav, function () { gorunum.karsilama = true; gorunumKaydet(); yerlesimAc(); });
+      var sinavB = dugme('dugme birincil', METIN.karsilama.sinav, function () { gorunum.karsilama = true; gorunumKaydet(); konuSecAc('E1'); });
       var bastanB = dugme('dugme ikincil', METIN.karsilama.bastan, function () { gorunum.karsilama = true; gorunumKaydet(); U.yolKaydir = true; cizE3(); });
       var aktarB = dugme('metin-dugme', METIN.karsilama.aktar, function () { U.aktarim = 'ice'; U.aktarimMesaj = null; cizE10(); });
       ekle(kokE, ekle(el('div', 'acilis'),
         ekle(el('div', 'acilis-sol'), cakil('selam', 'cakil-buyuk'), balon(yaz(METIN.karsilama.cakil, { dakika: dk }))),
-        ekle(el('div', 'acilis-sag'), h, cumleler, el('p', 'ikincil-metin', METIN.karsilama.sinavAciklama),
+        ekle(el('div', 'acilis-sag'), h, cumleler, el('p', 'ikincil-metin', yaz(METIN.karsilama.sinavAciklama, { soru: M.AYARLAR.yerlesimSoru, gecme: M.AYARLAR.yerlesimGecme })),
           ekle(el('div', 'acilis-dugmeler'), sinavB, bastanB), aktarB)));
       odakla(h);
     }
@@ -1111,9 +1130,16 @@
     function dersAc(dersId) {
       var o;
       try { o = M.dersBaslat(dizin, U.durum, dersId, simdi(), yeniTohum()); } catch (e) { bildir(METIN.yol.kilitli); return; }
-      U.oturum = o; U.oturumTur = 'ders'; U.ders = dersVeri[dersId]; U.kartlar = kartlar(U.ders); U.kart = 0;
+      U.oturum = o; U.oturumTur = 'ders'; U.ders = dersVeri[dersId]; U.kartlar = kartlar(U.ders);
       U.ardArda = 0; U.bugunlukTamam = false;
-      cizE4();
+      siradakiAdim();
+    }
+    // TASARIM bölüm 14: sırayı motor söyler (M.siradakiKart); kart varsa E4, yoksa soru ya da oturum sonu.
+    // Kartsız oturumlarda (tekrar, sınav) siradakiKart hep null.
+    function siradakiAdim() {
+      if (M.siradakiKart(U.oturum) !== null) cizE4();
+      else if (U.oturum.bitti) oturumSonu();
+      else soruAc();
     }
     function tekrarAc() {
       var o = M.tekrarBaslat(dizin, U.durum, simdi());
@@ -1128,8 +1154,85 @@
       if (o.bitti) { oturumSonu(); return; }
       soruAc();
     }
-    function yerlesimAc() {
-      U.oturum = M.yerlesimBaslat(dizin, U.durum, simdi(), yeniTohum());
+    // ---------- seviye belirleme: konu seçme (TASARIM bölüm 13; E2 kökünde) ----------
+
+    // donus: 'E1' ya da 'E10'; "Vazgeç" oraya döner. Seçim ekran açıkken U.konuSecim'de tutulur.
+    function konuSecAc(donus) {
+      U.konuDonus = donus === 'E10' ? 'E10' : 'E1';
+      U.konuSecim = {};
+      cizKonuSec();
+    }
+    function konuVazgec() {
+      U.konuSecim = null;
+      if (U.konuDonus === 'E10') { U.aktarim = null; U.aktarimMesaj = null; cizE10(); } else cizE1();
+    }
+    function cizKonuSec() {
+      goster('E2');
+      U.ekranTur = 'konu';
+      var kokE = temizle(K.E2);
+      var liste = M.yerlesimBirimleri(dizin, U.durum);
+      var secilebilir = liste.filter(function (x) { return x.secilebilir; });
+      var h1 = baslikEl('h1', 'ara-baslik', METIN.sinav.konuBaslik);
+      var sayi = { soru: M.AYARLAR.yerlesimSoru, gecme: M.AYARLAR.yerlesimGecme };
+      var sag = ekle(el('div', 'odak-sag'), h1);
+      var sorB = dugme('dugme birincil', METIN.sinav.konuSor, function () {
+        var secilen = secilebilir.filter(function (x) { return U.konuSecim[x.birim]; }).map(function (x) { return x.birim; });
+        if (!secilen.length) return;
+        U.konuSecim = null;
+        yerlesimAc(secilen);
+      });
+      var sayacEl = el('p', 'ikincil-metin');
+      sayacEl.setAttribute('aria-live', 'polite');
+      function guncelle() {
+        var n = secilebilir.filter(function (x) { return U.konuSecim[x.birim]; }).length;
+        sayacEl.textContent = n ? yaz(METIN.sinav.konuSayac, { sayi: n }) : METIN.sinav.konuSayacYok;
+        sorB.disabled = n === 0;
+      }
+      if (secilebilir.length) {
+        ekle(sag, el('p', null, yaz(METIN.sinav.konuAciklama, sayi)), el('p', 'ikincil-metin', METIN.sinav.konuAciklama2));
+        var ul = el('ul', 'liste konu-liste');
+        ul.setAttribute('aria-label', METIN.sinav.konuListe);
+        liste.forEach(function (x) {
+          var li = el('li');
+          if (!x.secilebilir) {
+            li.className = 'liste-satir';
+            ekle(li, el('span', null, birimAdi(x.birim)), el('span', 'ikincil-metin', METIN.sinav.konuBitti));
+            ul.appendChild(li);
+            return;
+          }
+          var b = dugme('secenek konu-secenek', null, null);
+          b.setAttribute('role', 'checkbox');
+          b.setAttribute('data-birim', x.birim);
+          var ciz = function () {
+            var acik = !!U.konuSecim[x.birim];
+            temizle(b);
+            b.setAttribute('aria-checked', acik ? 'true' : 'false');
+            if (acik) b.classList.add('secili'); else b.classList.remove('secili');
+            ekle(b, simge(acik ? 'onay' : 'bos', 'secenek-simge'), el('span', 'secenek-metin', birimAdi(x.birim)));
+          };
+          b.addEventListener('click', function () {
+            if (U.konuSecim[x.birim]) delete U.konuSecim[x.birim]; else U.konuSecim[x.birim] = true;
+            ciz();
+            guncelle();
+          });
+          ciz();
+          ul.appendChild(ekle(li, b));
+        });
+        ekle(sag, ul, sayacEl);
+        guncelle();
+      } else {
+        sag.appendChild(el('p', null, METIN.sinav.konuYok));
+        sorB = null;
+      }
+      sag.appendChild(ekle(el('div', 'sonuc-dugmeler'), sorB, dugme('dugme ikincil', METIN.genel.vazgec, konuVazgec)));
+      var ust = ekle(el('header', 'ust-cubuk odak-ust sinav-ust'), el('p', 'ust-metin', METIN.sinav.yerlesimAd));
+      ekle(kokE, ust, ekle(el('div', 'odak-govde'),
+        ekle(el('div', 'odak-sol'), cakil('selam', 'cakil-120'), balon(METIN.sinav.cakilKonu)), sag));
+      odakla(h1);
+    }
+
+    function yerlesimAc(birimIdleri) {
+      try { U.oturum = M.yerlesimBaslat(dizin, U.durum, simdi(), yeniTohum(), birimIdleri); } catch (e) { cizKonuSec(); return; }
       U.oturumTur = 'yerlesim'; U.ders = null; U.kartlar = [];
       if (U.oturum.bitti) { sinavBitir(); return; }
       soruAc();
@@ -1147,16 +1250,7 @@
       cizE3();
     }
 
-    function ilerlemeOrani() {
-      var o = U.oturum;
-      if (!o || !o.ogeler.length) return 0;
-      if (U.oturumTur === 'ders') {
-        var k = U.kartlar.length;
-        var pay = U.ekranTur === 'kart' ? U.kart : k + o.konum;
-        return pay / (k + o.ogeler.length);
-      }
-      return o.konum / o.ogeler.length;
-    }
+    function ilerlemeOrani() { return M.dersIlerleme(U.oturum); } // TASARIM bölüm 14: kartlar ve sorular birlikte
     function odakUst(kapatMetni) {
       var ust = el('header', 'ust-cubuk odak-ust');
       var kapat = dugme('simge-dugme kapat', null, oturumuBirak);
@@ -1178,16 +1272,10 @@
       goster('E4');
       U.ekranTur = 'kart';
       var kokE = temizle(K.E4);
-      var ders = U.ders, kart = U.kartlar[U.kart];
+      var ders = U.ders, no = M.siradakiKart(U.oturum), kart = U.kartlar[no];
       var h = baslikEl('h1', 'ara-baslik', ders.baslik);
       var kartEl = el('article', 'kart');
-      if (kart.tur === 'hedef') {
-        var ul = el('ul', 'hedef-listesi');
-        kart.hedefler.forEach(function (x) { ul.appendChild(el('li', null, x)); });
-        ekle(kartEl, el('p', null, METIN.ders.hedefGiris), ul);
-      } else {
-        kartEl.appendChild(el('p', null, kart.metin));
-      }
+      kartEl.appendChild(el('p', null, kart.metin));
       var cipler = null;
       if (kart.terimler.length) {
         cipler = el('div', 'cipler');
@@ -1201,18 +1289,19 @@
       }
       var devamB = dugme('dugme birincil', METIN.genel.devam, kartDevam);
       var solHedef = el('ul', 'hedef-listesi');
-      U.kartlar[0].hedefler.forEach(function (x) { solHedef.appendChild(el('li', null, x)); });
+      (ders.hedefler || []).map(hedefSen).forEach(function (x) { solHedef.appendChild(el('li', null, x)); });
       ekle(kokE, odakUst(METIN.genel.dersiKapat), ekle(el('div', 'odak-govde'),
         ekle(el('div', 'odak-sol'), cakil('selam', 'cakil-160'), balon(METIN.ders.cakil), solHedef),
         ekle(el('div', 'odak-sag'), h, kartEl,
-          el('p', 'ikincil-metin', yaz(METIN.ders.kartSayac, { sira: U.kart + 1, toplam: U.kartlar.length })), cipler,
+          el('p', 'ikincil-metin', yaz(METIN.ders.kartSayac, { sira: no + 1, toplam: U.kartlar.length })), cipler,
           ekle(el('div', 'eylem-cubugu'), devamB))));
-      if (U.kart === 0) odakla(h); else odakla(devamB);
+      if (U.oturum.kartGecilen === 0) odakla(h); else odakla(devamB);
     }
     function kartDevam() {
+      if (M.siradakiKart(U.oturum) === null) return;
       if (w.scrollTo) w.scrollTo(0, 0);
-      U.kart++;
-      if (U.kart >= U.kartlar.length) soruAc(); else cizE4();
+      U.oturum = M.kartGec(U.oturum);
+      siradakiAdim();
     }
 
     // ---------- E5 soru ve E2 sınav ----------
@@ -1258,8 +1347,13 @@
       var ust;
       if (sinav) {
         ust = el('header', 'ust-cubuk odak-ust sinav-ust');
-        ekle(ust, el('p', 'ust-metin', yaz(U.oturumTur === 'yerlesim' ? METIN.sinav.yerlesimUst : METIN.sinav.birimUst, { sira: g.sira, toplam: g.toplam })),
-          dugme('metin-dugme', METIN.sinav.birak, oturumuBirak));
+        // TASARIM bölüm 13: seviye belirlemede hangi konu (kaçıncı, toplam, başlık) ve o konudaki soru sırası.
+        var ustMetin = U.oturumTur === 'yerlesim'
+          ? ekle(el('div', 'sinav-ust-metin'),
+            el('p', 'ust-metin', yaz(METIN.sinav.yerlesimUst, { konu: g.konu, konuToplam: g.konuToplam, birim: birimAdi(g.birim) })),
+            el('p', 'ikincil-metin', yaz(METIN.sinav.konuSoru, { sira: g.birimSira, toplam: g.birimToplam })))
+          : el('p', 'ust-metin', yaz(METIN.sinav.birimUst, { sira: g.birimSira, toplam: g.birimToplam }));
+        ekle(ust, ustMetin, dugme('metin-dugme', METIN.sinav.birak, oturumuBirak));
       } else {
         ust = odakUst(U.oturumTur === 'ders' ? METIN.genel.dersiKapat : METIN.genel.oturumuKapat);
         if (U.oturumTur !== 'ders') {
@@ -1270,7 +1364,7 @@
       var solAlt = U.ders ? U.ders.baslik : birimAdi(dizin.soruBirim[g.id]);
       var sol = ekle(el('div', 'odak-sol'), U.solCakil,
         sinav ? balon(METIN.sinav.cakil) : null,
-        el('p', null, yaz(METIN.soru.sayac, { sira: g.sira, toplam: g.toplam })),
+        el('p', null, yaz(METIN.soru.sayac, sinav ? { sira: g.birimSira, toplam: g.birimToplam } : { sira: g.sira, toplam: g.toplam })),
         el('p', 'ikincil-metin', solAlt));
       U.govdeEl = el('div', 'soru-govde');
       U.kontrolEl = dugme('dugme birincil kontrol-dugme', sinav ? METIN.sinav.cevapla : METIN.soru.kontrol, kontrol);
@@ -1644,7 +1738,7 @@
         return;
       }
       U.panel = null;
-      if (U.oturum.bitti) oturumSonu(); else soruAc();
+      siradakiAdim(); // dersin sıradaki kartı (TASARIM bölüm 14), soru ya da oturum sonu
     }
 
     // ---------- oturum sonu: E7 ve E2 sonucu ----------
@@ -1750,18 +1844,24 @@
       var ol = r.olaylar;
       var h1 = baslikEl('h1', 'buyuk-baslik', tur === 'yerlesim' ? METIN.sinav.sonucBaslik : METIN.sinav.birimSonucBaslik);
       var sag = ekle(el('div', 'odak-sag'), h1);
+      if (tur !== 'yerlesim') sag.appendChild(el('p', null, ol.gecilenBirimler.length ? METIN.sinav.birimGecti : METIN.sinav.birimKaldi));
+      // TASARIM bölüm 13: seçilen her birim için bir satır; simge ve söz birlikte (renk tek başına bilgi taşımaz).
+      if (ol.birimSonuclari.length) {
+        var ul = el('ul', 'liste sonuc-liste');
+        ol.birimSonuclari.forEach(function (x) {
+          ul.appendChild(ekle(el('li', 'liste-satir'), simge(x.gecti ? 'onay' : 'carpi'),
+            ekle(el('span', 'secenek-metin'), el('span', 'kucuk-baslik', birimAdi(x.birim)),
+              el('span', 'ikincil-metin', ' ' + yaz(x.gecti ? METIN.sinav.gecti : METIN.sinav.kaldi, { sorulan: x.sorulan, dogru: x.dogru })))));
+        });
+        ekle(sag, el('h2', 'ara-baslik', METIN.sinav.sonucListe), ul);
+      }
       if (tur === 'yerlesim') {
-        if (ol.gecilenBirimler.length) {
-          var ul = el('ul', 'liste');
-          ol.gecilenBirimler.forEach(function (b) { ul.appendChild(ekle(el('li', 'liste-satir'), simge('onay'), el('span', null, birimAdi(b)))); });
-          ekle(sag, el('h2', 'ara-baslik', METIN.sinav.gecilenBaslik), ul);
-        } else {
-          sag.appendChild(el('p', null, METIN.sinav.gecilenYok));
-        }
-        if (ol.takilanBirim) sag.appendChild(el('p', null, yaz(METIN.sinav.takilan, { no: birimNo[ol.takilanBirim], baslik: dizin.birimMap[ol.takilanBirim].baslik })));
-        else if (ol.gecilenBirimler.length) sag.appendChild(el('p', null, METIN.sinav.hepsi));
-      } else {
-        sag.appendChild(el('p', null, ol.gecilenBirimler.length ? METIN.sinav.birimGecti : METIN.sinav.birimKaldi));
+        if (!ol.gecilenBirimler.length) sag.appendChild(el('p', null, METIN.sinav.gecilenYok));
+        var sonraki = null;
+        M.yol(dizin, U.durum, simdi()).forEach(function (b) { b.dugumler.forEach(function (dg) { if (dg.etkin) sonraki = dg.id; }); });
+        sag.appendChild(el('p', null, sonraki
+          ? yaz(METIN.sinav.siradaki, { ders: dersVeri[sonraki].baslik, birim: birimAdi(dizin.dersMap[sonraki].birimId) })
+          : METIN.sinav.hepsi));
       }
       ol.yanlislar.forEach(function (y) {
         var soru = dizin.soruMap[y.soru];
@@ -1773,7 +1873,8 @@
       if (tur === 'yerlesim' && ol.gecilenBirimler.length) sag.appendChild(el('p', 'ikincil-metin', METIN.sinav.geriAlBilgi));
       sag.appendChild(ekle(el('div', 'sonuc-dugmeler'), dugme('dugme birincil', METIN.genel.yolaGit, function () { U.yolKaydir = true; cizE3(); })));
       ekle(kokE, ekle(el('div', 'odak-govde sonuc'),
-        ekle(el('div', 'odak-sol'), cakil('sevinc', 'cakil-buyuk'), balon(METIN.sinav.cakilSonuc)), sag));
+        ekle(el('div', 'odak-sol'), cakil(ol.gecilenBirimler.length ? 'sevinc' : 'destek', 'cakil-buyuk'),
+          balon(ol.gecilenBirimler.length ? METIN.sinav.cakilSonuc : METIN.sinav.cakilSonucYok)), sag));
       odakla(h1);
       basariKontrol();
     }
@@ -2082,16 +2183,21 @@
       }
       kol.appendChild(tasi);
 
-      if (U.durum.yerlesim) {
-        kol.appendChild(ekle(el('section', 'ayar-bolum'), el('h2', 'kucuk-baslik', METIN.ayarlar.yerlesim),
-          el('p', null, yaz(METIN.ayarlar.yerlesimBilgi, { sayi: U.durum.yerlesim.gecilenBirimler.length })),
-          ekle(el('div', 'dugmeler'), dugme('dugme ikincil', METIN.ayarlar.yerlesimGeriAl, function () {
+      // TASARIM bölüm 13: "Seviye belirlemeyi yeniden yap" her zaman; bilgi ve geri alma yalnız kayıt varken (iki biçimde de).
+      var yb = M.yerlesimBilgisi(U.durum);
+      var yerlesimB = ekle(el('section', 'ayar-bolum'), el('h2', 'kucuk-baslik', METIN.ayarlar.yerlesim),
+        yb ? el('p', null, yaz(METIN.ayarlar.yerlesimBilgi, { sayi: yb.gecilen })) : null,
+        el('p', 'ikincil-metin', METIN.ayarlar.yerlesimAciklama));
+      var yerlesimD = ekle(el('div', 'dugmeler'), dugme('dugme ikincil', METIN.ayarlar.yerlesimYeniden, function () { konuSecAc('E10'); }));
+      kol.appendChild(ekle(yerlesimB, yerlesimD));
+      if (yb) {
+        ekle(yerlesimD, dugme('dugme ikincil', METIN.ayarlar.yerlesimGeriAl, function () {
             onayAc(METIN.ayarlar.yerlesimOnayBaslik, METIN.ayarlar.yerlesimOnayMetin, METIN.ayarlar.geriAl, function () {
               durumKaydet(M.yerlesimGeriAl(U.durum));
               bildir(METIN.ayarlar.geriAlindi);
               cizE10();
             });
-          }))));
+          }));
       }
 
       kol.appendChild(ekle(el('section', 'ayar-bolum'), ekle(el('div', 'dugmeler'), dugme('dugme ikincil tehlike', METIN.ayarlar.sifirla, function () {

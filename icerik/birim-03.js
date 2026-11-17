@@ -14,9 +14,11 @@
         "İzin kuralı ile CLAUDE.md'deki talimatın farkını ayırt edebilir."
       ],
       "anlatim": [
-        "Claude Code dosya okur, dosya düzenler, komut çalıştırır. Hangisinde sana soracağını izin sistemi belirler. Manual modda çalışma klasöründeki dosyayı okumak sormadan olur. Dosya düzenlemek ve çoğu kabuk komutu (Bash) için önce bir izin penceresi (permission prompt) açılır; yalnız yerleşik salt okunur komutlar sormadan çalışır.",
-        "Pencere Claude'un ne yapacağını ve seçeneklerini gösterir. Belgedeki terminal örneğinde dört seçenek var: Yes; Yes, and don't ask again; Yes, and switch to auto mode; No. Bir komut için “bir daha sorma” dersen kural deponun .claude/settings.local.json dosyasına yazılır, sonraki oturumlarda da geçer. Dosya düzenleme onayı ise yalnız oturum bitene kadar sürer.",
-        "Bir ayrım önemli: izin kurallarını model değil Claude Code uygular. CLAUDE.md'deki talimat Claude'un ne yapmaya çalışacağını şekillendirir ama Claude Code'un neye izin verdiğini değiştirmez. Bizim CLAUDE.md:29 satırı da bir talimattır: izin modunu kullanıcı seçer, kapılar her modda geçerlidir."
+        "Claude Code dosya okur, düzenler, komut çalıştırır; hangisinde sana soracağını izin sistemi belirler. Manual modda çalışma klasöründeki dosyayı okumak sormadan olur.",
+        "Dosya düzenlemek ve çoğu kabuk komutu (Bash) için önce bir izin penceresi (permission prompt) açılır. Yalnız yerleşik salt okunur komutlar sormadan çalışır.",
+        "Pencere Claude'un ne yapacağını ve seçeneklerini gösterir. Komut için “Yes, and don't ask again” (bir daha sorma) dersen kural .claude/settings.local.json dosyasına yazılır.",
+        "Bu komut kuralı sonraki oturumlarda da geçer. Dosya düzenleme onayı ise dosyaya yazılmaz, yalnız oturum bitene kadar sürer.",
+        "Model, yani Claude, ne yapmaya çalışacağına karar verir; izin kurallarını ise Claude Code aracı uygular. CLAUDE.md'deki talimat modelin kararını yönlendirir, izin kuralını değiştirmez."
       ],
       "terimler": [
         {"tr": "izin penceresi", "en": "permission prompt", "aciklama": "Claude bir işi yapmadan önce açılan, ne yapacağını ve seçeneklerini gösteren onay kutusu."}
@@ -25,6 +27,7 @@
         {
           "id": "b03-d1-s1",
           "tur": "eslestir",
+          "kart": 3,
           "soru": "Manual modda her iş türünü izin davranışıyla eşleştir.",
           "ciftler": [
             ["Çalışma klasöründe dosya okumak", "Onay istemez"],
@@ -43,6 +46,7 @@
         {
           "id": "b03-d1-s2",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Manual modda Claude, çalışma klasöründeki bir dosyayı okumak için de senden izin ister.",
           "dogru": false,
           "ipucu": "Okumanın, dosya düzenleme ve komut çalıştırmadan farkını düşün.",
@@ -57,7 +61,8 @@
         {
           "id": "b03-d1-s3",
           "tur": "coktan",
-          "soru": "Claude bir kabuk komutu için izin istedi, sen “Yes, and don't ask again” seçtin. Bu onay nereye kaydedilir?",
+          "kart": 2,
+          "soru": "Bir kabuk komutu için “Yes, and don't ask again” seçtin. Bu onay nereye kaydedilir?",
           "secenekler": [
             "Proje kökündeki CLAUDE.md dosyasına",
             ".claude/settings.local.json dosyasına",
@@ -77,7 +82,8 @@
         {
           "id": "b03-d1-s4",
           "tur": "coktan",
-          "soru": "Manual modda Claude bir dosyayı düzenlemek istedi, sen “bir daha sorma” seçeneğini seçtin. Yarın yeni oturum açınca ne olur?",
+          "kart": 3,
+          "soru": "Manual modda bir dosya düzenlemesi için “bir daha sorma” seçtin. Yarın yeni oturum açınca ne olur?",
           "secenekler": [
             "Düzenleme için yine sorar",
             "Hiç sormaz; onay kalıcıdır",
@@ -96,7 +102,8 @@
         {
           "id": "b03-d1-s5",
           "tur": "coktan",
-          "soru": "Claude'un belli bir komutu hiç çalıştıramamasını istiyorsun ve bunu Claude Code'un kendisi zorla uygulasın. Hangi tarif doğru?",
+          "kart": 4,
+          "soru": "Bir komutu Claude Code'un kendisi zorla engellesin istiyorsun. Hangisi doğru?",
           "secenekler": [
             "CLAUDE.md'ye “bu komutu çalıştırma” satırı ekle",
             "Sohbette bir kez “bunu yapma” de",
@@ -104,7 +111,7 @@
           ],
           "dogru": 2,
           "ipucu": "Hangisi modelin niyetine, hangisi Claude Code'un uyguladığı kurala dayanıyor, ayır.",
-          "aciklama": "İzin kurallarını Claude Code uygular; CLAUDE.md ve sohbetteki talimat yalnız Claude'un ne yapmaya çalışacağını şekillendirir. Bizde ayar dosyası değişikliği, kanca ekleme ve değiştirme hariç, her seferinde kullanıcıya sorulur (CLAUDE.md:46).",
+          "aciklama": "İzin kurallarını Claude Code uygular; CLAUDE.md ve sohbetteki talimat yalnız Claude'un ne yapmaya çalışacağını şekillendirir. Bizde ayar dosyası değişikliği, kanca ekleme ve değiştirme hariç, CLAUDE.md'ye göre her seferinde kullanıcıya sorulur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/permissions",
             "kopya": "permissions.md",
@@ -115,6 +122,7 @@
         {
           "id": "b03-d1-s6",
           "tur": "bosluk",
+          "kart": 1,
           "soru": "Manual modda kabuk komutları onay ister; yalnız yerleşik ___ komutlar sormadan çalışır.",
           "secenekler": [
             "salt okunur",
@@ -141,9 +149,10 @@
         "Verilen bir iş için uygun modu ayırt edebilir."
       ],
       "anlatim": [
-        "İzin modu, Claude'un sana sormadan ne yapabileceğini belirler; her mod kolaylık ile gözetim arasında başka bir denge kurar. Manual (ayar adı default): yalnız okuma; her eylemi kendin gözden geçirmek ve hassas iş için. Accept edits (acceptEdits): okuma, dosya düzenleme ve mkdir, mv gibi sık dosya komutları; düzenlemeleri tek tek onaylamak yerine sonradan gözden geçirmek için.",
-        "Plan: okuma; Auto kullanılabiliyorsa bir sınıflandırıcının (classifier) onayladığı komutlar da. Kaynak dosyayı düzenlemez; değiştirmeden önce kodu tanımak için. Auto: her şey, arka planda güvenlik denetimiyle; sınıflandırıcı eylemleri senin yerine gözden geçirir. Uzun işler ve izin sorusu yorgunluğunu azaltmak için. Masaüstünde Auto, kullanılabilir olduğunda görünür.",
-        "Don't ask (dontAsk): çalışma klasöründe okuma ve önceden izin verilen araçlar; soracak olan reddedilir (kurulu bir mod eklentisi bazılarını onaylayabilir). Masaüstünde yok, yalnız terminalde (CLI). Bypass permissions (bypassPermissions): her şey; yalnız yalıtılmış kap ve sanal makine için. Masaüstünde Pro, Max ve Ultra'da Ayarlar'daki anahtarla, Team ve Enterprise'da kuruluş politikasıyla açılır."
+        "Manual sormadan yalnız okur, gerisini sana sorar; hassas iş içindir. Bypass permissions (bypassPermissions) her şeyi denetimsiz yapar; yalnız bilgisayarına zarar veremeyeceği ayrı bir ortam içindir.",
+        "Accept edits (acceptEdits) dosya düzenlemeyi ve sık dosya komutlarını da sormadan yapar; düzenlemeleri sonradan gözden geçirirsin. Plan okur ama kaynak dosyayı düzenlemez; kodu tanımak içindir.",
+        "Auto her şeyi arka planda güvenlik denetimiyle yapar: ayrı bir sınıflandırıcı model (classifier) eylemleri senin yerine gözden geçirir. Uzun işlerde izin sorusu yorgunluğunu azaltır.",
+        "Don't ask (dontAsk) çalışma klasöründe okur, önceden izin verilen araçları çalıştırır; soracak olan her şey reddedilir. Masaüstünde yok, yalnız terminalde (CLI) var."
       ],
       "terimler": [
         {"tr": "izin modu", "en": "permission mode", "aciklama": "Claude'un hangi işi sana sormadan yapabileceğini belirleyen oturum ayarı."},
@@ -153,6 +162,7 @@
         {
           "id": "b03-d2-s1",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Her modu, sormadan çalıştırdığı işlerle eşleştir.",
           "ciftler": [
             ["Manual (default)", "Yalnız okuma"],
@@ -172,6 +182,7 @@
         {
           "id": "b03-d2-s2",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Her işi ona en uygun modla eşleştir.",
           "ciftler": [
             ["Her eylemi kendin gözden geçirmek, hassas iş", "Manual"],
@@ -191,6 +202,7 @@
         {
           "id": "b03-d2-s3",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Terminalde, başında kimsenin olmadığı bir gece işi: Claude yalnız önceden izin verilen araçları kullansın, soracak olan her şey reddedilsin. Hangi mod?",
           "secenekler": [
             "acceptEdits",
@@ -211,6 +223,7 @@
         {
           "id": "b03-d2-s4",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Bypass permissions, kendi bilgisayarında günlük iş için önerilen moddur.",
           "dogru": false,
           "ipucu": "Bu mod hiç denetim yapmaz; nerede zarar veremeyeceğini düşün.",
@@ -225,6 +238,7 @@
         {
           "id": "b03-d2-s5",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Masaüstü Code sekmesinin mod seçicisinde hangisi yoktur?",
           "secenekler": [
             "Plan",
@@ -245,6 +259,7 @@
         {
           "id": "b03-d2-s6",
           "tur": "bosluk",
+          "kart": 2,
           "soru": "Auto modunda eylemleri, çalışmadan önce ayrı bir ___ gözden geçirir.",
           "secenekler": [
             "kanca betiği",
@@ -264,6 +279,7 @@
         {
           "id": "b03-d2-s7",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Kendi bilgisayarında değişiklikleri tek tek onaylamak yerine iş bitince fark görünümünde topluca gözden geçirmek istiyorsun. Hangi mod?",
           "secenekler": [
             "Accept edits",
@@ -292,9 +308,12 @@
         "Plan modunu bizim plan kapısından ayırt edebilir."
       ],
       "anlatim": [
-        "Plan modunda Claude dosyaları okur, keşif için komut çalıştırır ve bir plan yazar, ama kaynak dosyalarını düzenlemez. Düzenlemeler sen planı onaylayana kadar kapalı kalır (terminalde bypass açıksa istisna var). Masaüstünde mod seçiciden Plan'ı seçersin; seçim yalnız o oturum için geçer.",
-        "Plan hazır olunca Claude nasıl devam edeceğini sorar: onaylayıp başlamak, her düzenlemeyi tek tek onaylamak ya da planlamaya devam edip neyin değişeceğini söylemek. Onaylamadan önce bak: plan beklediğin dosyaları adlandırıyor mu? Değilse eksiği söyle, yeni planı oku.",
-        "Bizim plan kapısı (CLAUDE.md:43) bir izin modu değil, talimattır. İş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa ya da kullanıcının yazdığı bir kuralı değiştiriyorsa Claude önce plan sunar ve durur. Planda örneğin bulgu özeti, yapılacaklar sırası, riskler, en güçlü karşı argüman ve en az iki seçenek bulunur."
+        "Plan modunda Claude dosyaları okur, keşif için komut çalıştırır ve bir plan yazar. Ama kaynak dosyalarını düzenlemez.",
+        "Düzenlemeler sen planı onaylayana kadar kapalı kalır. Masaüstünde Plan'ı mod seçiciden seçersin; seçim yalnız o oturum için geçer.",
+        "Plan hazır olunca Claude nasıl devam edeceğini sorar: onaylayıp başlamak, düzenlemeleri tek tek onaylamak ya da planlamaya devam edip neyin değişeceğini söylemek.",
+        "Onaylamadan önce bak: plan beklediğin dosyaları adlandırıyor mu? Değilse eksiği söyle, yeni planı oku.",
+        "CLAUDE.md'deki plan kapısına göre iş birden fazla oturuma yayılacaksa ya da geri alınamayan bir şeye dokunuyorsa Claude önce plan sunar ve durur.",
+        "Plan kapısı bir izin modu değil, talimattır. İzin modunu Claude Code uygular; talimat ise Claude'un ne yapmaya çalışacağını yönlendirir."
       ],
       "terimler": [
         {"tr": "plan modu", "en": "plan mode", "aciklama": "Claude'un dosyaları okuyup araştırdığı, kaynak dosyalarını düzenlemeden plan önerdiği izin modu."}
@@ -303,6 +322,7 @@
         {
           "id": "b03-d3-s1",
           "tur": "dogru-yanlis",
+          "kart": 0,
           "soru": "Plan modunda Claude dosyaları okuyabilir ve keşif için komut çalıştırabilir.",
           "dogru": true,
           "ipucu": "Plan modu araştırma için var; araştırma neleri gerektirir, düşün.",
@@ -317,6 +337,7 @@
         {
           "id": "b03-d3-s2",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Plan modunda Claude hangisini yapmaz?",
           "secenekler": [
             "Dosyaları okumak",
@@ -337,6 +358,7 @@
         {
           "id": "b03-d3-s3",
           "tur": "sirala",
+          "kart": 3,
           "soru": "Plan moduyla küçük bir değişiklik yaptırmanın adımlarını sırala.",
           "adimlar": [
             "Mod seçiciden Plan'ı seç (terminalde Shift+Tab)",
@@ -357,6 +379,7 @@
         {
           "id": "b03-d3-s4",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Plan geldi ama değişmesi gereken bir dosyayı atlamış. En doğru hamle hangisi?",
           "secenekler": [
             "Onayla, sonra eksik dosyayı ayrıca iste",
@@ -376,7 +399,8 @@
         {
           "id": "b03-d3-s5",
           "tur": "coktan",
-          "soru": "CLAUDE.md:43'teki plan kapısı hangi durumda devreye girer?",
+          "kart": 4,
+          "soru": "Bizim CLAUDE.md'deki plan kapısı hangi durumda devreye girer?",
           "secenekler": [
             "Claude yalnız bir dosyayı okuyup özetleyecekse",
             "Mod seçicide Plan seçiliyse",
@@ -388,13 +412,15 @@
           "aciklama": "Plan kapısı işin büyüklüğüne ve geri alınamazlığına bakar, seçili moda değil. Birden fazla oturuma yayılan iş bu koşullardan biridir.",
           "kaynak": {
             "adres": "CLAUDE.md:43",
-            "okuma": "2026-11-15",
-            "dayanak": "İş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa ya da kullanıcının yazdığı bir kuralı değiştiriyorsa önce plan sunulur ve orada durulur."
+            "okuma": "2026-11-17",
+            "dayanak": "İş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa ya da kullanıcının yazdığı bir kuralı değiştiriyorsa önce plan sunulur ve orada durulur.",
+            "soz": "iş birden fazla oturuma yayılacaksa"
           }
         },
         {
           "id": "b03-d3-s6",
           "tur": "coktan",
+          "kart": 5,
           "soru": "Plan modu ile bizim plan kapısı arasındaki fark hangisi?",
           "secenekler": [
             "Plan modunu Claude Code uygular; plan kapısı bir talimat",
@@ -403,7 +429,7 @@
           ],
           "dogru": 0,
           "ipucu": "Biri izin sisteminin parçası, öteki yazılı bir kural; kimin uyguladığına bak.",
-          "aciklama": "İzin modlarını Claude Code uygular, CLAUDE.md'deki kurallar ise Claude'un ne yapmaya çalışacağını yönlendirir. CLAUDE.md:29'a göre kapılar her modda geçerlidir.",
+          "aciklama": "İzin modlarını Claude Code uygular, CLAUDE.md'deki kurallar ise Claude'un ne yapmaya çalışacağını yönlendirir. CLAUDE.md'ye göre kapılar her modda geçerlidir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/permissions",
             "kopya": "permissions.md",
@@ -413,11 +439,17 @@
         },
         {
           "id": "b03-d3-s7",
-          "tur": "dogru-yanlis",
-          "soru": "Masaüstünde bir oturumda Plan'ı seçersen, bu seçim o klasördeki sonraki oturumlara da taşınır.",
-          "dogru": false,
-          "ipucu": "Plan seçiminin ne kadar süre geçerli kaldığını düşün.",
-          "aciklama": "Yanlış: Plan seçimi yalnız o oturum için geçer. Yerel oturumda başka bir mod seçersen o mod klasör için hatırlanır.",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Masaüstünde bir oturumda Plan'ı seçtin. Bu seçim ne kadar geçerli kalır?",
+          "secenekler": [
+            "Yalnız o oturum boyunca",
+            "O klasördeki sonraki oturumlarda da",
+            "Sen başka bir mod seçene kadar her oturumda"
+          ],
+          "dogru": 0,
+          "ipucu": "Kartta Plan seçiminin neyle sınırlı olduğu yazıyordu.",
+          "aciklama": "Plan seçimi yalnız o oturum için geçer. Yerel oturumda başka bir mod seçersen o mod klasör için hatırlanır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -435,8 +467,11 @@
         "Skill(...) ve mcp__... biçimli bir kuralın neyi engellediğini anlatabilir."
       ],
       "anlatim": [
-        "Üç tür kural var. Allow sormadan izin verir, ask her seferinde sorar, deny engeller. Sıra hep aynı: önce deny, sonra ask, sonra allow; bu sırada ilk eşleşen kazanır, kuralın daha dar olması sırayı değiştirmez. Geniş bir yasak kuralı (deny rule), daha dar bir allow kuralını da kapsar.",
-        "Kural biçimi Araç ya da Araç(belirteç). Skill(ad) tek bir skill'i, mcp__sunucu__araç bir MCP sunucusunun tek aracını gösterir; sonu yıldızlı mcp__sunucu__* ise bütün araçlarını. anthropic-skills: öneki, claude.ai hesabından eşitlenen (synced) skill'lere ayrılmıştır. Bizim .claude/settings.json dosyasında deny listesi 20. satırda başlar: öteki işin skill'leri dahil bazı eşitlenen skill'ler ve bazı MCP araçları orada yasaklı."
+        "Üç tür izin kuralı var: allow sormadan izin verir, ask sorar, deny engeller. Önce deny, sonra ask, sonra allow'a bakılır; ilk eşleşen kazanır.",
+        "Kural bir aracın tamamını ya da parantez içinde belli bir kullanımını gösterir. Örneğin Skill(ad) tek bir skill'i, Bash(aws *) bütün aws komutlarını gösterir.",
+        "Kuralın daha dar olması sırayı değiştirmez. Geniş bir yasak kuralı (deny rule), daha dar bir allow kuralına uyan kullanımı (çağrıyı) da engeller.",
+        "Claude'u dış hizmetlere bağlayan her MCP sunucusu araçlar getirir. Kuralda mcp__sunucu__araç tek bir aracı, sonu yıldızlı mcp__sunucu__* bütün araçlarını gösterir.",
+        "anthropic-skills: öneki, claude.ai hesabından eşitlenen skill'lere (synced skill) ayrılmıştır."
       ],
       "terimler": [
         {"tr": "izin kuralı", "en": "permission rule", "aciklama": "Bir aracı ya da aracın belli bir kullanımını izinli, sorulu ya da yasak yapan ayar satırı."},
@@ -447,6 +482,7 @@
         {
           "id": "b03-d4-s1",
           "tur": "sirala",
+          "kart": 0,
           "soru": "Claude Code izin kurallarını hangi sırayla değerlendirir? İlk bakılandan başlayarak sırala.",
           "adimlar": [
             "deny: engelle",
@@ -465,6 +501,7 @@
         {
           "id": "b03-d4-s2",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Ayarda deny kuralı Bash(aws *), allow kuralı Bash(aws s3 ls) var. Claude aws s3 ls çalıştırmak isterse ne olur?",
           "secenekler": [
             "Sormadan çalışır; dar kural kazanır",
@@ -484,10 +521,11 @@
         {
           "id": "b03-d4-s3",
           "tur": "coktan",
-          "soru": ".claude/settings.json:21 satırı, deny listesinde öteki işin bir skill'ini Skill(anthropic-skills:...) biçiminde adlandırıyor. Bu satır ne yapar?",
+          "kart": 1,
+          "soru": "Bizim ayar dosyasının deny listesinde Skill(anthropic-skills:...) biçiminde bir satır var. Bu satır ne yapar?",
           "secenekler": [
-            "O skill'in kullanılmasını engeller",
-            "O skill'i her kullanımda önce sana sorar",
+            "O skill'i engeller",
+            "O skill'i her seferinde sorar",
             "Bütün skill'leri kapatır",
             "O skill'i sormadan açar"
           ],
@@ -495,15 +533,17 @@
           "ipucu": "Satırın hangi listede durduğuna bak: allow, ask ya da deny.",
           "aciklama": "Satır permissions altındaki deny listesindedir, yani o skill'i engeller. Yalnız adı geçen skill etkilenir, öteki skill'ler değil.",
           "kaynak": {
-            "adres": ".claude/settings.json:21",
-            "okuma": "2026-11-15",
-            "dayanak": "Satır, permissions altındaki deny listesinde öteki işin bir skill'ini Skill(anthropic-skills:...) biçiminde adlandıran kuralı taşır."
+            "adres": ".claude/settings.json:36",
+            "okuma": "2026-11-17",
+            "dayanak": "Satır, permissions altındaki deny listesinde claude.ai'dan eşitlenen bir skill'i Skill(anthropic-skills:...) biçiminde adlandıran kuralı taşır.",
+            "soz": "Skill(anthropic-skills:"
           }
         },
         {
           "id": "b03-d4-s4",
           "tur": "coktan",
-          "soru": "Bizim .claude/settings.json:32 satırı mcp__454acdce-8de0-4030-8886-5d9267285447__create_file kuralını deny listesine koyar. Bu kural neyi gösterir?",
+          "kart": 3,
+          "soru": "Bizim deny listesinde mcp__454acdce-8de0-4030-8886-5d9267285447__create_file kuralı var. Bu kural neyi gösterir?",
           "secenekler": [
             "O sunucunun bütün araçlarını",
             "Bütün MCP sunucularının dosya araçlarını",
@@ -522,6 +562,7 @@
         {
           "id": "b03-d4-s5",
           "tur": "dogru-yanlis",
+          "kart": 2,
           "soru": "Bir allow kuralı, daha geniş bir deny kuralının içinden istisna açabilir.",
           "dogru": false,
           "ipucu": "Değerlendirme sırasını hatırla.",
@@ -536,6 +577,7 @@
         {
           "id": "b03-d4-s6",
           "tur": "bosluk",
+          "kart": 2,
           "soru": "Bir çağrıya hem ask kuralı hem daha dar bir allow kuralı uyuyorsa Claude Code ___.",
           "secenekler": [
             "yine sorar",
@@ -555,6 +597,7 @@
         {
           "id": "b03-d4-s7",
           "tur": "coktan",
+          "kart": 4,
           "soru": "Bizim deny satırlarında Skill(anthropic-skills:...) biçimi var. anthropic-skills öneki hangi skill'i gösterir?",
           "secenekler": [
             "Bu klasörün .claude/skills altındaki bir skill'i",
@@ -579,12 +622,14 @@
       "hedefler": [
         "Açık ask kuralına uyan aracın ve senin cevabını isteyen aracın hiçbir modda kendiliğinden onaylanmadığını anlatabilir.",
         "Deny kuralının bypassPermissions modunda bile geçerli olduğunu anlatabilir.",
-        "CLAUDE.md:46'daki her seferinde sorulan işleri ayırt edebilir."
+        "CLAUDE.md'de her seferinde sorulan işleri ayırt edebilir."
       ],
       "anlatim": [
-        "Bazı işleri hiçbir mod kendiliğinden onaylamaz, bypassPermissions dahil. Örnekler: açık bir sor kuralına (ask rule) uyan araç ve soru sorma aracı (AskUserQuestion) gibi senin cevabını bekleyen araçlar. Bunlar için ya sana sorulur ya reddedilir: Auto modunda açık ask kuralı yine sorar, dontAsk modunda hiç sorulmaz, reddedilir.",
-        "Mod yalnız temeli kurar; izin kuralları onun üstüne eklenir. Deny kuralı her modda engeller, bypassPermissions'ta bile. Buna karşılık allow kurallarının bypassPermissions'ta etkisi yoktur.",
-        "Bizim klasörde de benzer bir liste var: CLAUDE.md:46. Örneğin mesaj gönderme, ücretli harcama ve git geçmişini geri alma her seferinde sorulur; önceki onay geçmez. Ayar dosyası değişikliği de sorulur, kanca ekleme ve değiştirme hariç. CLAUDE.md:29'a göre bu kapılar her modda geçerlidir."
+        "Bazı işleri hiçbir mod kendiliğinden onaylamaz, bypassPermissions dahil. Biri, açık bir sor kuralına (ask rule) uyan araçtır.",
+        "Soru sorma aracı (AskUserQuestion) gibi senin cevabını bekleyen araçlar da böyledir. dontAsk modunda bu işler sana sorulmaz; allow kuralı olsa bile reddedilir.",
+        "Auto modunda ise açık ask kuralı yine sana sorar.",
+        "Mod yalnız temeli kurar; kurallar onun üstüne eklenir. Deny kuralı her modda engeller, bypassPermissions'ta bile; allow kurallarının ise bu modda etkisi yoktur.",
+        "CLAUDE.md'ye göre mesaj gönderme ve ücretli harcama her seferinde sorulur, önceki onay geçmez. Ayar dosyası değişikliği de sorulur, kanca ekleme ve değiştirme hariç."
       ],
       "terimler": [
         {"tr": "sor kuralı", "en": "ask rule", "aciklama": "Eşleşen araç her kullanılmadan önce onay isteyen izin kuralı."},
@@ -594,6 +639,7 @@
         {
           "id": "b03-d5-s1",
           "tur": "dogru-yanlis",
+          "kart": 3,
           "soru": "Ayardaki bir deny kuralı, bypassPermissions modunda da engellemeye devam eder.",
           "dogru": true,
           "ipucu": "Mod temeli kurar, kurallar üstüne eklenir.",
@@ -608,6 +654,7 @@
         {
           "id": "b03-d5-s2",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Hangisini hiçbir izin modu kendiliğinden onaylamaz, bypassPermissions dahil?",
           "secenekler": [
             "Çalışma klasöründe dosya okumayı",
@@ -628,6 +675,7 @@
         {
           "id": "b03-d5-s3",
           "tur": "coktan",
+          "kart": 1,
           "soru": "Terminalde dontAsk modundasın. Claude, açık bir ask kuralına uyan bir aracı çağırmak istiyor. Ne olur?",
           "secenekler": [
             "Sana sorulur",
@@ -647,6 +695,7 @@
         {
           "id": "b03-d5-s4",
           "tur": "coktan",
+          "kart": 2,
           "soru": "Auto modundasın ve ayarda Bash(git push *) için bir ask kuralı var. Claude push etmek isterse ne olur?",
           "secenekler": [
             "Sınıflandırıcı karar verir, sana sorulmaz",
@@ -665,11 +714,17 @@
         },
         {
           "id": "b03-d5-s5",
-          "tur": "dogru-yanlis",
-          "soru": "bypassPermissions modunda allow kurallarının etkisi yoktur.",
-          "dogru": true,
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "bypassPermissions modunda hangi kuralların etkisi yoktur?",
+          "secenekler": [
+            "allow kurallarının",
+            "deny kurallarının",
+            "Açık ask kurallarının"
+          ],
+          "dogru": 0,
           "ipucu": "Bu mod zaten neyi atlıyor, düşün.",
-          "aciklama": "Doğru: belge allow kurallarının bypassPermissions'ta etkisi olmadığını söyler. Deny kuralları ise bu modda da geçerlidir.",
+          "aciklama": "Belge allow kurallarının bypassPermissions'ta etkisi olmadığını söyler. Deny kuralları ise bu modda da engeller, açık ask kuralı da kendiliğinden onaylanmaz.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/permission-modes",
             "kopya": "permission-modes.md",
@@ -680,7 +735,8 @@
         {
           "id": "b03-d5-s6",
           "tur": "coktan",
-          "soru": "CLAUDE.md:46'ya göre hangisi, önceden onay verilmiş olsa da her seferinde sorulur?",
+          "kart": 4,
+          "soru": "Bizim CLAUDE.md'ye göre hangisi, önceden onay verilmiş olsa da her seferinde sorulur?",
           "secenekler": [
             "Ayar dosyasına kanca eklemek",
             "Mesaj göndermek",
@@ -691,13 +747,15 @@
           "aciklama": "Mesaj gönderme listededir ve önceki onay geçmez. Kanca ekleme ise açıkça hariç tutulur, testi ve doğrulayıcısıyla sorulmadan yapılır.",
           "kaynak": {
             "adres": "CLAUDE.md:46",
-            "okuma": "2026-11-15",
-            "dayanak": "Her seferinde sorulanlar arasında mesaj gönderme vardır ve önceki onay geçmez; ayar dosyalarında kanca ekleme ve değiştirme ise testi ve doğrulayıcısıyla sorulmaz."
+            "okuma": "2026-11-17",
+            "dayanak": "Her seferinde sorulanlar arasında mesaj gönderme vardır ve önceki onay geçmez; ayar dosyalarında kanca ekleme ve değiştirme ise testi ve doğrulayıcısıyla sorulmaz.",
+            "soz": "Her seferinde basitçe sorulanlar, önceki onay geçmez: mesaj gönderme"
           }
         },
         {
           "id": "b03-d5-s7",
           "tur": "bosluk",
+          "kart": 1,
           "soru": "Terminalde dontAsk modunda soru sorma aracı AskUserQuestion, bir allow kuralı olsa bile ___.",
           "secenekler": [
             "reddedilir",
@@ -724,9 +782,12 @@
         "Bizim ayarda yazmaya açılan ve okumaya kapatılan yolu ayırt edebilir."
       ],
       "anlatim": [
-        "Kum havuzu, işletim sisteminin Claude'un çalıştırdığı kabuk komutu (shell command) çevresine çektiği sınırdır. Bu komutların hangi dosyalara ve hangi alan adlarına ulaşacağını sen belirlersin. Yalnız kabuk komutlarını kapsar: Read, Edit, Write gibi dosya araçları izin kurallarına uyar; kancalar ve yerel MCP sunucuları ise sınırın dışında, tam erişimle çalışır.",
-        "Kum havuzu varsayılan olarak kapalıdır. Açıkken komut çalışma klasörüne, eklediğin klasörlere ve kullanıcıya ait geçici klasöre yazabilir; makinenin çoğunu okuyabilir. Ağa doğrudan çıkamaz: her bağlantı izinli alan adları listesine göre denetlenir ve bu liste boş başlar.",
-        "Bizim .claude/settings.json dosyasında kum havuzu açık (4. satır). 7. satır yazmaya bir yol ekler: ~/Library/Application Support/beyin-v3. 10. satır okumayı kapatır: öteki işin klasörü. Bu kapatma yalnız kabuk komutlarını durdurur, Read aracını durdurmaz."
+        "Kum havuzu, işletim sisteminin Claude'un çalıştırdığı kabuk komutu (shell command) çevresine çektiği sınırdır. Bu komutların hangi dosyalara ve alan adlarına ulaşacağını sen belirlersin.",
+        "Kum havuzu yalnız kabuk komutlarını kapsar. Read, Edit, Write gibi dosya araçları onun dışındadır, izin kurallarına uyar.",
+        "Kancalar ve yerel MCP sunucuları da sınırın dışındadır; senin tam erişiminle çalışır.",
+        "Kum havuzu varsayılan olarak kapalıdır. Açıkken komutlar ağa doğrudan çıkamaz; her bağlantı izinli alan adları listesine göre denetlenir.",
+        "Bizim .claude/settings.json dosyasında kum havuzu açık. allowWrite listesi yazmaya bir yol ekler: ~/Library/Application Support/beyin-v3.",
+        "denyRead listesi ise okumayı kapatır: öteki işin klasörü. Bu kapatma yalnız kabuk komutlarını durdurur, Read aracını durdurmaz."
       ],
       "terimler": [
         {"tr": "kum havuzu", "en": "sandbox", "aciklama": "İşletim sisteminin, kabuk komutlarının ulaşabileceği dosyaları ve ağ adreslerini sınırladığı sınır."},
@@ -736,6 +797,7 @@
         {
           "id": "b03-d6-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Kum havuzu neyi sınırlar?",
           "secenekler": [
             "Kabuk komutlarının dosya ve ağ erişimini",
@@ -755,6 +817,7 @@
         {
           "id": "b03-d6-s2",
           "tur": "dogru-yanlis",
+          "kart": 1,
           "soru": "Kum havuzu, Claude'un Read ve Edit gibi dosya araçlarını da sınırlar.",
           "dogru": false,
           "ipucu": "Kum havuzunun neyi sardığını hatırla.",
@@ -769,7 +832,8 @@
         {
           "id": "b03-d6-s3",
           "tur": "coktan",
-          "soru": "Bizim .claude/settings.json:7 satırında allowWrite altında ~/Library/Application Support/beyin-v3 yolu var. Bu ne demek?",
+          "kart": 4,
+          "soru": "Bizim ayar dosyasında allowWrite altında ~/Library/Application Support/beyin-v3 yolu var. Bu ne demek?",
           "secenekler": [
             "Kum havuzundaki komutlar bu klasörü okuyamaz",
             "Kum havuzundaki komutlar bu klasöre de yazabilir",
@@ -780,14 +844,16 @@
           "aciklama": "Satır, kum havuzu ayarının allowWrite (yazmaya izin ver) listesinde durur; bu yüzden kum havuzundaki komutlar bu yola da yazabilir.",
           "kaynak": {
             "adres": ".claude/settings.json:7",
-            "okuma": "2026-11-15",
-            "dayanak": "Kum havuzu ayarında filesystem.allowWrite listesi ~/Library/Application Support/beyin-v3 yolunu taşır."
+            "okuma": "2026-11-17",
+            "dayanak": "Kum havuzu ayarında filesystem.allowWrite listesi ~/Library/Application Support/beyin-v3 yolunu taşır.",
+            "soz": "~/Library/Application Support/beyin-v3"
           }
         },
         {
           "id": "b03-d6-s4",
           "tur": "coktan",
-          "soru": "Bizim .claude/settings.json:10 satırındaki denyRead, kum havuzundaki komutlara hangi klasörü kapatır?",
+          "kart": 5,
+          "soru": "Bizim ayar dosyasındaki denyRead, kum havuzundaki komutlara hangi klasörü kapatır?",
           "secenekler": [
             "Çalışma klasörünü",
             "~/Library/Application Support/beyin-v3",
@@ -795,16 +861,18 @@
           ],
           "dogru": 2,
           "ipucu": "Okumaya kapatılan yol, yazmaya açılandan ayrı bir listede durur.",
-          "aciklama": "denyRead listesindeki yol öteki işin klasörüdür; kum havuzundaki komutlar onu okuyamaz. O klasörün okunmaması CLAUDE.md:14'te de kuraldır.",
+          "aciklama": "denyRead listesindeki yol öteki işin klasörüdür; kum havuzundaki komutlar onu okuyamaz. O klasörün okunmaması CLAUDE.md'de de kuraldır.",
           "kaynak": {
-            "adres": ".claude/settings.json:10",
-            "okuma": "2026-11-15",
-            "dayanak": "Kum havuzu ayarında filesystem.denyRead listesi öteki işin klasörünün yolunu taşır."
+            "adres": ".claude/settings.json:9",
+            "okuma": "2026-11-17",
+            "dayanak": "Satır kum havuzu ayarında filesystem.denyRead listesini açar; listedeki tek yol öteki işin klasörüdür.",
+            "soz": "\"denyRead\": ["
           }
         },
         {
           "id": "b03-d6-s5",
           "tur": "coktan",
+          "kart": 5,
           "soru": "denyRead ile öteki işin klasörü kapalı. Claude oradaki bir dosyayı Read aracıyla okumaya kalkarsa kum havuzu bunu durdurur mu?",
           "secenekler": [
             "Hayır; denyRead Read aracını durdurmaz",
@@ -813,7 +881,7 @@
           ],
           "dogru": 0,
           "ipucu": "Kum havuzu neyi sarıyordu, Read aracı onun içinde mi?",
-          "aciklama": "denyRead yalnız kabuk komutlarını durdurur; Read gibi dosya araçları izin kurallarına uyar. O klasörü okumama kuralı ayrıca CLAUDE.md:14'te talimat olarak durur.",
+          "aciklama": "denyRead yalnız kabuk komutlarını durdurur; Read gibi dosya araçları izin kurallarına uyar. O klasörü okumama kuralı ayrıca CLAUDE.md'de talimat olarak durur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sandboxing",
             "kopya": "sandboxing.md",
@@ -824,6 +892,7 @@
         {
           "id": "b03-d6-s6",
           "tur": "bosluk",
+          "kart": 3,
           "soru": "Kum havuzu açıkken komutlar ağa doğrudan çıkamaz; her bağlantı izinli ___ listesine göre denetlenir.",
           "secenekler": [
             "dosya adları",
@@ -843,6 +912,7 @@
         {
           "id": "b03-d6-s7",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Kum havuzu açıkken hangisi nerede çalışır, eşleştir.",
           "ciftler": [
             ["Kabuk komutları", "Kum havuzu sınırının içinde"],
@@ -868,9 +938,13 @@
         "Modu kullanıcının seçtiğini ve kapıların her modda geçerli olduğunu bizim satırdan anlatabilir."
       ],
       "anlatim": [
-        "Terminalde (CLI) mod Shift+Tab ile değişir. Masaüstünde aynı işi Code sekmesinde, istem kutusunun altındaki satırdaki mod seçici (mode selector) görür. Modu oturum sırasında istediğin an değiştirebilirsin. Her değişikliği kendin onaylamak istersen Manual'a geç. Ayar adları: Manual default, Accept edits acceptEdits, Bypass permissions bypassPermissions; dontAsk yalnız terminalde.",
-        "Yerel oturumda seçtiğin mod o klasör için hatırlanır ve projenin .claude/ ayarlarındaki varsayılanın önüne geçer. Yeni oturum yine de ~/.claude/settings.json ya da yönetilen ayarlardaki bir varsayılanla açılabilir; bu yüzden ilk mesajdan önce seçiciye bak. Plan'ı seçersen yalnız o oturum için geçer.",
-        "Bizim kural CLAUDE.md:29: izin modunu kullanıcı seçer; CLAUDE.md'deki ve skill'lerdeki kapılar her modda geçerlidir. Auto modu Claude'u soru sormadan çalışmaya iter, ama istemin ya da bir skill açıkça soruya dayanıyorsa Claude yine sorar. Yani Auto'da da plan kapısında durulur."
+        "Terminalde (CLI) izin modu Shift+Tab ile değişir. Masaüstü Code sekmesinde aynı işi, istem kutusunun altındaki mod seçici (mode selector) görür.",
+        "Modu oturum sırasında istediğin an değiştirebilirsin. Her değişikliği kendin onaylamak istersen Manual'a geç.",
+        "Ayar adları: Manual default, Accept edits acceptEdits, Bypass permissions bypassPermissions. dontAsk masaüstünde yok, yalnız terminalde var.",
+        "Yerel oturumda seçtiğin mod o klasör için hatırlanır. Yeni oturum ~/.claude/settings.json'daki bir varsayılanla da açılabilir; ilk mesajdan önce seçiciye bak.",
+        "CLAUDE.md'de şu satır var: 'İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir.'",
+        "Auto modu Claude'u soru sormadan çalışmaya iter. Ama istemin ya da bir skill açıkça soruya dayanıyorsa Claude yine sorar.",
+        "Kapılar her modda geçerli olduğu için Auto'da da plan kapısında durulur. Birden fazla oturuma yayılan iş bu kapıya girer."
       ],
       "terimler": [
         {"tr": "mod seçici", "en": "mode selector", "aciklama": "Masaüstü Code sekmesinde, istem kutusunun altındaki satırda izin modunu değiştirdiğin seçici."}
@@ -879,6 +953,7 @@
         {
           "id": "b03-d7-s1",
           "tur": "coktan",
+          "kart": 0,
           "soru": "Terminalde izin modunu Shift+Tab ile değiştiriyorsun. Masaüstü Code sekmesinde bunun karşılığı ne?",
           "secenekler": [
             "İstem kutusunun altındaki mod seçici",
@@ -897,11 +972,17 @@
         },
         {
           "id": "b03-d7-s2",
-          "tur": "dogru-yanlis",
-          "soru": "Masaüstünde izin modunu yalnız oturum başında seçebilirsin, oturum sırasında değiştiremezsin.",
-          "dogru": false,
-          "ipucu": "Mod seçicinin ne zaman kullanılabildiğine bak.",
-          "aciklama": "Yanlış: modu oturum sırasında istediğin an mod seçiciden değiştirebilirsin.",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Masaüstünde izin modunu ne zaman değiştirebilirsin?",
+          "secenekler": [
+            "Oturum sırasında istediğin an",
+            "Yalnız oturum başında",
+            "Yalnız oturumu kapatıp yeniden açınca"
+          ],
+          "dogru": 0,
+          "ipucu": "Mod seçicinin oturumun hangi anında kullanılabildiğini düşün.",
+          "aciklama": "Modu oturum sırasında istediğin an mod seçiciden değiştirebilirsin; oturum başını beklemen gerekmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -912,6 +993,7 @@
         {
           "id": "b03-d7-s3",
           "tur": "coktan",
+          "kart": 3,
           "soru": "Yeni bir yerel oturum açtın. İlk mesajı yazmadan önce ne yapmalısın?",
           "secenekler": [
             "Oturumu kapatıp yeniden açmak",
@@ -931,7 +1013,8 @@
         {
           "id": "b03-d7-s4",
           "tur": "coktan",
-          "soru": "CLAUDE.md:29'a göre izin modunu kim seçer, kapılar ne zaman geçerlidir?",
+          "kart": 4,
+          "soru": "Bizim CLAUDE.md'ye göre izin modunu kim seçer, kapılar ne zaman geçerlidir?",
           "secenekler": [
             "Claude seçer; kapılar yalnız Manual'da geçerli",
             "Kullanıcı seçer; kapılar yalnız Plan'da geçerli",
@@ -942,13 +1025,15 @@
           "aciklama": "Satıra göre modu kullanıcı seçer. CLAUDE.md'deki ve skill'lerdeki kapılar seçilen moda bakmaz, her modda geçerlidir.",
           "kaynak": {
             "adres": "CLAUDE.md:29",
-            "okuma": "2026-11-15",
-            "dayanak": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir."
+            "okuma": "2026-11-17",
+            "dayanak": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir.",
+            "soz": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir."
           }
         },
         {
           "id": "b03-d7-s5",
           "tur": "coktan",
+          "kart": 6,
           "soru": "Kullanıcı Auto modunu seçti ve birden fazla oturuma yayılacak bir iş verdi. Bizim kurallara göre Claude ne yapar?",
           "secenekler": [
             "Önce plan sunar ve orada durur",
@@ -957,16 +1042,18 @@
           ],
           "dogru": 0,
           "ipucu": "Modu kimin seçtiğini ve kapıların kapsamını söyleyen kuralı hatırla.",
-          "aciklama": "Birden fazla oturuma yayılan iş plan kapısına girer (CLAUDE.md:43). Kapılar her modda geçerli olduğu için Auto'da da önce plan gelir.",
+          "aciklama": "Birden fazla oturuma yayılan iş CLAUDE.md'deki plan kapısına girer. Kapılar her modda geçerli olduğu için Auto'da da önce plan gelir.",
           "kaynak": {
             "adres": "CLAUDE.md:29",
-            "okuma": "2026-11-15",
-            "dayanak": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir."
+            "okuma": "2026-11-17",
+            "dayanak": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir.",
+            "soz": "İzin modunu kullanıcı seçer; bu dosyadaki ve skill'lerdeki kapılar her modda geçerlidir."
           }
         },
         {
           "id": "b03-d7-s6",
           "tur": "dogru-yanlis",
+          "kart": 5,
           "soru": "Auto modunda Claude, bir skill açıkça soru sormaya dayanıyorsa yine de sana sorar.",
           "dogru": true,
           "ipucu": "Auto soru sormamaya iter; ama bunun bir istisnası var.",
@@ -981,6 +1068,7 @@
         {
           "id": "b03-d7-s7",
           "tur": "eslestir",
+          "kart": 2,
           "soru": "Her modun ayar adını masaüstündeki karşılığıyla eşleştir.",
           "ciftler": [
             ["default", "Manual"],
