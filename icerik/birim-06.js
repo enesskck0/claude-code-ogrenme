@@ -3,53 +3,48 @@
   "id": "b06",
   "sira": 6,
   "baslik": "Kanca (hook)",
-  "amac": "Kancanın Claude Code'un her seferinde uyguladığı kesin kural olduğunu; hangi olayda ve hangi araçta çalıştığını, nasıl durdurduğunu ya da not bıraktığını anlatabilmek; bizim klasördeki kancaları okuyup bir değişikliği Claude'a tarif edebilmek.",
+  "amac": "Kancanın Claude Code'un her seferinde uyguladığı kesin kural olduğunu anlatabilmek; bir komut durduğunda, Claude sen söylemeden bir şey bildiğinde ya da kendiliğinden düzelttiğinde bunun hangi kancadan ve hangi andan geldiğini ayırt edebilmek.",
   "dersler": [
     {
       "id": "b06-d1",
       "baslik": "Kanca (hook) nedir; kesin kural",
       "hedefler": [
         "Modelin karar verdiği talimat ile Claude Code'un her seferinde uyguladığı kural arasındaki farkı anlatabilir.",
-        "Bir kuralın ne zaman kancaya taşınacağını anlatabilir."
+        "Bir kuralın kancaya taşınacağını ya da metinde kalacağını ayırt edebilir."
       ],
       "anlatim": [
-        "İstemini, CLAUDE.md'yi ve skill'leri model okur ve uyup uymamaya kendisi karar verir. Çoğu zaman uyar ama garanti yoktur.",
-        "Kancayı (hook) ise sen ayarlarsın; Claude Code onu her seferinde çalıştırır, model ne karar verirse versin. Bu türe kesin (deterministic) talimat denir.",
-        "Ne zaman kanca? Belgenin ölçüsü: CLAUDE.md'deki bir satırı ne kadar vurgularsan vurgula Claude yine kaçırıyorsa, o satır kancaya aittir.",
-        "Tersi de geçerli: yalnız tercih olan bir iş için kanca yazılmışsa silinir, karar Claude'a bırakılır.",
-        "Örnek: üretilmiş dosyaların durduğu bir klasörü hiç düzenlememek kanca işidir.",
-        "Bizim CLAUDE.md'de ölçü şu: kanca gibi mekanizma yalnız geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim ve sana ulaşıp tekrar eden hata için yazılır.",
-        "sistem-metni skill'i de aynı ölçüyü taşır: mekanizma yalnız bu koşullarda yazılır, öteki kural açıkça “yalnız metin”dir."
+        "İstemini, CLAUDE.md'yi ve skill'leri model okur, uyup uymamaya kendisi karar verir. Çoğu zaman uyar ama garanti yoktur.",
+        "Kancayı (hook) ise sen ayarlarsın; Claude Code onu model ne düşünürse düşünsün her seferinde çalıştırır. Bu türe kesin (deterministic) talimat denir.",
+        "Belgenin ölçüsü: vurguladığın halde Claude'un yine kaçırdığı satır kancaya aittir. Tersi de geçerli: yalnız tercih için yazılmış kanca silinir, karar Claude'a kalır.",
+        "Bizim CLAUDE.md'de kanca gibi mekanizma yalnız geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim ve sana ulaşıp tekrar eden hata için yazılır.",
+        "Biçim ve üslup kuralına mekanizma yazılmaz: kayarsa söylersin, ancak tekrar ederse mekanizmayı hak eder."
       ],
       "terimler": [
-        {"tr": "kanca", "en": "hook", "aciklama": "Claude Code'un oturumun belli anlarında kendiliğinden çalıştırdığı, senin ayarladığın komut."},
-        {"tr": "kesin talimat", "en": "deterministic", "aciklama": "Modelin kararına bırakılmayan, Claude Code'un her seferinde uyguladığı talimat."}
+        {
+          "tr": "kanca",
+          "en": "hook",
+          "aciklama": "Claude Code'un oturumun belli anlarında kendiliğinden çalıştırdığı, senin ayarladığın komut."
+        },
+        {
+          "tr": "kesin talimat",
+          "en": "deterministic",
+          "aciklama": "Modelin kararına bırakılmayan, Claude Code'un her seferinde uyguladığı talimat."
+        }
       ],
       "sorular": [
         {
           "id": "b06-d1-s1",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Aşağıdakilerden hangisini Claude Code, model ne karar verirse versin her seferinde uygular?",
-          "secenekler": ["CLAUDE.md'ye yazdığın bir kural", "Bir skill'in içindeki adım", "Ayara kayıtlı bir kanca", "Sohbete yazdığın istem"],
-          "dogru": 2,
-          "ipucu": "Hangisini model okuyup yorumluyor, hangisini Claude Code doğrudan çalıştırıyor, ayır.",
-          "aciklama": "Kanca kesin talimattır; Claude Code onu her seferinde çalıştırır. CLAUDE.md, skill ve istemi ise model okur ve uyup uymamaya kendisi karar verir.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Kesin talimatı sen ayarlarsın ve Claude Code onu çalıştırmak zorundadır; bu bir kanca, bir yasak kuralı ya da yönetilen bir ayar olabilir ve model ne karar verirse versin her seferinde uygulanır."
-          }
-        },
-        {
-          "id": "b06-d1-s2",
-          "tur": "dogru-yanlis",
+          "tur": "bosluk",
           "kart": 0,
-          "soru": "Bir kuralı CLAUDE.md'ye çok sert bir dille yazarsan Claude'un ona her turda uyması garanti olur.",
-          "dogru": false,
-          "ipucu": "Satırı kim okuyor ve son kararı kim veriyor, düşün.",
-          "aciklama": "Ne kadar sert yazarsan yaz, CLAUDE.md satırına o turda uyup uymamak yine Claude'un kararıdır. Garanti istiyorsan kanca gerekir.",
+          "soru": "CLAUDE.md \"her değişiklikten sonra testi koş\" diyor; Claude test koşmadan \"bitti\" dedi, çünkü ___.",
+          "secenekler": [
+            "CLAUDE.md bu oturumda yüklenmedi",
+            "model bu turda satıra uymadı",
+            "testi koşturan kanca bozuldu"
+          ],
+          "dogru": 1,
+          "ipucu": "Satırı kim okuyor ve uyup uymamaya kim karar veriyor, düşün.",
+          "aciklama": "CLAUDE.md satırını model okur ve o turda uyup uymamaya kendisi karar verir; çoğu zaman uyar ama garanti yoktur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -58,14 +53,38 @@
           }
         },
         {
+          "id": "b06-d1-s7",
+          "tur": "bosluk",
+          "kart": 1,
+          "soru": "Claude \"src/gen yasağını bilmiyordum\" dedi ama oradaki düzenlemesi yine durdu, çünkü yasağı ___ uyguluyor.",
+          "secenekler": [
+            "CLAUDE.md'deki satır kendiliğinden",
+            "bir kanca her seferinde",
+            "Claude'un son anda hatırladığı kural"
+          ],
+          "dogru": 1,
+          "ipucu": "Kuralı bilmeyen Claude'u kim durdurabilir, düşün.",
+          "aciklama": "Kanca modelin kararına bağlı değildir; Claude Code onu her seferinde çalıştırır. CLAUDE.md satırı ise ancak Claude okuyup uyarsa işe yarar.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/best-practices",
+            "kopya": "best-practices.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Kesin tür, model ne karar verirse versin bazı şeylerin her zaman olmasını ya da hiç olmamasını istediğinde kullanılır; örneğin src/gen klasöründeki üretilmiş istemciyi hiç düzenlememek."
+          }
+        },
+        {
           "id": "b06-d1-s3",
           "tur": "coktan",
           "kart": 2,
-          "soru": "CLAUDE.md'ye “her düzenlemeden sonra biçimlendiriciyi çalıştır” yazdın ve vurguladın; Claude yine atlıyor. Ne yaparsın?",
-          "secenekler": ["Satırı büyük harfle yeniden yazarım", "Bu işi bir kancaya taşırım", "Satırı silerim", "Satırı bir skill'e taşırım"],
-          "dogru": 1,
-          "ipucu": "Kartta, vurguya rağmen kaçırılan satır için verilen ölçüyü hatırla.",
-          "aciklama": "Vurguladığın halde kaçırılan satır, kancaya ait olduğunun işaretidir. Kanca her düzenlemeden sonra çalışır, Claude'un hatırlamasına bağlı kalmaz.",
+          "soru": "CLAUDE.md'deki \"kayıt dosyalarına kabukla yazma\" satırını vurguladın; Claude yine iki kez kaçırdı. Ne istersin?",
+          "secenekler": [
+            "Kuralın bir kancaya taşınmasını",
+            "Satırın büyük harfle yeniden yazılmasını",
+            "Kuralın bir skill'e taşınmasını"
+          ],
+          "dogru": 0,
+          "ipucu": "Vurguya rağmen kaçırılan satır için belgenin ölçüsünü hatırla.",
+          "aciklama": "Vurguladığın halde kaçırılan satır kancaya aittir; kanca Claude'un hatırlamasına bağlı kalmaz. Skill'i de model okur, büyük harf de garanti vermez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -75,70 +94,62 @@
         },
         {
           "id": "b06-d1-s4",
-          "tur": "eslestir",
-          "kart": 3,
-          "soru": "Her durumu doğru açıklamayla eşleştir.",
-          "ciftler": [
-            ["CLAUDE.md'deki bir satır", "Model okur, uyup uymamaya kendisi karar verir"],
-            ["Ayara kayıtlı bir kanca", "Claude Code her seferinde çalıştırır"],
-            ["Vurguya rağmen kaçırılan satır", "Kancaya taşınmalı"],
-            ["Yalnız tercih için yazılmış kanca", "Silinmeli, karar Claude'a kalmalı"]
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Bir kanca başlıkları hep aynı biçime çeviriyor, başka biçim istediğinde de. Ne yapılır?",
+          "secenekler": [
+            "Kancaya bir istisna listesi eklenir",
+            "Biçim isteğin CLAUDE.md'ye vurguyla yazılır",
+            "Kaldırılır; başlığı her seferinde Claude belirler"
           ],
-          "ipucu": "Önce kimin karar verdiğini, sonra kartın taşıma ve silme önerisini düşün.",
-          "aciklama": "CLAUDE.md'yi model yorumlar, kancayı Claude Code uygular. Belge kaçırılan satırı kancaya taşımayı, yalnız tercih olan kancayı silmeyi önerir.",
+          "dogru": 2,
+          "ipucu": "Bu kanca bir zararı mı önlüyor, yoksa bir tercihi mi zorluyor?",
+          "aciklama": "Yalnız tercih için yazılmış kanca silinir ve karar Claude'a bırakılır; başlık biçimi bir tercihtir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
             "okuma": "2026-11-15",
-            "dayanak": "Model CLAUDE.md'yi okuyup ne yapacağına kendisi karar verir, kancayı Claude Code her seferinde uygular; vurguya rağmen kaçırılan satır kancaya aittir, yalnız tercih için yazılmış kanca ise silinir ve karar Claude'a bırakılır."
+            "dayanak": "Yalnız tercih için yazılmış kanca silinir ve karar Claude'a bırakılır."
           }
         },
         {
           "id": "b06-d1-s5",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "CLAUDE.md'deki ölçüye göre hangi kural kanca gibi bir mekanizmayı hak eder?",
-          "secenekler": ["Başlıkların büyük harfle yazılması", "Dışa gönderimi sınırlayan kural", "Cevaplarda kısa paragraf tercihi", "Liste maddelerinin sıralanışı"],
+          "kart": 3,
+          "soru": "Claude iki kanca öneriyor: biri her rapora kaynak eklenmesini zorlayacak, öteki onaysız e-postayı durduracak. Kurala göre?",
+          "secenekler": [
+            "İkisi de yazılır; kanca daha güvenli",
+            "Yalnız e-posta kancası yazılır",
+            "İkisi de yazılmaz; kurallar metinde kalır"
+          ],
           "dogru": 1,
-          "ipucu": "Kartta sayılan kural türlerini hatırla; biçim tercihi aralarında var mı?",
-          "aciklama": "Satır mekanizmayı geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim ve tekrar eden hata kurallarına ayırır. Biçim ve üslup kuralına mekanizma yazılmaz.",
+          "ipucu": "Bizim kuralın saydığı türleri düşün; kaynak ekleme hangisine girer?",
+          "aciklama": "Bizde mekanizma yalnız geri alınamaz zarar, güvenlik, para, dışa gönderim ve tekrar eden hata için yazılır. Kaynak ekleme bu türlerden değildir, metinde kalır.",
           "kaynak": {
-            "adres": "CLAUDE.md:53",
-            "okuma": "2026-11-17",
-            "dayanak": "Satır, mekanizmanın yalnız geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim ve tekrar eden hata kurallarına yazılacağını, biçim ve üslup kuralına yazılmayacağını söyler.",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, mekanizmanın yalnız geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim ve tekrar eden hata kurallarına yazılacağını söyler.",
             "soz": "yalnız şu kurallara yazılır: geri alınamaz zarar, güvenlik sınırı, para, dışa gönderim"
           }
         },
         {
-          "id": "b06-d1-s6",
-          "tur": "bosluk",
-          "kart": 6,
-          "soru": "sistem-metni skill'ine göre mekanizma yalnız belli koşullarda yazılır; öteki kural açıkça ___.",
-          "secenekler": ["kullanıcıya sorulur", "bir kancaya verilir", "yalnız metindir", "bir alt ajana verilir"],
-          "dogru": 2,
-          "ipucu": "Mekanizma yazılmayan kural nerede kalır, düşün.",
-          "aciklama": "Skill mekanizmayı yalnız belli koşullara ayırır; öteki kural yalnız metin olarak kalır ve bu açıkça yazılır.",
-          "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:31",
-            "okuma": "2026-11-17",
-            "dayanak": "Mekanizma yalnız CLAUDE.md'deki koşullarda yazılır; öteki kural açıkça yalnız metindir.",
-            "soz": "öteki kural açıkça \"yalnız metin\"dir"
-          }
-        },
-        {
-          "id": "b06-d1-s7",
+          "id": "b06-d1-s8",
           "tur": "coktan",
           "kart": 4,
-          "soru": "Claude'un üretilmiş dosyaların durduğu src/gen klasörünü hiç düzenlememesini istiyorsun. Hangi tarif bunu garanti eder?",
-          "secenekler": ["CLAUDE.md'ye “src/gen'i asla düzenleme” satırını kalın yaz.", "src/gen'e yazan her çağrıyı durduran bir kanca yaz.", "Her sohbetin başında bu kuralı istemine ekle."],
-          "dogru": 1,
-          "ipucu": "Garanti sözüne dikkat: hangisinde karar modele kalmıyor?",
-          "aciklama": "CLAUDE.md ve istem modelin kararına kalır. Kanca, model ne karar verirse versin çağrıyı her seferinde durdurur.",
+          "soru": "Claude kısa paragraf kuralını bir kez kaçırdı, \"buna kanca yazayım\" diyor. Ne dersin?",
+          "secenekler": [
+            "Yaz; kaçan her satır kancaya aittir",
+            "Yazma; biçime asla kanca yazılmaz",
+            "Şimdilik hayır; ilk kayışta söylemek yeter"
+          ],
+          "dogru": 2,
+          "ipucu": "Kuralın türünü ve kaçırmanın kaçıncı kez olduğunu birlikte düşün.",
+          "aciklama": "Biçim ve üslup kuralına mekanizma yazılmaz; kayınca söylenir. Ancak tekrar ederse mekanizmayı hak eder.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Kesin tür, model ne karar verirse versin bazı şeylerin her zaman olmasını ya da hiç olmamasını istediğinde kullanılır; örneğin src/gen klasöründeki üretilmiş istemciyi hiç düzenlememek."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, biçim ve üslup kuralına mekanizma yazılmayacağını, kayma tekrar ederse mekanizmayı hak edeceğini söyler.",
+            "soz": "Biçim ve üslup kuralına mekanizma yazılmaz; kayarsa söylerim, tekrar ederse mekanizmayı hak eder"
           }
         }
       ]
@@ -147,32 +158,37 @@
       "id": "b06-d2",
       "baslik": "Olaylar (events)",
       "hedefler": [
-        "SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SubagentStart ve SubagentStop olaylarının ne zaman çalıştığını anlatabilir.",
-        "Bizim ayar dosyasında bu yedi olayın kaydını bulup hangi kancanın bağlı olduğunu anlatabilir."
+        "Kancaların bağlandığı anları (oturum başı, istem, araçtan önce ve sonra, tur sonu, alt ajanın açılışı ve bitişi) anlatabilir.",
+        "Bir kanca iletisinin ya da notunun hangi anda çalışan kancadan geldiğini ayırt edebilir."
       ],
       "anlatim": [
-        "Her kanca bir olaya (event) bağlanır. SessionStart oturum başlarken ya da sürdürülürken, UserPromptSubmit istemini gönderince, Claude işlemeden önce çalışır.",
-        "PreToolUse bir araç çağrısı çalışmadan önce, PostToolUse araç çağrısı başarıyla bitince çalışır.",
+        "Her kanca bir olaya (event), yani oturumda belli bir ana bağlanır. SessionStart oturum başlarken ya da sürdürülürken çalışır; bizde açılış kancası ona bağlı.",
+        "UserPromptSubmit istemini gönderince, Claude onu işlemeden önce çalışır; bizde saat damgası kancası ona bağlı.",
+        "PreToolUse bir araç çağrısı çalışmadan önce, PostToolUse çağrı başarıyla bittikten sonra çalışır. PostToolUse geldiğinde araç işini çoktan yapmıştır.",
         "Stop, Claude cevabını bitirince çalışır. SubagentStart bir alt ajan açılınca, SubagentStop alt ajan işini bitirince çalışır.",
-        "Bizim .claude/settings.json dosyasında bu yedi olayın her birine kanca kayıtlı. Bir olaya birden çok kanca kayıtlı olabilir: PostToolUse'un altında iki kayıt var."
+        "Bizim ayarda yedi olayın her birine kanca kayıtlı. Aynı olaya birden çok kanca bağlı olabilir: bizde PreToolUse altında on kayıt var."
       ],
       "terimler": [
-        {"tr": "olay", "en": "event", "aciklama": "Oturumda Claude Code'un kanca çalıştırabildiği belirli an; istem gönderilince ya da araç çağrısından önce gibi."}
+        {
+          "tr": "olay",
+          "en": "event",
+          "aciklama": "Oturumda Claude Code'un kanca çalıştırabildiği belirli an; istem gönderilince ya da araç çağrısından önce gibi."
+        }
       ],
       "sorular": [
         {
           "id": "b06-d2-s1",
-          "tur": "eslestir",
-          "kart": 2,
-          "soru": "Her olayı çalıştığı anla eşleştir.",
-          "ciftler": [
-            ["SessionStart", "Oturum başlarken ya da sürdürülürken"],
-            ["UserPromptSubmit", "İstem gönderilince, Claude işlemeden önce"],
-            ["PreToolUse", "Bir araç çağrısı çalışmadan önce"],
-            ["Stop", "Claude cevabını bitirince"]
+          "tur": "coktan",
+          "kart": 0,
+          "soru": "Dünkü sohbeti bugün sürdürdün; açılış kancası saati yeniden bastı. Neden?",
+          "secenekler": [
+            "Uygulama sohbeti yepyeni bir oturum olarak açtı",
+            "Sürdürmek de oturum başlangıcı sayılır",
+            "Kanca her saat başı kendiliğinden çalışır"
           ],
-          "ipucu": "Adlardaki Start, Pre ve Stop parçaları ipucu verir.",
-          "aciklama": "Olay adı ne zaman çalıştığını söyler: Pre öncesini, Stop bitişi, SessionStart oturumun açılışını anlatır.",
+          "dogru": 1,
+          "ipucu": "Olayın yalnız yeni açılışı mı, kaldığın yerden dönüşü de mi kapsadığını düşün.",
+          "aciklama": "SessionStart oturum başlarken ya da sürdürülürken çalışır; dünkü sohbete dönmek de bir başlangıç sayılır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks-guide",
             "kopya": "hooks-guide.md",
@@ -181,14 +197,58 @@
           }
         },
         {
-          "id": "b06-d2-s2",
+          "id": "b06-d2-s6",
           "tur": "coktan",
           "kart": 1,
-          "soru": "Claude bir dosyayı düzenledi ve araç çağrısı başarıyla bitti. Hemen ardından hangi olay çalışır?",
-          "secenekler": ["PreToolUse", "PostToolUse", "Stop", "SessionStart"],
+          "soru": "Claude sen söylemeden o anki saati doğru yazdı; hiçbir komut da koşmadı. Saati nereden biliyor?",
+          "secenekler": [
+            "Bilgisayarın saatine kendisi bakıyor",
+            "Sohbet başındaki saatten sayarak buluyor",
+            "Her isteminde çalışan bir kanca bağlamına yazıyor"
+          ],
+          "dogru": 2,
+          "ipucu": "Sen mesaj gönderdiğin an Claude'dan önce neyin çalıştığını düşün.",
+          "aciklama": "Saat damgası kancası her istemde saati ölçer ve Claude'un bağlamına tek satır ekler; Claude saati bu satırdan okur.",
+          "kaynak": {
+            "adres": ".claude/hooks/saat_damgasi.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kanca her kullanıcı turunda İstanbul saatini ölçer ve bağlama tek satır ekler.",
+            "soz": "Her kullanıcı turunda Europe/Istanbul saatini ölçer ve bağlama tek satır ekler"
+          }
+        },
+        {
+          "id": "b06-d2-s2",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Claude bir dosyayı düzenledi; bir kanca uyardı ama dosya yine değişti. Kanca neden engelleyemedi?",
+          "secenekler": [
+            "Araçtan sonra çalışan kancaydı",
+            "Kanca bozuk, durdurma kodu vermedi",
+            "Düzenleme önceden onaylanmıştı"
+          ],
+          "dogru": 0,
+          "ipucu": "Uyarı düzenlemeden önce mi geldi, sonra mı; buna göre neyi durdurabilir?",
+          "aciklama": "PostToolUse araç çağrısı başarıyla bittikten sonra çalışır; o an dosya çoktan değişmiştir. Engellemek için çağrıdan önce çalışan kanca gerekir.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/hooks-guide",
+            "kopya": "hooks-guide.md",
+            "okuma": "2026-11-15",
+            "dayanak": "PostToolUse, bir araç çağrısı başarılı olduktan sonra çalışır."
+          }
+        },
+        {
+          "id": "b06-d2-s5",
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "Araç sonrası bir kanca kabuk komutlarını kaydediyor; hata veren komut kayda düşmedi, çünkü kanca ___.",
+          "secenekler": [
+            "hata kodu yüzünden kendisi de durdu",
+            "yalnız başarılı çağrıdan sonra çalışır",
+            "kaydı bir sonraki komutla birlikte düşecek"
+          ],
           "dogru": 1,
-          "ipucu": "Çağrı bitti; adında “sonra” anlamı taşıyan olayı ara.",
-          "aciklama": "PostToolUse bir araç çağrısı başarıyla bittikten sonra çalışır. PreToolUse ise çağrıdan önce çalışır.",
+          "ipucu": "Araç sonrası olayının hangi çağrılardan sonra geldiğini düşün.",
+          "aciklama": "PostToolUse yalnız araç çağrısı başarıyla bitince çalışır; hata veren komuttan sonra bu kanca hiç devreye girmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks-guide",
             "kopya": "hooks-guide.md",
@@ -198,12 +258,16 @@
         },
         {
           "id": "b06-d2-s3",
-          "tur": "dogru-yanlis",
-          "kart": 2,
-          "soru": "SubagentStart bir alt ajan açılınca, SubagentStop alt ajan işini bitirince çalışır.",
-          "dogru": true,
-          "ipucu": "Kartta iki alt ajan olayının hangi anlarda çalıştığı yazıyor; soruyla karşılaştır.",
-          "aciklama": "İki olay alt ajanın açılışını ve bitişini yakalar.",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Ana sohbette tur sonu kancası her cevapta çalışıyor. Bir alt ajan cevabını bitirince de çalışır mı?",
+          "secenekler": [
+            "Evet; her cevap sonu aynı olaydır",
+            "Hayır; alt ajanın bitişi ayrı olaydır"
+          ],
+          "dogru": 1,
+          "ipucu": "Ana sohbetin tur sonu ile alt ajanın işini bitirmesi aynı an mı, düşün.",
+          "aciklama": "Stop ana sohbette Claude cevabını bitirince çalışır; alt ajanın bitişi ayrı olaydır (SubagentStop). Alt ajanın sonunu yakalamak için kanca o olaya bağlanır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks-guide",
             "kopya": "hooks-guide.md",
@@ -212,66 +276,23 @@
           }
         },
         {
-          "id": "b06-d2-s4",
-          "tur": "coktan",
-          "kart": 3,
-          "soru": "Bizim ayarda doğrulayıcı kilidi kancası, verifier adlı alt ajan açılınca çalışıyor. Bu kayıt .claude/settings.json'da hangi olayın altındadır?",
-          "secenekler": ["SubagentStop", "PreToolUse", "SubagentStart", "UserPromptSubmit"],
-          "dogru": 2,
-          "ipucu": "Alt ajanın açılış anını yakalayan olayı düşün.",
-          "aciklama": "Alt ajanın açılışını SubagentStart yakalar; ayardaki bu kayıt verifier ajanında dogrulayici_kilidi.py'yi çalıştırır.",
-          "kaynak": {
-            "adres": ".claude/settings.json:190",
-            "okuma": "2026-11-17",
-            "dayanak": "settings.json'da SubagentStart olayı başlar ve altındaki kayıt verifier eşleşmesiyle dogrulayici_kilidi.py'yi çalıştırır.",
-            "soz": "\"SubagentStart\": [ { \"matcher\": \"verifier\","
-          }
-        },
-        {
-          "id": "b06-d2-s5",
-          "tur": "sirala",
-          "kart": 2,
-          "soru": "Sen bir istem gönderiyorsun, Claude bir araç kullanıp cevabını bitiriyor. Olayları oluş sırasına diz.",
-          "adimlar": ["UserPromptSubmit", "PreToolUse", "PostToolUse", "Stop"],
-          "ipucu": "İstem araçtan, araç da cevabın bitişinden önce gelir.",
-          "aciklama": "İstem işlenmeden önce UserPromptSubmit, araçtan önce PreToolUse, araçtan sonra PostToolUse, cevap bitince Stop çalışır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
-            "okuma": "2026-11-15",
-            "dayanak": "UserPromptSubmit istem işlenmeden önce, PreToolUse araç çağrısı çalışmadan önce, PostToolUse çağrı başarılı olunca, Stop ise Claude cevabını bitirince çalışır."
-          }
-        },
-        {
-          "id": "b06-d2-s6",
-          "tur": "coktan",
-          "kart": 0,
-          "soru": "Bizde saat damgası kancası UserPromptSubmit olayına kayıtlı. Bu kanca ne zaman çalışır?",
-          "secenekler": ["Claude cevabını bitirince", "Bir araç çağrısı başarıyla bittikten sonra", "Bir alt ajan işini bitirince", "İstem gönderilince, işlenmeden önce"],
-          "dogru": 3,
-          "ipucu": "Olayın adını parçalarına ayır: User, Prompt, Submit.",
-          "aciklama": "UserPromptSubmit, sen istem gönderince Claude onu işlemeden önce çalışır. Ayardaki kayıt saat_damgasi.py'yi tam o an çalıştırır.",
-          "kaynak": {
-            "adres": ".claude/settings.json:67",
-            "okuma": "2026-11-17",
-            "dayanak": "settings.json'da UserPromptSubmit olayı başlar ve altındaki kayıt saat_damgasi.py'yi çalıştırır.",
-            "soz": "\"UserPromptSubmit\": ["
-          }
-        },
-        {
           "id": "b06-d2-s7",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Bizim .claude/settings.json dosyasında PostToolUse olayının altında kaç kayıt var?",
-          "secenekler": ["Hiç kayıt yok", "Tek kayıt", "İki kayıt", "Yedi kayıt"],
+          "kart": 4,
+          "soru": "Claude'un dosya yazması durdu; yazma kontrolü kancası geçirmişti. Kaynağı ne olabilir?",
+          "secenekler": [
+            "Claude kendi kararıyla vazgeçti",
+            "Araç sonrası bir kanca geri aldı",
+            "Yazmadan önce çalışan öteki kancalardan biri"
+          ],
           "dogru": 2,
-          "ipucu": "Kartta PostToolUse için söyleneni hatırla.",
-          "aciklama": "PostToolUse olayının altında Write|Edit ve Bash eşleşmeli iki kayıt var.",
+          "ipucu": "Aynı anda kaç kancanın sırada olabileceğini düşün.",
+          "aciklama": "Bir olaya birden çok kanca bağlı olabilir; biri geçirse de öteki durdurabilir. Bizde yazmadan önce birkaç kanca çalışır.",
           "kaynak": {
-            "adres": ".claude/settings.json:223",
-            "okuma": "2026-11-17",
-            "dayanak": "settings.json'da PostToolUse olayı başlar; altında Write|Edit eşleşmeli seçim sayfası notu ve Bash eşleşmeli paket Bash kaydı olmak üzere iki kayıt vardır.",
-            "soz": "\"PostToolUse\": [ { \"matcher\": \"Write|Edit\","
+            "adres": ".claude/settings.json",
+            "okuma": "2026-11-24",
+            "dayanak": "Ayar dosyasında PreToolUse olayının altında ayrı eşleştiricili birden çok kayıt vardır.",
+            "soz": "\"PreToolUse\": ["
           }
         }
       ]
@@ -281,44 +302,36 @@
       "baslik": "Eşleştirici (matcher)",
       "hedefler": [
         "Eşleştiricinin araç olaylarında kancayı araç adına göre süzdüğünü anlatabilir.",
-        "Edit|Write gibi bir eşleşmeyi okuyup kancanın hangi araçlarda çalıştığını anlatabilir."
+        "Bir kancanın neden çalışmadığını ya da beklenmedik yerde çalıştığını eşleştiriciden ayırt edebilir."
       ],
       "anlatim": [
-        "Eşleştiricisi olmayan kanca, olayının her gerçekleşmesinde çalışır. Eşleştirici bunu daraltır.",
-        "PreToolUse araç çağrısından önce, PostToolUse sonra çalışır. Bu araç olaylarında eşleştirici araç adına bakar.",
-        "Eşleştirici Bash ise kanca yalnız kabuk komutlarını çalıştıran Bash aracında çalışır. Edit|Write ise yalnız Edit ya da Write aracında çalışır.",
-        "Dik çizgi (|) “ya da” demektir. Yalnız harf, rakam, alt çizgi, tire, boşluk, virgül ve dik çizgi taşıyan eşleştirici tam adla karşılaştırılır.",
-        "Nokta ya da yıldız gibi başka bir işaret taşıyan eşleştirici tam ad değil, kalıp (düzenli ifade) sayılır: mcp__.* adında mcp__ geçen her araçta çalışır.",
-        "Bizim .claude/settings.json'da okuma korumasının kaydı PreToolUse altında duruyor; eşleştiricisi Read|Grep|Glob."
+        "Eşleştirici (matcher) bir kancanın olayın hangi durumunda çalışacağını süzer. Eşleştiricisi olmayan kanca olayının her gelişinde çalışır.",
+        "Araçtan önce ve sonra çalışan olaylarda eşleştirici aracın adına bakar, dosyanın adına değil. Dosyaya göre seçimi gerekirse kancanın kendisi yapar.",
+        "Dik çizgi (|) “ya da” demektir: Edit|Write yalnız Edit ya da Write aracında çalışır. Bash yalnız kabuk komutlarını çalıştıran araçtır.",
+        "Nokta ya da yıldız taşıyan eşleştirici kalıptır: mcp__.* adında mcp__ geçen her araca uyar. Öteki eşleştirici tam adla karşılaştırılır.",
+        "Bizde doğrulayıcı kilidinin eşleştiricisi düzenleme araçları ve Bash'tir: doğrulayıcı alt ajanı koşarken ana sohbetin bu çağrıları durur."
       ],
       "terimler": [
-        {"tr": "eşleştirici", "en": "matcher", "aciklama": "Kancanın olayın hangi durumunda çalışacağını süzen alan; araç olaylarında araç adına bakar."}
+        {
+          "tr": "eşleştirici",
+          "en": "matcher",
+          "aciklama": "Kancanın olayın hangi durumunda çalışacağını süzen alan; araç olaylarında araç adına bakar."
+        }
       ],
       "sorular": [
         {
-          "id": "b06-d3-s1",
-          "tur": "coktan",
-          "kart": 2,
-          "soru": "Bir PostToolUse kancasının eşleştiricisi Edit|Write. Claude, Read aracıyla bir dosya okursa ne olur?",
-          "secenekler": ["Kanca çalışır", "Kanca çalışmaz", "Kanca okumayı durdurur", "Kanca iki kez çalışır"],
-          "dogru": 1,
-          "ipucu": "Dik çizginin iki yanındaki adlara bak; Read orada var mı?",
-          "aciklama": "Edit|Write yalnız Edit ya da Write aracında çalışır. Read bu listede olmadığı için kanca çalışmaz.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Edit|Write eşleştiricisi yalnız Claude Edit ya da Write aracını kullandığında çalışır; Bash, Read ya da başka bir araçta çalışmaz."
-          }
-        },
-        {
           "id": "b06-d3-s2",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 0,
-          "soru": "Eşleştiricisi olmayan bir kanca, olayının her gerçekleşmesinde çalışır.",
-          "dogru": true,
-          "ipucu": "Süzgeç yoksa ne süzülür, düşün.",
-          "aciklama": "Eşleştirici yalnız daraltmak içindir; yoksa kanca olayın her gelişinde çalışır.",
+          "soru": "Yalnız yazmada çalışması gereken kanca, her okumada da çalışıyor. En olası kaynak?",
+          "secenekler": [
+            "Kanca araç sonrası olayına bağlanmış",
+            "Eşleştiricisi boş bırakılmış",
+            "Okuma araçları her kancayı tetikler"
+          ],
+          "dogru": 1,
+          "ipucu": "Kancayı daraltan şey yoksa kanca nerede çalışır, düşün.",
+          "aciklama": "Eşleştiricisi olmayan kanca olayının her gelişinde, yani her araçta çalışır. Yazma araçlarının adı yazılınca daralır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks-guide",
             "kopya": "hooks-guide.md",
@@ -330,11 +343,15 @@
           "id": "b06-d3-s3",
           "tur": "bosluk",
           "kart": 1,
-          "soru": "PreToolUse ve PostToolUse olaylarında eşleştirici kancayı ___ göre süzer.",
-          "secenekler": ["çağrılan aracın adına", "dosyanın adına", "oturumun saatine", "istemin uzunluğuna"],
-          "dogru": 0,
-          "ipucu": "Bu olaylar bir çağrının önünde ve arkasında durur; çağrıyı ne ayırt eder?",
-          "aciklama": "Araç olaylarında eşleştirici araç adına bakar: Bash, Edit|Write ya da mcp__.* gibi.",
+          "soru": "Eşleştiricisine \"DURUM.md\" yazılan kanca, DURUM.md düzenlenince hiç çalışmıyor; çünkü eşleştirici ___ bakar.",
+          "secenekler": [
+            "dosyanın klasörlü tam yoluna",
+            "yalnız aracın adına",
+            "tırnak içindeki dosya adına"
+          ],
+          "dogru": 1,
+          "ipucu": "Araç olaylarında eşleştiricinin neyin adına baktığını düşün.",
+          "aciklama": "Araç olaylarında eşleştirici aracın adına bakar; \"DURUM.md\" adlı bir araç olmadığı için kanca hiç çalışmaz. Dosyaya göre seçimi kancanın kendisi yapar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks-guide",
             "kopya": "hooks-guide.md",
@@ -343,34 +360,37 @@
           }
         },
         {
-          "id": "b06-d3-s4",
+          "id": "b06-d3-s7",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "Okuma korumasının eşleştiricisi Read|Grep|Glob ve olayı PreToolUse. Ne zaman çalışır?",
-          "secenekler": ["Edit ya da Write'tan önce", "Read, Grep ya da Glob'dan sonra", "Read, Grep ya da Glob'dan önce", "Bash komutundan önce"],
-          "dogru": 2,
-          "ipucu": "Olay adındaki Pre ne zamanı anlatıyor, dik çizgi hangi adları ayırıyor; ikisini birleştir.",
-          "aciklama": "Kayıt PreToolUse altında olduğu için çağrıdan önce çalışır; dik çizgi üç aracın her birini kapsar.",
+          "kart": 2,
+          "soru": "Edit|Write eşleştiricili kanca her dosya değişikliğini kaydediyor. Claude dosyayı kabuk komutuyla değiştirdi, kayıt düşmedi. Neden?",
+          "secenekler": [
+            "Kabukla değişiklik kaydedilemez",
+            "Değişikliği yapan araç Bash'ti",
+            "Kanca yalnız yeni dosyada çalışır"
+          ],
+          "dogru": 1,
+          "ipucu": "Kabuk komutunu hangi araç çalıştırır, eşleştiricide o var mı?",
+          "aciklama": "Kabuk komutu Bash aracıyla çalışır; Edit|Write onu kapsamaz. Her değişikliği görmek isteyen kanca Bash'i de eşlemeli ya da tur sonu kancası kullanmalı.",
           "kaynak": {
-            "adres": ".claude/settings.json:92",
-            "okuma": "2026-11-17",
-            "dayanak": "PreToolUse altındaki bu kayıtta eşleştirici Read|Grep|Glob ve çalışan komut okuma_kontrol.py'dir.",
-            "soz": "\"matcher\": \"Read|Grep|Glob\""
+            "adres": "https://code.claude.com/docs/en/hooks-guide",
+            "kopya": "hooks-guide.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Claude dosyaları kabuk komutlarıyla da oluşturup değiştirebilir; her dosya değişikliğini görmesi gereken kanca için bir Stop kancası ya da Bash eşleşmesi de eklenir."
           }
         },
         {
-          "id": "b06-d3-s5",
-          "tur": "eslestir",
-          "kart": 4,
-          "soru": "Her eşleştiriciyi kancanın çalıştığı araçlarla eşleştir.",
-          "ciftler": [
-            ["Bash", "Bash aracı, yani kabuk komutları"],
-            ["Edit|Write", "Edit ya da Write aracı"],
-            ["Read|Grep|Glob", "Read, Grep ya da Glob aracı"],
-            ["mcp__.*", "Adında mcp__ geçen her araç"]
+          "id": "b06-d3-s6",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Kanca dosya yazan her araçta çalışmalı; Claude eşleştiriciye yalnız \"Edit\" yazdı. Yeterli mi?",
+          "secenekler": [
+            "Hayır; Write ve MultiEdit ayrı adlardır",
+            "Evet; adında Edit geçen her araç yakalanır"
           ],
-          "ipucu": "Dik çizgi “ya da” demek; nokta ve yıldız ise bir kalıp kurar.",
-          "aciklama": "Düz adlar tam adla karşılaştırılır, dik çizgi seçenekleri ayırır. mcp__.* ise düzenli ifadedir ve adında mcp__ geçen her araca uyar.",
+          "dogru": 0,
+          "ipucu": "Bu eşleştiricide nokta ya da yıldız var mı; yoksa nasıl karşılaştırılır?",
+          "aciklama": "Nokta ya da yıldız taşımayan eşleştirici tam adla karşılaştırılır; \"Edit\" yalnız Edit aracını yakalar, Write ve MultiEdit ayrıca yazılmalı.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks",
             "kopya": "hooks.md",
@@ -379,35 +399,43 @@
           }
         },
         {
-          "id": "b06-d3-s6",
+          "id": "b06-d3-s5",
           "tur": "coktan",
           "kart": 3,
-          "soru": "Kancanın yalnız Edit ya da Write aracında çalışmasını istiyorsun. Claude'a eşleştirici için hangi tarifi verirsin?",
-          "secenekler": ["Eşleştiriciyi boş bırak.", "Eşleştirici Bash olsun.", "Eşleştirici Edit|Write olsun.", "Eşleştirici Edit|Write|Bash|Read olsun."],
+          "soru": "Yalnız Slack aracı için yazılan kanca takvim aracında da çalışıyor; eşleştiricisi mcp__.* biçiminde. Neden?",
+          "secenekler": [
+            "Takvim aracı Slack'in parçası sayılır",
+            "Önceki Slack çağrısının kancası sürdü",
+            "Bu kalıp bütün MCP araçlarını kapsar"
+          ],
           "dogru": 2,
-          "ipucu": "Her eşleştiricinin kaç aracı kapsadığını say; sen yalnız iki araç istiyorsun.",
-          "aciklama": "Edit|Write yalnız bu iki araçta çalışır. Boş eşleştirici her araçta, Bash yalnız Bash'te çalışır; Edit|Write|Bash|Read ise Bash ve Read'de de çalışır.",
+          "ipucu": "Eşleştiricideki nokta ve yıldızın ne işe yaradığını düşün.",
+          "aciklama": "Nokta ya da yıldız taşıyan eşleştirici kalıptır; mcp__.* adında mcp__ geçen her araca, yani bütün MCP araçlarına uyar. Yalnız Slack için o aracın adı yazılmalı.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
+            "adres": "https://code.claude.com/docs/en/hooks",
+            "kopya": "hooks.md",
             "okuma": "2026-11-15",
-            "dayanak": "Edit|Write eşleştiricisi yalnız Claude Edit ya da Write aracını kullandığında çalışır."
+            "dayanak": "Yalnız harf, rakam, alt çizgi, tire, boşluk, virgül ve dik çizgi taşıyan eşleştirici tam ad ya da dik çizgiyle ayrılmış tam adlar listesi olarak, başka işaret taşıyan eşleştirici ise başa ve sona bağlanmamış düzenli ifade olarak değerlendirilir."
           }
         },
         {
-          "id": "b06-d3-s7",
+          "id": "b06-d3-s4",
           "tur": "coktan",
-          "kart": 2,
-          "soru": "Kancanın eşleştiricisi Edit|Write. Claude bir dosyayı kabuk komutuyla değiştirirse kanca ne yapar?",
-          "secenekler": ["Çalışmaz; kabuk komutu Bash aracıyla çalışır", "Çalışır, çünkü sonuçta dosya yine değişmiştir", "Çalışır ve kabuk komutunu durdurur"],
-          "dogru": 0,
-          "ipucu": "Kabuk komutu hangi araçla çalışır?",
-          "aciklama": "Kabuk komutu Bash aracıyla çalışır, Edit|Write onu kapsamaz. Her dosya değişikliğini görmek isteyen kanca Bash'i de eşlemeli ya da bir Stop kancası kullanmalı.",
+          "kart": 4,
+          "soru": "Doğrulayıcı alt ajanı koşarken Claude'un düzenlemesi ve kabuk komutu durdu, ama dosya okuması geçti. Neden?",
+          "secenekler": [
+            "Okuma kancalardan hep muaftır",
+            "Kilidin eşleştiricisinde okuma araçları yok",
+            "Doğrulayıcı okumaları kendisi onaylar"
+          ],
+          "dogru": 1,
+          "ipucu": "Kilidin hangi araçlara bağlı olduğunu düşün.",
+          "aciklama": "Doğrulayıcı kilidinin eşleştiricisi yalnız düzenleme araçlarını ve Bash'i sayar; okuma araçları listede olmadığı için kilit onlarda çalışmaz.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Claude dosyaları kabuk komutlarıyla da oluşturup değiştirebilir; her dosya değişikliğini görmesi gereken kanca için bir Stop kancası ya da Bash eşleşmesi de eklenir."
+            "adres": ".claude/hooks/dogrulayici_kilidi.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kancanın başlığı, PreToolUse'da düzenleme araçları ve Bash eşleşmesiyle çalıştığını söyler.",
+            "soz": "Doğrulayıcı kilidi (PreToolUse Edit|Write|MultiEdit|NotebookEdit|Bash"
           }
         }
       ]
@@ -416,61 +444,62 @@
       "id": "b06-d4",
       "baslik": "Durdurmak: çıkış kodu 2",
       "hedefler": [
-        "Çıkış kodu (exit code) 0 olunca işin sürdüğünü, 2 olunca durduğunu anlatabilir.",
-        "Durdurma iletisinin hata akışından (stderr) Claude'a geri bildirim olarak gittiğini anlatabilir."
+        "Bir kanca durdurunca araç çağrısına ne olduğunu ve Claude'un nedeni nereden öğrendiğini anlatabilir.",
+        "Kancanın geçirmesinin onay olmadığını, uyarı basmasının da durdurmak olmadığını ayırt edebilir."
       ],
       "anlatim": [
-        "Kanca bitince bir çıkış kodu verir: 0 “itiraz yok, iş sürer”, 2 “durdur” demektir. PreToolUse kancası 2 ile çıkarsa araç çağrısı hiç çalışmaz.",
-        "Kancanın hata akışına yazdığı ileti Claude'a geri bildirim olarak gider; Claude neden durdurulduğunu görür ve yolunu değiştirir.",
-        "Dikkat: 1 hata gibi görünür ama durdurmaz; Claude komutu yine çalıştırır. Durdurmak istiyorsan 2 kullan.",
-        "0 da onay değildir: PreToolUse'da 0 ile çıkınca çağrı yine normal izin akışından geçer.",
-        "Bizde koruma.py her Bash çağrısından önce çalışır. Bir kural tutarsa çağrı çıkış 2 ile durur; bulgular ve tek “Ne yapılmalı” satırı hata akışına yazılır."
+        "Kanca bitince bir çıkış kodu (exit code) bırakır: 0 “itirazım yok”, 2 “durdur” demektir. Araçtan önce çalışan kanca 2 ile çıkarsa çağrı hiç çalışmaz.",
+        "Durduran kancanın hata akışına (stderr) yazdığı ileti Claude'a geri bildirim olarak gider; Claude nedeni görür ve yolunu değiştirir.",
+        "1 hata gibi görünür ama durdurmaz; iş sürer. Durduran yalnız 2'dir.",
+        "0 da onay değildir: kanca geçirse bile araç çağrısı yine normal izin akışından geçer.",
+        "Bizde koruma kancası her kabuk komutundan önce çalışır; ör. DURUM.md gibi kayıt dosyasına kabukla yazmayı durdurur. İletisi tek “Ne yapılmalı” satırı taşır."
       ],
       "terimler": [
-        {"tr": "çıkış kodu", "en": "exit code", "aciklama": "Kanca bitince Claude Code'a bıraktığı sayı; 0 itiraz yok, 2 durdur demektir."},
-        {"tr": "hata akışı", "en": "stderr", "aciklama": "Kancanın hata ve gerekçe iletisini yazdığı çıkış kanalı; çıkış 2'de Claude'a geri bildirim olur."}
+        {
+          "tr": "çıkış kodu",
+          "en": "exit code",
+          "aciklama": "Kanca bitince Claude Code'a bıraktığı sayı; 0 itiraz yok, 2 durdur demektir."
+        },
+        {
+          "tr": "hata akışı",
+          "en": "stderr",
+          "aciklama": "Kancanın hata ve gerekçe iletisini yazdığı çıkış kanalı; durdurmada Claude'a geri bildirim olur."
+        }
       ],
       "sorular": [
         {
           "id": "b06-d4-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Bir PreToolUse kancası çıkış kodu 2 ile biterse ne olur?",
-          "secenekler": ["Araç çağrısı çalışmaz, durur", "Çağrı onaylanır, izin sorulmaz", "Çağrı her zamanki gibi sürer", "Oturum kapanır"],
-          "dogru": 0,
-          "ipucu": "PreToolUse çağrıdan önce çalışır; 2 hangi işi görür?",
-          "aciklama": "2 durdurma kodudur; PreToolUse çağrıdan önce çalıştığı için çağrı hiç gerçekleşmez.",
+          "soru": "Bir kanca Claude'un dosyaya yazacak kabuk komutunu durdurdu. Dosyayı eski haline döndürmek için ne yaparsın?",
+          "secenekler": [
+            "Geri sarma noktasına dönersin",
+            "Gerek yok; komut hiç çalışmadı",
+            "Claude'dan dosyayı onarmasını istersin"
+          ],
+          "dogru": 1,
+          "ipucu": "Kanca çağrıdan önce mi sonra mı devreye girdi; dosyaya dokunulmuş olabilir mi?",
+          "aciklama": "Araçtan önce çalışan kanca 2 ile çıkınca çağrı hiç çalışmaz; dosya değişmediği için geri alınacak bir şey yoktur.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
+            "adres": "https://academy.claude.com/courses/claude-code-101/hooks",
+            "kopya": "ders-101-12-hooks.md",
             "okuma": "2026-11-15",
-            "dayanak": "Çıkış 2 işlemi durdurur ve hata akışına yazılan ileti Claude'un geri bildirimi olur."
-          }
-        },
-        {
-          "id": "b06-d4-s2",
-          "tur": "dogru-yanlis",
-          "kart": 2,
-          "soru": "Bir kancanın işi durdurması için çıkış kodu 1 de yeterlidir.",
-          "dogru": false,
-          "ipucu": "1 bir hata gibi görünür; ama durdurur mu?",
-          "aciklama": "1 durdurmaz, Claude komutu yine çalıştırır. Durdurmak için 2 gerekir.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-in-action/hooks",
-            "kopya": "ders-action-05-hooks.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Çıkış 1 hata gibi görünse de durdurmaz ve Claude komutu yine çalıştırır; bir şeyi durdurmak istiyorsan 1 değil 2 ile çıkılır."
+            "dayanak": "PreToolUse kancaları araç çağrılarını çalışmadan önce durdurabilir; çıkış 2'de işlem durur ve hata akışındaki ileti Claude'a geri bildirim olarak gider."
           }
         },
         {
           "id": "b06-d4-s3",
           "tur": "bosluk",
           "kart": 1,
-          "soru": "Çıkış 2 ile duran PreToolUse kancasının hata akışına yazdığı ileti ___ gider.",
-          "secenekler": ["yalnız bir kayıt dosyasına", "yalnız sana, ekranda bir uyarı olarak", "Claude'a geri bildirim olarak", "bir sonraki oturuma"],
+          "soru": "Bir kanca komutu durdurdu; Claude hemen başka yol önerip nedenini anlattı, çünkü ___.",
+          "secenekler": [
+            "durdurulan komutu kendisi tahmin etti",
+            "kuralı CLAUDE.md'den çıkardı",
+            "durdurma gerekçesi ona yazıldı"
+          ],
           "dogru": 2,
-          "ipucu": "Claude neden durdurulduğunu nereden öğreniyor, düşün.",
-          "aciklama": "İleti Claude'a geri bildirim olarak gider; Claude neden durdurulduğunu öğrenir ve yolunu değiştirir. İletiyi yalnız sana göstermek, SessionStart gibi durdurulamayan olaylarda olur.",
+          "ipucu": "Durdurma anında Claude'a neyin ulaştığını düşün.",
+          "aciklama": "Durduran kancanın hata akışına yazdığı ileti Claude'a geri bildirim olarak gider; Claude nedeni oradan görür ve yolunu değiştirir.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/hooks",
             "kopya": "ders-101-12-hooks.md",
@@ -479,30 +508,38 @@
           }
         },
         {
-          "id": "b06-d4-s4",
+          "id": "b06-d4-s2",
           "tur": "coktan",
-          "kart": 4,
-          "soru": "koruma.py'ye göre bir kural tutunca ne olur?",
-          "secenekler": ["Çıkış 1 ile durur, bulgu kayda yazılır", "Çıkış 0 ile sürer, bulgu CLAUDE.md'ye eklenir", "Kullanıcıya soru açıp cevabı bekler", "Çıkış 2 ile durur, bulgu hata akışına yazılır"],
-          "dogru": 3,
-          "ipucu": "Bu derste durduran sayı hangisiydi?",
-          "aciklama": "koruma.py durdurmak için 2 ile çıkar ve gerekçeyi hata akışına yazar; Claude o iletiyi görür.",
+          "kart": 2,
+          "soru": "Bir kanca yasak komutta hata verip uyarı bastı, ama komut yine çalıştı. Ne anlarsın?",
+          "secenekler": [
+            "Claude kancanın uyarısını yok saydı",
+            "Kancanın hatası durdurma sayılmaz",
+            "Kanca bozuk, hiç çalışmadı"
+          ],
+          "dogru": 1,
+          "ipucu": "Hata vermek ile durdurmak kancada aynı sinyal mi, düşün.",
+          "aciklama": "Kancanın hata vermesi işi durdurmaz, komut yine çalışır; yalnız durdurma kodu durdurur. Claude'dan kancanın durdurma koduyla çıkmasını istersin.",
           "kaynak": {
-            "adres": ".claude/hooks/koruma.py:9",
-            "okuma": "2026-11-17",
-            "dayanak": "Aşağıdaki durumlardan biri varsa çağrı çıkış 2 ile durur, her bulgu ve tek “Ne yapılmalı” satırı stderr'e yazılır.",
-            "soz": "çağrı çıkış 2 ile durur, her bulgu ve tek \"Ne yapılmalı\" satırı stderr'e yazılır"
+            "adres": "https://academy.claude.com/courses/claude-code-in-action/hooks",
+            "kopya": "ders-action-05-hooks.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Çıkış 1 hata gibi görünse de durdurmaz ve Claude komutu yine çalıştırır; bir şeyi durdurmak istiyorsan 1 değil 2 ile çıkılır."
           }
         },
         {
           "id": "b06-d4-s5",
           "tur": "coktan",
           "kart": 3,
-          "soru": "PreToolUse kancası 0 ile çıktı. Araç çağrısına ne olur?",
-          "secenekler": ["Onaylanır, izin sorusu atlanır", "Yine normal izin akışından geçer", "Durdurulur, ileti Claude'a gider"],
-          "dogru": 1,
-          "ipucu": "0 “itirazım yok” mu demek, “onaylıyorum” mu?",
-          "aciklama": "0 onay değildir; çağrı yine normal izin akışından geçer.",
+          "soru": "Bir kanca Claude'un komutunu geçirdi, ama izin penceresi yine açıldı. Neden?",
+          "secenekler": [
+            "Kanca bozuldu, onayı iletemedi",
+            "Kanca onayı yalnız ilk komutta geçerli",
+            "Kancanın geçirmesi onay sayılmaz"
+          ],
+          "dogru": 2,
+          "ipucu": "“İtirazım yok” ile “onaylıyorum” aynı şey mi?",
+          "aciklama": "Kanca 0 ile çıkınca yalnız itirazı olmadığını söyler; çağrı yine normal izin akışından geçer ve izin sorulabilir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks-guide",
             "kopya": "hooks-guide.md",
@@ -511,37 +548,43 @@
           }
         },
         {
-          "id": "b06-d4-s6",
-          "tur": "eslestir",
-          "kart": 2,
-          "soru": "Her çıkış kodunu sonucuyla eşleştir.",
-          "ciftler": [
-            ["0", "İtiraz yok, iş sürer"],
-            ["2", "Durdurur, ileti Claude'a gider"],
-            ["1", "Hata gibi görünür ama durdurmaz"]
+          "id": "b06-d4-s4",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Claude DURUM.md'ye kabukla satır eklemek istedi, durduruldu; aynı satırı düzenleme aracıyla ekleyince geçti. Neden?",
+          "secenekler": [
+            "Koruma yalnız kabuk komutlarına bakıyor",
+            "İkinci denemede kanca gevşedi",
+            "Düzenleme aracı kancaları atlar"
           ],
-          "ipucu": "Durduran tek sayı hangisi, önce onu bul.",
-          "aciklama": "0 başarıdır, 2 durdurur. Başka her kod, 1 dahil, durdurmaz ve iş sürer.",
+          "dogru": 0,
+          "ipucu": "Koruma kancası hangi aracın çağrısından önce çalışıyordu?",
+          "aciklama": "Koruma kancası yalnız kabuk komutlarından önce çalışır ve kayıt dosyasına kabukla yazmayı durdurur; düzenleme aracı bu kancadan geçmez.",
           "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-in-action/hooks",
-            "kopya": "ders-action-05-hooks.md",
-            "okuma": "2026-11-15",
-            "dayanak": "0 başarıdır, 2 durduran hatadır ve hata akışı Claude'a bağlam olarak gider, başka her kod ise durdurmaz ve Claude devam eder."
+            "adres": ".claude/hooks/koruma.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kabuk koruması, hedefi CLAUDE.md, DURUM.md, KARARLAR.md, GECIS.md ya da .claude/ altı olan kabukla yazmayı durdurur.",
+            "soz": "1. Kayıt dosyasına kabukla yazma: hedef bu klasörün CLAUDE.md, DURUM.md, KARARLAR.md, GECIS.md dosyası ya da .claude/"
           }
         },
         {
-          "id": "b06-d4-s7",
-          "tur": "sirala",
+          "id": "b06-d4-s8",
+          "tur": "coktan",
           "kart": 4,
-          "soru": "koruma.py tehlikeli bir kabuk komutunu nasıl durdurur? Adımları sıraya diz.",
-          "adimlar": ["Claude bir Bash komutu çalıştırmak ister", "Komut çalışmadan önce PreToolUse kancası çalışır", "Kanca sorunu görür ve 2 ile çıkar", "Komut çalışmaz, ileti Claude'a gider", "Claude iletiye bakıp yolunu değiştirir"],
-          "ipucu": "PreToolUse adındaki “Pre” sırayı belirler.",
-          "aciklama": "PreToolUse çağrıdan önce çalıştığı için 2, komutu daha çalışmadan durdurur; ileti Claude'a döner.",
+          "soru": "Koruma kancası komutu durdurdu; Claude yalnız \"durduruldu\" dedi. Ondan ne istersin?",
+          "secenekler": [
+            "Komutu başka bir araçla denemesini",
+            "İletideki “Ne yapılmalı” satırını göstermesini",
+            "Kancayı bu iş için kapatmasını"
+          ],
+          "dogru": 1,
+          "ipucu": "Kancanın iletisi kime gidiyordu ve içinde ne vardı?",
+          "aciklama": "Koruma kancasının iletisi Claude'a gider ve tek “Ne yapılmalı” satırı taşır; o satır sorunun kaynağını ve çıkış yolunu gösterir. Aynı komut yine durur.",
           "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-101/hooks",
-            "kopya": "ders-101-12-hooks.md",
-            "okuma": "2026-11-15",
-            "dayanak": "PreToolUse kancaları araç çağrılarını çalışmadan önce durdurabilir; çıkış 2'de işlem durur ve hata akışındaki ileti Claude'a geri bildirim olarak gider."
+            "adres": ".claude/hooks/koruma.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Bir kural tutunca çağrı çıkış 2 ile durur; her bulgu ve tek \"Ne yapılmalı\" satırı hata akışına yazılır.",
+            "soz": "çağrı çıkış 2 ile durur, her bulgu ve tek \"Ne yapılmalı\" satırı stderr'e yazılır"
           }
         }
       ]
@@ -550,30 +593,38 @@
       "id": "b06-d5",
       "baslik": "Bağlama not eklemek (additionalContext)",
       "hedefler": [
-        "Kancanın durdurmadan Claude'a not bırakabildiğini anlatabilir.",
-        "Saat damgası kancasının her turda bağlama ne eklediğini anlatabilir."
+        "Kancanın durdurmadan Claude'a not bırakabildiğini ve bu notun sana görünmediğini anlatabilir.",
+        "Claude'un sen söylemeden bildiği ya da kendiliğinden düzelttiği bir şeyin kanca notundan gelip gelmediğini ayırt edebilir."
       ],
       "anlatim": [
-        "Kanca durdurmadan da konuşabilir: 0 ile çıkar ve yapılı bir çıktı (JSON) yazar. Bu çıktının additionalContext alanındaki metin Claude'un bağlamına eklenir.",
-        "Claude notu bir sonraki istekte okur; sohbet ekranında sana mesaj olarak görünmez.",
-        "Not nerede belirir? SessionStart'ta konuşmanın başında, UserPromptSubmit'te gönderdiğin istemin yanında, PostToolUse'da aracın sonucunun yanında.",
-        "Stop'ta not turun sonunda belirir; konuşma sürer, Claude notu görüp ona göre davranabilir.",
-        "Bizde saat damgası kancası her istemde İstanbul saatini ölçer ve bağlama tek satır ekler: “Saat: GG.AA.YYYY SS:DD Europe/Istanbul”. Saat ölçülmeden yazılmaz, bu satırdan okunur.",
-        "izin_sayisi.py ise bir Stop kancasıdır; sorunlu cümle bulursa turu durdurmadan not bırakır."
+        "Kanca durdurmadan da konuşabilir: 0 ile çıkar ve ek bağlam (additionalContext) alanına bir not yazar. Not Claude'un bağlamına eklenir.",
+        "Claude notu kendi bir sonraki adımında okur, senin yeni mesajını beklemez. Not sohbet ekranında sana mesaj olarak görünmez.",
+        "Not, kancanın çalıştığı anın yanına düşer: istem kancasında isteminin yanına, araç sonrası kancasında aracın sonucunun yanına.",
+        "Tur sonu (Stop) kancasının notu Claude cevabını bitirince gelir; konuşma sürer ve Claude nota göre işe devam edebilir.",
+        "Bizde saat kancası her istemde saati not olarak ekler; bağlam 300 ya da 500 bin eşiğini aşınca da, eşik başına bir kez, bağlam satırı ekler.",
+        "İzin sayısı kancası tur sonunda çalışır: izin penceresi için ölçmeden sayı veren cümle görürse durdurmadan not bırakır."
       ],
       "terimler": [
-        {"tr": "ek bağlam", "en": "additionalContext", "aciklama": "Kancanın JSON çıktısında, Claude'un bağlamına eklenecek metni taşıyan alan."}
+        {
+          "tr": "ek bağlam",
+          "en": "additionalContext",
+          "aciklama": "Kancanın JSON çıktısında, Claude'un bağlamına eklenecek metni taşıyan alan."
+        }
       ],
       "sorular": [
         {
           "id": "b06-d5-s1",
-          "tur": "coktan",
+          "tur": "bosluk",
           "kart": 0,
-          "soru": "Kanca çağrıyı durdurmadan Claude'a not bırakmak istiyor. Hangi yol doğru?",
-          "secenekler": ["2 ile çıkıp hata akışına yazmak", "0 ile çıkıp additionalContext alanına yazmak", "1 ile çıkıp ekrana basmak", "CLAUDE.md'nin sonuna eklemek"],
+          "soru": "Yalnız not bırakması gereken kanca, Claude'un dosya yazmasını hiç geçirmiyor. Kancadaki en olası hata: ___.",
+          "secenekler": [
+            "eşleştiricisinin boş bırakılması",
+            "durduran çıkış koduyla bitmesi",
+            "notunu sohbet ekranına yazması"
+          ],
           "dogru": 1,
-          "ipucu": "Durdurmayan çıkış kodunu ve bağlama metin taşıyan alanı birlikte düşün.",
-          "aciklama": "2 durdurur; 0 ile çıkıp additionalContext doldurmak ise işi durdurmadan Claude'un bağlamına metin ekler.",
+          "ipucu": "Not bırakan kanca ile durduran kanca hangi noktada ayrılıyordu, düşün.",
+          "aciklama": "Not bırakan kanca 0 ile çıkar ve notu ek bağlama yazar; 2 ile çıkarsa çağrı durur. Boş eşleştirici kancayı her araçta çalıştırır ama tek başına durdurmaz.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks",
             "kopya": "hooks.md",
@@ -583,12 +634,17 @@
         },
         {
           "id": "b06-d5-s2",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 1,
-          "soru": "Kancanın additionalContext ile bıraktığı not, sohbet ekranında sana bir mesaj olarak görünür.",
-          "dogru": false,
-          "ipucu": "Notu kim okuyor, düşün: sen mi, Claude mu?",
-          "aciklama": "Not Claude'un bağlamına eklenir ve Claude onu bir sonraki istekte okur; sohbet ekranında mesaj olarak görünmez.",
+          "soru": "Claude \"kancanın notuna göre düzeltiyorum\" dedi; ama sen ekranda hiçbir not görmedin. Neden?",
+          "secenekler": [
+            "Not ekranın köşesinde bir an görünüp kaybolur",
+            "Not bir hata yüzünden kayboldu",
+            "Not yalnız Claude'un bağlamına girer"
+          ],
+          "dogru": 2,
+          "ipucu": "Notun kime yazıldığını düşün: sana mı, Claude'a mı?",
+          "aciklama": "Ek bağlam notu Claude'un bağlamına eklenir ve Claude'un bir sonraki adımında okunur; sohbet ekranında sana mesaj olarak görünmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks",
             "kopya": "hooks.md",
@@ -597,14 +653,38 @@
           }
         },
         {
-          "id": "b06-d5-s3",
+          "id": "b06-d5-s5",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Bir Stop kancası additionalContext ile not bıraktı. Sonra ne olur?",
-          "secenekler": ["Konuşma sürer; Claude nota göre davranabilir", "Tur hemen durur ve not silinir", "Oturum kapanır, not bir sonraki oturumda okunur"],
+          "kart": 2,
+          "soru": "Claude her isteminde o anki git dalını bilsin istiyorsun. Hangi tarifi verirsin?",
+          "secenekler": [
+            "İstem kancası dalı nota eklesin",
+            "Dalın adı CLAUDE.md'ye yazılsın",
+            "Araçtan önceki kanca dalı denetleyip durdursun"
+          ],
           "dogru": 0,
-          "ipucu": "Stop'ta notun turun neresinde belirdiğini hatırla.",
-          "aciklama": "Stop ve SubagentStop'ta not turun sonunda belirir. Konuşma sürer, Claude geri bildirime göre iş yapabilir.",
+          "ipucu": "Her istemde değişebilen bilgiyi sabit bir dosya taşıyabilir mi?",
+          "aciklama": "Dal değişebildiği için sabit bir CLAUDE.md satırı eskir. İstem gönderilince çalışan kanca dalı not olarak her isteme ekler; durdurmaya gerek yoktur.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/hooks-guide",
+            "kopya": "hooks-guide.md",
+            "okuma": "2026-11-15",
+            "dayanak": "UserPromptSubmit kancalarında bağlama metin eklemek için hookSpecificOutput.additionalContext kullanılır; belgedeki örnek çıktı her isteme o anki dalın durumunu ekler."
+          }
+        },
+        {
+          "id": "b06-d5-s3",
+          "tur": "bosluk",
+          "kart": 3,
+          "soru": "Claude \"bitti\" dedikten hemen sonra, sen yazmadan bir düzeltme daha yaptı; çünkü ___.",
+          "secenekler": [
+            "kendi cevabını baştan okuyup denetledi",
+            "istemin ikinci kez gönderildi",
+            "tur sonu kancası ona not bıraktı"
+          ],
+          "dogru": 2,
+          "ipucu": "Claude cevabını bitirdiği an çalışan bir şey var mı, düşün.",
+          "aciklama": "Tur sonu kancasının notu Claude cevabını bitirince gelir; konuşma sürer ve Claude nota göre işe devam eder.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/hooks",
             "kopya": "hooks.md",
@@ -614,70 +694,42 @@
         },
         {
           "id": "b06-d5-s4",
-          "tur": "bosluk",
-          "kart": 4,
-          "soru": "Saat damgası kancası her kullanıcı turunda İstanbul saatini ölçer ve bağlama ___ ekler.",
-          "secenekler": ["tek satır", "bütün DURUM dosyasını", "bir uyarı penceresi", "yeni bir sohbet"],
-          "dogru": 0,
-          "ipucu": "Kartta saat damgası kancasının bağlama ne eklediği yazıyor.",
-          "aciklama": "Kanca “Saat: GG.AA.YYYY SS:DD Europe/Istanbul” biçiminde tek satır ekler; saat bu satırdan okunur.",
-          "kaynak": {
-            "adres": ".claude/hooks/saat_damgasi.py:3",
-            "okuma": "2026-11-17",
-            "dayanak": "Kanca her kullanıcı turunda Europe/Istanbul saatini ölçer ve bağlama tek satır ekler; saat ölçülmeden yazılmaz, bu satırdan okunur.",
-            "soz": "Her kullanıcı turunda Europe/Istanbul saatini ölçer ve bağlama tek satır ekler"
-          }
-        },
-        {
-          "id": "b06-d5-s5",
           "tur": "coktan",
-          "kart": 2,
-          "soru": "Claude her istemde o anki git dalını bilsin istiyorsun. Hangi tarifi verirsin?",
-          "secenekler": ["PreToolUse kancası dalı denetleyip çıkış koduyla durdursun.", "CLAUDE.md'ye bugünkü dalın adı yazılsın.", "UserPromptSubmit kancası dalı additionalContext'e eklesin."],
+          "kart": 4,
+          "soru": "Bağlam 300 bin notu bir kez geldi, sonra hiç gelmedi; arada sıkıştırma olmadı. Ne gösterir?",
+          "secenekler": [
+            "Bağlam yeniden eşiğin altına indi",
+            "Saat kancası bozuldu",
+            "Not her eşikte yalnız bir kez gelir"
+          ],
           "dogru": 2,
-          "ipucu": "Her istemde çalışan olayı ve durdurmadan not bırakan alanı birleştir.",
-          "aciklama": "Belgedeki örnek tam bunu yapar: UserPromptSubmit kancası additionalContext ile her isteme dalın durumunu ekler.",
+          "ipucu": "Kancanın aynı eşik için kaç kez not yazdığını düşün.",
+          "aciklama": "Saat kancası bağlam satırını her eşik için bir kez ekler; bağlam eşiğin altına inmedikçe yeniden yazmaz. Notun gelmemesi bağlamın küçüldüğünü göstermez.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
-            "okuma": "2026-11-15",
-            "dayanak": "UserPromptSubmit kancalarında bağlama metin eklemek için hookSpecificOutput.additionalContext kullanılır; belgedeki örnek çıktı her isteme o anki dalın durumunu ekler."
+            "adres": ".claude/hooks/saat_damgasi.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kanca bağlam satırını eşik başına bir kez basar; bağlam eşiğin altına inmedikçe yeniden basmaz.",
+            "soz": "sonra bağlam eşiğin altına inmediyse yeniden basılmaz"
           }
         },
         {
           "id": "b06-d5-s6",
           "tur": "coktan",
           "kart": 5,
-          "soru": "Stop kancası izin_sayisi.py sorunlu bir cümle bulunca ne yapar?",
-          "secenekler": ["Turu 2 ile durdurur, gerekçeyi hata akışına yazar", "Sorunlu cümleyi kendisi siler", "Kullanıcıya soru açar", "Turu durdurmadan Claude'a not bırakır"],
-          "dogru": 3,
-          "ipucu": "Kartta izin_sayisi.py'nin turu durdurup durdurmadığı yazıyor.",
-          "aciklama": "Kanca durdurmaz; 0 ile çıkar ve additionalContext taşıyan tek satır JSON yazar.",
-          "kaynak": {
-            "adres": ".claude/hooks/izin_sayisi.py:3",
-            "okuma": "2026-11-17",
-            "dayanak": "Turun asistan metinlerinde izin ya da şifre penceresi için sayı veren, ölçü işareti taşımayan cümle varsa kanca durdurmadan not verir: çıkış 0 ve stdout'a tek satır JSON.",
-            "soz": "durdurmadan not verir: çıkış 0, stdout'a tek satır JSON"
-          }
-        },
-        {
-          "id": "b06-d5-s7",
-          "tur": "eslestir",
-          "kart": 3,
-          "soru": "Kancanın notu Claude'un bağlamında nerede belirir? Olaylarla eşleştir.",
-          "ciftler": [
-            ["SessionStart", "Konuşmanın başında, ilk istemden önce"],
-            ["UserPromptSubmit", "Gönderilen istemin yanında"],
-            ["PostToolUse", "Aracın sonucunun yanında"],
-            ["Stop", "Turun sonunda; konuşma sürer"]
+          "soru": "Claude ölçmeden \"bir kez şifre ister\" yazdı; tur durmadı. İzin sayısı kancası çalışmadı mı?",
+          "secenekler": [
+            "Çalışmadı; çalışsa turu durdururdu",
+            "Çalıştı; durdurmaz, yalnız not bırakır",
+            "Çalışmadı; yalnız komutlara bakar"
           ],
-          "ipucu": "Her olayın çalıştığı anı düşün; not o anın yanına düşer.",
-          "aciklama": "Not, kancanın çalıştığı ana eklenir: oturum başı, istem, araç sonucu ya da tur sonu.",
+          "dogru": 1,
+          "ipucu": "Bu kancanın yakaladığı cümlede turu durdurup durdurmadığını düşün.",
+          "aciklama": "İzin sayısı kancası tur sonunda ölçmeden verilen izin sayısını yakalar ama turu durdurmaz; Claude'a not bırakır, Claude sayıyı düzeltir.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks",
-            "kopya": "hooks.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Notun yeri olaya göre değişir: SessionStart'ta konuşmanın başında, UserPromptSubmit'te gönderilen istemin yanında, PostToolUse'da araç sonucunun yanında, Stop'ta turun sonunda."
+            "adres": ".claude/hooks/izin_sayisi.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Tur metninde izin ya da şifre penceresi için ölçü işaretsiz sayı veren cümle varsa kanca durdurmadan not verir.",
+            "soz": "durdurmadan not verir: çıkış 0, stdout'a tek satır JSON"
           }
         }
       ]
@@ -687,45 +739,102 @@
       "baslik": "Sıkıştırmadan sonra çalışan kanca",
       "hedefler": [
         "SessionStart olayının sıkıştırmadan (compaction) sonra da çalıştığını anlatabilir.",
-        "Açılış kancasının sıkıştırmadan sonra bağlama ne eklediğini anlatabilir."
+        "Sıkıştırmadan sonra bağlama giren ya da girmeyen bir bilginin hangi kancadan geldiğini ayırt edebilir."
       ],
       "anlatim": [
-        "Bağlam penceresi dolunca Claude Code konuşmayı özetler; buna sıkıştırma denir. SessionStart olayı yalnız oturum açılınca değil, sıkıştırmadan hemen sonra da çalışır.",
-        "Özetlerken önemli ayrıntı kaybolabilir. Kancanın yazdığı metin sıkıştırılmış bağlama eklenir; kaybolmaması gereken bilgi böyle geri verilir.",
-        "SessionStart kancasına verilen girdideki kaynak (source) alanı oturumun nasıl başladığını söyler: ör. startup, resume, clear, compact. Eşleştirici compact olursa kanca yalnız sıkıştırmadan sonra çalışır.",
-        "Sıkıştırmadan sonra PostCompact adlı bir olay da çalışır, ama onun çıktısı konuşmaya girmez. Bağlamı geri vermek için compact eşleştiricili SessionStart kullanılır.",
-        "Bizde SessionStart kaydında eşleştirici yok; yani acilis.py her SessionStart'ta, sıkıştırmadan sonra da çalışır ve hep saati basar.",
-        "Döngüde (kuyruk dosyasındaki işler sırayla yapılırken) sıkıştırma olursa acilis.py saatin altına “döngü sürüyor; devir kartı ve kuyruk baştan okunur” ekler. Döngüyü .claude/dongu-baglam.json işaret dosyası gösterir."
+        "Bağlam dolunca Claude Code konuşmayı özetler: buna sıkıştırma (compaction) denir. SessionStart olayı sıkıştırmadan hemen sonra da çalışır.",
+        "Özetlerken ayrıntı kaybolabilir. SessionStart kancasının yazdığı metin özetlenmiş bağlama eklenir; kaybolmaması gereken bilgi böyle geri verilir.",
+        "Kancanın girdisindeki kaynak (source) alanı oturumun nasıl başladığını söyler: startup, resume, clear ya da compact. Eşleştirici compact olursa kanca yalnız sıkıştırmadan sonra çalışır.",
+        "Sıkıştırmadan sonra PostCompact olayı da çalışır ama çıktısı konuşmaya girmez. Bilgiyi geri vermek için compact eşleştiricili SessionStart kancası kullanılır.",
+        "Bizde açılış kancasının eşleştiricisi yok, her SessionStart'ta çalışır. Yeni açılışta ve temizlemede saatin altına açık işlerden ve son kararlardan bir açılış özeti basar.",
+        "Döngüde sıkıştırma olursa açılış kancası saatin altına bir satır ekler: döngü sürüyor; devir kartı ve kuyruk dosyası baştan okunur."
       ],
       "terimler": [
-        {"tr": "sıkıştırma", "en": "compaction", "aciklama": "Bağlam penceresi dolarken Claude Code'un konuşmayı özetle değiştirmesi."},
-        {"tr": "kaynak", "en": "source", "aciklama": "SessionStart girdisinde oturumun nasıl başladığını söyleyen alan: startup, resume, clear, compact ya da fork."}
+        {
+          "tr": "sıkıştırma",
+          "en": "compaction",
+          "aciklama": "Bağlam penceresi dolarken Claude Code'un konuşmayı özetle değiştirmesi."
+        },
+        {
+          "tr": "kaynak",
+          "en": "source",
+          "aciklama": "SessionStart girdisinde oturumun nasıl başladığını söyleyen alan: startup, resume, clear, compact ya da fork."
+        }
       ],
       "sorular": [
         {
           "id": "b06-d6-s1",
-          "tur": "dogru-yanlis",
+          "tur": "bosluk",
           "kart": 0,
-          "soru": "SessionStart olayı yalnız yeni bir oturum açılınca çalışır; sıkıştırmadan sonra çalışmaz.",
-          "dogru": false,
-          "ipucu": "Konuşma özetlendikten hemen sonra ne olduğunu düşün.",
-          "aciklama": "SessionStart sıkıştırmadan hemen sonra da çalışır; compact eşleştiricili bir SessionStart kancası tam o an devreye girer.",
+          "soru": "Sohbet özetlendi; hemen ardından Claude'un bağlamına yeni saat satırını ___ bastı.",
+          "secenekler": [
+            "istem kancası",
+            "oturum başı kancası",
+            "Claude'un tur sonu kancası"
+          ],
+          "dogru": 1,
+          "ipucu": "Özetten sonra konuşmanın yeniden başlamış sayılıp sayılmadığını düşün.",
+          "aciklama": "SessionStart yalnız oturum açılınca değil, sıkıştırmadan hemen sonra da çalışır; saat satırını bu olaya bağlı kanca basar.",
           "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-in-action/hooks",
-            "kopya": "ders-action-05-hooks.md",
+            "adres": "https://code.claude.com/docs/en/context-window",
+            "kopya": "context-window.md",
             "okuma": "2026-11-15",
-            "dayanak": "compact eşleştiricili bir SessionStart kancası sıkıştırmadan hemen sonra çalışır ve yazdığı özet bağlama geri girer."
+            "dayanak": "compact kaynağıyla eşleşen SessionStart kancalarını Claude Code sıkıştırmadan sonra çalıştırır ve çıktılarını sıkıştırılmış bağlama ekler."
           }
         },
         {
           "id": "b06-d6-s2",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Sıkıştırmadan sonra önemli bir bilgiyi Claude'a yeniden vermek için hangi kanca önerilir?",
-          "secenekler": ["PostCompact kancası", "compact eşleştiricili SessionStart kancası", "Her araçtan önce çalışan PreToolUse kancası", "Tur sonunda çalışan Stop kancası"],
+          "kart": 1,
+          "soru": "Her sıkıştırmadan sonra Claude açık işler listesini unutuyor. Claude'a ne önerirsin?",
+          "secenekler": [
+            "Listeyi sohbete bir kez daha yazmasını",
+            "Oturum başında çalışan bir kancanın listeyi basmasını",
+            "Özetini daha uzun tutmasını"
+          ],
           "dogru": 1,
-          "ipucu": "Adı uygun görünen olay her zaman doğru olan değildir; çıktısı konuşmaya gireni ara.",
-          "aciklama": "Belge PostCompact'ı değil, compact eşleştiricili SessionStart'ı önerir. Çıktısı konuşmaya geri giren odur.",
+          "ipucu": "Sohbette yazılan şey ile özetten sonra yeniden eklenen metin arasındaki farkı düşün.",
+          "aciklama": "Sohbete yazılan bilgi bir sonraki özette yine kaybolabilir. SessionStart kancasının yazdığı metin her sıkıştırmadan sonra bağlama yeniden eklenir.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/hooks-guide",
+            "kopya": "hooks-guide.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Bağlam penceresi dolunca sıkıştırma konuşmayı özetler; önemli bağlamı her sıkıştırmadan sonra yeniden vermek için compact eşleştiricili SessionStart kancası kullanılır."
+          }
+        },
+        {
+          "id": "b06-d6-s8",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Yalnız sıkıştırmadan sonra çalışması gereken bir kanca, her yeni sohbette de çalışıyor. En olası kaynak?",
+          "secenekler": [
+            "Eşleştiricisi compact diye yazılmamış",
+            "Yeni sohbet de bir sıkıştırma sayılır",
+            "Kanca sıkıştırmayı yanlış ölçüyor"
+          ],
+          "dogru": 0,
+          "ipucu": "Kancanın oturumun hangi başlangıcında çalışacağını neyin seçtiğini düşün.",
+          "aciklama": "Eşleştirici compact olursa SessionStart kancası yalnız sıkıştırmadan sonra çalışır; eşleştirici yoksa yeni açılışta da çalışır.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/hooks",
+            "kopya": "hooks.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Eşleştiricisi “*”, boş ya da hiç yazılmamış kanca, olayın her gerçekleşmesinde çalışır."
+          }
+        },
+        {
+          "id": "b06-d6-s7",
+          "tur": "bosluk",
+          "kart": 3,
+          "soru": "Claude'un yazdığı PostCompact kancası son commit'leri basıyor, ama özetten sonra Claude onları görmüyor; çünkü ___.",
+          "secenekler": [
+            "kanca özetten önce çalışıyor",
+            "bu olayın çıktısı Claude'a ulaşmaz",
+            "son commit'ler sıkıştırılmış özete sığmadı"
+          ],
+          "dogru": 1,
+          "ipucu": "Adı uygun görünen olayın çıktısının nereye gittiğini düşün.",
+          "aciklama": "PostCompact da sıkıştırmadan sonra çalışır ama çıktısı konuşmaya girmez. Bilgiyi geri vermek için compact eşleştiricili SessionStart kancası kullanılır.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-in-action/hooks",
             "kopya": "ders-action-05-hooks.md",
@@ -735,97 +844,42 @@
         },
         {
           "id": "b06-d6-s3",
-          "tur": "bosluk",
-          "kart": 2,
-          "soru": "Sıkıştırmadan sonra çalışan SessionStart kancasının girdisinde kaynak alanının değeri ___ olur.",
-          "secenekler": ["startup", "resume", "compact", "clear"],
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Sohbet özetlendi; açılış kancası saati bastı ama açık işler özeti bu kez gelmedi. Neden?",
+          "secenekler": [
+            "Kanca özetten sonra yarım çalışır",
+            "Açık işler özetle birlikte silindi",
+            "Başlangıç türü compact; özet ona basılmaz"
+          ],
           "dogru": 2,
-          "ipucu": "Değer, oturumun nasıl başladığını anlatır; burada oturum bir özetle sürüyor.",
-          "aciklama": "compact kaynağıyla eşleşen SessionStart kancalarını Claude Code sıkıştırmadan sonra çalıştırır.",
+          "ipucu": "Kancanın, oturumun nasıl başladığına göre ne bastığını düşün.",
+          "aciklama": "Açılış kancası açılış özetini yalnız yeni açılışta ve temizlemede basar; sıkıştırmadan sonra kaynak compact olduğu için saat ve gerekirse döngü satırı gelir.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/context-window",
-            "kopya": "context-window.md",
-            "okuma": "2026-11-15",
-            "dayanak": "compact kaynağıyla eşleşen SessionStart kancalarını Claude Code sıkıştırmadan sonra çalıştırır ve çıktılarını sıkıştırılmış bağlama ekler."
+            "adres": ".claude/hooks/acilis.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Açılış özeti yalnız source startup ya da clear olduğunda ve kökte DURUM.md ya da KARARLAR.md varken basılır.",
+            "soz": "source \"startup\" ya da \"clear\" ise ve kökte DURUM.md ya da KARARLAR.md"
           }
         },
         {
           "id": "b06-d6-s4",
           "tur": "coktan",
           "kart": 5,
-          "soru": "Sohbet sıkıştırıldı ve kökte .claude/dongu-baglam.json işareti var. acilis.py saatin altına ne ekler?",
-          "secenekler": ["Açılış özeti", "Döngü sürüyor; devir kartı ve kuyruk baştan okunur", "Bağlam eşiği uyarısı", "Bütün DURUM dosyası"],
+          "soru": "Gece döngüsünde sohbet özetlendi; Claude hemen devir kartını ve kuyruk dosyasını baştan okudu. Neden?",
+          "secenekler": [
+            "Özet Claude'a her şeyi unutturdu",
+            "Açılış kancası ona işin sürdüğünü bildirdi",
+            "Kuyruk dosyası kendini yeniden yükledi"
+          ],
           "dogru": 1,
-          "ipucu": "Sohbet özetlendi ama döngü sürüyor; Claude'un neyi yeniden okuması gerekir, düşün.",
-          "aciklama": "Kaynak compact ve işaret varsa kanca, döngünün sürdüğünü ve devir kartıyla kuyruk dosyasının baştan okunacağını söyleyen satırı ekler. Açılış özeti yalnız startup ve clear'da basılır.",
+          "ipucu": "Döngüde özetten sonra açılış kancasının saatin altına ne eklediğini düşün.",
+          "aciklama": "Döngüde sıkıştırma olunca açılış kancası saatin altına döngünün sürdüğünü, devir kartı ve kuyruk dosyasının baştan okunacağını söyleyen satırı ekler.",
           "kaynak": {
-            "adres": ".claude/hooks/acilis.py:6",
-            "okuma": "2026-11-17",
-            "dayanak": "Olayın source alanı compact ise ve kökte .claude/dongu-baglam.json işareti varsa saatin altına bir satır eklenir: döngü sürüyor, sohbet özetlendi; devir kartı ve kuyruk dosyası baştan okunur, iş Sonuç hücresi boş işten sürer.",
+            "adres": ".claude/hooks/acilis.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kaynak compact ise ve döngü işareti varsa saatin altına döngünün sürdüğünü, devir kartı ve kuyruk dosyasının baştan okunacağını söyleyen satır eklenir.",
             "soz": "altına bir satır eklenir: döngü sürüyor, sohbet özetlendi; devir kartı ve kuyruk dosyası baştan okunur"
-          }
-        },
-        {
-          "id": "b06-d6-s5",
-          "tur": "coktan",
-          "kart": 5,
-          "soru": "Kaynak compact ama kökte .claude/dongu-baglam.json işareti yok. acilis.py ne basar?",
-          "secenekler": ["Saati ve döngü satırını", "Yalnız saati", "Saati ve bütün DURUM dosyasını"],
-          "dogru": 1,
-          "ipucu": "Ek satır için kaç koşulun birlikte gerektiğini hatırla.",
-          "aciklama": "Ek satır için iki koşul birlikte gerekir: kaynak compact ve işaret var. Biri eksikse kanca yalnız saati basar.",
-          "kaynak": {
-            "adres": ".claude/hooks/acilis.py:26",
-            "okuma": "2026-11-17",
-            "dayanak": "Öteki her durumda, yani kaynak başka, işaret yok, girdi bozuk ya da işaret beklenmeyen biçimdeyse kanca yalnız saati basar.",
-            "soz": "Öteki her durumda (source başka, işaret yok, girdi bozuk"
-          }
-        },
-        {
-          "id": "b06-d6-s6",
-          "tur": "sirala",
-          "kart": 1,
-          "soru": "Uzun bir konuşmada olanları sıraya diz.",
-          "adimlar": ["Bağlam penceresi dolmaya yaklaşır", "Claude Code konuşmayı özetler", "SessionStart kancası çalışır", "Kancanın çıktısı sıkıştırılmış bağlama eklenir"],
-          "ipucu": "Kanca neyin ardından çalışıyordu?",
-          "aciklama": "Önce pencere dolar ve sıkıştırma olur; SessionStart kancası ondan sonra çalışır ve çıktısı yeni bağlama girer.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Bağlam penceresi dolunca sıkıştırma konuşmayı özetler; önemli bağlamı her sıkıştırmadan sonra yeniden vermek için compact eşleştiricili SessionStart kancası kullanılır."
-          }
-        },
-        {
-          "id": "b06-d6-s7",
-          "tur": "coktan",
-          "kart": 3,
-          "soru": "Sıkıştırmadan sonra Claude son commit'leri yeniden görsün istiyorsun. Hangi tarif uygun?",
-          "secenekler": ["Stop kancası 2 ile çıkıp commit'leri göstersin.", "PostCompact kancası son commit'leri bassın.", "compact eşleştiricili SessionStart kancası son commit'leri bassın."],
-          "dogru": 2,
-          "ipucu": "Hangi kancanın çıktısı sıkıştırmadan sonra bağlama giriyordu?",
-          "aciklama": "Çıktısı sıkıştırmadan sonra konuşmaya geri giren, compact eşleştiricili SessionStart kancasıdır; PostCompact'ınki girmez. Kancanın komutu git log --oneline -5 olabilir, son commit'leri gösterir.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks-guide",
-            "kopya": "hooks-guide.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Örnekteki echo yerine değişen çıktı üreten herhangi bir komut konabilir, örneğin son commit'leri göstermek için git log --oneline -5."
-          }
-        },
-        {
-          "id": "b06-d6-s8",
-          "tur": "coktan",
-          "kart": 4,
-          "soru": "Bizim .claude/settings.json'daki SessionStart kaydında eşleştirici yok. Buna göre acilis.py ne zaman çalışır?",
-          "secenekler": ["Yalnız ilk açılışta (startup)", "Yalnız sıkıştırmadan sonra (compact)", "Her SessionStart'ta, sıkıştırmadan sonra da", "Hiç çalışmaz, eşleştirici zorunlu"],
-          "dogru": 2,
-          "ipucu": "Eşleştiricisi olmayan kancanın neyi süzdüğünü düşün.",
-          "aciklama": "Eşleştirici yazılmamışsa kanca olayın her gelişinde çalışır; acilis.py de bu yüzden kaynağı kendisi okuyup ne basacağını seçer.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/hooks",
-            "kopya": "hooks.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Eşleştiricisi “*”, boş ya da hiç yazılmamış kanca, olayın her gerçekleşmesinde çalışır."
           }
         }
       ]
@@ -834,149 +888,163 @@
       "id": "b06-d7",
       "baslik": "Bizde kanca yazmak; Claude Code kancası ile git kancası",
       "hedefler": [
-        "Kancanın, testinin ve settings kaydının aynı işte yapıldığını anlatabilir.",
-        "Git kancasını (git hook) Claude Code kancasından ayırt edebilir."
+        "Bizde yeni bir kancanın testi, kaydı ve gerçek kayıtta denenmesiyle birlikte yazıldığını anlatabilir.",
+        "Commit sırasında çalışan git kancasını (git hook) Claude Code kancasından ayırt edebilir."
       ],
       "anlatim": [
-        "Bizde yeni kanca kanca-denetim skill'iyle yazılır. Önce aynı işi yapan kanca aranır; sonra kanca .claude/hooks/<ad>.py, testi test_<ad>.py olarak yan yana yazılır.",
-        "Kanca .claude/settings.json'a olay ve eşleşmesiyle kaydedilir; Claude Code kancası bu dosyada tanımlanır.",
-        "Sonra kanca KARARLAR ve DURUM gibi gerçek kayıt dosyalarında denenir; bağlı belgeler güncellenir, testler ve denetim koşar; hepsi aynı commit'te.",
-        "sistem-metni kuralı: kanca yazılınca testi de yazılır. Her durdurmaya iki test: bozma testi durdurması gereken yerde durdurduğunu, yanlış alarm testi yersiz durdurmadığını sınar.",
-        "CLAUDE.md'ye göre .claude/settings.json değişikliği her seferinde sana sorulur. Kanca ekleme ve değiştirme sorulmaz: testi yazılır, doğrulayıcı (verifier) alt ajanı işi kontrol eder.",
-        "Kanca klasöründe pre-commit ve commit-msg dosyaları da var, ama bunlar git kancasıdır: onları Claude Code değil git çalıştırır.",
-        "Git kancalarının settings.json'da kaydı yok; git'in core.hooksPath ayarı kanca klasörünü gösterir ve onları böyle etkinleştirir."
+        "Bizde yeni kanca kanca-denetim skill'iyle yazılır. İlk adım, aynı işi yapan bir kanca ya da kontrol olup olmadığını aramaktır.",
+        "Claude Code kancası .claude/settings.json'a olayı ve eşleştiricisiyle kaydedilir; bu kayıt olmadan kanca dosyası hiç çalışmaz.",
+        "Kanca bir kez gerçek kayıtta (KARARLAR, DURUM gibi) koşulur ve uyarı sayısı rapora yazılır; testler ve denetim de aynı işte koşar.",
+        "Kanca yazılınca her durdurmaya iki test yazılır: biri durdurması gereken yerde durdurduğunu, öteki yersiz durdurmadığını sınar.",
+        "Ayar dosyası değişikliği her seferinde sana sorulur; kanca ekleme ve değiştirme ise sorulmaz, testi yazılır ve doğrulayıcı (verifier) denetler.",
+        "Kanca klasöründeki pre-commit ve commit-msg birer git kancasıdır: onları Claude Code değil git, commit sırasında çalıştırır."
       ],
       "terimler": [
-        {"tr": "git kancası", "en": "git hook", "aciklama": "Git'in commit gibi anlarda çalıştırdığı betik; Claude Code kancası değildir ve settings.json'a kaydedilmez."}
+        {
+          "tr": "git kancası",
+          "en": "git hook",
+          "aciklama": "Git'in commit gibi anlarda çalıştırdığı betik; Claude Code kancası değildir ve settings.json'a kaydedilmez."
+        }
       ],
       "sorular": [
         {
-          "id": "b06-d7-s1",
-          "tur": "sirala",
-          "kart": 2,
-          "soru": "kanca-denetim skill'ine göre yeni bir kancanın adımlarını sıraya diz.",
-          "adimlar": ["Aynı işi yapan kanca var mı diye ara", "Kancayı ve testini yan yana yaz", "Kancayı settings.json'a kaydet", "Gerçek kayıtta dene", "Belgeleri güncelle, testleri ve denetimi koş"],
-          "ipucu": "Yazmadan önce ne yapılır, kayıttan sonra ne denenir, düşün.",
-          "aciklama": "Skill önce aramayı, sonra kod ve testi, kaydı, gerçek kayıtta koşuyu ve en sonda belgelerle sınamayı ister.",
+          "id": "b06-d7-s9",
+          "tur": "coktan",
+          "kart": 0,
+          "soru": "Claude \"kayıt dosyasına kabukla yazmayı durduran bir kanca yazayım\" diyor. İlk ne sorarsın?",
+          "secenekler": [
+            "Kancanın testi önce mi yazılacak?",
+            "Böyle bir koruma zaten var mı?",
+            "Kayıt settings.json'a ne zaman eklenecek?"
+          ],
+          "dogru": 1,
+          "ipucu": "Yeni kanca yazılmadan önceki adımı düşün.",
+          "aciklama": "kanca-denetim önce aynı işi yapan kanca ya da kontrol aranmasını ister. Bizde koruma kancası bu işi zaten yapıyor; aranmasa aynı işi iki kanca yapardı.",
           "kaynak": {
-            "adres": ".claude/skills/kanca-denetim/SKILL.md:16",
-            "okuma": "2026-11-17",
-            "dayanak": "Adımlar sırasıyla şunlardır: önce aynı işi yapan kanca aranır, kod ve test yan yana yazılır, kanca settings.json'a kaydedilir, gerçek kayıtta koşulur, bağlı belgeler güncellenir ve testlerle denetim koşulur.",
+            "adres": ".claude/skills/kanca-denetim/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Skill'in ilk adımı, aynı işi yapan kanca ya da kontrol olup olmadığını aramaktır.",
             "soz": "Önce ara: aynı işi yapan kanca ya da kontrol var mı"
           }
         },
         {
-          "id": "b06-d7-s2",
+          "id": "b06-d7-s8",
           "tur": "coktan",
-          "kart": 0,
-          "soru": "kanca-denetim skill'ine göre yeni bir kanca hangi dosyalarla gelir?",
-          "secenekler": ["Yalnız .claude/hooks/<ad>.py", "Kanca dosyası ve yanında test_<ad>.py", "Yalnız settings.json'daki kayıt", "Kanca dosyası ve CLAUDE.md'ye eklenen bir kural satırı"],
-          "dogru": 1,
-          "ipucu": "Kartta yan yana yazılan iki dosyayı hatırla.",
-          "aciklama": "Kanca .claude/hooks/<ad>.py, testi .claude/hooks/test_<ad>.py dosyasıdır; ikisi aynı işte yazılır.",
+          "kart": 1,
+          "soru": "Claude yeni kancayı klasöre koydu, testi de geçti; ama oturumda kanca hiç çalışmıyor. En olası kaynak?",
+          "secenekler": [
+            "Eşleştiricisi boş bırakılmış",
+            "Kanca ancak commit'ten sonra etkinleşir",
+            "Ayar dosyasında kaydı yok"
+          ],
+          "dogru": 2,
+          "ipucu": "Claude Code bir kancanın varlığını nereden öğreniyor, düşün.",
+          "aciklama": "Claude Code kancayı settings.json'daki kayıttan tanır; kayıt yoksa dosya klasörde dursa da hiç çalışmaz.",
           "kaynak": {
-            "adres": ".claude/skills/kanca-denetim/SKILL.md:17",
-            "okuma": "2026-11-17",
-            "dayanak": "Kod ve test yan yana durur: kanca .claude/hooks/<ad>.py, testi .claude/hooks/test_<ad>.py dosyasıdır.",
-            "soz": "Kod ve test yan yana: kanca"
+            "adres": "https://academy.claude.com/courses/claude-code-101/hooks",
+            "kopya": "ders-101-12-hooks.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Kancalar settings.json'da tanımlanır: bir olay seçilir, istenirse hangi araçlara uygulanacağını söyleyen bir eşleştirici konur ve çalışacak komut verilir."
           }
         },
         {
-          "id": "b06-d7-s3",
-          "tur": "dogru-yanlis",
-          "kart": 4,
-          "soru": "Bizde kanca eklemek ya da değiştirmek, her seferinde sana sorulması gereken işlerdendir.",
-          "dogru": false,
-          "ipucu": "Kartta kanca ekleme ve değiştirmenin neyle güvenceye alındığı yazıyor.",
-          "aciklama": "Liste settings.json değişikliğini sayar ama kanca ekleme ve değiştirmeyi dışarıda bırakır. Bunlar testi ve doğrulayıcısıyla sorulmadan yapılır.",
+          "id": "b06-d7-s1",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Claude yeni kancanın bittiğini söyledi; testleri geçti. Kurala göre neyi sorarsın?",
+          "secenekler": [
+            "Senin onayının alınıp alınmadığını",
+            "Gerçek dosyalarda kaç uyarı verdiğini",
+            "Kuralın CLAUDE.md'ye de yazılıp yazılmadığını"
+          ],
+          "dogru": 1,
+          "ipucu": "Testlerin göremediği neyi sınamak gerekir, düşün.",
+          "aciklama": "Test yetmez; kanca bir kez gerçek kayıtta (KARARLAR, DURUM gibi) koşulur ve uyarı sayısı rapora yazılır. Kanca ekleme sana sorulmaz.",
           "kaynak": {
-            "adres": "CLAUDE.md:46",
-            "okuma": "2026-11-17",
-            "dayanak": "Her seferinde sorulanlar listesinde settings.json ve settings.local.json vardır, kanca ekleme ve değiştirme hariç; bunlar testi ve doğrulayıcısıyla sorulmaz.",
-            "soz": "kanca ekleme ve değiştirme hariç: testi ve doğrulayıcısıyla sorulmaz"
+            "adres": ".claude/skills/sistem-metni/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kanca yazılınca testinden sonra bir kez gerçek kayıtta koşulur ve uyarı sayısı rapora yazılır.",
+            "soz": "Sonra bir kez gerçek kayıtta (KARARLAR, DURUM, kütük) koşulur, uyarı sayısı rapora yazılır."
           }
         },
         {
           "id": "b06-d7-s4",
           "tur": "coktan",
           "kart": 3,
-          "soru": "sistem-metni kuralına göre kanca testinde en az ne bulunur?",
-          "secenekler": ["Elle bir deneme", "Kullanıcının onayı", "Her durdurmaya bir bozma ve bir yanlış alarm testi", "Test gerekmez, kanca kesin kuraldır"],
+          "soru": "Claude yeni kancaya, yasak komutu durdurduğunu gösteren tek test yazdı. Kurala göre hangi test eksik?",
+          "secenekler": [
+            "Kancanın hızını ölçen test",
+            "Her araçta çalıştığını sınayan test",
+            "Zararsız komutu geçirdiğini sınayan test"
+          ],
           "dogru": 2,
-          "ipucu": "Kanca hem durdurmalı hem de yersiz durdurmamalı; ikisi de sınanır.",
-          "aciklama": "Kural her durdurma için iki test ister: bir bozma testi ve bir yanlış alarm testi.",
+          "ipucu": "Kancanın yapabileceği iki tür hatayı düşün.",
+          "aciklama": "Her durdurma için iki test gerekir: bozma testi durdurması gereken yerde durdurduğunu, yanlış alarm testi zararsız komutu geçirdiğini sınar.",
           "kaynak": {
-            "adres": ".claude/skills/sistem-metni/SKILL.md:33",
-            "okuma": "2026-11-17",
-            "dayanak": "Kanca ya da kontrol yazılınca testi de yazılır: her durdurma için bir bozma testi ve bir yanlış alarm testi.",
+            "adres": ".claude/skills/sistem-metni/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kural, her durdurma için bir bozma testi ve bir yanlış alarm testi ister.",
             "soz": "Kanca ya da kontrol yazılınca testi de yazılır: her durdurma için bir bozma testi ve bir yanlış alarm testi"
           }
         },
         {
-          "id": "b06-d7-s5",
+          "id": "b06-d7-s3",
           "tur": "coktan",
-          "kart": 5,
-          "soru": ".claude/hooks/pre-commit dosyası kanca klasöründe duruyor. Onu kim çalıştırır?",
-          "secenekler": ["Claude Code, settings.json'daki bir olayla", "Git, commit sırasında", "Claude, her cevabın sonunda"],
-          "dogru": 1,
-          "ipucu": "Dosyanın git kancası mı, Claude Code kancası mı olduğunu düşün.",
-          "aciklama": "pre-commit bir git commit kancasıdır; onu Claude Code değil git çalıştırır ve git config ile etkinleşir.",
+          "kart": 4,
+          "soru": "Claude bir kancayı değiştirdi ve sana sormadı; testini yazdı, doğrulayıcı onayladı. Kurala uygun mu?",
+          "secenekler": [
+            "Evet; bu iş için onay gerekmez",
+            "Hayır; ayar ve kanca hep sorulur",
+            "Hayır; kanca kesin kural, değişmez"
+          ],
+          "dogru": 0,
+          "ipucu": "Ayar dosyası ile kanca değişikliği arasında kuralın yaptığı ayrımı düşün.",
+          "aciklama": "Ayar dosyası değişikliği her seferinde sorulur, ama kanca ekleme ve değiştirme hariçtir: testi yazılır ve doğrulayıcı denetler.",
           "kaynak": {
-            "adres": ".claude/hooks/pre-commit:2",
-            "okuma": "2026-11-17",
-            "dayanak": "Dosya bir git commit kancasıdır: commit'e girecek, sahnedeki içerikte denetim.py --sahne koşar.",
-            "soz": "Git commit kancası: commit'e girecek (sahnedeki) içerikte denetim.py --sahne koşar"
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Her seferinde sorulanlar listesinde settings.json vardır, kanca ekleme ve değiştirme hariç; bunlar testi ve doğrulayıcısıyla sorulmaz.",
+            "soz": "kanca ekleme ve değiştirme hariç: testi ve doğrulayıcısıyla sorulmaz"
+          }
+        },
+        {
+          "id": "b06-d7-s5",
+          "tur": "bosluk",
+          "kart": 5,
+          "soru": "Claude commit yapmak istedi; commit durdu ve denetim bulgu satırları basıldı. Durduran, ___.",
+          "secenekler": [
+            "Claude Code'un kabuk koruma kancası",
+            "doğrulayıcı alt ajanı",
+            "git'in kendi çalıştırdığı bir kanca"
+          ],
+          "dogru": 2,
+          "ipucu": "Commit sırasında kimin çalıştırdığı kancaları düşün.",
+          "aciklama": "Commit'i git'in pre-commit kancası durdurur: sahnedeki içerikte denetimi koşar, bulgu varsa commit durur. Onu Claude Code değil git çalıştırır.",
+          "kaynak": {
+            "adres": ".claude/hooks/pre-commit",
+            "okuma": "2026-11-24",
+            "dayanak": "Git commit kancası sahnedeki içerikte denetimi koşar; bulgu varsa commit durur ve bulgu satırları basılır.",
+            "soz": "Bulgu varsa (çıkış 1) commit durur ve bulgu satırları basılır."
           }
         },
         {
           "id": "b06-d7-s6",
-          "tur": "eslestir",
-          "kart": 6,
-          "soru": "Her öğeyi doğru açıklamayla eşleştir.",
-          "ciftler": [
-            ["Claude Code kancası", "settings.json'a olay ve eşleşmesiyle kaydedilir"],
-            ["pre-commit ve commit-msg", "Kanca klasöründe duran iki git kancası"],
-            ["core.hooksPath ayarı", "Git'e kanca klasörünü gösterir"]
-          ],
-          "ipucu": "Önce hangisinin bir ayar, hangisinin dosya olduğunu ayır; Claude Code kendi ayar dosyasını okur.",
-          "aciklama": "Claude Code kancası settings.json kaydıyla çalışır. pre-commit ve commit-msg aynı klasördeki git kancalarıdır; core.hooksPath ayarı git'e bu klasörü gösterir.",
-          "kaynak": {
-            "adres": ".claude/skills/kanca-denetim/SKILL.md:18",
-            "okuma": "2026-11-17",
-            "dayanak": "Kanca settings.json'a olay ve eşleşmesiyle kaydedilir; git kancaları, pre-commit ve commit-msg, aynı klasörde durur ve core.hooksPath bu klasörü gösterir.",
-            "soz": "olay ve eşleşmesiyle. Git kancası"
-          }
-        },
-        {
-          "id": "b06-d7-s7",
           "tur": "coktan",
-          "kart": 2,
-          "soru": "Yeni kanca için hangi tarif bizim kurala uyar?",
-          "secenekler": ["Kancayı yaz, kaydet; testi sonraki işe kalsın.", "Kancayı testiyle yaz ve kaydet; üçü aynı commit'te.", "Kancayı .claude/hooks'a koy; kayıt gerekmez."],
+          "kart": 5,
+          "soru": "Claude \"pre-commit kancasını settings.json'a da kaydedeyim\" diyor. Ne dersin?",
+          "secenekler": [
+            "Kaydetsin; yoksa çalışmaz",
+            "Gerek yok; onu git çalıştırır",
+            "Kaydetsin; iki yerde dursun"
+          ],
           "dogru": 1,
-          "ipucu": "Kanca, testi ve kaydı ayrı işlere bölünebilir mi, düşün.",
-          "aciklama": "Bitiş şartı kodu, testi, settings kaydını ve bağlı belgeleri aynı commit'te ister. Claude Code kancası settings.json'a kaydedilerek tanımlanır.",
+          "ipucu": "Bu kancayı Claude Code mu çalıştırıyor, yoksa başka bir program mı?",
+          "aciklama": "pre-commit bir git kancasıdır; git onu kendi ayarıyla bulur ve commit sırasında çalıştırır. settings.json'a kaydı gerekmez.",
           "kaynak": {
-            "adres": ".claude/skills/kanca-denetim/SKILL.md:25",
-            "okuma": "2026-11-17",
-            "dayanak": "Bitiş şartı: kod ve testi var, testler kalan 0 ile geçer; settings kaydı, GECIS satırı, README sayısı ve denetim başlığı aynı commit'tedir.",
-            "soz": "settings kaydı, GECIS satırı, README sayısı ve denetim başlığı aynı commit'te"
-          }
-        },
-        {
-          "id": "b06-d7-s8",
-          "tur": "bosluk",
-          "kart": 1,
-          "soru": "Claude Code kancası ___ tanımlanır: bir olay seçilir, istersen eşleştirici verilir ve çalışacak komut yazılır.",
-          "secenekler": ["git config ayarında", "settings.json dosyasında", "CLAUDE.md'nin içinde", "bir skill'in adımlarında"],
-          "dogru": 1,
-          "ipucu": "Bizde kancaların kaydı hangi ayar dosyasındaydı?",
-          "aciklama": "Claude Code kancaları settings.json'da tanımlanır; git kancası ise git'in kendi ayarıyla etkinleşir.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-101/hooks",
-            "kopya": "ders-101-12-hooks.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Kancalar settings.json'da tanımlanır: bir olay seçilir, istenirse hangi araçlara uygulanacağını söyleyen bir eşleştirici konur ve çalışacak komut verilir."
+            "adres": ".claude/skills/kanca-denetim/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kanca settings.json'a kaydedilir; git kancaları aynı klasörde durur ve core.hooksPath bu klasörü gösterir.",
+            "soz": "Git kancası (`pre-commit`, `commit-msg`) aynı klasörde, `core.hooksPath` bu klasör"
           }
         }
       ]

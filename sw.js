@@ -6,7 +6,7 @@
 // Her istek önce ağdan istenir ve yanıt önbelleğe yazılır; ağ yoksa önbellekten verilir; sayfa önbellekte de yoksa index.html.
 'use strict';
 
-var SURUM = '675012a52942';
+var SURUM = '6fc186f3ecee';
 var ONBELLEK = 'ogrenme-' + SURUM;
 var DOSYALAR = [
   'index.html',

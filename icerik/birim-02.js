@@ -3,58 +3,54 @@
   "id": "b02",
   "sira": 2,
   "baslik": "İlk adımlar, masaüstü uygulamada",
-  "amac": "Masaüstü uygulamasının Code sekmesinde oturum açmayı, dosya vermeyi, değişikliği gözden geçirmeyi, eğik çizgi komutlarını, sık iş akışlarını ve commit'i tanımak.",
+  "amac": "Masaüstü uygulamasının Code sekmesinde oturum açmayı, dosya vermeyi, değişikliği gözden geçirmeyi, eğik çizgi komutlarını, sık iş akışlarını ve commit'i öğrenirsin; bir şey ters gidince önce nereye bakacağını da.",
   "dersler": [
     {
       "id": "b02-d1",
       "baslik": "Masaüstünde oturum açmak",
       "hedefler": [
-        "Code sekmesinde oturum açıp klasör seçme adımlarını sırasıyla anlatabilir.",
-        "Yerel (Local) ve bulut (Cloud) oturumun farkını anlatabilir."
+        "Yerel (Local) ve bulut (Cloud) oturumun farkını ve bunun dosyalarına etkisini anlatabilir.",
+        "Oturumların birbirinden bağımsız olduğunu ve bunun sonucunu anlatabilir.",
+        "Bu klasörde hangi oturumun çalıştığını ve yanlış seçimin belirtisini ayırt edebilir."
       ],
       "anlatim": [
-        "Claude Code, masaüstü uygulamasında Code sekmesidir. Code'a tıklayınca yükseltme (upgrade) istemi çıkarsa önce ücretli bir plana abone olman gerekir.",
-        "Uygulama Claude Code'u içinde getirir. Code sekmesi için ayrıca Node.js ya da komut satırı aracı (CLI) kurman gerekmez.",
-        "Code sekmesinde her konuşma bir oturumdur (session). Her oturumun kendi sohbet geçmişi ve proje klasörü vardır, öteki oturumlardan bağımsızdır.",
-        "Yerel (Local) oturum senin bilgisayarında, dosyalarına doğrudan erişerek çalışır. Bulut (Cloud) oturum varsayılan olarak Anthropic'in altyapısında çalışır, uygulamayı kapatsan da sürer.",
-        "İlk mesajdan önce istem kutusunun altındaki satırdan ortamı, klasörü, izin modunu ve modeli seçersin. Bulutta bilgisayarındaki klasör yerine depo (repository) seçersin.",
-        "Bizim klasörde CLAUDE.md'de şu satır var: 'Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar.'",
-        "Bu yüzden ortam seçicide (environment selector), satırın ilk düğmesinde, Local grubunun en üstündeki girişi seçersin. Sonra klasör düğmesinde Open folder ile proje klasörünü seçersin."
+        "Code sekmesi Claude Code'u uygulamanın içinde getirir. Ayrıca Node.js ya da komut satırı aracı (CLI) kurman gerekmez.",
+        "Code sekmesinde her konuşma bir oturumdur (session). Her oturumun kendi sohbet geçmişi ve klasörü vardır, öteki oturumlardan bağımsızdır.",
+        "Yerel (Local) oturum bilgisayarında, dosyalarına doğrudan erişerek çalışır. Bulut (Cloud) oturum Anthropic'in altyapısında, klasör yerine depo (repository) üzerinde çalışır ve uygulamayı kapatsan da sürer.",
+        "İlk mesajdan önce, istem kutusunun altındaki satırdan ortamı, klasörü ve modeli seçersin. Ortam seçicide (environment selector) Local'i seçer, Open folder ile çalışacağın klasörü açarsın.",
+        "Bizim CLAUDE.md: 'Bu klasörde açılan her oturum yalnız bu işe aittir. Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar.'"
       ],
       "terimler": [
-        {"tr": "oturum", "en": "session", "aciklama": "Code sekmesinde Claude ile yapılan, kendi geçmişi ve kendi klasörü olan konuşma."},
-        {"tr": "ortam seçici", "en": "environment selector", "aciklama": "İstem kutusunun altındaki satırın ilk düğmesi; Claude'un nerede çalışacağını seçer."},
-        {"tr": "komut satırı aracı", "en": "CLI", "aciklama": "Claude Code'un terminalde çalışan biçimi; Code sekmesi için ayrıca kurulması gerekmez."}
+        {
+          "tr": "oturum",
+          "en": "session",
+          "aciklama": "Code sekmesinde Claude ile yapılan, kendi geçmişi ve kendi klasörü olan konuşma."
+        },
+        {
+          "tr": "komut satırı aracı",
+          "en": "CLI",
+          "aciklama": "Claude Code'un terminalde çalışan biçimi; Code sekmesi için ayrıca kurulması gerekmez."
+        },
+        {
+          "tr": "ortam seçici",
+          "en": "environment selector",
+          "aciklama": "İstem kutusunun altındaki satırın ilk düğmesi; Claude'un nerede çalışacağını seçer."
+        }
       ],
       "sorular": [
         {
-          "id": "b02-d1-s6",
+          "id": "b02-d1-s7",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Code sekmesine tıkladın ve yükseltme (upgrade) istemi çıktı. Bu ne demek?",
+          "soru": "Bir internet rehberi, Code sekmesini kullanmadan önce Node.js kurmanı söylüyor. Ne yaparsın?",
           "secenekler": [
-            "Önce ücretli bir plana abone olman gerekir",
-            "Önce Node.js ve komut satırı aracını (CLI) kurman gerekir",
-            "Uygulamayı silip yeniden kurman gerekir"
+            "Önce Node.js kurarım, sonra Code sekmesini açarım",
+            "Uygulamayı bırakıp komut satırı aracını (CLI) kurarım",
+            "Kurmadan Code sekmesini açarım"
           ],
-          "dogru": 0,
-          "ipucu": "Yükseltmenin bir kurulumla mı, planınla mı ilgili olduğunu düşün.",
-          "aciklama": "Belge bu istemin çözümünü önce ücretli bir plana abone olmak diye verir. Masaüstü uygulaması Claude Code'u içinde getirdiği için Node.js ya da CLI gerekmez.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop-quickstart",
-            "kopya": "desktop-quickstart.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Code sekmesine tıklayınca yükseltme istemi çıkarsa önce ücretli bir plana abone olman gerekir."
-          }
-        },
-        {
-          "id": "b02-d1-s7",
-          "tur": "dogru-yanlis",
-          "kart": 1,
-          "soru": "Code sekmesini kullanmak için bilgisayarına ayrıca Node.js ya da komut satırı aracı (CLI) kurman gerekir.",
-          "dogru": false,
+          "dogru": 2,
           "ipucu": "Masaüstü uygulamasının içinde zaten neyin geldiğini düşün.",
-          "aciklama": "Yanlış: masaüstü uygulaması Claude Code'u içinde getirir, Code sekmesi için Node.js ya da CLI kurmak gerekmez.",
+          "aciklama": "Masaüstü uygulaması Claude Code'u içinde getirir; Code sekmesi için Node.js ya da komut satırı aracı kurmak gerekmez. Rehber başka bir kullanım biçimini anlatıyor olabilir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop-quickstart",
             "kopya": "desktop-quickstart.md",
@@ -64,17 +60,17 @@
         },
         {
           "id": "b02-d1-s3",
-          "tur": "coktan",
-          "kart": 2,
-          "soru": "Code sekmesinde iki ayrı oturum açtın. Bunlar için hangisi doğru?",
+          "tur": "bosluk",
+          "kart": 1,
+          "soru": "Aynı klasörde iki oturum açık. Birinde düzeltilen başlık, öteki oturum aynı dosyayı yazınca eski haline döndü; çünkü öteki oturum ___.",
           "secenekler": [
-            "İkisi aynı sohbet geçmişini ve aynı klasörü paylaşır",
-            "Yeni oturum öncekinin geçmişini devralır",
-            "Her birinin kendi geçmişi ve klasörü vardır"
+            "bu düzeltmeyi hiç görmedi",
+            "düzeltmeyi bilerek geri aldı",
+            "dosyayı kaydetmeden kapattı"
           ],
-          "dogru": 2,
-          "ipucu": "Bir oturumdaki konuşmanın ötekine geçip geçmediğini düşün.",
-          "aciklama": "Belge her konuşmayı kendi geçmişi ve klasörü olan, ötekilerden bağımsız bir oturum diye tanımlar.",
+          "dogru": 0,
+          "ipucu": "Bir oturumda olanın ötekinin geçmişine girip girmediğini düşün.",
+          "aciklama": "Her oturumun kendi sohbet geçmişi vardır ve ötekilerden bağımsızdır; öteki oturum dosyanın eski halini bildiği için onu yazdı.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -85,83 +81,81 @@
         {
           "id": "b02-d1-s2",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Yerel (Local) oturumla bulut (Cloud) oturumun farkı hangisi?",
+          "kart": 2,
+          "soru": "Yeni oturum açarken klasör yerine depo seçmen isteniyor; bilgisayarındaki klasörler listede yok. En olası kaynak?",
           "secenekler": [
-            "İkisi de aynı yerde çalışır; yalnız adları farklıdır",
-            "Yerel oturum senin bilgisayarında çalışır; bulut, uygulama kapansa da sürer",
-            "Yerel oturum yalnız sohbet eder; dosya düzenlemeyi yalnız bulut oturum yapabilir",
-            "Bulut oturum yalnız Windows'ta açılır"
+            "Klasörlerine erişim izni kapalı",
+            "Oturum türü olarak bulut (Cloud) seçili",
+            "Uygulamanın güncellenmesi gerekiyor"
           ],
           "dogru": 1,
-          "ipucu": "Uygulamayı kapattığında hangisinin çalışmaya devam ettiğini düşün.",
-          "aciklama": "Yerel ortam senin makinende dosyalarına doğrudan erişir. Bulut ortam varsayılan olarak Anthropic'in altyapısında çalışır ve uygulama kapansa da sürer.",
+          "ipucu": "Hangi oturum türünün klasörle değil depoyla çalıştığını düşün.",
+          "aciklama": "Bulut oturum Anthropic'in altyapısında, bilgisayarındaki klasör yerine depo üzerinde çalışır; bu klasörün işi için yerel oturum seçilir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
             "okuma": "2026-11-15",
-            "dayanak": "Yerel ortam senin makinende dosyalarına doğrudan erişerek çalışır, bulut ortam ise varsayılan olarak Anthropic'in yönettiği altyapıda çalışır ve uygulamayı kapatsan da oturum sürer."
+            "dayanak": "Yerel ortam senin makinende dosyalarına doğrudan erişerek çalışır; bulut ortam Anthropic'in yönettiği altyapıda çalışır ve bulut oturumunda proje klasörü yerine depolar seçilir."
           }
         },
         {
-          "id": "b02-d1-s5",
-          "tur": "bosluk",
-          "kart": 4,
-          "soru": "Bulut (Cloud) ortamını seçtiğinde satırda klasör yerine ___ seçersin.",
+          "id": "b02-d1-s1",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Yeni bir oturumda Claude, projenle hiç ilgisi olmayan dosyalardan söz ediyor. En olası kaynak?",
           "secenekler": [
-            "izin kuralı",
-            "depo (repository)",
-            "ekran görüntüsü"
+            "Claude önceki oturumdaki projeyi hatırlıyor",
+            "Oturum açılırken başka bir klasör seçilmiş",
+            "Claude bilgisayardaki bütün klasörleri tarıyor"
           ],
           "dogru": 1,
-          "ipucu": "Satırdaki klasör düğmesinin bulut oturumunda neye dönüştüğünü düşün.",
-          "aciklama": "Belgeye göre bulut oturumunda klasör yerine depo seçilir. Bulut oturumu birden çok depoyla da çalışabilir.",
+          "ipucu": "Oturumu açarken satırda neleri seçtiğini düşün.",
+          "aciklama": "Claude oturumun klasöründe çalışır ve klasör ilk mesajdan önce satırdan seçilir. Önceki oturumun geçmişi yeni oturuma geçmez.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop",
-            "kopya": "desktop.md",
+            "adres": "https://code.claude.com/docs/en/desktop-quickstart",
+            "kopya": "desktop-quickstart.md",
             "okuma": "2026-11-15",
-            "dayanak": "Bulut oturumunda proje klasörü yerine depolar seçilir."
+            "dayanak": "İlk oturumda önce ortam seçicide Local grubunun en üstündeki giriş ve yanındaki düğmeden Open folder ile proje klasörü, sonra model seçilir, en son Claude'a ne yapacağı yazılır."
           }
         },
         {
           "id": "b02-d1-s4",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "CLAUDE.md'deki satır: bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar. Bu klasörde iş yapacak oturum hangi türde olmalı?",
+          "kart": 4,
+          "soru": "Bu klasörde uzun bir iş başlatacaksın; uygulamayı kapatınca da sürsün istiyorsun. Kurala göre hangi oturum?",
           "secenekler": [
-            "Bulut (Cloud)",
-            "Uzak makine (SSH)",
-            "Yerel (Local)"
+            "Yerel; bulutta başlatmam",
+            "Bulut; sonucu sonra klasöre alırım",
+            "Fark etmez; kural yalnız telefonu kapsar"
           ],
-          "dogru": 2,
-          "ipucu": "Satırda parantez içinde hangi oturum türünün adı geçtiğine bak.",
-          "aciklama": "Satır bu klasöre yalnız masaüstü Code sekmesindeki yerel oturumun yazdığını söyler. Bulut ve uzak makine oturumu bu kuralın dışında kalır.",
+          "dogru": 0,
+          "ipucu": "Satırın parantez içinde hangi oturum türünü andığını düşün.",
+          "aciklama": "Kurala göre bu klasöre yalnız masaüstü Code sekmesindeki yerel oturum yazar; bulut oturumun kolaylığı bu kuralı değiştirmez.",
           "kaynak": {
-            "adres": "CLAUDE.md:5",
-            "okuma": "2026-11-17",
-            "dayanak": "Bu klasöre yalnız Claude Code yazar: masaüstü Code sekmesi, yerel oturum.",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, bu klasöre yalnız masaüstü Code sekmesindeki yerel oturumun yazdığını söyler.",
             "soz": "Bu klasöre yalnız Claude Code (masaüstü Code sekmesi, yerel oturum) yazar"
           }
         },
         {
-          "id": "b02-d1-s1",
-          "tur": "sirala",
-          "kart": 6,
-          "soru": "Code sekmesinde ilk oturumu açma adımlarını sıraya koy.",
-          "adimlar": [
-            "Code sekmesine tıkla",
-            "Ortam seçicide Local grubunun en üstündeki girişi seç",
-            "Klasör düğmesinde Open folder ile proje klasörünü seç",
-            "Model seçiciden bir model seç",
-            "Claude'a ne yapmasını istediğini yaz"
+          "id": "b02-d1-s8",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Bu klasörde açık oturumda, bu işle ilgisi olmayan kişisel bir yazışma için Claude'dan yardım isteyeceksin. Kurala göre?",
+          "secenekler": [
+            "Burada sorarım; Claude her işe yardım eder",
+            "O iş için bu klasörün dışında ayrı oturum açarım",
+            "Burada sorarım, yalnız dosyaya yazdırmam"
           ],
-          "ipucu": "Önce sekme, sonra istem kutusunun altındaki satır soldan sağa, en son mesaj.",
-          "aciklama": "Belge önce Code sekmesini açtırır, sonra satırdaki ortam ve klasör düğmelerini, sonra modeli seçtirir. İş en son yazılır.",
+          "dogru": 1,
+          "ipucu": "Satırın bu klasörde açılan oturumun kime ait olduğunu söylediğini düşün.",
+          "aciklama": "Kurala göre bu klasörde açılan her oturum yalnız bu işe aittir; başka bir iş, dosyaya yazılmasa da, bu klasörün dışında ayrı bir oturumda yapılır.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop-quickstart",
-            "kopya": "desktop-quickstart.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Kurulumda Code sekmesi açılır, ilk oturumda önce ortam seçicide Local grubunun en üstündeki giriş ve yanındaki düğmeden Open folder ile proje klasörü, sonra model seçilir, en son Claude'a ne yapacağı yazılır."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, bu klasörde açılan her oturumun yalnız bu işe ait olduğunu söyler.",
+            "soz": "Bu klasörde açılan her oturum yalnız bu işe aittir"
           }
         }
       ]
@@ -170,36 +164,44 @@
       "id": "b02-d2",
       "baslik": "İstem kutusu ve dosya eklemek (@)",
       "hedefler": [
-        "`@` ile bir dosyayı konuşmaya eklemeyi anlatabilir.",
-        "Ekran görüntüsü eklemenin ne zaman işe yaradığını anlatabilir.",
+        "@ ile bir dosyayı konuşmaya eklemenin ne zaman gerektiğini anlatabilir.",
+        "Resim ya da ekran görüntüsü eklemenin ne zaman işe yaradığını anlatabilir.",
         "Claude'u durdurmak ile çalışırken düzeltme göndermeyi ayırt edebilir."
       ],
       "anlatim": [
-        "İstem kutusuna (prompt box) istediğini yazıp Enter'a basarsın. Bir dosyayı vermek için `@` ve dosya adını yazarsın; dosya konuşmanın bağlamına girer.",
-        "Bulut oturumunda `@` dosyaları ancak ilk mesajı gönderdikten sonra listeler.",
+        "İstem kutusuna (prompt box) istediğini yazıp Enter'a basarsın. @ ve dosya adı o dosyayı konuşmanın bağlamına ekler; / ise komut menüsünü açar.",
         "Her dosyayı eklemek zorunda değilsin. Claude proje dosyalarını gerektikçe kendisi okur.",
-        "Resim, PDF ve başka dosyaları kutunun yanındaki + düğmesiyle eklersin (attachment) ya da sürükleyip bırakırsın. Bu, hata ekran görüntüsü ya da tasarım taslağı paylaşmaya yarar.",
+        "Resim, PDF ve başka dosyaları + düğmesiyle eklersin (attachment) ya da sürükleyip bırakırsın. Hata ekranını ya da tasarım taslağını anlatmak yerine görüntüsünü verirsin.",
         "Claude çalışırken durdurma düğmesi işi hemen keser. Düzeltmeyi yazıp Enter'a basarsan iş durmaz; Claude onu o anki adımı bitirince okur, sonra yön değiştirir.",
-        "Claude'dan sana giden şey için CLAUDE.md'de kural var: kopyalayacağın ya da açacağın şey dosya olarak gönderilir, tıklanır bağlantısıyla verilir. 'Şuraya git' diye yol tarif edilmez."
+        "Claude'dan sana giden şey için CLAUDE.md'de kural var: kopyalayacağın ya da açacağın şey dosya olarak gönderilir, tıklanır bağlantısıyla verilir. 'Şuraya git' diye yol tarif edilmez.",
+        "Aynı kurala göre kısa metin sohbete yazılır; uzun metin açılınca görünen dosya olarak gelir."
       ],
       "terimler": [
-        {"tr": "istem kutusu", "en": "prompt box", "aciklama": "Claude'a ne yapacağını yazdığın kutu; Enter ile gönderilir."},
-        {"tr": "dosya eki", "en": "attachment", "aciklama": "İstem kutusunun yanındaki + düğmesiyle ya da sürükleyip bırakarak eklenen resim, PDF ya da başka dosya."}
+        {
+          "tr": "istem kutusu",
+          "en": "prompt box",
+          "aciklama": "Claude'a ne yapacağını yazdığın kutu; Enter ile gönderilir."
+        },
+        {
+          "tr": "dosya eki",
+          "en": "attachment",
+          "aciklama": "İstem kutusunun yanındaki + düğmesiyle ya da sürükleyip bırakarak eklenen resim, PDF ya da başka dosya."
+        }
       ],
       "sorular": [
         {
           "id": "b02-d2-s1",
           "tur": "bosluk",
           "kart": 0,
-          "soru": "Bir dosyayı konuşmaya eklemek için istem kutusuna ___ işaretini ve ardından dosya adını yazarsın.",
+          "soru": "Adları benzeyen iki rapordan Claude yanlışını okudu; doğrusunu kesin vermek için isteme ___ yazarsın.",
           "secenekler": [
-            "/",
-            "@",
-            "#"
+            "/ ve raporun adını",
+            "@ ve raporun adını",
+            "raporun adını tırnak içinde"
           ],
           "dogru": 1,
-          "ipucu": "Bu işaret e-posta adreslerinde de geçer.",
-          "aciklama": "@ ve dosya adı, o dosyayı konuşmanın bağlamına ekler. Eğik çizgi ise komut menüsünü açar.",
+          "ipucu": "İki işaretten hangisinin dosyayı bağlama eklediğini, hangisinin menü açtığını düşün.",
+          "aciklama": "@ ve dosya adı o dosyayı doğrudan konuşmanın bağlamına ekler; Claude'un tahmin etmesine gerek kalmaz. / ise komut menüsünü açar, tırnak da dosyayı eklemez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -208,33 +210,18 @@
           }
         },
         {
-          "id": "b02-d2-s7",
-          "tur": "bosluk",
-          "kart": 1,
-          "soru": "Bulut oturumunda @ dosya listesini ancak ___ gösterir.",
-          "secenekler": [
-            "+ düğmesine bastıktan sonra",
-            "ilk mesajdan sonra",
-            "uygulamayı yeniden başlatınca"
-          ],
-          "dogru": 1,
-          "ipucu": "Bulut oturumunda @ listesinin ne zaman dolduğunu düşün.",
-          "aciklama": "Bulut oturumunda @ dosyaları ilk mesajdan sonra listeler. Liste boşsa ilk mesajı dosyasız gönderip dosyayı sonraki mesajda anarsın.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop",
-            "kopya": "desktop.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Bulut oturumunda @ dosyaları ancak ilk mesajı gönderdikten sonra listeleyebilir."
-          }
-        },
-        {
           "id": "b02-d2-s3",
-          "tur": "dogru-yanlis",
-          "kart": 2,
-          "soru": "Claude'un bir proje dosyasını görebilmesi için onu her seferinde @ ile eklemen gerekir.",
-          "dogru": false,
-          "ipucu": "Claude proje klasöründeki dosyaları kendisi okuyabilir mi, düşün.",
-          "aciklama": "Yanlış: Claude proje dosyalarını gerektikçe kendisi okur, bağlamı elle eklemen gerekmez. @ ise belirli bir dosyayı doğrudan konuşmaya çekmek içindir.",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Bir hatayı düzelttireceksin ama hangi dosyalarda olduğunu bilmiyorsun. Ne yaparsın?",
+          "secenekler": [
+            "Önce dosyaları bulup @ ile eklerim",
+            "Claude'dan bütün klasörü okumasını isterim",
+            "Hatayı anlatırım; dosyaları Claude kendisi bulur"
+          ],
+          "dogru": 2,
+          "ipucu": "Claude'un proje dosyalarına ne zaman kendisi baktığını düşün.",
+          "aciklama": "Claude proje dosyalarını gerektikçe kendisi okur; bağlamı elle eklemen gerekmez. Bütün klasörü okutmak ise bağlamı boşuna doldurur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/quickstart",
             "kopya": "quickstart.md",
@@ -245,16 +232,16 @@
         {
           "id": "b02-d2-s2",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Uygulamanda bir düğme yanlış yerde duruyor. Bunu Claude'a göstermenin en iyi yolu hangisi?",
+          "kart": 2,
+          "soru": "Uygulamanda uzun bir hata metni çıktı. Claude'a nasıl iletirsin?",
           "secenekler": [
-            "Ekranı sözle, uzun uzun tarif ederim",
-            "Bir şey eklemem; Claude ekranımı kendisi görür",
-            "Ekran görüntüsünü istem kutusuna ekler, sorunu kısaca yazarım"
+            "Ekranın görüntüsünü isteme eklerim",
+            "Ne yazdığını kendi sözlerimle özetlerim",
+            "'Hata verdi' derim; gerisini Claude bulur"
           ],
-          "dogru": 2,
-          "ipucu": "Claude'un ihtiyacı olan şey elindeyse onu tarif etmek mi, vermek mi daha iyi?",
-          "aciklama": "Belge, Claude'un ihtiyacı olan şey elindeyse onu anlatmak yerine vermeni önerir: tasarımın ya da hatanın ekran görüntüsünü isteme yapıştırırsın.",
+          "dogru": 0,
+          "ipucu": "Hatayı anlatmak ile hatanın kendisini vermek arasındaki farkı düşün.",
+          "aciklama": "Claude'un ihtiyacı olan şey elindeyse anlatmak yerine onu verirsin; hata ekranının görüntüsü + düğmesiyle ya da sürükleyerek eklenir. Özet ayrıntıyı kaybettirir, 'hata verdi' ise Claude'a hiçbir iz vermez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -264,17 +251,16 @@
         },
         {
           "id": "b02-d2-s4",
-          "tur": "coktan",
-          "kart": 4,
-          "soru": "Claude çalışırken yanlış dosyaya yöneldiğini gördün. O anki adımı bitirsin ama sonra yön değiştirsin istiyorsun. Ne yaparsın?",
-          "secenekler": [
-            "Düzeltmeyi yazıp Enter'a basarım",
-            "Durdurma düğmesine basarım",
-            "Oturumu kapatıp yeni bir oturum açarım"
+          "tur": "sirala",
+          "kart": 3,
+          "soru": "Claude ayar dosyasını düzenlerken 'ayar dosyasına dokunma' yazıp Enter'a bastın. Olanları sırala.",
+          "adimlar": [
+            "Claude ayar dosyasındaki değişikliği tamamlar",
+            "Claude 'dokunma' notunu okur",
+            "Claude ayar dosyasını bırakıp başka yöne döner"
           ],
-          "dogru": 0,
-          "ipucu": "İki yol var: biri işi hemen keser, öteki kesmeden araya girer.",
-          "aciklama": "Yazıp Enter'la gönderdiğin düzeltme çalışan adımı durdurmaz; Claude onu adım bitince okur. Durdurma düğmesi ise işi hemen keser.",
+          "ipucu": "Enter'la giden düzeltmenin çalışan adımı kesip kesmediğini düşün.",
+          "aciklama": "Enter'la giden düzeltme çalışan adımı durdurmaz; Claude onu adım bitince okur, sonra yön değiştirir. Hemen kesmek için durdurma düğmesine basılır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -283,43 +269,43 @@
           }
         },
         {
-          "id": "b02-d2-s5",
-          "tur": "eslestir",
+          "id": "b02-d2-s6",
+          "tur": "coktan",
           "kart": 4,
-          "soru": "Her aracı istem kutusundaki işiyle eşleştir.",
-          "ciftler": [
-            ["@ ve dosya adı", "Dosyayı konuşmanın bağlamına ekler"],
-            ["+ düğmesi", "Resim, PDF gibi dosya ekler"],
-            ["Durdurma düğmesi", "Çalışan işi hemen keser"],
-            ["Yazıp Enter", "Çalışan işi kesmeden düzeltme gönderir"]
+          "soru": "Claude kopyalayacağın uzun bir istem hazırladı ve 'masaüstündeki taslaklar klasöründe, açıp kopyala' yazdı. Ne istersin?",
+          "secenekler": [
+            "Metni sohbete parça parça yapıştırmasını",
+            "Klasörün tam yolunu da yazmasını",
+            "Dosyayı tıklanır bağlantıyla göndermesini"
           ],
-          "ipucu": "Hangisinin işi kestiğini, hangisinin kesmediğini ayır.",
-          "aciklama": "@ ve + ikisi de bir şey ekler: biri dosyayı adıyla, öteki dosya ya da resim olarak. Durdurma keser, Enter'la giden düzeltme kesmez.",
+          "dogru": 2,
+          "ipucu": "Kuralın yol tarifi için ne dediğini düşün.",
+          "aciklama": "Kurala göre kopyalayacağın ya da açacağın şey dosya olarak gönderilir ve tıklanır bağlantısıyla verilir; yol tarif edilmez.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop",
-            "kopya": "desktop.md",
-            "okuma": "2026-11-15",
-            "dayanak": "İstem kutusunda @ ve dosya adı dosyayı bağlama ekler, + düğmesi resim ve PDF gibi dosyaları ekler, durdurma düğmesi işi hemen keser, Enter'la gönderilen düzeltme ise işi durdurmaz."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, kullanıcının kopyalayacağı ya da açacağı şeyin dosya olarak gönderilip tıklanır bağlantısıyla verileceğini, yol tarif edilmeyeceğini söyler.",
+            "soz": "dosya olarak gönderilir (Code'da SendUserFile) ve tıklanır bağlantısıyla verilir"
           }
         },
         {
-          "id": "b02-d2-s6",
+          "id": "b02-d2-s8",
           "tur": "coktan",
           "kart": 5,
-          "soru": "Claude sana kopyalayacağın uzun bir metin hazırladı. CLAUDE.md'deki kurala göre onu nasıl verir?",
+          "soru": "Claude'dan iki satırlık bir cevap istedin; sohbete yazdı, dosya göndermedi. Bu ne demek?",
           "secenekler": [
-            "Dosyanın yolunu yazar, gidip kopyalamanı ister",
-            "Dosya gönderir, tıklanır bağlantısını verir",
-            "Metni parça parça sohbete yapıştırır"
+            "Kurala uygun; iki satır dosyalık değil",
+            "Kural ihlali; her metin dosyayla gelmeli",
+            "Bu oturumda dosya gönderimi kapalı"
           ],
-          "dogru": 1,
-          "ipucu": "Claude'un sana 'şuraya git' diye yol tarif edip etmediğini düşün.",
-          "aciklama": "Kural, kopyalayacağın ya da açacağın şeyin dosya olarak gönderilip tıklanır bağlantısıyla verilmesini ister. Uzun metin açılınca görünen dosya olarak gider.",
+          "dogru": 0,
+          "ipucu": "Kuralın metnin uzunluğuna göre ne dediğini düşün.",
+          "aciklama": "Kurala göre kısa metin sohbete yazılır, uzun metin açılınca görünen dosya olarak gider. İki satırlık taslak sohbette kalır.",
           "kaynak": {
-            "adres": "CLAUDE.md:102",
-            "okuma": "2026-11-17",
-            "dayanak": "Kullanıcının kopyalayacağı ya da açacağı şey dosya olarak gönderilir ve tıklanır bağlantısıyla verilir; şuraya git, kopyala diye yol tarif edilmez.",
-            "soz": "dosya olarak gönderilir (Code'da SendUserFile) ve tıklanır bağlantısıyla verilir"
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, kısa metnin sohbete yazıldığını, uzun metnin açılınca görünen dosya olarak gittiğini söyler.",
+            "soz": "Kısa metin sohbete yazılır, uzun metin açılınca görünen dosya"
           }
         }
       ]
@@ -329,132 +315,103 @@
       "baslik": "Değişikliği gözden geçirmek (diff view)",
       "hedefler": [
         "Fark görünümünün değişikliği silinen ve eklenen satırlarla, dosya dosya gösterdiğini anlatabilir.",
-        "Kod farkı yerine sade bir özet isteyebileceğini anlatabilir.",
-        "Bir değişiklikte ikinci bakış isteyen yerleri ayırt edebilir."
+        "Özetin söylemediği bir değişikliği yakalamak için neye bakılacağını ayırt edebilir.",
+        "Kod okumadan bir değişikliği nasıl onaylayacağını anlatabilir."
       ],
       "anlatim": [
-        "Fark (diff), bir değişikliğin öncesi ve sonrasıdır: silinen ve eklenen satırlar, dosya dosya.",
-        "Claude dosyaları değiştirince +12 -1 gibi satır sayıları görünür. Onlara ya da oturumun başlık çubuğundaki Changes (değişiklikler) düğmesine tıklayınca fark görünümü açılır.",
-        "Bir satırın yanındaki + ile yorum yazarsın, yorumları macOS'ta Cmd+Enter ile birlikte gönderirsin. Claude istenen değişikliği yapar, sen bunu yeni bir fark olarak görürsün.",
-        "Özete tek başına güvenme, farka bak. İkinci bakışı en çok istemediğin değişiklikler hak eder, örneğin Claude dosyadayken değişen bir ayar değeri.",
-        "İstem kutusuna /code-review yazarsan Claude değişikliği temiz bir bağlamda inceler. Bu kod incelemesi (code review) sen istemedikçe bir şey düzenlemez.",
-        "Kod sana bir şey anlatmıyorsa 'sade dille anlat' diye sorabilirsin. CLAUDE.md'de şu satır var: 'onay gereken yerde neyin değişeceğini bir iki cümleyle, sade dille söyle'."
+        "Fark (diff), bir değişikliğin öncesi ve sonrasıdır: silinen ve eklenen satırlar, dosya dosya. Claude dosya değiştirince +12 -1 gibi satır sayıları görünür; tıklayınca fark açılır.",
+        "Farkta bir satırın yanındaki + ile yorum yazarsın; yorumları macOS'ta Cmd+Enter ile birlikte gönderirsin. Claude istenen değişikliği yapar, yeni bir fark çıkar.",
+        "Özete tek başına güvenme, farka bak. İkinci bakış isteyenler: istemediğin değişiklik (ör. değişen bir ayar değeri) ve zayıflatılan testler.",
+        "/code-review değişikliği oturum geçmişi olmadan, temiz bir bağlamda inceler. Bu kod incelemesi (code review) bulduklarını raporlar; sen istemedikçe hiçbir şeyi düzenlemez.",
+        "Bizim CLAUDE.md'de şu satır var: 'onay gereken yerde neyin değişeceğini bir iki cümleyle, sade dille söyle'.",
+        "Aynı satıra göre teknik bir seçimde sana teknik ad değil, altındaki tercih sorulur."
       ],
       "terimler": [
-        {"tr": "fark görünümü", "en": "diff view", "aciklama": "Claude'un yaptığı değişikliği silinen ve eklenen satırlarla, dosya dosya gösteren ekran."},
-        {"tr": "kod incelemesi", "en": "code review", "aciklama": "Değişikliğin oturum geçmişi olmadan, temiz bir bağlamda bir kez daha gözden geçirilmesi."}
+        {
+          "tr": "fark görünümü",
+          "en": "diff view",
+          "aciklama": "Claude'un yaptığı değişikliği silinen ve eklenen satırlarla, dosya dosya gösteren ekran."
+        },
+        {
+          "tr": "kod incelemesi",
+          "en": "code review",
+          "aciklama": "Değişikliğin oturum geçmişi olmadan, temiz bir bağlamda bir kez daha gözden geçirilmesi."
+        }
       ],
       "sorular": [
         {
           "id": "b02-d3-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Fark (diff) sana neyi gösterir?",
+          "soru": "Claude 'hiçbir dosyayı değiştirmedim' dedi; ama oturumda +4 -2 görünüyor. Ne yaparsın?",
           "secenekler": [
-            "Claude'un yaptığı işin kısa özetini",
-            "Silinen ve eklenen satırları, dosya dosya",
-            "Yalnız değişen dosyaların adlarını",
-            "Claude'un oturum boyunca okuduğu bütün dosyaların listesini"
-          ],
-          "dogru": 1,
-          "ipucu": "Bir değişikliği anlamak için neyi neyle karşılaştırırsın, düşün.",
-          "aciklama": "Fark, bir değişikliğin öncesi ve sonrasıdır: hangi satırların silinip hangilerinin eklendiğini dosya dosya gösterir.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-101/code-review",
-            "kopya": "ders-101-07-code-review.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Fark, bir değişikliğin öncesi ve sonrasıdır: silinen satırlar ve eklenen satırlar, dosya dosya."
-          }
-        },
-        {
-          "id": "b02-d3-s7",
-          "tur": "bosluk",
-          "kart": 1,
-          "soru": "Fark görünümünü açmak için satır sayılarına ya da oturumun başlık çubuğundaki ___ düğmesine tıklarsın.",
-          "secenekler": [
-            "Browser",
-            "Terminal",
-            "Changes"
+            "Önemsemem; sayılar okunan satırları gösterir",
+            "Oturumu kapatıp açarım; sayılar sıfırlanır",
+            "Sayılara tıklayıp farka bakarım"
           ],
           "dogru": 2,
-          "ipucu": "Başlık çubuğunda Claude'un yaptıklarını toplayan düğmeyi düşün.",
-          "aciklama": "Fark görünümü satır sayılarından ya da başlık çubuğundaki Changes (değişiklikler) düğmesinden açılır. Browser tarayıcı bölmesini, Terminal ise komut çalıştırdığın bölmeyi açar.",
+          "ipucu": "+ ve - ile verilen sayıların neyi saydığını düşün.",
+          "aciklama": "Satır sayıları Claude bir dosyayı değiştirince görünür: 4 satır eklenmiş, 2 satır silinmiş. Söylenenle görünen uyuşmuyorsa farka bakarsın.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
             "okuma": "2026-11-15",
-            "dayanak": "Fark görünümünü açmak için satır sayılarına tıklarsın, oturumun başlık çubuğundaki Changes düğmesine de tıklayabilirsin."
+            "dayanak": "Claude dosyaları değiştirince satır sayıları görünür; fark görünümünü açmak için satır sayılarına tıklarsın."
           }
         },
         {
           "id": "b02-d3-s2",
-          "tur": "sirala",
-          "kart": 2,
-          "soru": "Değişikliği yorumla düzelttirme adımlarını sıraya koy.",
-          "adimlar": [
-            "Satır sayılarına tıklayıp fark görünümünü aç",
-            "Değişiklikleri dosya dosya incele",
-            "Satırın yanındaki + ile yorumunu yaz",
-            "Yorumları macOS'ta Cmd+Enter ile birlikte gönder",
-            "Claude'un çıkardığı yeni farkı incele"
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Farkta bir raporun üç cümlesinde düzeltme istiyorsun. Claude'a nasıl iletirsin?",
+          "secenekler": [
+            "Satırlara + ile yorum yazıp birlikte gönderirim",
+            "Her düzeltmeyi ayrı mesajla tek tek gönderirim",
+            "Raporu baştan yazmasını isterim"
           ],
-          "ipucu": "Önce açarsın, sonra okursun; yorumlar tek tek yazılır, birlikte gönderilir.",
-          "aciklama": "Fark görünümü satır sayılarından açılır, yorumlar tek tek eklenip toplu gönderilir. Claude yorumları okuyup istenen değişikliği yapar ve bunu yeni bir fark olarak görürsün.",
+          "dogru": 0,
+          "ipucu": "Kartta farkın içinden nasıl düzeltme istendiğini düşün.",
+          "aciklama": "Farkta satırın yanındaki + ile yorum yazılır ve yorumlar birlikte gönderilir; Claude hepsini yapar, sen sonucu yeni bir fark olarak görürsün.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
             "okuma": "2026-11-15",
-            "dayanak": "Satır sayılarına tıklayınca fark görünümü açılır, satırın yanındaki + ile yorum eklenir, yorumlar macOS'ta Cmd+Enter ile toplu gönderilir ve Claude yorumlara göre yaptığı değişikliği yeni bir fark olarak gösterir."
+            "dayanak": "Satırın yanındaki + ile yorum eklenir, yorumlar macOS'ta Cmd+Enter ile toplu gönderilir ve Claude yorumlara göre yaptığı değişikliği yeni bir fark olarak gösterir."
           }
         },
         {
           "id": "b02-d3-s4",
-          "tur": "coktan",
-          "kart": 3,
-          "soru": "Claude'un özetinde 'giriş formunu düzelttim' yazıyor. Farka baktığında hangisi ikinci bakışı en çok hak eder?",
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "Claude 'testlerin hepsi geçiyor' dedi; farkta ilk, testlerin ___ bakarsın.",
           "secenekler": [
-            "İstemediğin bir ayarın da değişmesi",
-            "Özetin kısa yazılmış olması",
-            "Değişikliğin tek dosyada kalması"
-          ],
-          "dogru": 0,
-          "ipucu": "Claude dosyadayken senin söylemediğin bir şeye dokunmuş olabilir mi, düşün.",
-          "aciklama": "Belge her seferinde ikinci bakış isteyenlerin başında istemediğin değişiklikleri sayar, örneğin Claude dosyadayken düzenlenmiş bir ayar değeri. Zayıflatılan testler ve yeni paketler de bu listededir.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-101/code-review",
-            "kopya": "ders-101-07-code-review.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Her seferinde ikinci bakış isteyenlerin başında istemediğin değişiklikler gelir, örneğin Claude dosyadayken düzenlenen bir ayar değeri."
-          }
-        },
-        {
-          "id": "b02-d3-s6",
-          "tur": "coktan",
-          "kart": 3,
-          "soru": "Claude değişikliği bitirdi ve kısa bir özet yazdı. Sırada ne yaparsın?",
-          "secenekler": [
-            "Özete güvenip farka bakmadan devam ederim",
-            "Özetle yetinmeyip farkı da okurum",
-            "Özeti yeterli sayıp yeni işe geçerim"
+            "kaç satır tuttuğuna",
+            "gevşetilip gevşetilmediğine",
+            "dosya adlarına"
           ],
           "dogru": 1,
-          "ipucu": "Kartın ilk cümlesinin sana ne yapmanı söylediğini düşün.",
-          "aciklama": "Belge yalnız özete güvenmeden önce gerçek farkı okumanı söyler. Kodu yazan oturum, o değişikliğin en iyi yargıcı olmayabilir.",
+          "ipucu": "Kartta ikinci bakış isteyenler arasında ne sayıldığını düşün.",
+          "aciklama": "Testler kod düzeldiği için de, testin kendisi zayıflatıldığı için de geçebilir. Zayıflatılan testler ikinci bakışı hak edenler arasındadır.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/code-review",
             "kopya": "ders-101-07-code-review.md",
             "okuma": "2026-11-15",
-            "dayanak": "Yalnız özete güvenmeden önce dosya değişikliklerinin gerçek farkını oku."
+            "dayanak": "Her seferinde ikinci bakış isteyenler arasında istemediğin değişiklikler ve zayıflatılan testler vardır."
           }
         },
         {
           "id": "b02-d3-s5",
-          "tur": "dogru-yanlis",
-          "kart": 4,
-          "soru": "/code-review bulduklarını raporlar; sen istemedikçe hiçbir dosyayı düzenlemez.",
-          "dogru": true,
-          "ipucu": "İnceleyicinin görevi bulmak mı, düzeltmek mi, düşün.",
-          "aciklama": "Doğru: /code-review değişikliği temiz bir bağlamda inceler ve bulgularını bildirir. Sen istemedikçe bir şey düzenlemez.",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "/code-review koştun; bulgular listelendi ama hiçbir dosya değişmedi. Bu ne gösterir?",
+          "secenekler": [
+            "İnceleme yarıda kesildi; yeniden koşmalısın",
+            "Bulgular önemsiz bulunduğu için düzeltilmedi",
+            "Olağan; inceleme sen istemedikçe düzenlemez"
+          ],
+          "dogru": 2,
+          "ipucu": "Kod incelemesinin bulduklarıyla ne yaptığını düşün.",
+          "aciklama": "/code-review bulduklarını raporlar ve sen istemedikçe hiçbir dosyayı düzenlemez; düzeltmeyi ayrıca istersin.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/code-review",
             "kopya": "ders-101-07-code-review.md",
@@ -465,21 +422,41 @@
         {
           "id": "b02-d3-s3",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "Claude onay gerektiren bir değişiklik yapacak. CLAUDE.md'deki kurala göre sana nasıl sorar?",
+          "kart": 4,
+          "soru": "Claude onay isterken yalnız kod farkını gösterdi, 'onaylıyor musun?' dedi. Ne yaparsın?",
           "secenekler": [
-            "Kod farkını ekranda gösterip her satır için ayrı ayrı onay ister",
-            "Sormadan uygular, sonra farkı gönderir",
-            "Neyin değişeceğini bir iki cümleyle, sade dille söyler"
+            "Değişikliğin sonucunu kısaca, düz dille anlatmasını isterim",
+            "Kodu satır satır açıklamasını isterim",
+            "Farkı okuyup anladığım kadarıyla onaylarım"
           ],
-          "dogru": 2,
-          "ipucu": "Kod okumak sana bir şey anlatmadığında kuralın Claude'dan ne istediğini hatırla.",
-          "aciklama": "Kurala göre kod farkı onayı senin için anlam taşımaz. Bu yüzden onay gereken yerde Claude değişikliği sade dille anlatır.",
+          "dogru": 0,
+          "ipucu": "Kod farkının senin için ne anlam taşıdığını düşün.",
+          "aciklama": "Kurala göre onay gereken yerde neyin değişeceği bir iki cümleyle, sade dille söylenir. Kodun satır satır açıklaması da sana kararın sonucunu söylemez.",
           "kaynak": {
-            "adres": "CLAUDE.md:21",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Kod farkı onayı kullanıcı için anlam taşımaz: onay gereken yerde neyin değişeceği bir iki cümleyle, sade dille söylenir.",
             "soz": "onay gereken yerde neyin değişeceğini bir iki cümleyle, sade dille söyle"
+          }
+        },
+        {
+          "id": "b02-d3-s8",
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Claude 'Luxon mu, date-fns mi kullanayım?' diye sordu. Kurala göre nasıl sormalıydı?",
+          "secenekler": [
+            "Hangisinin daha yaygın kullanıldığını söyleyerek",
+            "Ne istediğini sorarak: hız mı, sadelik mi",
+            "İkisinin teknik artı ve eksilerini sıralayarak"
+          ],
+          "dogru": 1,
+          "ipucu": "Teknik ad sana bir şey anlatmıyorsa sorunun neye dönmesi gerektiğini düşün.",
+          "aciklama": "Kurala göre teknik seçimde teknik ad değil, altındaki tercih sorulur. Yaygınlık da teknik artı ve eksiler de seni senin tercihine götürmez.",
+          "kaynak": {
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, teknik seçimde kullanıcıya teknik adın değil altındaki tercihin sorulacağını söyler.",
+            "soz": "teknik seçimde altındaki tercih sorulur, teknik ad değil"
           }
         }
       ]
@@ -488,32 +465,44 @@
       "id": "b02-d4",
       "baslik": "Eğik çizgi komutları (slash commands)",
       "hedefler": [
-        "/context, /compact, /clear, /rewind, /memory, /hooks, /agents ve /mcp komutlarını işleriyle eşleyip anlatabilir.",
-        "Skill'lerin de / menüsünde göründüğünü anlatabilir.",
-        "Terminalde panel açan komutların Code sekmesinde farklı davrandığını anlatabilir."
+        "Bağlam komutlarından hangisinin hangi durumda kullanılacağını ayırt edebilir.",
+        "Bir dış bağlantı ya da komut cevabı beklenmedik olduğunda neye bakılacağını anlatabilir.",
+        "Bir skill'in / menüsünden ve klasör kuralındaki sözle başladığını anlatabilir."
       ],
       "anlatim": [
-        "Eğik çizgi komutları (slash commands) Claude Code'u oturumun içinden yönetir. / yazınca menüde yerleşik komutlar, kendi skill'lerin ve eklenti skill'leri birlikte görünür.",
-        "Bağlam komutları: /compact şimdiye kadarki konuşmayı özetleyip yer açar, aynı konuşma sürer. /clear boş bağlamla yeni bir konuşma başlatır.",
+        "Eğik çizgi komutları (slash commands) Claude Code'u oturumun içinden yönetir. / yazınca menüde yerleşik komutlar ve skill'ler, yani tekrar kullanılabilir hazır istemler, birlikte görünür.",
+        "/compact şimdiye kadarki konuşmayı özetleyip yer açar, aynı konuşma sürer. /clear boş bağlamla yeni bir konuşma başlatır.",
         "/context bağlamın neyle dolduğunu gösterir. /rewind konuşmayı ya da kodu önceki bir noktaya geri sarar.",
         "Ayar komutları: /memory CLAUDE.md dosyalarını düzenletir, /hooks kanca ayarlarını gösterir, /mcp Claude'u dış hizmetlere bağlayan MCP bağlantılarını yönetir. /agents alt ajan oluşturmasını Claude'dan istemeni hatırlatır.",
         "Terminalde panel açan komutlar Code sekmesinde farklı davranır. Örneğin /permissions burada 'isn't available in this environment' cevabını verir.",
-        "Skill, gerektiğinde çağırdığın tekrar kullanılabilir hazır istemdir. Skill'in name alanı / menüsünde görünen komut adıdır.",
-        "Skill'i başka yoldan da başlatabilirsin. Bizim klasörde CLAUDE.md'de şu satır var: kullanıcı 'proje — açılış' yazarsa acilis skill'ini koş."
+        "Skill'i başka yoldan da başlatabilirsin. Bizim CLAUDE.md'de şu satır var: kullanıcı 'proje — açılış' yazarsa acilis skill'ini koş."
       ],
       "terimler": [
-        {"tr": "eğik çizgi komutları", "en": "slash commands", "aciklama": "İstem kutusunda / ile başlayan, Claude Code'u oturumun içinden yöneten komutlar."},
-        {"tr": "skill", "en": "skill", "aciklama": "Gerektiğinde çağırdığın, tekrar kullanılabilir hazır istem; / menüsünde adıyla görünür."}
+        {
+          "tr": "eğik çizgi komutları",
+          "en": "slash commands",
+          "aciklama": "İstem kutusunda / ile başlayan, Claude Code'u oturumun içinden yöneten komutlar."
+        },
+        {
+          "tr": "skill",
+          "en": "skill",
+          "aciklama": "Gerektiğinde çağırdığın, tekrar kullanılabilir hazır istem; / menüsünde adıyla görünür."
+        }
       ],
       "sorular": [
         {
           "id": "b02-d4-s7",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 0,
-          "soru": "Code sekmesinde / yazınca menüde yalnız yerleşik komutlar görünür; skill'ler orada görünmez.",
-          "dogru": false,
-          "ipucu": "/ yazınca açılan menüde neleri gezebildiğini düşün.",
-          "aciklama": "Yanlış: / menüsünde yerleşik komutlar, kendi skill'lerin ve eklenti skill'leri birlikte görünür. Skill'ler gerektiğinde çağırdığın tekrar kullanılabilir istemlerdir.",
+          "soru": "/ yazdın; menüde yerleşik komutların arasında 'kapanis' ve 'dongu' gibi adlar da var. Bunlar ne?",
+          "secenekler": [
+            "Claude'un yarım kalmış eski komutları",
+            "Bu klasörün skill'leri",
+            "Başka bir oturumdan kalan kayıtlar"
+          ],
+          "dogru": 1,
+          "ipucu": "/ menüsünde yerleşik komutlarla birlikte başka neyin göründüğünü düşün.",
+          "aciklama": "/ menüsünde yerleşik komutlar, kendi skill'lerin ve eklenti skill'leri birlikte görünür; bu klasörün kapanış ve döngü skill'leri de oradadır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop-quickstart",
             "kopya": "desktop-quickstart.md",
@@ -525,16 +514,15 @@
           "id": "b02-d4-s3",
           "tur": "coktan",
           "kart": 1,
-          "soru": "Oturum uzadı. Aynı konuşmaya devam etmek ama bağlamda yer açmak istiyorsun. Hangi komut?",
+          "soru": "Uzun bir işin ortasında /compact yazdın. Ne olur?",
           "secenekler": [
-            "/clear",
-            "/compact",
-            "/rewind",
-            "/context"
+            "Geçmiş silinir, boş bir sohbet başlar",
+            "Özet yeni bir oturuma taşınır, eski oturum kapanır",
+            "Geçmiş kısaltılır, aynı sohbette devam edersin"
           ],
-          "dogru": 1,
-          "ipucu": "Biri yeni konuşma başlatır, öteki aynı konuşmayı özetler.",
-          "aciklama": "/clear yeni ve boş bir konuşma başlatır, /context yalnız bağlamın durumunu gösterir. Aynı konuşmayı sürdürüp yer açmak için belge /compact'ı önerir.",
+          "dogru": 2,
+          "ipucu": "Kartta /compact ile /clear arasındaki farkı düşün.",
+          "aciklama": "/compact konuşmayı özetleyip yer açar ve aynı konuşma sürer; /clear ise boş bağlamla yeni bir konuşma başlatır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/commands",
             "kopya": "commands.md",
@@ -544,57 +532,59 @@
         },
         {
           "id": "b02-d4-s1",
-          "tur": "eslestir",
+          "tur": "coktan",
           "kart": 2,
-          "soru": "Bağlam komutlarını işleriyle eşleştir.",
-          "ciftler": [
-            ["/context", "Bağlamın neyle dolduğunu gösterir"],
-            ["/compact", "Konuşmayı özetleyip bağlamda yer açar"],
-            ["/clear", "Boş bağlamla yeni bir konuşma başlatır"],
-            ["/rewind", "Konuşmayı ya da kodu önceki bir noktaya geri sarar"]
+          "soru": "Oturum kısa sürede doldu; neyin bu kadar yer tuttuğunu görmek istiyorsun. Hangi komutu yazarsın?",
+          "secenekler": [
+            "/compact",
+            "/memory",
+            "/rewind",
+            "/context"
           ],
-          "ipucu": "Komut adlarının İngilizce anlamını düşün: bağlam, sıkıştır, temizle, geri sar.",
-          "aciklama": "/compact aynı konuşmayı sürdürerek yer açar, /clear ise yeni bir konuşma başlatır. /rewind önceki bir noktaya döner, /context yalnız durumu gösterir.",
+          "dogru": 3,
+          "ipucu": "Komutlardan hangisinin yalnız durumu gösterdiğini düşün.",
+          "aciklama": "/context bağlamın neyle dolduğunu gösterir. /compact yer açar ama neyin yer tuttuğunu göstermez, /memory CLAUDE.md dosyalarını açar, /rewind önceki bir noktaya geri sarar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/commands",
             "kopya": "commands.md",
             "okuma": "2026-11-15",
-            "dayanak": "/context bağlam kullanımını gösterir, /compact konuşmayı özetleyerek yer açar, /clear boş bağlamla yeni bir konuşma başlatır, /rewind konuşmayı ya da kodu önceki bir noktaya geri sarar."
+            "dayanak": "/context bağlam kullanımını gösterir, /compact konuşmayı özetleyerek yer açar, /rewind konuşmayı ya da kodu önceki bir noktaya geri sarar."
           }
         },
         {
           "id": "b02-d4-s2",
-          "tur": "eslestir",
+          "tur": "bosluk",
           "kart": 3,
-          "soru": "Ayar komutlarını işleriyle eşleştir.",
-          "ciftler": [
-            ["/memory", "CLAUDE.md dosyalarını düzenlemeyi açar"],
-            ["/hooks", "Kanca ayarlarını gösterir"],
-            ["/agents", "Alt ajan oluşturmayı Claude'dan istemeyi hatırlatır"],
-            ["/mcp", "MCP sunucu bağlantılarını yönetir"]
+          "soru": "Claude her oturumda aynı kurala uyuyor; kuralın yazılı olduğu CLAUDE.md dosyalarını ___ ile açarsın.",
+          "secenekler": [
+            "/hooks",
+            "/agents",
+            "/memory",
+            "/context"
           ],
-          "ipucu": "Hafıza, kanca, ajan ve sunucu kelimelerini komut adlarında ara.",
-          "aciklama": "/memory hafıza dosyası olan CLAUDE.md içindir, /hooks kancaları gösterir. /agents bugünkü sürümde alt ajanı Claude'dan istemeyi hatırlatır, /mcp sunucu bağlantılarını yönetir.",
+          "dogru": 2,
+          "ipucu": "Ayar komutlarından hangisinin CLAUDE.md dosyalarıyla ilgili olduğunu düşün.",
+          "aciklama": "/memory CLAUDE.md dosyalarını düzenletir; bir kuralın nereden geldiğini görmek için oraya bakılır. /hooks kancaları, /context bağlamın doluluğunu gösterir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/commands",
             "kopya": "commands.md",
             "okuma": "2026-11-15",
-            "dayanak": "/memory CLAUDE.md dosyalarını düzenler, /hooks kanca ayarlarını gösterir, /agents alt ajanları Claude'dan istemeyi hatırlatır, /mcp MCP sunucu bağlantılarını yönetir."
+            "dayanak": "/memory CLAUDE.md dosyalarını düzenler, /hooks kanca ayarlarını gösterir, /mcp MCP sunucu bağlantılarını yönetir."
           }
         },
         {
           "id": "b02-d4-s6",
           "tur": "coktan",
           "kart": 4,
-          "soru": "Code sekmesinde /permissions yazdın. Ne olur?",
+          "soru": "Code sekmesinde bir komut yazdın; 'isn't available in this environment' cevabı geldi. En olası kaynak?",
           "secenekler": [
-            "İzin kurallarını düzenleyeceğin ayrı bir panel açılır",
-            "'isn't available in this environment' cevabı gelir",
-            "Komut sessizce yok sayılır"
+            "Bu ortamda izin kapalı; ayardan açılmalı",
+            "Komut terminalde panel açan türden",
+            "Komut eski; yeni sürümde kaldırıldı"
           ],
           "dogru": 1,
-          "ipucu": "Terminalde panel açan komutların Code sekmesinde nasıl davrandığını hatırla.",
-          "aciklama": "Terminalde panel açan ve argüman alan bir biçimi olmayan komutlar Code sekmesinde bu cevabı verir. İzin kurallarını yönetmek için ayar dosyası doğrudan düzenlenir.",
+          "ipucu": "Bu cevabın hangi tür komutlarda geldiğini düşün.",
+          "aciklama": "Terminalde panel açan komutlar Code sekmesinde bu cevabı verir; komut kaldırılmış ya da izni kapatılmış değildir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -603,41 +593,21 @@
           }
         },
         {
-          "id": "b02-d4-s5",
-          "tur": "coktan",
-          "kart": 5,
-          "soru": "Klasördeki .claude/skills/kapanis/SKILL.md dosyasında 'name: kapanis' satırı var. Bu skill / menüsünde hangi adla görünür?",
-          "secenekler": [
-            "/kapanis",
-            "/SKILL",
-            "/skills-kapanis"
-          ],
-          "dogru": 0,
-          "ipucu": "Skill dosyasındaki name alanının menüde ne işe yaradığını düşün.",
-          "aciklama": "Skill'in name alanı / menüsünde görünen komut adıdır. Bu yüzden kapanış skill'ini menüde bu adla bulursun.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/skills",
-            "kopya": "skills.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Skill'in name alanı / menüsünde görünen komut adıdır; yazılmazsa klasörün adı kullanılır."
-          }
-        },
-        {
           "id": "b02-d4-s4",
           "tur": "coktan",
-          "kart": 6,
-          "soru": "CLAUDE.md'deki satır: kullanıcı 'proje — açılış' yazarsa acilis skill'ini koş. Buna göre açılış skill'i ne zaman koşar?",
+          "kart": 5,
+          "soru": "Yeni oturumda 'proje — açılış' yazdın; Claude kendiliğinden uzun bir hazırlık başlattı. Neden?",
           "secenekler": [
-            "Her mesajdan önce, sen istemeden kendiliğinden",
-            "Yalnız / menüsünden adıyla seçildiğinde",
-            "Sen 'proje — açılış' yazdığında"
+            "CLAUDE.md'deki bir satır bu sözü skill'e bağlıyor",
+            "İlk mesaj her zaman bir skill başlatır",
+            "Bu söz / menüsünde yerleşik bir komut"
           ],
-          "dogru": 2,
-          "ipucu": "Satırda 'yazarsa' kelimesinden önce kimin ne yaptığına bak.",
-          "aciklama": "Satır, açılış ifadesi yazıldığında acilis skill'inin koşmasını söyler. Yani / menüsü bir skill'i başlatmanın tek yolu değildir.",
+          "dogru": 0,
+          "ipucu": "Bir skill'in / menüsü dışında nasıl başlatılabildiğini düşün.",
+          "aciklama": "Bizim CLAUDE.md, 'proje — açılış' yazılınca acilis skill'inin koşulmasını söyler; / menüsü bir skill'i başlatmanın tek yolu değildir.",
           "kaynak": {
-            "adres": "CLAUDE.md:9",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Kullanıcı 'proje — açılış' yazarsa acilis skill'i koşulur.",
             "soz": "yazarsa `acilis` skill'ini koş"
           }
@@ -648,54 +618,38 @@
       "id": "b02-d5",
       "baslik": "Sık iş akışları",
       "hedefler": [
-        "Kodu anlamak, hata düzeltmek ve önce planlamak akışlarını sayıp anlatabilir.",
-        "Bu akışlardan birinin adımlarını sırasıyla anlatabilir."
+        "Hata düzeltirken Claude'a neyi baştan vermek gerektiğini anlatabilir.",
+        "Claude'un sormadan başladığı işi kural ihlalinden ayırt edebilir.",
+        "Plan kapısının hangi işte devreye girdiğini anlatabilir."
       ],
       "anlatim": [
-        "İş akışı (workflow), sık yapılan bir işin hazır adımlarıdır. Kodu anlamak için önce geniş sorularla başlarsın, 'bu proje ne yapıyor?' gibi, sonra belirli parçalara inersin.",
-        "Hata düzeltmek için önce hatayı Claude'a gösterirsin, sonra birkaç düzeltme yolu istersin. En son seçtiğini uygulatırsın.",
+        "İş akışı (workflow), sık yapılan bir işin hazır adımlarıdır. Hata düzeltmede önce hatayı gösterirsin, sonra birkaç düzeltme yolu istersin, en son seçtiğini uygulatırsın.",
         "Hatayı gösterirken yeniden üretme adımlarını, yani hatayı tekrar ortaya çıkaran adımları da söylersin.",
         "İstemde dosyanın yerini ve belirtiyi baştan söylersen çoğu zaman sonradan bir düzeltme turundan kurtulursun.",
-        "Önce planlamak için mod seçicide Plan'ı seçersin; bu plan modudur (plan mode). Claude dosyaları okur, keşif komutu çalıştırır, plan önerir ama kaynak kodunu düzenlemez.",
-        "CLAUDE.md'deki plan kapısı: iş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa ya da yazdığın bir kuralı değiştiriyorsa Claude önce plan sunar ve durur."
+        "CLAUDE.md'deki plan kapısı: iş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa ya da yazdığın bir kuralı değiştiriyorsa Claude önce plan sunar ve durur.",
+        "Aynı satıra göre bu koşulların dışındaki işe Claude sormadan başlar."
       ],
       "terimler": [
-        {"tr": "iş akışı", "en": "workflow", "aciklama": "Sık yapılan bir işin adım adım izlenen hazır yolu."},
-        {"tr": "plan modu", "en": "plan mode", "aciklama": "Claude'un okuyup keşfettiği, plan önerdiği ama kaynak kodunu düzenlemediği izin modu."}
+        {
+          "tr": "iş akışı",
+          "en": "workflow",
+          "aciklama": "Sık yapılan bir işin adım adım izlenen hazır yolu."
+        }
       ],
       "sorular": [
         {
-          "id": "b02-d5-s2",
+          "id": "b02-d5-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Yeni bir projeyi anlamaya çalışıyorsun. Belgenin önerdiği soru sırası hangisi?",
+          "soru": "Hatayı gösterdin; Claude hemen tek bir düzeltme yazmaya girişti. Akışa göre önce ne istersin?",
           "secenekler": [
-            "Önce tek bir dosyanın ayrıntısı, sonra genel bakış",
-            "Önce kodu değiştirmek, sonra ne yaptığını sormak",
-            "Önce geniş sorularla genel bakış, sonra belirli parçalar"
+            "Bitirmesini; beğenmezsen geri almasını",
+            "Birkaç düzeltme yolu sunmasını",
+            "Bütün projeyi okuyup özetlemesini"
           ],
-          "dogru": 2,
-          "ipucu": "Bir haritaya önce uzaktan mı, yakından mı bakarsın?",
-          "aciklama": "Belge geniş sorularla başlayıp sonra belirli alanlara inmeni önerir. Önce genel bakış, sonra ayrıntı gelir.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/common-workflows",
-            "kopya": "common-workflows.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Geniş sorularla başla, sonra belirli alanlara in."
-          }
-        },
-        {
-          "id": "b02-d5-s1",
-          "tur": "sirala",
-          "kart": 1,
-          "soru": "Hata düzeltme akışının adımlarını sıraya koy.",
-          "adimlar": [
-            "Hatayı Claude'a göster",
-            "Birkaç düzeltme yolu öner diye iste",
-            "Seçtiğin düzeltmeyi uygulat"
-          ],
-          "ipucu": "Önce Claude'un sorunu görmesi, sonra seçenekler, en son değişiklik.",
-          "aciklama": "Belgedeki tarif önce hatayı paylaşmak, sonra düzeltme önerisi istemek, en son düzeltmeyi uygulatmaktır.",
+          "dogru": 1,
+          "ipucu": "Akışta düzeltmenin uygulanmasından önce hangi adımın geldiğini düşün.",
+          "aciklama": "Hata düzeltme akışında hatayı gösterdikten sonra birkaç düzeltme yolu istenir; uygulanacak olanı sen seçersin.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/common-workflows",
             "kopya": "common-workflows.md",
@@ -705,17 +659,17 @@
         },
         {
           "id": "b02-d5-s7",
-          "tur": "bosluk",
-          "kart": 2,
-          "soru": "Hata düzeltme akışında öneri: hatayı ___ adımlarını da Claude'a söyle.",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Claude 'hatayı göremiyorum, bende her şey çalışıyor' dedi. İsteminde en olası eksik ne?",
           "secenekler": [
-            "kullanıcıdan gizlemenin",
-            "yeniden üretmenin",
-            "kayıt dosyasından silmenin"
+            "Hatanın hangi adımlarla yeniden çıktığı",
+            "Hatanın ne zaman başladığına dair tahminin",
+            "Claude'a 'dikkatli bak' uyarısı"
           ],
-          "dogru": 1,
-          "ipucu": "Hatayı Claude'a gösterirken başka neyi de söylediğini hatırla.",
-          "aciklama": "Yeniden üretme adımları, hatayı tekrar ortaya çıkaran adımlardır; belge bunları Claude'a söylemeni önerir. Hatanın ara sıra mı, her seferinde mi çıktığını söylemek de önerilir.",
+          "dogru": 0,
+          "ipucu": "Claude'un hatayı kendi tarafında görebilmesi için neye ihtiyacı olduğunu düşün.",
+          "aciklama": "Yeniden üretme adımları hatayı tekrar ortaya çıkarır; Claude hatayı göremezse düzeltemez. Bu yüzden hatayı gösterirken bu adımlar da söylenir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/common-workflows",
             "kopya": "common-workflows.md",
@@ -725,17 +679,17 @@
         },
         {
           "id": "b02-d5-s6",
-          "tur": "coktan",
-          "kart": 3,
-          "soru": "Claude'a bir hatayı düzelttireceksin. Hangi istem daha iyi?",
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "Claude'a 'giriş bozuk, düzelt' yazdın; başka bir şeyi düzeltti, ikinci tur gerekti. İsteme baştan ___ yazsaydın bu tur çoğu zaman gerekmezdi.",
           "secenekler": [
-            "Giriş hatasını düzelt",
-            "Giriş sayfasında bir şeyler ters gidiyor, ne olduğunu bilmiyorum, sen bulup düzelt",
-            "Oturum süresi dolunca giriş başarısız; src/auth/ içindeki yenilemeye bak, düzelt"
+            "işin acil olduğunu",
+            "kodun nasıl yazılacağını",
+            "hatanın hangi dosyada, nasıl göründüğünü"
           ],
           "dogru": 2,
-          "ipucu": "Hangisi dosyanın yerini ve belirtiyi söylüyor?",
-          "aciklama": "Belge dosyanın yerini ve belirtiyi baştan söyleyen istemin çoğu zaman sonradan bir düzeltme turu kazandırdığını yazar. Genel kalan istem, kısa da olsa uzun da olsa, Claude'a bu bilgiyi vermez.",
+          "ipucu": "Kartta istemde baştan söylenmesi önerilen iki şeyi düşün.",
+          "aciklama": "Dosyanın yerini ve belirtiyi baştan söyleyen istem çoğu zaman sonradan bir düzeltme turu kazandırır. Aciliyet ya da kodun nasıl yazılacağı bu iki bilgiyi vermez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -744,56 +698,61 @@
           }
         },
         {
-          "id": "b02-d5-s3",
-          "tur": "coktan",
-          "kart": 4,
-          "soru": "Büyük bir değişiklikten önce Claude'un yaklaşımını görmek, hiçbir dosyanın düzenlenmemesini istiyorsun. Mod seçicide hangisini seçersin?",
+          "id": "b02-d5-s9",
+          "tur": "bosluk",
+          "kart": 3,
+          "soru": "Claude'dan, her seferinde sana sorduğu bir adımı artık sormamasını istedin. Kapıya göre bu iş ___ sayılır.",
           "secenekler": [
-            "Accept edits",
-            "Plan",
-            "Auto"
+            "sıradan bir düzenleme",
+            "yalnız o oturumu ilgilendiren iş",
+            "senin koyduğun bir kapıyı kaldıran iş"
           ],
-          "dogru": 1,
-          "ipucu": "Hangi mod önce yol haritası çıkarır?",
-          "aciklama": "Bu modda Claude dosya düzenlemeden bir yaklaşım önerir; büyük bir yeniden düzenlemeden önce işe yarar. Accept edits ve Auto ise değişiklik yapar.",
+          "dogru": 2,
+          "ipucu": "Sana sorulan bir adımı kimin koyduğunu düşün.",
+          "aciklama": "Sana sorulan bir adımı kaldırmak, senin koyduğun bir kapıyı kaldırır; bu yüzden plan kapısına girer ve önce plan sunulur.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop-quickstart",
-            "kopya": "desktop-quickstart.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Plan modunda Claude hiçbir dosyayı düzenlemeden bir yaklaşım önerir ve bu büyük bir yeniden düzenlemeden önce işe yarar."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, kullanıcıya sorulan bir kapıyı ya da koyduğu bir sınırı kaldıran değişikliği de plan kapısına girecek kural değişikliği sayar.",
+            "soz": "Plan kapısı: iş birden fazla oturuma yayılacaksa"
           }
         },
         {
-          "id": "b02-d5-s4",
-          "tur": "dogru-yanlis",
+          "id": "b02-d5-s8",
+          "tur": "coktan",
           "kart": 4,
-          "soru": "Plan modunda Claude dosyaları okuyabilir ve keşif için komut çalıştırabilir, ama kaynak kodunu düzenlemez.",
-          "dogru": true,
-          "ipucu": "Plan modunun okuma ile yazma arasında nereye çizgi çektiğini düşün.",
-          "aciklama": "Doğru: plan modunda Claude okur ve keşif komutları çalıştırır, sonra kaynak kodunu düzenlemeden bir plan önerir.",
+          "soru": "Claude'dan bir rapordaki on yazım hatasını düzeltmesini istedin; plan sunmadan, sormadan başladı. Bu ne demek?",
+          "secenekler": [
+            "Olağan; iş kapının koşullarına girmiyor",
+            "Kural ihlali; her iş önce plan ister",
+            "Plan kapısı bu oturumda kapalı"
+          ],
+          "dogru": 0,
+          "ipucu": "Kapının hangi işlerde devreye girdiğini, öteki işlerde ne olduğunu düşün.",
+          "aciklama": "Yazım düzeltmesi birden çok oturuma yayılmaz, geri alınamaz değildir ve kuralını değiştirmez; kurala göre bu tür işe Claude sormadan başlar.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/desktop",
-            "kopya": "desktop.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Plan modunda Claude keşif için dosya okur ve komut çalıştırır, sonra kaynak kodunu düzenlemeden bir plan önerir."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Satır, plan kapısının koşulları dışındaki işe sormadan başlanacağını söyler.",
+            "soz": "Bunun dışındaki işe sormadan başla"
           }
         },
         {
           "id": "b02-d5-s5",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "CLAUDE.md'deki plan kapısına göre hangi işte Claude önce plan sunup durur?",
+          "kart": 3,
+          "soru": "Üç güne, her gün yeni sohbete bölünecek bir iş verdin. Claude'dan ilk ne beklersin?",
           "secenekler": [
-            "Birden fazla oturuma yayılacak bir iş",
-            "Bir dosyayı değiştirmeden yalnız okumak",
-            "Bir sorunun cevabını sohbette yazmak"
+            "Bugünkü kısmı hemen yapmaya başlamasını",
+            "Plan sunup onayını beklemesini",
+            "İşi üç sohbete kendisi bölüp başlatmasını"
           ],
-          "dogru": 0,
-          "ipucu": "Yalnız okumanın ya da sohbette cevap yazmanın bir şeyi değiştirip değiştirmediğini düşün.",
-          "aciklama": "Plan kapısı, birden fazla oturuma yayılacak işi koşulları arasında sayar. Yalnız okumak ya da sohbette cevap yazmak bu koşullara girmez.",
+          "dogru": 1,
+          "ipucu": "Plan kapısının hangi işlerde devreye girdiğini düşün.",
+          "aciklama": "Plan kapısına göre birden fazla oturuma yayılacak işte Claude önce plan sunar ve orada durur; iş senin onayınla başlar.",
           "kaynak": {
-            "adres": "CLAUDE.md:43",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "İş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa ya da kullanıcının yazdığı bir kuralı değiştiriyorsa önce plan sunulur ve orada durulur.",
             "soz": "Plan kapısı: iş birden fazla oturuma yayılacaksa"
           }
@@ -804,39 +763,43 @@
       "id": "b02-d6",
       "baslik": "Git ve kalıcı kayıt (commit)",
       "hedefler": [
-        "Commit'in (kalıcı kayıt) git geçmişine eklenen ve geri dönebileceğin bir kayıt olduğunu anlatabilir.",
-        "Claude'dan commit istemeyi sade bir cümleyle anlatabilir.",
-        "Bu klasörde commit'in ne zaman atıldığını ve git'te neyin sorulduğunu ayırt edebilir."
+        "Commit ile geri sarma noktasının farkını ve hangisine ne zaman güvenileceğini anlatabilir.",
+        "Commit'ten önce yapılacak kontrolleri anlatabilir.",
+        "Bu klasörde commit ve uzağa gönderim kuralını ayırt edebilir."
       ],
       "anlatim": [
-        "Git, klasördeki değişikliklerin geçmişini tutan sürüm denetimi (version control) aracıdır. Commit (kalıcı kayıt), bu geçmişe eklenen kayıttır.",
-        "Claude'un geri sarma noktaları (checkpoint) oturum içinde hızlı kurtarma içindir. Kalıcı sürüm geçmişi ve geri dönüş için git kullanılır.",
-        "Git'i konuşarak kullanırsın: 'hangi dosyaları değiştirdim?' ya da 'değişikliklerimi açıklayıcı bir mesajla commit et' yazman yeter.",
+        "Git, klasörün değişiklik geçmişini tutar; her commit bu geçmişe eklenen kalıcı bir kayıttır. Claude'un geri sarma noktaları (checkpoint) ise yalnız oturum içinde hızlı kurtarma içindir.",
         "Kursun önerdiği iş akışı dört adımdır: Keşfet, Planla, Kodla, Commit. En kolay yön düzeltmesi planda, kod yazılmadan önce yapılır.",
         "Commit'ten önce değişikliği kendin dene ve bir inceleyici alt ajana baktır. Alt ajan oturumun önyargısını taşımaz.",
-        "Bizim klasörde CLAUDE.md'de şu satır var: 'klasör git ile tutulur, her iş bitince commit atılır'.",
+        "Bizim CLAUDE.md'de şu satır var: 'klasör git ile tutulur, her iş bitince commit atılır'.",
         "CLAUDE.md'ye göre git geçmişini uzak depoya, yani dışarıdaki bir sisteme göndermek her seferinde sana sorulur. Sohbet kapanışında yedek deposuna gönderim bunun dışındadır."
       ],
       "terimler": [
-        {"tr": "kalıcı kayıt", "en": "commit", "aciklama": "Değişikliklerin git geçmişine eklenen kalıcı kaydı; gerektiğinde git ile bu kayda dönülür."},
-        {"tr": "geri sarma noktası", "en": "checkpoint", "aciklama": "Claude'un oturum içinde hızlı kurtarma için tuttuğu nokta; git'in yerini tutmaz."},
-        {"tr": "sürüm denetimi", "en": "version control", "aciklama": "Dosyaların değişiklik geçmişini tutan sistem; çoğu projenin kullandığı git gibi."}
+        {
+          "tr": "kalıcı kayıt",
+          "en": "commit",
+          "aciklama": "Değişikliklerin git geçmişine eklenen kalıcı kaydı; gerektiğinde git ile bu kayda dönülür."
+        },
+        {
+          "tr": "geri sarma noktası",
+          "en": "checkpoint",
+          "aciklama": "Claude'un oturum içinde hızlı kurtarma için tuttuğu nokta; git'in yerini tutmaz."
+        }
       ],
       "sorular": [
         {
-          "id": "b02-d6-s1",
-          "tur": "coktan",
+          "id": "b02-d6-s2",
+          "tur": "bosluk",
           "kart": 0,
-          "soru": "Commit en iyi hangisiyle tanımlanır?",
+          "soru": "Bir hafta önceki hale dönmek istiyorsun ve o oturumlar kapandı; bunun için ___ güvenirsin.",
           "secenekler": [
-            "Oturum içindeki geçici geri sarma noktası",
-            "Sürüm geçmişine eklenen kalıcı kayıt",
-            "Claude'un yaptığı işin kısa özeti",
-            "Bağlamı özetleyip yer açan komut"
+            "Claude'un geri sarma noktalarına",
+            "git geçmişindeki commit'lere",
+            "Claude'un o haftayı hatırlamasına"
           ],
           "dogru": 1,
-          "ipucu": "Kartta git'in neyi tuttuğunu, commit'in de onun neresi olduğunu düşün.",
-          "aciklama": "Belge geri sarma noktalarını oturum içi hızlı kurtarma, git commit'lerini kalıcı sürüm geçmişi diye ayırır.",
+          "ipucu": "Geri sarma noktasının hangi süre için tutulduğunu düşün.",
+          "aciklama": "Geri sarma noktaları oturum içinde hızlı kurtarma içindir; kalıcı geçmiş ve eski hale dönüş git commit'leriyle olur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/checkpointing",
             "kopya": "checkpointing.md",
@@ -845,73 +808,38 @@
           }
         },
         {
-          "id": "b02-d6-s2",
-          "tur": "dogru-yanlis",
-          "kart": 1,
-          "soru": "Claude'un geri sarma noktaları (checkpoint) git'in yerini tutar; ayrıca commit atmana gerek yoktur.",
-          "dogru": false,
-          "ipucu": "Geri sarmanın ne için tasarlandığını hatırla.",
-          "aciklama": "Yanlış: belge geri sarmanın sürüm denetiminin yerini tutmadığını söyler. Kalıcı geçmiş ve geri dönüş için git commit'leri gerekir.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/checkpointing",
-            "kopya": "checkpointing.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Geri sarma noktaları sürüm denetiminin yerini tutmaz; kalıcı sürüm geçmişi için git kullanmaya devam edilir."
-          }
-        },
-        {
-          "id": "b02-d6-s3",
+          "id": "b02-d6-s6",
           "tur": "coktan",
-          "kart": 2,
-          "soru": "Değişikliklerini kaydetmek istiyorsun. Claude'a hangisini yazarsın?",
+          "kart": 1,
+          "soru": "Claude'un kodu üç kez yanlış yöne gitti; her seferinde farkta düzelttin. Kursa göre neyi atlıyorsun?",
           "secenekler": [
-            "Bana git commit komutunu yaz, ben kendim çalıştırayım",
-            "Dosyaların bir kopyasını masaüstüne at",
-            "Değişikliklerimi açıklayıcı bir mesajla commit et"
+            "Her değişiklikten sonra commit atmayı",
+            "Daha çok test yazdırmayı",
+            "İşe başlamadan planı gözden geçirmeyi"
           ],
           "dogru": 2,
-          "ipucu": "Git işini konuşarak yaptırabildiğini hatırla.",
-          "aciklama": "Claude Code git işlerini konuşmaya çevirir; ne istediğini yazman yeter. Komutu sana yazdırmak bu klasörün kuralına da aykırıdır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/quickstart",
-            "kopya": "quickstart.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Claude Code git işlerini konuşmaya çevirir; örneğin değişikliklerimi açıklayıcı bir mesajla commit et diye yazabilirsin."
-          }
-        },
-        {
-          "id": "b02-d6-s6",
-          "tur": "sirala",
-          "kart": 3,
-          "soru": "Kursun önerdiği dört adımlı iş akışını sıraya koy.",
-          "adimlar": [
-            "Keşfet: Claude ilgili dosyaları okur",
-            "Planla: Claude bir eylem planı çıkarır, sen gözden geçirirsin",
-            "Kodla: plan onaylanınca Claude uygular",
-            "Commit: test edip gözden geçirdikten sonra kaydedersin"
-          ],
-          "ipucu": "Kod yazılmadan önce iki adım, yazıldıktan sonra bir adım var.",
-          "aciklama": "Kurs sırayı Keşfet, Planla, Kodla, Commit diye verir. En kolay yön düzeltmesi planda, kod yazılmadan önce yapılır.",
+          "ipucu": "Yön düzeltmesinin hangi adımda en kolay olduğunu düşün.",
+          "aciklama": "Kursa göre en kolay yön düzeltmesi planda, kod yazılmadan önce yapılır; yön farkta düzeltilirse iş her seferinde yeniden yazılır.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/the-explore-plan-code-commit-workflow",
             "kopya": "ders-101-05-explore-plan-code-commit.md",
             "okuma": "2026-11-15",
-            "dayanak": "Kursun önerdiği iş akışı sırasıyla Keşfet, Planla, Kodla ve Commit adımlarından oluşur."
+            "dayanak": "Kursun önerdiği iş akışı sırasıyla Keşfet, Planla, Kodla ve Commit adımlarından oluşur; en kolay yön düzeltmesi planda, kod yazılmadan önce yapılır."
           }
         },
         {
           "id": "b02-d6-s7",
-          "tur": "bosluk",
-          "kart": 4,
-          "soru": "Commit'ten önce işine temiz gözle bakması için bir ___ çalıştırman önerilir.",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "İş bitti; commit'ten önce bir kez daha kontrol ettirmek istiyorsun. Kime ettirirsin?",
           "secenekler": [
-            "bağlam sıkıştırma komutu",
-            "kod inceleyici alt ajan",
-            "yeni oturum adı"
+            "Ayrı bir inceleyici alt ajan",
+            "İşi yapan oturum; neyi neden yaptığını bilir",
+            "Claude'un özeti yeter"
           ],
-          "dogru": 1,
-          "ipucu": "Oturumun önyargısını taşımayan bir göz düşün.",
-          "aciklama": "Kurs commit'ten önce bir alt ajan kod inceleyicisi çalıştırmanı önerir. Alt ajan ana oturumun önyargısını taşımaz.",
+          "dogru": 0,
+          "ipucu": "Oturumun kendi işine bakarken neyi taşıdığını düşün.",
+          "aciklama": "Alt ajan ana oturumun önyargısını taşımaz, işe temiz gözle bakar; bu yüzden commit'ten önce inceleyici alt ajan önerilir.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/the-explore-plan-code-commit-workflow",
             "kopya": "ders-101-05-explore-plan-code-commit.md",
@@ -922,19 +850,19 @@
         {
           "id": "b02-d6-s4",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "Claude bu klasörde bir işi bitirdi. CLAUDE.md'deki sürüm kaydı kuralına göre sıradaki adım hangisi?",
+          "kart": 3,
+          "soru": "Claude 'iş bitti' deyip yeni işe geçti; git geçmişinde bu işin kaydı yok. Ne yaparsın?",
           "secenekler": [
-            "Biten işi bir commit'le git geçmişine kaydetmek",
-            "Commit'i hafta sonuna bırakmak",
-            "Değişikliği kaydetmeden yeni işe geçmek"
+            "Bir şey demem; kayıtlar hafta sonu toplu atılır",
+            "Kaydı atmasını isterim",
+            "Geri sarma noktası almasını isterim"
           ],
-          "dogru": 0,
-          "ipucu": "Kuralın commit'i hangi anda istediğini hatırla.",
-          "aciklama": "Kurala göre klasör git ile tutulur ve her iş bitince commit atılır. Böylece her iş geçmişte ayrı bir kayıt olarak kalır.",
+          "dogru": 1,
+          "ipucu": "Kuralın commit'i hangi anda istediğini düşün.",
+          "aciklama": "Kurala göre her iş bitince commit atılır; kayıt yoksa yeni işe geçmeden önce istenir. Geri sarma noktası oturum içi kurtarmadır, kalıcı kayıt değildir.",
           "kaynak": {
-            "adres": "CLAUDE.md:112",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Sürüm kaydı: klasör git ile tutulur, her iş bitince commit atılır.",
             "soz": "klasör git ile tutulur, her iş bitince commit atılır"
           }
@@ -942,20 +870,40 @@
         {
           "id": "b02-d6-s5",
           "tur": "coktan",
-          "kart": 6,
-          "soru": "CLAUDE.md'deki kurala göre bu klasörde hangisi her seferinde sana sorulur?",
+          "kart": 4,
+          "soru": "Dün git'i uzak depoya göndermesine onay verdin; bugün Claude aynı gönderim için yine soruyor. Neden?",
           "secenekler": [
-            "Her iş bitince değişikliği yerel bir commit ile git geçmişine kaydetmek",
-            "Hangi dosyaların değiştiğine bakmak",
-            "Git'i uzak depoya göndermek (yedek deposuna kapanış gönderimi hariç)"
+            "Claude dünkü onayı unuttu",
+            "Dünkü gönderim yarım kaldı",
+            "Kural uzağa gönderimi her seferinde sorduruyor"
           ],
           "dogru": 2,
-          "ipucu": "Yerel bir kayıt ile uzak depoya gönderim arasındaki farkı düşün.",
-          "aciklama": "Kural, git'i uzağa göndermeyi dış sisteme yazma sayar ve her seferinde sorar; yedek deposuna kapanış gönderimi bunun dışındadır. Yerel commit bu listede yoktur.",
+          "ipucu": "Uzağa gönderimde önceki onayın geçip geçmediğini düşün.",
+          "aciklama": "Kurala göre git'i uzağa göndermek dış sisteme yazmaktır ve her seferinde sorulur; önceki onay geçmez.",
           "kaynak": {
-            "adres": "CLAUDE.md:46",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Dış sisteme yazma, git'i uzağa gönderme dahil, her seferinde sorulur ve önceki onay geçmez; yedek deposuna kapanış gönderimi bunun dışındadır.",
+            "soz": "git'i uzağa gönderme; yedek deposuna kapanış gönderimi hariç"
+          }
+        },
+        {
+          "id": "b02-d6-s8",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Sohbetin kapanışında Claude, sana sormadan yedek deposuna gönderim yaptı. Bu ne demek?",
+          "secenekler": [
+            "Kurala uygun; kapanıştaki yedek gönderimi sorulmaz",
+            "Kural ihlali; her gönderim sorulmalıydı",
+            "Gönderim yanlışlıkla oldu, geri alınmalı"
+          ],
+          "dogru": 0,
+          "ipucu": "Kartta uzağa gönderim kuralının dışında tutulan durumu düşün.",
+          "aciklama": "Kurala göre git'i uzağa göndermek her seferinde sorulur; sohbet kapanışındaki yedek deposu gönderimi bunun dışındadır.",
+          "kaynak": {
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Git'i uzağa gönderme her seferinde sorulur; yedek deposuna kapanış gönderimi bunun dışındadır.",
             "soz": "git'i uzağa gönderme; yedek deposuna kapanış gönderimi hariç"
           }
         }

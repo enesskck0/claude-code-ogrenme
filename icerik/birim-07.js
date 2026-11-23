@@ -3,38 +3,54 @@
   "id": "b07",
   "sira": 7,
   "baslik": "Alt ajan (subagent)",
-  "amac": "Alt ajanın ne olduğunu, ne zaman kullanıldığını anlatabilmek ve bizim klasördeki ajan dosyalarını okuyup ne yaptıklarını söyleyebilmek.",
+  "amac": "Alt ajanın nasıl çalıştığını, ne zaman kullanıldığını ve bir ajan işi ters gidince kaynağın nerede olabileceğini öğrenirsin; bizim klasördeki ajan kurallarını da tanırsın.",
   "dersler": [
     {
       "id": "b07-d1",
       "baslik": "Alt ajan nedir",
       "hedefler": [
         "Alt ajanın ayrı bir bağlam penceresinde çalışıp ana oturuma yalnız özet döndürdüğünü anlatabilir.",
-        "Alt ajanın ana oturumun bağlamını temiz tutma faydasını ve bedelini anlatabilir."
+        "Alt ajanın ana oturumun bağlamını temiz tutma faydasını ve bedelini anlatabilir.",
+        "Bir ajan bir kurala uymadığında kuralın ajana hangi yoldan ulaştığını ayırt edebilir."
       ],
       "anlatim": [
         "Alt ajan (subagent), Claude Code'un iş devrettiği yardımcıdır. Kendi bağlam penceresinde (context window) dosya okur, arar ve bitince ana oturuma yalnız özet döner.",
-        "Okuduğu dosyalar ve yaptığı aramalar ajanın kendi penceresinde kalır; ana oturumun bağlamına yazılmaz.",
         "Bağlam penceresi sınırlıdır; her okuma ve arama sonucu orada birikir. Dolunca Claude konuşmanın eski kısımlarını kaçırmaya başlar.",
         "Alt ajanın bir bedeli var: ana oturum yalnız özeti görür, ajanın sonuca nasıl vardığını görmez.",
         "Ajanın başlangıç bağlamında iki şey vardır: ajan dosyasındaki sistem talimatı (system prompt) ve ana oturumun senin isteğinden yazdığı görev metni.",
         "CLAUDE.md'de yazar: bizim ajanlar .claude/agents/ altındadır, CLAUDE.md'yi yüklemez; ortak kuralları ajan-kimligi skill'indedir."
       ],
       "terimler": [
-        {"tr": "alt ajan", "en": "subagent", "aciklama": "Ana oturumun iş devrettiği, kendi bağlamında çalışıp özet döndüren yardımcı."},
-        {"tr": "bağlam penceresi", "en": "context window", "aciklama": "Konuşmadaki her mesajın, okumanın ve arama sonucunun biriktiği sınırlı alan."},
-        {"tr": "sistem talimatı", "en": "system prompt", "aciklama": "Ajan dosyasındaki, ajanın rolünü ve davranışını tanımlayan metin."}
+        {
+          "tr": "alt ajan",
+          "en": "subagent",
+          "aciklama": "Ana oturumun iş devrettiği, kendi bağlamında çalışıp özet döndüren yardımcı."
+        },
+        {
+          "tr": "bağlam penceresi",
+          "en": "context window",
+          "aciklama": "Konuşmadaki her mesajın, okumanın ve arama sonucunun biriktiği sınırlı alan."
+        },
+        {
+          "tr": "sistem talimatı",
+          "en": "system prompt",
+          "aciklama": "Ajan dosyasındaki, ajanın rolünü ve davranışını tanımlayan metin."
+        }
       ],
       "sorular": [
         {
           "id": "b07-d1-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Bir alt ajan işini bitirince ana oturuma ne döner?",
-          "secenekler": ["Okuduğu bütün dosyaların tam metni", "Yalnız işin özeti", "Bütün arama sonuçları ve araç çağrıları", "Ana oturumun bağlamının bir kopyası"],
+          "soru": "Ajan bir raporu inceledi. İçindeki bir sayıyı sorunca Claude 'açıp bakmam gerek' dedi. Neden?",
+          "secenekler": [
+            "Claude okuduğu sayıları aklında tutmaz",
+            "Raporu ajan okudu, Claude'a özet geldi",
+            "Ajan bitince rapor erişime kapandı"
+          ],
           "dogru": 1,
-          "ipucu": "Ajanın ana oturumu neden temiz tuttuğunu düşün.",
-          "aciklama": "Ajan ara işi kendi penceresinde yapar; ana oturuma yalnız özet gelir. Bu yüzden ana bağlam dolmaz.",
+          "ipucu": "Raporun metninin kimin bağlamına girdiğini düşün.",
+          "aciklama": "Raporu ajan kendi bağlamında okudu; ana oturuma yalnız özeti geldi. Özette olmayan sayı için dosyanın yeniden açılması gerekir.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
             "kopya": "ders-subagents-01-what-are-subagents.md",
@@ -44,45 +60,17 @@
         },
         {
           "id": "b07-d1-s2",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Alt ajanın okuduğu dosyalar ve yaptığı aramalar nerede kalır?",
-          "secenekler": ["Ana oturumun bağlamında, özetin yanında", "Ajanın kendi bağlam penceresinde", "Önce ajanda, bitince ana oturuma kopyalanır"],
-          "dogru": 1,
-          "ipucu": "Ana oturuma neyin döndüğünü düşün.",
-          "aciklama": "Dosya okumaları, aramalar ve araç çağrıları ajanın kendi bağlamında kalır, ana konuşmayı doldurmaz.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
-            "kopya": "ders-subagents-01-what-are-subagents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Ara adımlar, yani dosya okumaları, aramalar ve araç çağrıları ayrı kalır ve ana konuşmayı hiç doldurmaz."
-          }
-        },
-        {
-          "id": "b07-d1-s3",
           "tur": "bosluk",
-          "kart": 3,
-          "soru": "Alt ajanın bedeli şu: ana oturum, ajanın sonuca ___ görmez.",
-          "secenekler": ["nasıl vardığını", "hangi görevle başladığını", "ne zaman bitirdiğini"],
-          "dogru": 0,
-          "ipucu": "Ana oturuma yalnız özet geldiğini hatırla.",
-          "aciklama": "Ana oturum görevi kendisi yazar ve özeti alır; arada ajanın izlediği yolu görmez.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
-            "kopya": "ders-subagents-01-what-are-subagents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Bunun bedeli, ana konuşmanın alt ajanın sonuca nasıl vardığını görmemesidir."
-          }
-        },
-        {
-          "id": "b07-d1-s4",
-          "tur": "coktan",
-          "kart": 2,
-          "soru": "Uzun bir sohbettesin. Bir kuralın geçtiği yeri bulmak için 15 dosya okumak gerekiyor, sana tek cevap lazım. En uygun yol hangisi?",
-          "secenekler": ["Ana oturum 15 dosyayı kendisi okusun", "Dosyaları sohbete tek tek yapıştır", "Bir alt ajan arasın, ana oturuma yalnız cevabı getirsin"],
+          "kart": 0,
+          "soru": "Ajan 30 dosya okuyup kısa bir özet döndü. Ana oturumun bağlamına ___ eklenir.",
+          "secenekler": [
+            "özet ile 30 dosyanın tam metni",
+            "özet ile ajanın bütün arama adımları",
+            "görev metni ile özet"
+          ],
           "dogru": 2,
-          "ipucu": "Hangi yolda 15 dosyanın içeriği senin bağlamına girmez?",
-          "aciklama": "Alt ajan dosyaları kendi bağlamında okur; ana bağlam yalnız soruyu ve özeti kaydeder.",
+          "ipucu": "Ajanın okumalarının hangi pencerede kaldığını düşün.",
+          "aciklama": "Ajan dosyaları kendi penceresinde okur. Ana oturumun bağlamına yalnız ajana yazdığı görev metni ve dönen özet girer.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
             "kopya": "ders-subagents-01-what-are-subagents.md",
@@ -91,18 +79,58 @@
           }
         },
         {
-          "id": "b07-d1-s5",
-          "tur": "eslestir",
-          "kart": 4,
-          "soru": "Her parçayı alt ajanın işindeki yeriyle eşleştir.",
-          "ciftler": [
-            ["Ajanın sistem talimatı", "Ajan dosyasından gelir"],
-            ["Ajanın görev metni", "Ana oturum senin isteğinden yazar"],
-            ["Ajanın okumaları ve aramaları", "Ajanın kendi penceresinde kalır"],
-            ["Ajanın vardığı sonuç", "Özet olarak ana oturuma döner"]
+          "id": "b07-d1-s4",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Bir ajana 300 dosya okutuldu; cevabında ilk dosyalardaki bulguları unutmuş görünüyor. En olası kaynak?",
+          "secenekler": [
+            "Ajanın kendi penceresi de doldu",
+            "Ajanlar yalnız son okunanı tutar",
+            "Ana oturumun bağlamı doldu"
           ],
-          "ipucu": "Ajanın neyle başladığını, işi nerede yaptığını ve sonunda sana neyin geldiğini düşün.",
-          "aciklama": "Ajan, dosyasındaki talimat ve ana oturumun yazdığı görev metniyle başlar; okumaları kendi penceresinde kalır, ana oturuma yalnız özet döner.",
+          "dogru": 0,
+          "ipucu": "Ajanın da bir bağlam penceresi olduğunu ve pencerenin sınırını düşün.",
+          "aciklama": "Ajan kendi bağlam penceresinde çalışır ve o pencere de sınırlıdır; dolunca eski kısımlar kaçar. Bu kadar büyük iş birkaç ajana bölünür.",
+          "kaynak": {
+            "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
+            "kopya": "ders-subagents-01-what-are-subagents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Her alt ajan kendi bağlam penceresinde çalışır, işini yapar ve ana konuşmaya bir özet döndürür."
+          }
+        },
+        {
+          "id": "b07-d1-s3",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Ajan 'bu kural klasörde yok' dedi; sen bir dosyada gördüğünü biliyorsun. Ne istersin?",
+          "secenekler": [
+            "Claude'un ajanın arama adımlarını göstermesini",
+            "Baktığı yerleri de yazarak yeniden aratmasını",
+            "Aynı ajanı aynı görevle yeniden çalıştırmasını"
+          ],
+          "dogru": 1,
+          "ipucu": "Claude'un ajanın yolundan neyi gördüğünü düşün.",
+          "aciklama": "Ana oturum ajanın sonuca nasıl vardığını görmez, adımlarını gösteremez. Baktığı yerleri yazdırırsan neyi atladığını görürsün.",
+          "kaynak": {
+            "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
+            "kopya": "ders-subagents-01-what-are-subagents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Bunun bedeli, ana konuşmanın alt ajanın sonuca nasıl vardığını görmemesidir."
+          }
+        },
+        {
+          "id": "b07-d1-s5",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Claude'a sohbette 'eski raporları sayma' dedin; çağrılan ajan yine saydı. En olası kaynak?",
+          "secenekler": [
+            "Ajan notu okudu ama kaçırdı",
+            "Ajanın bağlamı doluydu, not kaçtı",
+            "Not görev metnine yazılmadı"
+          ],
+          "dogru": 2,
+          "ipucu": "Ajanın işe başlarken elinde hangi iki metnin olduğunu düşün.",
+          "aciklama": "Ajan sohbeti görmez; kendi talimatıyla ve ana oturumun yazdığı görev metniyle, boş bir bağlamla başlar. Not görev metnine girmediyse ajan onu hiç duymadı.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
             "kopya": "ders-subagents-01-what-are-subagents.md",
@@ -112,37 +140,22 @@
         },
         {
           "id": "b07-d1-s6",
-          "tur": "dogru-yanlis",
-          "kart": 5,
-          "soru": "CLAUDE.md'ye göre bizim ajanlarımız işe başlarken CLAUDE.md'yi yükler ve kurallarını oradan alır.",
-          "dogru": false,
-          "ipucu": "Ajanların ortak kurallarının nereden geldiğini hatırla.",
-          "aciklama": "Yanlış. Ajanlar CLAUDE.md'yi yüklemez; ortak kuralları ajan-kimligi skill'inden gelir.",
-          "kaynak": {
-            "adres": "CLAUDE.md:107",
-            "okuma": "2026-11-17",
-            "dayanak": "Ajanlar .claude/agents/ altındadır, bu dosyayı yüklemezler, ortak kuralları ajan-kimligi skill'indedir.",
-            "soz": "bu dosyayı yüklemezler, ortak kuralları `ajan-kimligi` skill'inde"
-          }
-        },
-        {
-          "id": "b07-d1-s7",
-          "tur": "sirala",
+          "tur": "coktan",
           "kart": 4,
-          "soru": "Bir alt ajanın işini baştan sona sırala.",
-          "adimlar": [
-            "Ana oturum senin isteğinden bir görev metni yazar",
-            "Ajan kendi talimatı ve görev metniyle, kendi bağlamında başlar",
-            "Ajan dosya okur, arar, işini yapar",
-            "Ana oturuma yalnız özet döner"
+          "soru": "CLAUDE.md'ye eklenen kurala ana oturum uyuyor, bizim ajanlar uymuyor. En olası kaynak?",
+          "secenekler": [
+            "Ajanlar kuralı başka dosyadan alır; orada yok",
+            "Ajanlar okur, kendine ait saymaz",
+            "Kural ajanlara ancak yeni sohbette ulaşır"
           ],
-          "ipucu": "Ajanın başlangıç bağlamında ne olduğunu düşün, oradan başla.",
-          "aciklama": "Görev metni ana oturumdan gelir, ajan işi kendi bağlamında yapar ve sonunda yalnız özet döner.",
+          "dogru": 0,
+          "ipucu": "Bizim ajanların ortak kurallarını nereden aldığını düşün.",
+          "aciklama": "Bizim ajanlar CLAUDE.md'yi hiç yüklemez, yeni sohbette de; ortak kuralları ajan-kimligi skill'indedir. Kural ajanlara da gerekiyorsa oraya ya da görev metnine yazılır.",
           "kaynak": {
-            "adres": "https://academy.claude.com/courses/introduction-to-subagents/what-are-subagents",
-            "kopya": "ders-subagents-01-what-are-subagents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Alt ajanın başlangıç bağlamında ayar dosyasındaki talimat ve ana ajanın isteğine göre yazdığı görev metni vardır; ajan sonra kendi başına çalışır ve bitince ana konuşmaya yalnız özet gelir."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Ajanlar .claude/agents/ altındadır, CLAUDE.md'yi yüklemezler, ortak kuralları ajan-kimligi skill'indedir.",
+            "soz": "bu dosyayı yüklemezler, ortak kuralları `ajan-kimligi` skill'inde"
           }
         }
       ]
@@ -152,7 +165,7 @@
       "baslik": "Yerleşik ajanlar",
       "hedefler": [
         "Explore, Plan ve genel amaçlı (general-purpose) yerleşik ajanları işlerine göre ayırt edebilir.",
-        "Explore ve Plan'ın CLAUDE.md dosyalarını yüklemeden başladığını anlatabilir."
+        "Hangi ajanın CLAUDE.md'yi yüklediğini ve bunun bir aramanın sonucunu nasıl etkilediğini anlatabilir."
       ],
       "anlatim": [
         "Claude Code'la hazır gelen alt ajanlara yerleşik ajan (built-in subagent) denir. Explore bunlardan biridir: hızlı arama ve kod keşfi yapar, yalnız okur.",
@@ -163,87 +176,36 @@
         "Bizde benzer işi scout yapar; ajan dosyasında 'Yalnız okur, hiçbir dosyayı değiştirmez' ve 'omitClaudeMd: true' yazar. Ama yerleşik değildir, bizim yazdığımız bir dosyadır."
       ],
       "terimler": [
-        {"tr": "yerleşik ajan", "en": "built-in subagent", "aciklama": "Claude Code ile hazır gelen, uygun işte Claude'un kendiliğinden kullandığı alt ajan."},
-        {"tr": "genel amaçlı ajan", "en": "general-purpose", "aciklama": "Hem keşif hem değişiklik gereken çok adımlı işler için, alt ajanlara açık bütün araçlarla çalışan yerleşik ajan."},
-        {"tr": "plan modu", "en": "plan mode", "aciklama": "Ana konuşmanın salt okunur kaldığı, Claude'un önce araştırıp plan sunduğu mod."}
+        {
+          "tr": "yerleşik ajan",
+          "en": "built-in subagent",
+          "aciklama": "Claude Code ile hazır gelen, uygun işte Claude'un kendiliğinden kullandığı alt ajan."
+        },
+        {
+          "tr": "genel amaçlı ajan",
+          "en": "general-purpose",
+          "aciklama": "Hem keşif hem değişiklik gereken çok adımlı işler için, alt ajanlara açık bütün araçlarla çalışan yerleşik ajan."
+        },
+        {
+          "tr": "plan modu",
+          "en": "plan mode",
+          "aciklama": "Ana konuşmanın salt okunur kaldığı, Claude'un önce araştırıp plan sunduğu mod."
+        }
       ],
       "sorular": [
-        {
-          "id": "b07-d2-s1",
-          "tur": "eslestir",
-          "kart": 2,
-          "soru": "Her yerleşik ajanı işiyle eşleştir.",
-          "ciftler": [
-            ["Explore", "Hızlı arama ve kod keşfi; yalnız okur"],
-            ["Plan", "Plan modunda, plan sunmadan önce araştırır"],
-            ["Genel amaçlı", "Keşif ve değişiklik isteyen çok adımlı iş"]
-          ],
-          "ipucu": "Hangisinin değişiklik yapabildiğini düşün.",
-          "aciklama": "Explore ve Plan salt okunurdur, Plan, plan modunda çalışır; genel amaçlı ajan hem keşfeder hem değiştirir.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/sub-agents",
-            "kopya": "sub-agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Explore kod tabanında arama için hızlı, salt okunur ajandır; Plan, plan modunda plan sunmadan önce bağlam toplar; genel amaçlı ajan hem keşif hem eylem gerektiren karmaşık, çok adımlı işler içindir."
-          }
-        },
-        {
-          "id": "b07-d2-s2",
-          "tur": "coktan",
-          "kart": 4,
-          "soru": "Senin yazdığın bir ajanın CLAUDE.md'siz başlaması için ne gerekir?",
-          "secenekler": ["Ayar gerekmez, zaten CLAUDE.md'siz başlar", "Ajan dosyasına omitClaudeMd yazmak", "Ajana yalnız okuma araçları vermek"],
-          "dogru": 1,
-          "ipucu": "Hangi alanın bu davranışı açtığını hatırla.",
-          "aciklama": "Kendi ajanların CLAUDE.md'yi yükler; yüklemesin istiyorsan ajan dosyasına omitClaudeMd yazılır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/sub-agents",
-            "kopya": "sub-agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Explore ve Plan CLAUDE.md dosyaları ve git durum özeti olmadan başlar; öteki yerleşik ajanlar ve özel ajanlar, omitClaudeMd ayarlanmadıkça ikisini de yükler."
-          }
-        },
-        {
-          "id": "b07-d2-s3",
-          "tur": "coktan",
-          "kart": 3,
-          "soru": "Explore ve Plan neden CLAUDE.md ve git durum özeti olmadan başlar?",
-          "secenekler": ["Bu dosyaları okuma izinleri olmadığı için", "Araştırma hızlı ve ucuz olsun diye", "CLAUDE.md yalnız terminalde okunduğu için", "Senin kurallarını değiştirmesinler diye"],
-          "dogru": 1,
-          "ipucu": "Bu iki ajanın asıl işinin araştırma olduğunu düşün.",
-          "aciklama": "Belge nedeni açıkça söyler: araştırma hızlı ve ucuz kalsın diye bu iki ajan daha az şeyle başlar.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/sub-agents",
-            "kopya": "sub-agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Explore ve Plan, araştırmayı hızlı ve ucuz tutmak için CLAUDE.md dosyaları ve git durum özeti olmadan başlar."
-          }
-        },
-        {
-          "id": "b07-d2-s4",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Plan modundasın ve Claude, plan sunmadan önce kodu anlamak için araştırma yapacak. Bu araştırmayı hangi yerleşik ajana verir?",
-          "secenekler": ["Genel amaçlı ajan", "Explore", "Plan"],
-          "dogru": 2,
-          "ipucu": "Kartlarda hangi yerleşik ajanın bu moda bağlı anlatıldığını hatırla.",
-          "aciklama": "Plan modunda Claude araştırmayı Plan ajanına verir; keşif çıktısı ayrı bağlamda kalır, ana konuşma salt okunur kalır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/sub-agents",
-            "kopya": "sub-agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Plan modunda Claude kod tabanını anlaması gerekince araştırmayı Plan ajanına devreder."
-          }
-        },
         {
           "id": "b07-d2-s5",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Yerleşik Explore ajanına hangi iş verilemez?",
-          "secenekler": ["Bir dosyaya yeni satır yazmak", "Klasörde bir sözcüğün geçtiği yerleri aramak", "Bir dosyayı açıp baştan sona okumak"],
-          "dogru": 0,
+          "soru": "Claude yazım hatasını bulup düzeltme işini Explore'a verdi; hata yerinde duruyor. En olası kaynak?",
+          "secenekler": [
+            "Explore düzeltmeyi senin onayına bıraktı",
+            "Explore proje kurallarını bilmeden başladı",
+            "Explore bulabilir ama dosyaya yazamaz"
+          ],
+          "dogru": 2,
           "ipucu": "Explore'un dosyalarla neler yapabildiğini düşün.",
-          "aciklama": "Explore salt okunurdur; Write ve Edit araçları ona kapalıdır, bu yüzden dosyaya yazamaz.",
+          "aciklama": "Explore yalnız okur; Write ve Edit araçları ona kapalıdır. Düzeltme, değişiklik yapabilen bir ajana ya da ana oturuma kalır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
@@ -252,18 +214,104 @@
           }
         },
         {
-          "id": "b07-d2-s6",
-          "tur": "dogru-yanlis",
-          "kart": 5,
-          "soru": "scout.md'de 'omitClaudeMd: true' yazıyor. Bu satır sayesinde scout da Explore gibi CLAUDE.md dosyalarını yüklemeden başlar.",
-          "dogru": true,
-          "ipucu": "Özel bir ajanın CLAUDE.md'siz başlaması için ne gerektiğini hatırla.",
-          "aciklama": "Doğru. Özel ajanlar normalde CLAUDE.md yükler; omitClaudeMd ayarı onları CLAUDE.md'siz başlatır.",
+          "id": "b07-d2-s4",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Plan modunda Claude kodu araştırıp plan sundu. Araştırma ana bağlamı neden doldurmadı?",
+          "secenekler": [
+            "Plan modunda Claude dosya okumadan plan yazar",
+            "Araştırmayı Plan ajanı kendi bağlamında yaptı",
+            "Plan modunda okunanlar sıkıştırılıp saklanır"
+          ],
+          "dogru": 1,
+          "ipucu": "Plan modunda araştırmanın kime verildiğini düşün.",
+          "aciklama": "Plan modunda Claude araştırmayı Plan ajanına verir; okumalar o alt ajanın bağlamında kalır, ana oturuma yalnız sonuç gelir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
             "okuma": "2026-11-15",
-            "dayanak": "Özel bir ajanın tanımında omitClaudeMd ayarlanırsa ajan kullanıcı, proje ve yerel CLAUDE.md dosyaları olmadan başlar."
+            "dayanak": "Plan modunda Claude kod tabanını anlaması gerekince araştırmayı Plan ajanına devreder."
+          }
+        },
+        {
+          "id": "b07-d2-s1",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Claude işi yerleşik bir ajana verdi; dönünce iki dosya değişmişti. Ne düşünürsün?",
+          "secenekler": [
+            "Olağan: genel amaçlı ajan değiştirebilir",
+            "Aksaklık: yerleşik ajanlar dosyaya yazamaz",
+            "Ana oturum yazdı; alt ajanlar yazamaz"
+          ],
+          "dogru": 0,
+          "ipucu": "Yerleşik ajanların hepsinin aynı araçlarla gelip gelmediğini düşün.",
+          "aciklama": "Explore ve Plan yalnız okur, ama genel amaçlı ajan keşifle birlikte değişiklik de yapar. Dosya değiştiyse iş büyük olasılıkla ona verilmiştir.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/sub-agents",
+            "kopya": "sub-agents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Explore kod tabanında arama için hızlı, salt okunur ajandır; Plan, plan modunda plan sunmadan önce bağlam toplar; genel amaçlı ajan hem keşif hem eylem gerektiren karmaşık, çok adımlı işler içindir."
+          }
+        },
+        {
+          "id": "b07-d2-s3",
+          "tur": "bosluk",
+          "kart": 3,
+          "soru": "Arama, CLAUDE.md'deki bir proje kuralını gerektiriyor ve Explore'a gidecek. Kural ___ yazılmalı.",
+          "secenekler": [
+            "Explore'a giden görev metnine",
+            "CLAUDE.md'de daha üst bir yere",
+            "aramadan sonra Claude'un özetine"
+          ],
+          "dogru": 0,
+          "ipucu": "Explore'un işe başlarken neyi yüklemediğini düşün.",
+          "aciklama": "Explore ve Plan CLAUDE.md'siz başlar, kural nerede durursa dursun onu görmez. Ajan görev metnini alır; gereken kural oraya yazılırsa arama doğru yapılır.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/sub-agents",
+            "kopya": "sub-agents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Explore ve Plan, araştırmayı hızlı ve ucuz tutmak için CLAUDE.md dosyaları ve git durum özeti olmadan başlar."
+          }
+        },
+        {
+          "id": "b07-d2-s2",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Yeni eklenen bir ajan, öteki ajanların aksine CLAUDE.md kurallarına uyuyor. En olası kaynak?",
+          "secenekler": [
+            "CLAUDE.md'de bu ajana özel bir bölüm var",
+            "Yeni ajanın modeli ötekilerden güçlü",
+            "Dosyasında CLAUDE.md'siz başlatma satırı yok"
+          ],
+          "dogru": 2,
+          "ipucu": "Senin yazdığın bir ajanın neyi varsayılan olarak yüklediğini düşün.",
+          "aciklama": "Yazılan ajanlar CLAUDE.md'yi varsayılan olarak yükler; yüklememesi için dosyasına omitClaudeMd yazılır. O satır yoksa ajan CLAUDE.md kurallarını da alır.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/sub-agents",
+            "kopya": "sub-agents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Explore ve Plan CLAUDE.md dosyaları ve git durum özeti olmadan başlar; öteki yerleşik ajanlar ve özel ajanlar, omitClaudeMd ayarlanmadıkça ikisini de yükler."
+          }
+        },
+        {
+          "id": "b07-d2-s6",
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Scout'un cevap biçimini değiştirmek istiyorsun. Değişiklik nereye yazılır?",
+          "secenekler": [
+            "Claude Code'un yerleşik ajan ayarlarına",
+            "CLAUDE.md'ye; scout kurallarını oradan alır",
+            "Explore'un ayarına; scout onun kopyasıdır",
+            "Klasördeki scout ajan dosyasına"
+          ],
+          "dogru": 3,
+          "ipucu": "Scout'un hazır mı geldiğini, yoksa burada mı yazıldığını düşün.",
+          "aciklama": "Scout yerleşik değildir, bizim yazdığımız bir ajan dosyasıdır; davranışı o dosyada değişir. CLAUDE.md'yi ise hiç yüklemez.",
+          "kaynak": {
+            "adres": ".claude/agents/scout.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Scout'un rolü ve çıktı başlıkları klasördeki kendi ajan dosyasında yazılıdır.",
+            "soz": "Sen proje klasörünün keşif ajanısın: okur, bulur, özetlersin."
           }
         }
       ]
@@ -272,34 +320,42 @@
       "id": "b07-d3",
       "baslik": "Ajan dosyasının ön bilgisi",
       "hedefler": [
-        "Ajan dosyasının ön bilgisindeki (frontmatter) ad (name), açıklama (description), araçlar (tools), model seçimi (model), çaba düzeyi (effort), tur tavanı (maxTurns), skill listesi (skills) ve CLAUDE.md'siz başlatma (omitClaudeMd) alanlarının ne yaptığını anlatabilir.",
-        "Bir ajanın yapamayacağı işi tools satırından ayırt edebilir."
+        "Ajan dosyasının ön bilgisindeki (frontmatter) alanların ajanın ne zaman, hangi araçla, ne kadar ve hangi bilgiyle çalışacağını belirlediğini anlatabilir.",
+        "Bir ajan beklenmedik davrandığında ön bilgide nereye bakılacağını ayırt edebilir."
       ],
       "anlatim": [
         "Ajan dosyasının en üstündeki ön bilgide (frontmatter) yalnız name ve description zorunludur. Claude işi hangi ajana vereceğine description'a bakarak karar verir.",
         "tools alanı ajanın kullanabileceği araçları sayar. Bu alan yazılmazsa ajan, alt ajanlara açık bütün araçları alır.",
-        "Ajanın modelini model, çaba düzeyini effort, en çok kaç tur döneceğini maxTurns belirler. skills ise adı yazılan skill'in tamamını ajanın bağlamına baştan yükler.",
+        "Ajanın modelini model, çaba düzeyini effort, en çok kaç tur döneceğini tur tavanı (maxTurns) belirler. skills, adı yazılan skill'in tamamını ajanın bağlamına baştan yükler.",
         "omitClaudeMd: true yazılırsa ajan CLAUDE.md'siz başlar. Adı yanlış yazılan alanı (ör. maxTurns yerine maxturns) Claude Code hata vermeden yok sayar.",
-        "Bizden örnek: scout.md'de 'tools: Read, Grep, Glob' satırı var. Bunlar okuma ve arama araçlarıdır; düzenleme ve komut aracı yoktur, yani scout dosya değiştiremez."
+        "Bizden örnek: scout.md'de 'tools: Read, Grep, Glob' satırı var. Bunlar yalnız okuma ve arama araçlarıdır; scout dosya değiştiremez."
       ],
       "terimler": [
-        {"tr": "ön bilgi", "en": "frontmatter", "aciklama": "Dosyanın en üstünde iki '---' satırı arasındaki ayar alanları."},
-        {"tr": "tur tavanı", "en": "maxTurns", "aciklama": "Alt ajanın durmadan önce dönebileceği en çok tur sayısı."}
+        {
+          "tr": "ön bilgi",
+          "en": "frontmatter",
+          "aciklama": "Dosyanın en üstünde iki '---' satırı arasındaki ayar alanları."
+        },
+        {
+          "tr": "tur tavanı",
+          "en": "maxTurns",
+          "aciklama": "Alt ajanın durmadan önce dönebileceği en çok tur sayısı."
+        }
       ],
       "sorular": [
         {
-          "id": "b07-d3-s1",
-          "tur": "eslestir",
-          "kart": 2,
-          "soru": "Her alanı ne yaptığıyla eşleştir.",
-          "ciftler": [
-            ["description", "Claude'un işi bu ajana ne zaman vereceği"],
-            ["tools", "Ajanın kullanabileceği araçlar"],
-            ["maxTurns", "Ajan durmadan önce en çok kaç tur döner"],
-            ["skills", "Ajanın bağlamına baştan yüklenen skill'ler"]
+          "id": "b07-d3-s3",
+          "tur": "coktan",
+          "kart": 0,
+          "soru": "Bir ajan işe tam uyuyor ama Claude onu hiç çağırmıyor. Dosyasında ilk neye bakılır?",
+          "secenekler": [
+            "Açıklaması bu işi anlatıyor mu",
+            "Modeli bu işe yeterli mi",
+            "Adı işin adıyla aynı mı"
           ],
-          "ipucu": "Alan adlarının İngilizce anlamından yola çık.",
-          "aciklama": "Bu dört alan ajanın ne zaman, hangi araçla, ne kadar süre ve hangi bilgiyle çalışacağını belirler.",
+          "dogru": 0,
+          "ipucu": "Claude'un işi hangi ajana vereceğine neye bakarak karar verdiğini düşün.",
+          "aciklama": "Claude işi hangi ajana vereceğine açıklamaya (description) bakarak karar verir. Açıklama işi anlatmıyorsa ajan seçilmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
@@ -311,11 +367,15 @@
           "id": "b07-d3-s2",
           "tur": "coktan",
           "kart": 1,
-          "soru": "Ajan dosyasına tools satırı yazılmazsa ne olur?",
-          "secenekler": ["Ajan hiçbir araç kullanamaz", "Ajan, alt ajanlara açık bütün araçları alır", "Ajan yalnız okuma araçlarını alır"],
+          "soru": "Yalnız okusun diye yazılan bir ajan dosya değiştirdi; araç listesi yok. En olası kaynak?",
+          "secenekler": [
+            "Değiştiren ana oturumdur; listesiz ajan okur",
+            "Liste yoksa her aracı kullanabilir",
+            "Aracı ana oturumdan ödünç aldı"
+          ],
           "dogru": 1,
-          "ipucu": "Alan yazılmayınca ajanın neyi devraldığını düşün.",
-          "aciklama": "tools yazılmazsa ajan, alt ajanlara açık bütün araçları devralır; kısıtlamak için satırı yazmak gerekir.",
+          "ipucu": "Araç listesi yazılmayınca ajanın neyi devraldığını düşün.",
+          "aciklama": "Araç listesi (tools) yazılmayan ajan, alt ajanlara açık bütün araçları alır. Yalnız okusun isteniyorsa liste yazılmalıdır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
@@ -324,61 +384,38 @@
           }
         },
         {
-          "id": "b07-d3-s3",
-          "tur": "bosluk",
-          "kart": 0,
-          "soru": "Ajan dosyasında zorunlu olan yalnız iki alan var: name ve ___.",
-          "secenekler": ["model", "description", "tools", "omitClaudeMd"],
-          "dogru": 1,
-          "ipucu": "Claude'un ajanı ne zaman çağıracağını hangi alandan anladığını düşün.",
-          "aciklama": "Yalnız name ve description zorunludur; öteki alanlar isteğe bağlıdır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/sub-agents",
-            "kopya": "sub-agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Ön bilgide yalnız name ve description zorunludur."
-          }
-        },
-        {
-          "id": "b07-d3-s4",
+          "id": "b07-d3-s1",
           "tur": "coktan",
-          "kart": 4,
-          "soru": "scout.md'de 'tools: Read, Grep, Glob' satırı var. Scout'a hangi iş verilemez?",
-          "secenekler": ["Bir kuralın geçtiği dosyaları bulmak", "Bir dosyayı okuyup özetlemek", "Bir log dosyasında hata satırı aramak", "Dosyadaki yazım hatasını düzeltmek"],
-          "dogru": 3,
-          "ipucu": "Listede düzenleme yapan bir araç var mı?",
-          "aciklama": "Glob, Grep ve Read okuma araçlarıdır; Edit ya da Write olmadan ajan dosya değiştiremez.",
+          "kart": 2,
+          "soru": "Uzun bir taramada ajan yarım bir cevapla döndü; hata iletisi yok. En olası kaynak?",
+          "secenekler": [
+            "Açıklaması işin yarısını kapsıyordu",
+            "Araç listesi aramayı yarıda kesti",
+            "Dosyasındaki tur tavanına ulaştı"
+          ],
+          "dogru": 2,
+          "ipucu": "Ajanın en çok ne kadar çalışacağını hangi alanın belirlediğini düşün.",
+          "aciklama": "Tur tavanı (maxTurns) ajanın en çok kaç tur döneceğini belirler. Tavana gelen ajan iş bitmeden durur ve yarım cevapla döner.",
           "kaynak": {
-            "adres": "https://academy.claude.com/courses/introduction-to-subagents/designing-effective-subagents",
-            "kopya": "ders-subagents-03-designing.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Araştırma yapan salt okunur ajana yalnız Glob, Grep ve Read yeter; bu ajan dosyaları yanlışlıkla değiştiremez."
-          }
-        },
-        {
-          "id": "b07-d3-s5",
-          "tur": "coktan",
-          "kart": 4,
-          "soru": "Web'den bir sayfa okunacak. arastirmaci.md'nin tools satırında WebSearch ve WebFetch var, scout.md'ninkinde yok. İş hangi ajana gider?",
-          "secenekler": ["arastirmaci", "scout", "Fark etmez"],
-          "dogru": 0,
-          "ipucu": "Web'e çıkan araçlar hangi tools satırında?",
-          "aciklama": "Web araçları yalnız arastirmaci'da var; ajan dosyası da web okuması gereken her araştırmanın ona verildiğini söyler.",
-          "kaynak": {
-            "adres": ".claude/agents/arastirmaci.md:3",
-            "okuma": "2026-11-17",
-            "dayanak": "arastirmaci web araştırma ajanıdır; web okuması gereken her araştırma ona verilir.",
-            "soz": "web okuması gereken her araştırma buna verilir"
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kural, tur tavanına takılıp yarım dönen işi ayrıca anar.",
+            "soz": "Tur tavanına takılıp yarım dönen iş ilk Kaldı sayılır."
           }
         },
         {
           "id": "b07-d3-s6",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 2,
-          "soru": "scout.md'deki 'skills: - ajan-kimligi' satırı yüzünden bu skill'in yalnız açıklaması değil tamamı scout'un bağlamına baştan yüklenir.",
-          "dogru": true,
-          "ipucu": "Ana konuşmadaki skill'lerle alt ajandakileri karşılaştır.",
-          "aciklama": "Doğru. skills alanı skill'in tam içeriğini ajanın bağlamına başlangıçta koyar.",
+          "soru": "Bir ajan ajan-kimligi'nin kurallarına uyuyor ama kayit-yazma skill'indeki biçimi bilmiyor. Dosyasında ilk neye bakılır?",
+          "secenekler": [
+            "Açıklamasında kayit-yazma geçiyor mu",
+            "Skill listesinde kayit-yazma var mı",
+            "Tur tavanı skill'i okumaya yetiyor mu"
+          ],
+          "dogru": 1,
+          "ipucu": "Bir skill'in ajanın bağlamına baştan girmesini hangi alanın sağladığını düşün.",
+          "aciklama": "skills alanı yalnız adı yazılan skill'leri ajanın bağlamına baştan yükler. kayit-yazma orada yoksa ajan o biçimi bilmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
@@ -388,18 +425,42 @@
         },
         {
           "id": "b07-d3-s7",
-          "tur": "coktan",
+          "tur": "bosluk",
           "kart": 3,
-          "soru": "Ajan dosyasında bir alanın adını yanlış yazarsan (ör. omitClaudeMd yerine omitclaudemd) ne olur?",
-          "secenekler": ["Ajan hiç açılmaz, ekranda hata verir", "Alan hata vermeden yok sayılır", "Claude Code adı kendisi düzeltip kullanır"],
-          "dogru": 1,
+          "soru": "Ajanın dosyasına tur tavanı yazıldı ama ajan aşıyor, hata da yok. Büyük olasılıkla alan adı ___.",
+          "secenekler": [
+            "yanlış yazıldığı için yok sayıldı",
+            "doğru ama yalnız ana oturumu sınırlıyor",
+            "görev metniyle geçersiz kılındı"
+          ],
+          "dogru": 0,
           "ipucu": "Claude Code'un tanımadığı bir alan adıyla karşılaşınca ne yaptığını düşün.",
-          "aciklama": "Alan adı birebir doğru yazılmalı; Claude Code tanımadığı alanı hata vermeden yok sayar, bu yüzden yanlışlık fark edilmeyebilir.",
+          "aciklama": "Alan adı birebir doğru yazılmalı; Claude Code tanımadığı alanı hata vermeden yok sayar. maxturns gibi küçük bir harf farkı ayarı boşa çıkarır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/sub-agents",
             "kopya": "sub-agents.md",
             "okuma": "2026-11-15",
             "dayanak": "Çok sözcüklü alan adları camelCase yazılır ve tabloyla birebir aynı olmalıdır; Claude Code tanımadığı alanı hata bildirmeden yok sayar."
+          }
+        },
+        {
+          "id": "b07-d3-s4",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Claude testleri scout'a koşturmak istiyor. scout.md'de 'tools: Read, Grep, Glob' yazıyor. Ne dersin?",
+          "secenekler": [
+            "Olmaz: scout CLAUDE.md'siz başlar",
+            "Olur: Read testi açıp sonucu verir",
+            "Olmaz: listede komut aracı yok"
+          ],
+          "dogru": 2,
+          "ipucu": "Test koşmak için hangi tür araç gerektiğini düşün.",
+          "aciklama": "Read, Grep ve Glob yalnız okur ve arar; test koşmak için komut aracı (Bash) gerekir. Testi ana oturum ya da komut aracı olan bir ajan koşar.",
+          "kaynak": {
+            "adres": ".claude/agents/scout.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Scout'un araç satırında yalnız Read, Grep ve Glob vardır.",
+            "soz": "tools: Read, Grep, Glob"
           }
         }
       ]
@@ -417,23 +478,35 @@
         "Çok dosya okuyan, özetle dönebilen yan iş (side task) ajana yakışır. Sık düzeltme, küçük değişiklik ve aynı bağlamdaki plan, uygulama, test ana oturumda kalır.",
         "Kaçınılacak kullanımlar da var. Ajana 'Sen bir uzmansın' diye rol vermek bir şey katmaz; Claude bu bilgiye zaten sahiptir.",
         "Birbirine bağlı adımları ajan zincirine bölme; iş el değiştirirken bilgi kaybolur. Test koşan ajan da hata ayıklamak için gereken çıktıyı gizler.",
-        "CLAUDE.md'deki kural şu: işi varsayılan olarak ana oturum yapar; ajan yalnız ajan-gorevi bölüm 1'deki durumlarda çağrılır.",
-        "Ajan yalnız üç durumda çağrılır: okunacak malzeme beynin, yani ana oturumun bağlamını dolduracaksa; bağımsız işler aynı anda yürüyecekse; işe ayrı göz gerekiyorsa."
+        "CLAUDE.md'ye göre işi varsayılan olarak ana oturum yapar. Ajan yalnız üç durumda çağrılır: bağlamı dolduracak okuma, aynı anda yürüyecek bağımsız işler, ayrı göz gereken iş."
       ],
       "terimler": [
-        {"tr": "ana oturum", "en": "main conversation", "aciklama": "Seninle konuştuğun asıl sohbet; bizde beyin diye anılır."},
-        {"tr": "yan iş", "en": "side task", "aciklama": "Asıl işe yardım eden, sonucu özetle dönebilen ayrı iş; ör. arama ya da keşif."}
+        {
+          "tr": "ana oturum",
+          "en": "main conversation",
+          "aciklama": "Seninle konuştuğun asıl sohbet; bizde beyin diye anılır."
+        },
+        {
+          "tr": "yan iş",
+          "en": "side task",
+          "aciklama": "Asıl işe yardım eden, sonucu özetle dönebilen ayrı iş; ör. arama ya da keşif."
+        }
       ],
       "sorular": [
         {
           "id": "b07-d4-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Alt ajan mı ana oturum mu diye karar verirken sorulacak tek soru hangisi?",
-          "secenekler": ["İş kaç dakika sürecek?", "Ajan dosyası hazır mı?", "Ara iş önemli mi?"],
-          "dogru": 2,
-          "ipucu": "Ajanın ana oturumdan neyi sakladığını düşün.",
-          "aciklama": "Ara iş önemsizse ve yalnız sonuç lazımsa ajan; ara işi görüp tepki vermen gerekiyorsa ana oturum.",
+          "soru": "Bir kuralın işleyişini, bakılan dosyalarla birlikte görmek istiyorsun. Claude ajan öneriyor. Ne dersin?",
+          "secenekler": [
+            "Ana oturumda; kural işi ajana gitmez",
+            "Ana oturumda; yolu görmem gerek",
+            "Ajana; Claude yolu sonra anlatır",
+            "Ajana; ajan yolu özetine koyar"
+          ],
+          "dogru": 1,
+          "ipucu": "Bu işte senin için sonucun mu, ara adımların mı önemli olduğunu düşün.",
+          "aciklama": "Ara iş senin için önemliyse iş ana oturumda kalır; ajanın yolunu Claude da görmez, özet de her adımı taşımaz. Kural işi olması tek başına bir neden değildir.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/using-subagents-effectively",
             "kopya": "ders-subagents-04-using-effectively.md",
@@ -442,13 +515,58 @@
           }
         },
         {
+          "id": "b07-d4-s4",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Rengi Claude'la deneyerek ayarlıyorsun, her denemede 'biraz daha koyu' diyorsun. Claude ajan öneriyor. Ne dersin?",
+          "secenekler": [
+            "Hayır, renk işi ajana verilemez",
+            "Hayır, her turda yön veriyorum",
+            "Evet, ajan önceki denemeleri görür"
+          ],
+          "dogru": 1,
+          "ipucu": "Sık gidip gelen bir işte ajanın seninle nasıl konuşabildiğini düşün.",
+          "aciklama": "Sık düzeltme isteyen iş ana oturumda kalır. Ajan seninle konuşmaz ve önceki denemeleri görmez; bitince yalnız özet döner.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/sub-agents",
+            "kopya": "sub-agents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Görev ana bağlamda gerekmeyen uzun çıktı üretiyorsa ve iş kendi içinde bitip özet dönebiliyorsa alt ajan kullanılır."
+          }
+        },
+        {
+          "id": "b07-d4-s7",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Hangi tarif alt ajanı en iyi kullanır?",
+          "secenekler": [
+            "'Kaldı sırası' nerede geçiyor, yalnız yerini dön",
+            "Sen bir kural uzmanısın, kuralları incele",
+            "Klasörü tara, her dosyanın tam metnini getir"
+          ],
+          "dogru": 0,
+          "ipucu": "Hangi tarifin sana yolculuğu değil sonucu getirdiğini düşün.",
+          "aciklama": "İyi tarif yalnız sonucu ister. Uzman rolü bir şey katmaz; tam metin istemek de ajanın bağlamı koruma faydasını yok eder.",
+          "kaynak": {
+            "adres": "https://academy.claude.com/courses/introduction-to-subagents/using-subagents-effectively",
+            "kopya": "ders-subagents-04-using-effectively.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Alt ajan, nasıl bulunduğunun dökümü değil sonuç gerektiğinde iyi çalışır; 'sen bir uzmansın' diyen ajanlar ise bir şey katmaz."
+          }
+        },
+        {
           "id": "b07-d4-s2",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 3,
-          "soru": "Her adımı bir öncekinin bulduğuna bağlı olan bir hata düzeltme işi, sırayla çalışan üç ajana bölününce iyi sonuç verir.",
-          "dogru": false,
+          "soru": "Claude hatayı üç ajana bölmek istiyor: biri bulsun, biri nedenini çıkarsın, biri düzeltsin. Ne dersin?",
+          "secenekler": [
+            "Olmaz: üç ajan birden çağrılamaz",
+            "Olmaz: adımlar birbirinin bulduğuna dayanıyor",
+            "Olur: her ajan taze bakar"
+          ],
+          "dogru": 1,
           "ipucu": "Ajanlar arasında iş el değiştirirken ne olabileceğini düşün.",
-          "aciklama": "Yanlış. Adımlar birbirinin bulduğuna bağlıysa ajan zinciri bozulur; devirde bilgi kaybolur.",
+          "aciklama": "Her adım bir öncekinin bulduğuna bağlıysa ajan zinciri bozulur; devirde bilgi kaybolur. Hata düzeltme bu yüzden tek bağlamda kalır.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/using-subagents-effectively",
             "kopya": "ders-subagents-04-using-effectively.md",
@@ -458,16 +576,17 @@
         },
         {
           "id": "b07-d4-s3",
-          "tur": "eslestir",
+          "tur": "bosluk",
           "kart": 3,
-          "soru": "Kaçınılacak her ajan kullanımını sorunuyla eşleştir.",
-          "ciftler": [
-            ["'Sen bir Python uzmanısın' diyen ajan", "Claude bu bilgiye zaten sahip, katkısı yok"],
-            ["Birbirine bağlı adımlarda ajan zinciri", "El değiştirirken bilgi kaybolur"],
-            ["Test koşan ajan", "Hata ayıklamak için gereken çıktıyı gizler"]
+          "soru": "Testleri bir ajan koştu, 'iki test kaldı' dedi; Claude nedeni bulamıyor, çünkü ___.",
+          "secenekler": [
+            "test dökümü Claude'un bağlamını doldurdu",
+            "ajan testleri koşmadan tahmin etti",
+            "gereken test çıktısı ajanda kaldı"
           ],
-          "ipucu": "Her birinde ana oturumun neyi kaybettiğini düşün.",
-          "aciklama": "Ajan ancak ana oturumun yapamadığı bir şey yapıyorsa değer katar; bu üç kullanımda katmaz ya da bilgi kaybettirir.",
+          "dogru": 2,
+          "ipucu": "Hata ayıklamak için Claude'un neyi görmesi gerektiğini düşün.",
+          "aciklama": "Test koşan ajan, hata ayıklamak için gereken çıktıyı ana oturumdan gizler; Claude yalnız 'kaldı' özetini görür. Testi ana oturum koşarsa çıktıyı kendisi görür.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/using-subagents-effectively",
             "kopya": "ders-subagents-04-using-effectively.md",
@@ -476,67 +595,43 @@
           }
         },
         {
-          "id": "b07-d4-s4",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Hangi iş alt ajana en uygun?",
-          "secenekler": ["Seninle konuşarak bir planı adım adım düzeltmek", "Bir dosyada tek bir sözcüğü değiştirmek", "Planlama, uygulama ve testi aynı bağlamda yürütmek", "Onlarca dosyada bir kuralın yerini bulmak"],
-          "dogru": 3,
-          "ipucu": "Hangisinin ara çıktısını bir daha görmen gerekmez?",
-          "aciklama": "Tarama çok çıktı üretir ama sana yalnız sonuç lazım; ötekiler sık gidip gelme, ortak bağlam ya da hızlı değişiklik ister.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/sub-agents",
-            "kopya": "sub-agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Görev ana bağlamda gerekmeyen uzun çıktı üretiyorsa ve iş kendi içinde bitip özet dönebiliyorsa alt ajan kullanılır."
-          }
-        },
-        {
           "id": "b07-d4-s5",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "ajan-gorevi bölüm 1'e göre bizde hangisi ajan çağırma nedenlerinden biri?",
-          "secenekler": ["Okunacak malzeme beynin bağlamını dolduracaksa", "İş küçük ve hızlı bitecekse", "Plan, uygulama ve test aynı bağlamdaysa"],
+          "kart": 4,
+          "soru": "Claude birbirinden bağımsız iki işi aynı anda yürütmek için iki ajan çağırdı. Kurala göre?",
+          "secenekler": [
+            "Uygun: kuraldaki durumlardan biri",
+            "Uygun: ajan çağırmak her zaman serbest",
+            "Kural dışı: yalnız bağlam dolacaksa"
+          ],
           "dogru": 0,
-          "ipucu": "Ajanın asıl faydasının bağlamla ilgili olduğunu hatırla.",
-          "aciklama": "Bölüm 1 üç durum sayar: bağlamı dolduracak okuma, aynı anda yürüyecek bağımsız işler ve ayrı göz gereken iş.",
+          "ipucu": "Ajan çağırmanın üç nedenini hatırla.",
+          "aciklama": "Bizde ajan üç durumda çağrılır; aynı anda yürüyecek bağımsız işler bunlardan biridir. Ajan çağırmak yalnız bağlamın dolmasına bağlı değildir.",
           "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:12",
-            "okuma": "2026-11-17",
-            "dayanak": "Ajan yalnız üç durumda çağrılır: okunacak malzeme beynin bağlamını dolduracaksa, bağımsız işler aynı anda yürüyecekse, işe ayrı göz gerekiyorsa.",
-            "soz": "Ajan yalnız üç durumda çağrılır: okunacak malzeme beynin bağlamını dolduracaksa"
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Bölüm 1 ajanın üç durumda çağrıldığını sayar; biri bağımsız işlerin aynı anda yürümesidir.",
+            "soz": "bağımsız işler aynı anda yürüyecekse"
           }
         },
         {
           "id": "b07-d4-s6",
           "tur": "bosluk",
           "kart": 4,
-          "soru": "CLAUDE.md'ye göre bizde bir işi varsayılan olarak ___ yapar.",
-          "secenekler": ["bir alt ajan", "ana oturum", "scout ajanı"],
+          "soru": "Claude iki sayfalık bir dosyayı özetlemek için ajan açmak istiyor. Bizim kurala göre bu işi ___ yapar.",
+          "secenekler": [
+            "Explore ajanı",
+            "ana oturum kendisi",
+            "bir alt ajan, bağlam korunsun diye"
+          ],
           "dogru": 1,
-          "ipucu": "Ajanın bizde istisna mı kural mı olduğunu düşün.",
-          "aciklama": "Ajan istisnadır; yalnız ajan-gorevi bölüm 1'deki durumlarda çağrılır.",
+          "ipucu": "Bizde işi varsayılan olarak kimin yaptığını düşün.",
+          "aciklama": "Bizde işi varsayılan olarak ana oturum yapar; iki sayfa bağlamı doldurmaz, üç durumdan hiçbiri yok. Explore da bir alt ajandır.",
           "kaynak": {
-            "adres": "CLAUDE.md:109",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Ajana verme eşiği: işi varsayılan olarak ana oturum yapar; ajan yalnız ajan-gorevi bölüm 1'deki durumlarda çağrılır.",
             "soz": "işi varsayılan olarak ana oturum yapar"
-          }
-        },
-        {
-          "id": "b07-d4-s7",
-          "tur": "coktan",
-          "kart": 2,
-          "soru": "Claude'a yazılacak üç tariften hangisi alt ajanı en iyi kullanır?",
-          "secenekler": ["Sen bir kural uzmanı alt ajansın; klasördeki bütün kuralları incele ve bana anlat", "Alt ajan 'Kaldı sırası' geçen yerleri bulsun, bana yalnız dosya:satır dönsün", "Alt ajan klasörü tarasın, okuduğu her dosyanın tam metnini bana getirsin"],
-          "dogru": 1,
-          "ipucu": "Hangi tarif sana yolculuğu değil sonucu getirir?",
-          "aciklama": "İyi tarif sonucu ister; uzman rolü bir şey katmaz, tam metin istemek de ajanın faydasını yok eder.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/introduction-to-subagents/using-subagents-effectively",
-            "kopya": "ders-subagents-04-using-effectively.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Alt ajan, nasıl bulunduğunun dökümü değil sonuç gerektiğinde iyi çalışır; 'sen bir uzmansın' diyen ajanlar ise bir şey katmaz."
           }
         }
       ]
@@ -545,49 +640,48 @@
       "id": "b07-d5",
       "baslik": "İyi ajan tasarımı",
       "hedefler": [
-        "İyi ajanın dört ilkesini (net açıklama, yapılandırılmış çıktı, engel bildirimi, sınırlı araç) anlatabilir.",
-        "Bizdeki cevap boyu kancasının hangi ajan cevabını geri çevirdiğini anlatabilir."
+        "İyi ajanın ilkelerini (net açıklama, çıktı biçimi, engel bildirimi) anlatabilir.",
+        "Bizdeki cevap boyu kancasının hangi ajan cevabını ne zaman geri çevirdiğini anlatabilir."
       ],
       "anlatim": [
-        "İyi ajanın dört ilkesinden ilki net açıklamadır (description): ajanın ne zaman çağrılacağını ve ona yazılacak görevi şekillendirir.",
+        "İyi ajanın ilkelerinden ilki net açıklamadır (description): ajanın ne zaman çağrılacağını ve ona yazılacak görevi şekillendirir.",
         "İkinci ilke çıktı biçimidir (output format) ve en önemli iyileştirmedir. Ajan her başlığı doldurunca işinin bittiğini anlar, gereğinden uzun çalışmaz.",
         "Üçüncü ilke engel bildirimidir (reporting obstacles). Çıktıya bir engeller bölümü eklersen ajanın yolda bulduğu çözümler ana oturuma ulaşır.",
-        "Bizde ajan-kimligi skill'i, engel varsa ajanın cevabının ilk satırına 'engel:' ve nedenini yazıp durmasını ister.",
-        "Dördüncü ilke sınırlı araçtır: ajana yalnız işinin gerektirdiği araç verilir. Bu, istenmeyen yan etkiyi önler ve rolü netleştirir.",
-        "Bizde bir kanca (hook) cevap boyunu tutar: ajan_cevap_boyu.py. Dosyası .claude/agents/ altında olan ajanın cevabı 3.072 baytı geçerse kanca onu bir kez geri çevirir.",
+        "Bizde bir kanca (hook) cevap boyunu tutar. Dosyası .claude/agents/ altında olan ajanın cevabı 3.072 baytı geçerse kanca onu bir kez geri çevirir.",
         "Dosyası olmayan ajanlar, yani genel amaçlı ajan, Explore ve Claude Code'un iç ajanları bu kancaya takılmaz."
       ],
       "terimler": [
-        {"tr": "çıktı biçimi", "en": "output format", "aciklama": "Ajanın cevabında doldurması gereken başlıklar; ajan hepsini doldurunca işinin bittiğini anlar."},
-        {"tr": "engel bildirimi", "en": "reporting obstacles", "aciklama": "Ajanın yolda karşılaştığı sorunları ve bulduğu çözümleri cevabında yazması."},
-        {"tr": "kanca", "en": "hook", "aciklama": "Belli bir olayda kendiliğinden çalışan betik; ajan_cevap_boyu.py alt ajan dururken (SubagentStop) çalışır."}
+        {
+          "tr": "çıktı biçimi",
+          "en": "output format",
+          "aciklama": "Ajanın cevabında doldurması gereken başlıklar; ajan hepsini doldurunca işinin bittiğini anlar."
+        },
+        {
+          "tr": "engel bildirimi",
+          "en": "reporting obstacles",
+          "aciklama": "Ajanın yolda karşılaştığı sorunları ve bulduğu çözümleri cevabında yazması."
+        },
+        {
+          "tr": "kanca",
+          "en": "hook",
+          "aciklama": "Belli bir olayda kendiliğinden çalışan betik; cevap boyu kancası alt ajan dururken (SubagentStop) çalışır."
+        }
       ],
       "sorular": [
-        {
-          "id": "b07-d5-s1",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Bir ajana yapılabilecek en önemli tek iyileştirme hangisi?",
-          "secenekler": ["Ona 'sen bir uzmansın' diye rol vermek", "Talimatında çıktı biçimi tanımlamak", "Daha büyük bir model seçmek"],
-          "dogru": 1,
-          "ipucu": "Ajanın işinin bittiğini neden anladığını düşün.",
-          "aciklama": "Çıktı biçimi ajana doğal bir durma noktası verir ve gereğinden uzun çalışmasını önler.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/introduction-to-subagents/designing-effective-subagents",
-            "kopya": "ders-subagents-03-designing.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Bir ajana yapılabilecek en önemli tek iyileştirme, talimatında çıktı biçimi tanımlamaktır."
-          }
-        },
         {
           "id": "b07-d5-s2",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Ajanın açıklaması (description) neyi şekillendirir?",
-          "secenekler": ["Yalnız ajanın ne zaman çağrılacağını", "Ne zaman çağrılacağını ve ona yazılacak görevi", "Yalnız ajana hangi araçların verileceğini"],
-          "dogru": 1,
-          "ipucu": "Ana oturum görev metnini yazarken neye bakar?",
-          "aciklama": "Ana oturum görev metnini açıklamaya bakarak yazar; açıklama ajana ne söyleneceğini de şekillendirir.",
+          "soru": "Claude bir ajana hep gereğinden geniş görev yazıyor. Ajan dosyasında ilk neye bakılır?",
+          "secenekler": [
+            "Araç listesine",
+            "Tur tavanına",
+            "Model satırına",
+            "Açıklamasına"
+          ],
+          "dogru": 3,
+          "ipucu": "Ana oturumun görev metnini yazarken ajan dosyasında neye baktığını düşün.",
+          "aciklama": "Ana oturum görev metnini ajanın açıklamasına bakarak yazar. Açıklama geniş ya da belirsizse görev de öyle olur.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/designing-effective-subagents",
             "kopya": "ders-subagents-03-designing.md",
@@ -596,64 +690,39 @@
           }
         },
         {
-          "id": "b07-d5-s3",
-          "tur": "eslestir",
-          "kart": 4,
-          "soru": "Her ajan türünü vermen gereken araçlarla eşleştir.",
-          "ciftler": [
-            ["Araştırma yapan salt okunur ajan", "Glob, Grep, Read"],
-            ["Kod gözden geçiren ajan", "Bash var, Edit ve Write yok"],
-            ["Kodu değiştiren ajan", "Edit ve Write verilir"]
+          "id": "b07-d5-s1",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Bir ajan aradığını bulduğu halde çalışmayı sürdürüyor. En çok ne işe yarar?",
+          "secenekler": [
+            "'Sen bir uzmansın' rolü",
+            "Doldurması gereken başlıklar",
+            "Daha büyük bir model",
+            "Daha düşük bir tur tavanı"
           ],
-          "ipucu": "Her ajanın işi için en az neye ihtiyaç duyduğunu düşün.",
-          "aciklama": "Ajana yalnız işinin gerektirdiği araç verilir; bu istenmeyen yan etkiyi önler ve rolü netleştirir.",
+          "dogru": 1,
+          "ipucu": "Ajanın işinin bittiğini neden anladığını düşün.",
+          "aciklama": "Çıktı biçimi ajana doğal bir durma noktası verir; başlıklar dolunca iş biter. Düşük tur tavanı ise işin bitip bitmediğine bakmadan keser.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/designing-effective-subagents",
             "kopya": "ders-subagents-03-designing.md",
             "okuma": "2026-11-15",
-            "dayanak": "Araştırma ajanına yalnız Glob, Grep ve Read, gözden geçirene git diff için Bash ama Edit ve Write değil, kod değiştiren ajana Edit ve Write verilir."
-          }
-        },
-        {
-          "id": "b07-d5-s4",
-          "tur": "coktan",
-          "kart": 5,
-          "soru": "ajan_cevap_boyu.py hangi durumda bir ajanın cevabını geri çevirir?",
-          "secenekler": ["Dosyası .claude/agents/ altında olan ajanın cevabı 1.000 sözcüğü geçerse", "Explore dahil her ajanın cevabı 3.072 baytı geçerse", "Dosyası .claude/agents/ altında olan ajanın cevabı 3.072 baytı geçerse", "Ajanın cevabında İngilizce sözcük varsa"],
-          "dogru": 2,
-          "ipucu": "Kancanın hangi ajanlara baktığını ve cevabı neyle ölçtüğünü birlikte düşün.",
-          "aciklama": "Kanca yalnız dosyası olan ajanlara bakar ve tavanı bayt olarak ölçer; tavan 3.072 bayttır.",
-          "kaynak": {
-            "adres": ".claude/hooks/ajan_cevap_boyu.py:8",
-            "okuma": "2026-11-17",
-            "dayanak": "Kanca, ajan .claude/agents/ altında dosyası olan bir ajansa ve son cevabının bayt sayısı 3.072'yi geçiyorsa durdurur.",
-            "soz": "dosyası olan bir ajanın adı, last_assistant_message'ın UTF-8 bayt sayısı 3.072'yi geçiyor"
-          }
-        },
-        {
-          "id": "b07-d5-s5",
-          "tur": "dogru-yanlis",
-          "kart": 6,
-          "soru": "Yerleşik Explore ajanı uzun bir cevap verirse ajan_cevap_boyu.py onu da geri çevirir.",
-          "dogru": false,
-          "ipucu": "Explore'un .claude/agents/ altında dosyası olup olmadığını düşün.",
-          "aciklama": "Yanlış. Dosyası olmayan ajanlar, yani genel amaçlı, Explore ve Claude Code'un iç ajanları kancadan geçer.",
-          "kaynak": {
-            "adres": ".claude/hooks/ajan_cevap_boyu.py:10",
-            "okuma": "2026-11-17",
-            "dayanak": "Dosyası olmayan ajanlar (general-purpose, Explore, fork, Claude Code'un iç ajanları) geçer.",
-            "soz": "dosyası olmayan ajan (general-purpose, Explore, fork, Claude Code'un iç ajanları"
+            "dayanak": "Bir ajana yapılabilecek en önemli tek iyileştirme, talimatında çıktı biçimi tanımlamaktır."
           }
         },
         {
           "id": "b07-d5-s6",
           "tur": "coktan",
           "kart": 2,
-          "soru": "Bir gözden geçirme ajanının yolda bulduğu çözümler ana oturuma ulaşsın istiyorsun. Talimatına ne eklersin?",
-          "secenekler": ["Çıktıya 'Karşılaşılan engeller' bölümü", "'Sen deneyimli bir gözden geçiricisin' cümlesi", "Daha yüksek bir tur tavanı (maxTurns)"],
-          "dogru": 0,
-          "ipucu": "Ajandan bir bilgiyi güvenilir biçimde almanın yolu, onu çıktı biçiminde istemektir.",
-          "aciklama": "Engeller bölümü kurulum sorunlarını, geçici çözümleri ve özel ayar isteyen komutları özete taşır; ana oturum bunları yeniden keşfetmez.",
+          "soru": "Ajan bir komutun özel ayarla çalıştığını buldu ama özetine yazmadı. Bir dahaki görevde ne istersin?",
+          "secenekler": [
+            "Bütün dökümünü ana oturuma getirmesini",
+            "Tur tavanını yükseltmeyi",
+            "Cevapta karşılaştığı engelleri yazmasını"
+          ],
+          "dogru": 2,
+          "ipucu": "Ajandan bir bilgiyi güvenilir biçimde almanın yolunun onu çıktıda istemek olduğunu düşün.",
+          "aciklama": "Çıktıya engeller bölümü eklenince ajanın yolda bulduğu sorunlar ve çözümler özete girer. Bütün döküm ise ana bağlamı doldurur.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/introduction-to-subagents/designing-effective-subagents",
             "kopya": "ders-subagents-03-designing.md",
@@ -662,19 +731,63 @@
           }
         },
         {
-          "id": "b07-d5-s7",
+          "id": "b07-d5-s4",
           "tur": "bosluk",
           "kart": 3,
-          "soru": "ajan-kimligi'ne göre bizde ajan bir engelle karşılaşırsa cevabının ilk satırına ___ yazar ve durur.",
-          "secenekler": ["'Kaldı:' ve nedenini", "'engel:' ve nedenini", "'uyarı:' ve nedenini"],
-          "dogru": 1,
-          "ipucu": "Kartta ajan-kimligi skill'inin cevabın ilk satırı için ne istediğini hatırla.",
-          "aciklama": "Engel varsa ajan cevabını 'engel:' ve nedeniyle açar ve orada durur; Kaldı ise doğrulayıcının sonucudur.",
+          "soru": "Ajanın cevabına 'Cevap 4.210 bayt, tavan 3.072' iletisini ___ gönderdi.",
+          "secenekler": [
+            "bizim klasördeki bir kanca",
+            "bağlamı dolan ana oturum",
+            "Claude Code'un genel sınırı"
+          ],
+          "dogru": 0,
+          "ipucu": "Ajan dururken çalışan parçayı düşün.",
+          "aciklama": "Dosyası olan ajanın cevabı 3.072 baytı geçince bizdeki kanca onu bir kez geri çevirir ve ayrıntıyı dosyaya yazmasını ister.",
           "kaynak": {
-            "adres": ".claude/skills/ajan-kimligi/SKILL.md:37",
-            "okuma": "2026-11-17",
-            "dayanak": "Engel varsa (dosya yok, araç çalışmıyor, görev belirsiz, önceki hal yok) ilk satıra 'engel:' ve nedeni yazılır, ajan durur.",
-            "soz": "`engel: <neden>` ve dur"
+            "adres": ".claude/hooks/ajan_cevap_boyu.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kanca, ajan .claude/agents/ altında dosyası olan bir ajansa ve son cevabının bayt sayısı 3.072'yi geçiyorsa durdurur.",
+            "soz": "dosyası olan bir ajanın adı, last_assistant_message'ın UTF-8 bayt sayısı 3.072'yi geçiyor"
+          }
+        },
+        {
+          "id": "b07-d5-s8",
+          "tur": "bosluk",
+          "kart": 3,
+          "soru": "Kanca bir ajanın uzun cevabını geri çevirdi; ikinci cevap yine uzundu ama geldi. Çünkü kanca ___.",
+          "secenekler": [
+            "tavanı her denemede yükseltir",
+            "ikinci duruşta karışmaz",
+            "ana oturumca kapatıldı"
+          ],
+          "dogru": 1,
+          "ipucu": "Kancanın aynı ajanı kaç kez geri çevirdiğini düşün.",
+          "aciklama": "Kanca ajanı bir kez geri çevirir; ikinci duruşta döngü olmasın diye geçirir. Cevap uzun kalsa da gelir.",
+          "kaynak": {
+            "adres": ".claude/hooks/ajan_cevap_boyu.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Kanca ikinci duruşta (stop_hook_active doğru) geçer, döngü olmaz.",
+            "soz": "ikinci duruş (stop_hook_active true, döngü olmaz)"
+          }
+        },
+        {
+          "id": "b07-d5-s5",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Genel amaçlı ajanın uzun cevabı geçti, scout'unki geri çevrildi. Neden?",
+          "secenekler": [
+            "Genel amaçlı ajanın tavanı daha yüksek",
+            "Kanca bir oturumda tek ajanı yakalar",
+            "Genel amaçlı ajanın klasörde dosyası yok"
+          ],
+          "dogru": 2,
+          "ipucu": "Kancanın hangi ajanlara baktığını düşün.",
+          "aciklama": "Kanca yalnız .claude/agents/ altında dosyası olan ajanlara bakar. Genel amaçlı ajanın orada dosyası yok, cevabı ölçülmez.",
+          "kaynak": {
+            "adres": ".claude/hooks/ajan_cevap_boyu.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Dosyası olmayan ajanlar (general-purpose, Explore, fork, Claude Code'un iç ajanları) geçer.",
+            "soz": "dosyası olmayan ajan (general-purpose, Explore, fork, Claude Code'un iç ajanları"
           }
         }
       ]
@@ -684,7 +797,8 @@
       "baslik": "Doğrulayıcı: bağımsız kontrol",
       "hedefler": [
         "Taze bağlamlı bir gözden geçiricinin neden işe yaradığını anlatabilir.",
-        "Bizde doğrulayıcının (verifier) yalnız riskli işte çağrıldığını ve riskli işin ne olduğunu ayırt edebilir."
+        "Bizde doğrulayıcının (verifier) yalnız riskli işte çağrıldığını ve riskli işin ne olduğunu ayırt edebilir.",
+        "Doğrulayıcı koşarken ana oturumun neden yazamadığını anlatabilir."
       ],
       "anlatim": [
         "Kodu yazan oturum kendi değişikliğinin en iyi yargıcı değildir. Taze bağlamlı (fresh context) gözden geçirici, işin geçmişini görmediği için yazarın kendince açıklayıp geçtiği sorunları yakalar.",
@@ -692,22 +806,35 @@
         "Gözden geçiriciye ne arayacağını söyle: plana göre denetlesin, doğruluğu bozan açığı yazsın, biçimi atlasın. Sorun bulması istenen gözden geçirici her zaman bir şey bulur.",
         "Bizde bu işi doğrulayıcı (verifier) ajanı yapar: değişikliği bağımsız kontrol eder, düzeltme yapmaz; sonuç Geçti ya da Kaldı.",
         "Doğrulayıcı testleri kendisi koşar; üretenin 'geçti' demesine güvenmez. Koşamadığı maddeye 'ölçülemedi' yazar, o zaman Geçti diyemez.",
+        "Doğrulayıcı koşarken ana oturum bu klasöre yazamaz; yazdığı değişiklik denetlenen farka karışır. Denerse bir kanca durdurur.",
         "Doğrulayıcı yalnız riskli işte çağrılır: müşteriye giden metin, ürün kodu, birden çok dosyaya yayılan kural ya da betik değişikliği, sana giden rakamlı rapor ve öneri."
       ],
       "terimler": [
-        {"tr": "doğrulayıcı", "en": "verifier", "aciklama": "Başka bir ajanın ya da beynin işini bağımsız kontrol eden, düzeltme yapmayan ve Geçti ya da Kaldı diyen ajanımız."},
-        {"tr": "taze bağlam", "en": "fresh context", "aciklama": "İşin nasıl yapıldığını görmemiş, o konuşmanın geçmişi olmadan başlayan oturum ya da ajan."}
+        {
+          "tr": "doğrulayıcı",
+          "en": "verifier",
+          "aciklama": "Başka bir ajanın ya da beynin işini bağımsız kontrol eden, düzeltme yapmayan ve Geçti ya da Kaldı diyen ajanımız."
+        },
+        {
+          "tr": "taze bağlam",
+          "en": "fresh context",
+          "aciklama": "İşin nasıl yapıldığını görmemiş, o konuşmanın geçmişi olmadan başlayan oturum ya da ajan."
+        }
       ],
       "sorular": [
         {
           "id": "b07-d6-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Taze bağlamlı bir gözden geçirici neden işe yarar?",
-          "secenekler": ["Daha büyük bir modelle çalıştığı için", "İşin nasıl yapıldığını görmediği için", "Ana oturumdan daha çok araca sahip olduğu için"],
-          "dogru": 1,
+          "soru": "Claude değişikliği yaptı, 'kendim kontrol ettim' dedi. Gözden kaçan olmasın diye ne istersin?",
+          "secenekler": [
+            "Claude'un bir kez daha, dikkatle bakmasını",
+            "Aynı oturumda daha büyük modelle bakmayı",
+            "Yapılışını görmemiş bir ajana baktırmayı"
+          ],
+          "dogru": 2,
           "ipucu": "Yazarın aklında olup gözden geçiricinin aklında olmayan şeyi düşün.",
-          "aciklama": "Yaklaşımda payı olmayan göz, yazarın kendine açıkladığı sorunları görür; fark modelde değil bağlamdadır.",
+          "aciklama": "İşi yapan oturum kendine açıkladığı sorunları yeniden göremez; işin geçmişini görmemiş göz onları yakalar. Fark modelde değil bağlamdadır.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-in-action/trust-it-verifying-unsupervised-runs",
             "kopya": "ders-action-08-verifying-unsupervised.md",
@@ -717,13 +844,17 @@
         },
         {
           "id": "b07-d6-s2",
-          "tur": "bosluk",
+          "tur": "coktan",
           "kart": 1,
-          "soru": "Aynı işi ana oturum yerine bir alt ajana vermek cevabı ___.",
-          "secenekler": ["her zaman iyileştirir", "kendiliğinden iyileştirmez", "yalnız uzun işlerde iyileştirir"],
-          "dogru": 1,
-          "ipucu": "Devretmek ile taze gözle gözden geçirmek aynı şey mi?",
-          "aciklama": "Ajana devretmek cevabı iyileştirmez; işe yarayan, gerekçeyi görmemiş taze gözden geçiricidir.",
+          "soru": "Claude 'raporu bir ajana yazdırayım, daha iyi olur' dedi. Bu gerekçe tutar mı?",
+          "secenekler": [
+            "Tutmaz: devretmek tek başına iyileştirmez",
+            "Tutmaz: ajan rapor yazamaz, yalnız okur",
+            "Tutar: ajanın bağlamı temiz"
+          ],
+          "dogru": 0,
+          "ipucu": "Devretmek ile taze gözle gözden geçirmenin aynı şey olup olmadığını düşün.",
+          "aciklama": "Aynı işi ajana vermek cevabı kendiliğinden iyileştirmez. İşe yarayan, gerekçeyi görmemiş bir gözün işi sonradan denetlemesidir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -735,11 +866,15 @@
           "id": "b07-d6-s3",
           "tur": "coktan",
           "kart": 2,
-          "soru": "Claude'a yazılacak üç gözden geçirme tarifinden hangisi daha iyi?",
-          "secenekler": ["Alt ajan işi baştan sona incelesin, biçim dahil bulabildiği bütün sorunları yazsın", "İşi yazan oturum kendi değişikliğini bir kez daha gözden geçirsin", "Alt ajan işi plana göre denetlesin, doğruluğu bozan açığı yazsın, biçimi atlasın"],
-          "dogru": 2,
-          "ipucu": "Sorun bulması istenen gözden geçiricinin ne yapacağını düşün.",
-          "aciklama": "Plana göre denetim ve 'biçimi atla' sınırı gözden geçiriciyi doğruluğa odaklar; yoksa her zaman bir şey bulur.",
+          "soru": "Gözden geçirici ajan, iş kusursuz olsa bile hep bir sorun buluyor. En olası kaynak?",
+          "secenekler": [
+            "Ajanın modeli küçük şeyleri büyütüyor",
+            "Görevde neyin aranacağı söylenmemiş",
+            "İşin geçmişini görmediği için yanılıyor"
+          ],
+          "dogru": 1,
+          "ipucu": "Görevde neyin arandığının nasıl söylendiğini düşün.",
+          "aciklama": "Sorun bulması istenen gözden geçirici her zaman bir şey bulur. Görev plana göre denetlemesini, doğruluğu bozanı yazmasını ve biçimi atlamasını söylemeli.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -749,65 +884,83 @@
         },
         {
           "id": "b07-d6-s4",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 3,
-          "soru": "verifier.md'ye göre doğrulayıcı bulduğu hatayı kendisi düzeltir, sonra Geçti der.",
-          "dogru": false,
+          "soru": "Doğrulayıcı 'Kaldı' dedi ve hatanın yerini gösterdi, ama düzeltmedi. Bu bir aksaklık mı?",
+          "secenekler": [
+            "Hayır: düzeltmeyi senin onaylaman gerekir",
+            "Evet: düzeltip Geçti demeliydi",
+            "Hayır: düzeltmek onun işi değil"
+          ],
+          "dogru": 2,
           "ipucu": "Bağımsız kontrol edenin işe el sürüp sürmediğini düşün.",
-          "aciklama": "Yanlış. Doğrulayıcı bağımsız kontrol eder ve düzeltme yapmaz; sonucu kanıtıyla Geçti ya da Kaldı'dır.",
+          "aciklama": "Doğrulayıcı bağımsız kontrol eder ve düzeltme yapmaz; sonucu kanıtıyla Geçti ya da Kaldı'dır. Düzeltmeyi işi yapan taraf yapar.",
           "kaynak": {
-            "adres": ".claude/agents/verifier.md:3",
-            "okuma": "2026-11-17",
+            "adres": ".claude/agents/verifier.md",
+            "okuma": "2026-11-24",
             "dayanak": "Doğrulayıcı değişikliği ya da taslağı bağımsız kontrol eder, testleri kendisi koşar, düzeltme yapmaz; sonuç kanıtıyla Geçti ya da Kaldı.",
             "soz": "bağımsız kontrol eder, testleri kendisi koşar, düzeltme yapmaz"
-          }
-        },
-        {
-          "id": "b07-d6-s5",
-          "tur": "coktan",
-          "kart": 5,
-          "soru": "Bizde hangi iş doğrulayıcıya gider?",
-          "secenekler": ["Müşteriye gidecek bir site metni", "Bir dosyanın yerini bulmak", "Bir dosyayı okuyup açıklamak"],
-          "dogru": 0,
-          "ipucu": "Riskli işin tanımında kime giden metinler sayılıyor?",
-          "aciklama": "Müşteriye giden metin riskli iş sayılır, bu yüzden doğrulayıcıya gider; arama ve açıklama riskli iş listesinde yok.",
-          "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:39",
-            "okuma": "2026-11-17",
-            "dayanak": "Riskli iş: müşteriye giden metin, ürün kodu, birden çok dosyaya yayılan kural ya da betik değişikliği; kullanıcıya giden rakamlı rapor ve öneri.",
-            "soz": "Riskli iş: müşteriye giden metin, ürün kodu"
-          }
-        },
-        {
-          "id": "b07-d6-s6",
-          "tur": "bosluk",
-          "kart": 5,
-          "soru": "CLAUDE.md'de şu satır var: 'Doğrulayıcı yalnız ___ işte.'",
-          "secenekler": ["uzun süren", "riskli", "küçük"],
-          "dogru": 1,
-          "ipucu": "Müşteriye giden metin ile ürün kodunun ortak yanını düşün.",
-          "aciklama": "Doğrulayıcı her işte çağrılmaz; yalnız ajan-gorevi bölüm 3'te tanımlanan riskli işte.",
-          "kaynak": {
-            "adres": "CLAUDE.md:111",
-            "okuma": "2026-11-17",
-            "dayanak": "Doğrulayıcı yalnız riskli işte çağrılır (ajan-gorevi bölüm 3).",
-            "soz": "Doğrulayıcı yalnız riskli işte"
           }
         },
         {
           "id": "b07-d6-s7",
           "tur": "coktan",
           "kart": 4,
-          "soru": "verifier.md'ye göre üreten 'testler geçti' derse doğrulayıcı ne yapar?",
-          "secenekler": ["Söze güvenir, testleri yeniden koşmaz", "Testleri kendisi koşar", "Üretenden test çıktısını ister"],
-          "dogru": 1,
-          "ipucu": "Bağımsız kontrolün ne demek olduğunu düşün.",
-          "aciklama": "Doğrulayıcı testleri kendisi koşar; koşamadığı maddeye 'ölçülemedi' yazar ve o zaman Geçti diyemez.",
+          "soru": "Claude 'testler geçti' dedi; doğrulayıcı bir maddeye 'ölçülemedi' yazdı. Sonuç?",
+          "secenekler": [
+            "Kaldı: Claude'un sözü yanlış çıktı",
+            "Geçti: ölçülemeyen madde nota düşer",
+            "Doğrulayıcı hüküm vermez, Claude'a sorar",
+            "Kaldı: ölçülemeyen madde Geçti'yi engeller"
+          ],
+          "dogru": 3,
+          "ipucu": "Doğrulayıcının üretenin sözüne ne kadar güvendiğini düşün.",
+          "aciklama": "Doğrulayıcı üretenin 'geçti' sözüne güvenmez, testi kendisi koşar. Koşamadığı maddeye 'ölçülemedi' yazar; o zaman sonuç Geçti olamaz.",
           "kaynak": {
-            "adres": ".claude/agents/verifier.md:16",
-            "okuma": "2026-11-17",
-            "dayanak": "Testleri kendin koş; üretenin 'geçti' demesine güvenme; koşamadığına 'ölçülemedi' yaz, o zaman sonuç Geçti olamaz.",
-            "soz": "Testleri kendin koş; üretenin \"geçti\" demesine güvenme"
+            "adres": ".claude/agents/verifier.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Testleri kendin koş, üretenin 'geçti' demesine güvenme; koşamadığına 'ölçülemedi' yaz, o zaman sonuç Geçti olamaz.",
+            "soz": "koşamadığına \"ölçülemedi\" yaz, o zaman sonuç Geçti olamaz"
+          }
+        },
+        {
+          "id": "b07-d6-s8",
+          "tur": "sirala",
+          "kart": 5,
+          "soru": "Claude bir değişiklik yaptı ve doğrulayıcı çağrıldı; o sırada aklına küçük bir düzeltme geldi. Olanları sırala.",
+          "adimlar": [
+            "Doğrulayıcı farkı ve testleri denetler",
+            "Doğrulayıcı hükmünü verir",
+            "Claude düzeltmeyi klasöre yazar"
+          ],
+          "ipucu": "Doğrulayıcı denetlerken klasöre yazılan bir değişikliğin neye yol açtığını düşün.",
+          "aciklama": "Doğrulayıcı koşarken ana oturumun yazdığı değişiklik denetlenen farka karışır ve Kaldı verdirir; kanca bu yüzden yazmayı durdurur. Düzeltme hükümden sonra yazılır.",
+          "kaynak": {
+            "adres": ".claude/hooks/dogrulayici_kilidi.py",
+            "okuma": "2026-11-24",
+            "dayanak": "Doğrulayıcı koşarken ana oturumun klasöre yazdığı değişiklik denetlenen farka görevde olmayan yol olarak girer ve Kaldı verdirir; kanca yazmayı durdurur.",
+            "soz": "doğrulayıcının baktığı farka görevinde olmayan yol olarak girer ve Kaldı verdirir"
+          }
+        },
+        {
+          "id": "b07-d6-s5",
+          "tur": "coktan",
+          "kart": 6,
+          "soru": "Bugün dört iş bitti. Bizim kurala göre hangisinde doğrulayıcı beklersin?",
+          "secenekler": [
+            "Tek dosyada bir kural yazım düzeltmesi",
+            "Sayılarla sana sunulan bir öneri",
+            "Bir dosyayı açıklayan uzun özet",
+            "Kütüğe eklenen yeni satır"
+          ],
+          "dogru": 1,
+          "ipucu": "Riskli iş listesinde hangi tür raporun sayıldığını düşün.",
+          "aciklama": "Sana giden rakamlı rapor ve öneri riskli iş sayılır, doğrulayıcıya gider. Tek dosyadaki kural düzeltmesi, açıklama ve kütük satırı listede yok.",
+          "kaynak": {
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Riskli iş: müşteriye giden metin, ürün kodu, birden çok dosyaya yayılan kural ya da betik değişikliği; kullanıcıya giden rakamlı rapor ve öneri.",
+            "soz": "kullanıcıya giden rakamlı rapor ve öneri"
           }
         }
       ]
@@ -817,65 +970,42 @@
       "baslik": "Paralel çalışma seçenekleri",
       "hedefler": [
         "Alt ajan, ajan ekibi (agent team) ve dinamik iş akışı (dynamic workflow) arasındaki farkı ayırt edebilir.",
-        "CLAUDE.md'nin ajan ekibi bölümündeki 'en basit yoldan başla' ilkesini okuyup anlatabilir."
+        "CLAUDE.md'nin ajan ekibi bölümündeki 'en basit yoldan başla' ilkesini bir öneri üzerinde anlatabilir."
       ],
       "anlatim": [
         "Alt ajan, tek oturumun içinde yan işi kendi bağlamında yapar; sonucu onu başlatan konuşmaya özet olarak döner.",
         "Ajan ekibi (agent team) ise bir liderin yönettiği, ortak görev listesi olan ve birbirine doğrudan mesaj atan oturumlardır. Deneyseldir ve varsayılan olarak kapalıdır.",
-        "Dinamik iş akışı (dynamic workflow) bir betiktir: Claude'un kararına değil, yazılı plana göre işleyen bir program. Çok sayıda alt ajanı koşturup sonuçlarını birbirine karşı denetler.",
-        "Dinamik iş akışı, bir avuç alt ajana sığmayan işte anılır: bütün kodun denetimi ya da 500 dosyalık taşıma gibi.",
+        "Dinamik iş akışı (dynamic workflow), çok sayıda alt ajanı koşturup sonuçlarını karşılaştıran bir betiktir. Bir avuç ajana sığmayan işte anılır, ör. 500 dosyalık taşıma.",
         "Bizim ilke CLAUDE.md'de: 'en basit yoldan başla, karmaşıklığı kanıt gelince ekle.'",
         "CLAUDE.md'ye göre beyin bu ana oturumdur; mimari, güvenlik ve veri bütünlüğü kararı beyinde kalır.",
         "Bizde aynı anda koşan ajanların yazma yolları baştan ayrıdır; böylece iki ajan aynı dosyaya yazmaz."
       ],
       "terimler": [
-        {"tr": "ajan ekibi", "en": "agent team", "aciklama": "Bir liderin yönettiği, ortak görev listesi olan ve birbirine mesaj atan oturumlar; deneysel ve varsayılan olarak kapalı."},
-        {"tr": "dinamik iş akışı", "en": "dynamic workflow", "aciklama": "Çok sayıda alt ajanı koşturup sonuçlarını birbirine karşı denetleyen betik."}
+        {
+          "tr": "ajan ekibi",
+          "en": "agent team",
+          "aciklama": "Bir liderin yönettiği, ortak görev listesi olan ve birbirine mesaj atan oturumlar; deneysel ve varsayılan olarak kapalı."
+        },
+        {
+          "tr": "dinamik iş akışı",
+          "en": "dynamic workflow",
+          "aciklama": "Çok sayıda alt ajanı koşturup sonuçlarını birbirine karşı denetleyen betik."
+        }
       ],
       "sorular": [
         {
-          "id": "b07-d7-s1",
-          "tur": "eslestir",
-          "kart": 2,
-          "soru": "Her çalışma yolunu tanımıyla eşleştir.",
-          "ciftler": [
-            ["Alt ajan", "Tek oturumda yan işi yapıp özet döner"],
-            ["Ajan ekibi", "Lider yönetir, üyeler birbirine mesaj atar"],
-            ["Dinamik iş akışı", "Betik çok sayıda alt ajanı koşturup sonuçları karşılaştırır"]
-          ],
-          "ipucu": "İşi kimin yönettiğine bak: Claude mı, bir lider mi, bir betik mi.",
-          "aciklama": "Üçü işi bölmenin farklı yollarıdır; fark, işi kimin yürüttüğünde ve sonuçların nereye gittiğindedir.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/agents",
-            "kopya": "agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Alt ajanlar tek oturumda yan işi kendi bağlamında yapıp özet döner; ajan ekipleri bir liderin yönettiği, ortak görev listeli ve birbirine mesaj atan oturumlardır; dinamik iş akışları çok sayıda alt ajanı koşturup sonuçlarını birbirine karşı denetleyen betiklerdir."
-          }
-        },
-        {
-          "id": "b07-d7-s2",
-          "tur": "dogru-yanlis",
-          "kart": 1,
-          "soru": "Ajan ekibi özelliği deneyseldir ve varsayılan olarak kapalıdır.",
-          "dogru": true,
-          "ipucu": "Kartta ajan ekibi anlatılırken en sona eklenen iki niteliği hatırla.",
-          "aciklama": "Doğru. Belge ajan ekiplerini deneysel ve varsayılan olarak kapalı diye işaretler.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/agents",
-            "kopya": "agents.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Ajan ekipleri deneyseldir ve varsayılan olarak kapalıdır."
-          }
-        },
-        {
           "id": "b07-d7-s3",
-          "tur": "coktan",
+          "tur": "bosluk",
           "kart": 0,
-          "soru": "Bir alt ajan bulduğu sonucu kime bildirir?",
-          "secenekler": ["Ekibin öteki üyelerine doğrudan", "Kendisini başlatan konuşmaya", "Yalnız sana, ayrı bir ekranda"],
+          "soru": "İki alt ajan aynı anda çalıştı; biri ötekinin bulduğunu kullanmadı. Çünkü alt ajanın sonucu ___ döner.",
+          "secenekler": [
+            "öteki ajanlara doğrudan",
+            "yalnız kendisini çağırana",
+            "senin ayrı ekranına"
+          ],
           "dogru": 1,
-          "ipucu": "Alt ajanın tek bir oturumun içinde çalıştığını hatırla.",
-          "aciklama": "Alt ajan sonucu onu başlatan konuşmaya döner; birbirine doğrudan mesaj atanlar ajan ekibinin üyeleridir.",
+          "ipucu": "Alt ajanın sonucunu kime bildirdiğini düşün.",
+          "aciklama": "Alt ajanlar sonuçlarını yalnız kendilerini başlatan konuşmaya döner, birbirine mesaj atmaz. Birbirine yazanlar ajan ekibinin üyeleridir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/agents",
             "kopya": "agents.md",
@@ -884,49 +1014,88 @@
           }
         },
         {
-          "id": "b07-d7-s4",
+          "id": "b07-d7-s2",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Bir iş bir avuç alt ajana sığmıyor ve bulguların birbirine karşı denetlenmesi gerekiyor. Belge hangi yolu anar?",
-          "secenekler": ["Tek bir alt ajan", "Ana oturumda tek tek elle", "Dinamik iş akışı"],
-          "dogru": 2,
-          "ipucu": "Hangi yol sonuçları birbirine karşı denetler?",
-          "aciklama": "Dinamik iş akışı bir avuç alt ajanı aşan ya da bulguların karşılaştırılmasını isteyen işler için anılır.",
+          "kart": 1,
+          "soru": "Claude'a 'ajanlar ekip olsun, birbirine yazsın' dedin; Claude bunu hemen yapamayacağını söyledi. En olası kaynak?",
+          "secenekler": [
+            "Ekip için önce iş akışı betiği gerekir",
+            "Ajan ekibi deneysel, kendiliğinden kapalı"
+          ],
+          "dogru": 1,
+          "ipucu": "Ajan ekibi özelliğinin bugünkü durumunu düşün.",
+          "aciklama": "Ajan ekibi deneyseldir ve varsayılan olarak kapalıdır; açılmadan kurulamaz. İş akışı betiği ayrı bir yoldur, ekibin ön şartı değildir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/agents",
             "kopya": "agents.md",
             "okuma": "2026-11-15",
-            "dayanak": "Bir iş bir avuç alt ajanı aşınca ya da bulguların birbirine karşı denetlenmesi istenince dinamik iş akışı kullanılır."
+            "dayanak": "Ajan ekipleri deneyseldir ve varsayılan olarak kapalıdır."
+          }
+        },
+        {
+          "id": "b07-d7-s4",
+          "tur": "eslestir",
+          "kart": 2,
+          "soru": "Her işi en uygun çalışma yoluyla eşleştir.",
+          "ciftler": [
+            [
+              "Bir dosyada tek ayrıntıyı bul, yeri dönsün",
+              "Alt ajan"
+            ],
+            [
+              "Ajanlar bulgularını birbirine yazıp tartışsın",
+              "Ajan ekibi"
+            ],
+            [
+              "2.000 dosya taşınsın, sonuçlar birbirine karşı sınansın",
+              "Dinamik iş akışı"
+            ]
+          ],
+          "ipucu": "Her işte sonuçların nereye gittiğine ve kaç ajan gerektiğine bak.",
+          "aciklama": "Tek yan iş alt ajana, birbirine yazan oturumlar ajan ekibine, bir avuç ajana sığmayan ve sonuçları karşılaştırılan iş dinamik iş akışına düşer.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/agents",
+            "kopya": "agents.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Alt ajanlar tek oturumda yan işi kendi bağlamında yapıp özet döner; ajan ekipleri bir liderin yönettiği, ortak görev listeli ve birbirine mesaj atan oturumlardır; dinamik iş akışları çok sayıda alt ajanı koşturup sonuçlarını birbirine karşı denetleyen betiklerdir."
           }
         },
         {
           "id": "b07-d7-s5",
-          "tur": "bosluk",
-          "kart": 4,
-          "soru": "CLAUDE.md'deki ilke: 'en basit yoldan başla, karmaşıklığı ___ ekle.'",
-          "secenekler": ["kanıt gelince", "kullanıcı isteyince", "ilk günden"],
-          "dogru": 0,
-          "ipucu": "İlke karmaşıklığı neye bağlıyor?",
-          "aciklama": "Karmaşık yol kendiliğinden seçilmez; önce basit yol denenir, ek karmaşıklık kanıtla gelir.",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "12 dosyalık bir denetim için Claude çok ajanlı bir betik öneriyor. İlkeye göre?",
+          "secenekler": [
+            "Uygun değil: betik yazmak yasak",
+            "Uygun: çok ajan daha güvenilir",
+            "Ana oturum ya da tek ajanla başlasın"
+          ],
+          "dogru": 2,
+          "ipucu": "Karmaşıklığın ne zaman eklendiğini düşün.",
+          "aciklama": "İlke en basit yoldan başlamayı ister; karmaşıklık kanıt gelince eklenir. 12 dosya için ana oturum ya da tek ajan yeter.",
           "kaynak": {
-            "adres": "CLAUDE.md:107",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "İlke: en basit yoldan başla, karmaşıklığı kanıt gelince ekle.",
             "soz": "en basit yoldan başla, karmaşıklığı kanıt gelince ekle"
           }
         },
         {
           "id": "b07-d7-s6",
-          "tur": "bosluk",
-          "kart": 5,
-          "soru": "CLAUDE.md'ye göre mimari, güvenlik ve veri bütünlüğü kararı ___ kalır.",
-          "secenekler": ["işi yapan ajanda", "beyinde", "doğrulayıcıda"],
-          "dogru": 1,
-          "ipucu": "Kartta bu üç kararın kimde kaldığını hatırla.",
-          "aciklama": "Bu üç tür karar beyinde, yani ana oturumda kalır; ajana bırakılmaz.",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Bir ajanın raporunda 'kayıtların saklandığı yapıyı baştan değiştirmeye karar verdim' yazıyor. Bu karar kimindir?",
+          "secenekler": [
+            "Ana oturumun; ajan bu kararı veremez",
+            "Ajanın; işi o yapıyor",
+            "Doğrulayıcının; bağımsız göz o"
+          ],
+          "dogru": 0,
+          "ipucu": "Hangi kararların ajana bırakılmadığını düşün.",
+          "aciklama": "Kayıtların saklanış yapısı mimari ve veri bütünlüğü kararıdır; beyinde, yani ana oturumda kalır. Ajan bu kararı kendisi veremez.",
           "kaynak": {
-            "adres": "CLAUDE.md:107",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Mimari, güvenlik ve veri bütünlüğü kararı beyinde kalır.",
             "soz": "Mimari, güvenlik ve veri bütünlüğü kararı beyinde kalır"
           }
@@ -934,17 +1103,21 @@
         {
           "id": "b07-d7-s7",
           "tur": "coktan",
-          "kart": 6,
-          "soru": "Bizde iki ajan aynı anda çalışacak. Birbirinin dosyasına yazmasınlar diye kural ne der?",
-          "secenekler": ["İkisi aynı dosyaya yazar, beyin birleştirir", "Eşzamanlı ajanların yazma yolları baştan ayrıdır", "Biri yazarken öteki yalnız okuyabilir"],
-          "dogru": 1,
-          "ipucu": "Ajanların iş başlamadan önce neyi birbirinden ayırdığını düşün.",
-          "aciklama": "Kural yazma yollarını iş başlamadan ayırır; böylece iki ajan aynı dosyaya yazmaz.",
+          "kart": 5,
+          "soru": "Aynı anda çalışan iki ajandan birinin yazdığı satırlar, öteki bitince kaybolmuş. Ne atlanmış?",
+          "secenekler": [
+            "İkinci ajana okuma izni verilmemiş",
+            "Ajanlar sırayla değil aynı anda başlatılmış",
+            "Her ajana ayrı dosya verilmemiş"
+          ],
+          "dogru": 2,
+          "ipucu": "Aynı anda koşan ajanlar için iş başlamadan neyin ayrıldığını düşün.",
+          "aciklama": "Eşzamanlı ajanların yazma yolları baştan ayrılır; ayrılmazsa ikisi aynı dosyaya yazar ve biri ötekinin satırlarını ezer.",
           "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:12",
-            "okuma": "2026-11-17",
-            "dayanak": "Eşzamanlı ajanların yazma yolları baştan ayrıdır.",
-            "soz": "Eşzamanlı ajanların yazma yolları baştan ayrıdır"
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "CLAUDE.md'ye göre birbirine bağlı olmayan işler aynı anda yürür, iki iş aynı dosyaya yazmaz.",
+            "soz": "iki iş aynı dosyaya yazmaz"
           }
         }
       ]

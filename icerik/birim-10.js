@@ -14,51 +14,53 @@
         "Bizdeki itiraz görevinin eksik bilgiyi nasıl yakaladığını anlatabilir."
       ],
       "anlatim": [
-        "Claude'u parlak ama yeni bir çalışan gibi düşün: senin alışkanlıklarını ve iş akışını bilmiyor.",
-        "Ne istediğini ne kadar açık anlatırsan sonuç o kadar iyi olur. Claude Code 101 kursu da istemini (prompt) olabildiğince tarif edici yazmanı söyler.",
-        "Kısa bir test var: istemini işten habersiz bir arkadaşına göster. O şaşırırsa Claude da şaşırır.",
+        "Claude'u parlak ama yeni bir çalışan gibi düşün: genel bilgisi çok, senin alışkanlıklarını bilmiyor. Bu klasörde de Claude'un kendi bildiği şey kural olarak yazılmaz.",
+        "Kısa bir test var: istemini (prompt) işten habersiz bir arkadaşına göster. O şaşırırsa Claude da şaşırır.",
         "İstemde iki şeyi açık söyle: çıktı nasıl görünsün (biçim) ve hangi kısıtlara uyulsun (sınır).",
-        "Adımların sırası önemliyse istemde onları numaralı ya da maddeli yaz.",
         "İşin gerektirdiğinden fazlasını istiyorsan bunu açıkça iste. Claude'un belirsiz bir istemden tahmin etmesine bırakma.",
-        "Bizim CLAUDE.md'deki itiraz görevi: isteğinde hata ya da kritik bilgi eksiği varsa Claude işe başlamadan söyler, nedenini ve olası sonucunu yazar."
+        "İtiraz görevi: isteğinde hata, kritik eksik ya da daha kolay bir yol varsa Claude başlamadan söyler, nedenini ve sonucunu yazar. Israr edersen senin dediğin yapılır."
       ],
       "terimler": [
-        {"tr": "istem", "en": "prompt", "aciklama": "Claude'a yazdığın iş tarifi, yani mesajın kendisi."}
+        {
+          "tr": "istem",
+          "en": "prompt",
+          "aciklama": "Claude'a yazdığın iş tarifi, yani mesajın kendisi."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d1-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Resmi rehber Claude'u nasıl biri gibi düşünmeni öneriyor?",
+          "soru": "Claude'a kalıcı bir not ekleteceksin. Kurala göre hangisi yazılmaya değer?",
           "secenekler": [
-            "Projeyi baştan beri bilen bir ekip arkadaşı",
-            "Parlak ama iş akışını bilmeyen yeni bir çalışan",
-            "Her şeyi kendiliğinden bilen bir uzman"
+            "Faturaları her ay hangi klasörde topladığın",
+            "İyi bir e-postanın kibar yazılması gerektiği",
+            "Türkçe metinde yazım kurallarına uyulması"
           ],
-          "dogru": 1,
-          "ipucu": "Claude zeki, ama senin işine dair neyi bilmiyor, onu düşün.",
-          "aciklama": "Rehber Claude'u bağlamı bilmeyen yeni bir çalışana benzetir. Bu yüzden ne istediğini ne kadar kesin anlatırsan sonuç o kadar iyi olur.",
+          "dogru": 0,
+          "ipucu": "Claude'un zaten bildiğini yalnız senin bildiğinden ayır.",
+          "aciklama": "Bu klasörde Claude'un kendi bildiği şey kural olarak yazılmaz; yazılmaya değen, yalnız senin bildiğin alışkanlıktır. Kibar e-posta ve yazım kuralları Claude'un genel bilgisidir.",
           "kaynak": {
-            "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
-            "kopya": "prompting-best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Rehber Claude'u, senin kurallarını ve iş akışlarını bilmeyen parlak ama yeni bir çalışan gibi düşünmeni ve ne istediğini olabildiğince kesin anlatmanı söyler."
+            "adres": ".claude/skills/sistem-metni/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kural yazılmadan önce modelin bunu kendi bilip bilmediği sorulur; biliyorsa yazılmaz.",
+            "soz": "Model bunu kendi bilir mi? Biliyorsa yazılmaz"
           }
         },
         {
           "id": "b10-d1-s2",
           "tur": "coktan",
-          "kart": 2,
-          "soru": "İstemini işten habersiz bir arkadaşına gösterdin ve o şaşırdı. Rehberin testine göre bu ne demek?",
+          "kart": 1,
+          "soru": "İstemini göndermeden önce sınamak istiyorsun. Hangisi en iyi sınar?",
           "secenekler": [
-            "Claude da şaşırır",
-            "Arkadaşın işi bilmiyor, sonuç önemsiz",
-            "İstem Claude için yeterince açık"
+            "İşi iyi bilen bir arkadaşına okutmak",
+            "İstemi kısaltıp öyle göndermek",
+            "İşten habersiz birine okutmak"
           ],
-          "dogru": 0,
-          "ipucu": "Testte arkadaşın kimin yerine konuyor, onu düşün.",
-          "aciklama": "Bağlamı az bilen biri istemi okurken şaşırıyorsa Claude da şaşırır. Bu, istemi daha açık yazman gerektiğini gösterir.",
+          "dogru": 2,
+          "ipucu": "Claude işini ne kadar biliyor; sınayan kişi de o kadar bilmeli.",
+          "aciklama": "Bağlamı bilmeyen biri istemde şaşırırsa Claude da şaşırır. İşi bilen biri eksikleri kendi bilgisiyle doldurur, sorunu göremez.",
           "kaynak": {
             "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
             "kopya": "prompting-best-practices.md",
@@ -69,12 +71,16 @@
         {
           "id": "b10-d1-s3",
           "tur": "bosluk",
-          "kart": 3,
-          "soru": "Rehbere göre istediğin çıktının ___ ve sınırları konusunda açık olmalısın.",
-          "secenekler": ["biçimi", "teslim saati", "model adı"],
-          "dogru": 0,
-          "ipucu": "Çıktının sana nasıl görüneceğini düşün.",
-          "aciklama": "Rehber, istediğin çıktının biçimini ve uyulacak kısıtları açıkça yazmanı ister.",
+          "kart": 2,
+          "soru": "İstemine çıktının tablo olacağını yazdın. Bir de ___ açıkça söylemelisin.",
+          "secenekler": [
+            "işe hangi dosyadan başlayacağını",
+            "hangi dosyalara dokunulmayacağını",
+            "hangi modelin kullanılacağını"
+          ],
+          "dogru": 1,
+          "ipucu": "Çıktının görünüşünden sonra istemde açık olması gereken öbür şeyi düşün.",
+          "aciklama": "İstemde biçimin yanında uyulacak sınır da açık söylenir; dokunulmayacak dosyalar bir sınırdır. Başlangıç dosyası ya da model, neye uyulacağını söylemez.",
           "kaynak": {
             "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
             "kopya": "prompting-best-practices.md",
@@ -85,16 +91,16 @@
         {
           "id": "b10-d1-s4",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "Basit sürümden fazlasını istiyorsun. Hangisi rehbere uyar?",
+          "kart": 3,
+          "soru": "Giriş sayfası istedin; çalışıyor ama çok sade, sen daha zenginini umuyordun. En olası neden?",
           "secenekler": [
-            "Analiz panosu yap.",
-            "Analiz panosu yap; ne kadarını istediğimi sen kestir, zaten anlarsın.",
-            "Analiz panosu yap; temelin ötesine geç, ilgili özellikleri ekle."
+            "Claude kestirmeliydi; bir hata yaptı",
+            "Fazlasını istediğini yazmadın",
+            "Claude her işte önce en sade sürümü kurar"
           ],
-          "dogru": 2,
-          "ipucu": "Fazlasını istediğini hangi istem açıkça söylüyor?",
-          "aciklama": "Rehberin örneğinde daha etkili istem, istenen kapsamı açıkça yazar. Claude fazlasını belirsiz bir istemden çıkarmak zorunda kalmaz.",
+          "dogru": 1,
+          "ipucu": "Ne kadarını istediğini istemde kim söyledi?",
+          "aciklama": "Temelin ötesini istiyorsan bunu açıkça yazman gerekir; Claude belirsiz istemden ne kadarını istediğini tahmin eder. Sabit bir önce sade sürüm kuralı yok.",
           "kaynak": {
             "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
             "kopya": "prompting-best-practices.md",
@@ -103,58 +109,43 @@
           }
         },
         {
-          "id": "b10-d1-s5",
+          "id": "b10-d1-s6",
+          "tur": "bosluk",
+          "kart": 4,
+          "soru": "Claude işe başlamadan 'bunu daha kısa bir yoldan yapabilirim' dedi, nedenini ve sonucunu yazdı. Bu, kurala ___.",
+          "secenekler": [
+            "uygun; kolay yol da söylenir",
+            "aykırı; yalnız istenen yapılır",
+            "aykırı; öneri iş bitince yapılır"
+          ],
+          "dogru": 0,
+          "ipucu": "İtiraz görevinin hangi durumlarda işe başlamadan konuşmayı istediğini düşün.",
+          "aciklama": "İtiraz görevi hata ve kritik eksiğin yanında daha kolay bir yolu da işe başlamadan, nedeni ve sonucuyla söyletir. Israr edersen yine senin istediğin yapılır.",
+          "kaynak": {
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Claude daha kolay bir yol biliyorsa işe başlamadan söyler, nedeni ve olası sonucu yazar.",
+            "soz": "veya daha kolay bir yol biliyorsan işe başlamadan söyle"
+          }
+        },
+        {
+          "id": "b10-d1-s8",
           "tur": "coktan",
           "kart": 4,
-          "soru": "Claude'dan sırası önemli üç adımlık bir iş istiyorsun. Rehbere göre adımları nasıl yazarsın?",
+          "soru": "Claude yönteminde bir sakınca gördü, nedenini yazdı; sen yine kendi yönteminde kalıyorsun. Ne olur?",
           "secenekler": [
-            "Tek paragrafta, aklına geldiği sırayla",
-            "Numaralı liste ya da maddelerle",
-            "Yalnız son adımı yaz, gerisini Claude bulsun"
+            "Sakınca kalkmadan iş başlamaz",
+            "Claude kendi ara yolunu seçip öyle yapar",
+            "İş senin istediğin yoldan yürür"
           ],
-          "dogru": 1,
-          "ipucu": "Sıra ya da eksiksizlik önemliyse rehber hangi yazımı öneriyor?",
-          "aciklama": "Sıra ya da eksiksizlik önemliyse rehber adımları numaralı liste ya da maddelerle yazmanı önerir.",
+          "dogru": 2,
+          "ipucu": "Kararın sonunda kimde olduğunu düşün.",
+          "aciklama": "İtiraz görevi Claude'a söyleme ve gerekçe yazma işi verir, karar senin kalır. Israr edersen senin dediğin yapılır.",
           "kaynak": {
-            "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
-            "kopya": "prompting-best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Adımların sırası ya da eksiksizliği önemliyse talimatları numaralı liste ya da madde imleriyle sıralı adımlar halinde ver."
-          }
-        },
-        {
-          "id": "b10-d1-s6",
-          "tur": "coktan",
-          "kart": 6,
-          "soru": "İtiraz görevine göre isteğinde kritik bilgi eksikse Claude ne yapar?",
-          "secenekler": [
-            "Makul bir tahminle başlar, eksiği iş bitince söyler",
-            "İşe başlamadan söyler, nedenini ve olası sonucunu yazar",
-            "İşi bitirir, eksiği kapanış mesajında yazar"
-          ],
-          "dogru": 1,
-          "ipucu": "Kartta itirazın ne zaman ve neyle birlikte yapıldığına bak.",
-          "aciklama": "İtiraz görevi eksik bilgiyi işin başında yakalamak içindir. Claude nedenini ve olası sonucunu da yazar.",
-          "kaynak": {
-            "adres": "CLAUDE.md:72",
-            "okuma": "2026-11-17",
-            "dayanak": "İstekte hata görülürse, ne demek istendiği anlaşılmadıysa ya da kritik bilgi eksikse Claude işe başlamadan söyler, nedeni ve olası sonucu yazar.",
-            "soz": "işe başlamadan söyle, nedeni ve olası sonucu yaz"
-          }
-        },
-        {
-          "id": "b10-d1-s7",
-          "tur": "dogru-yanlis",
-          "kart": 1,
-          "soru": "Claude Code 101 kursunun ilk istem dersi, istemini olabildiğince tarif edici yazmanı önerir.",
-          "dogru": true,
-          "ipucu": "Kartta istemi ne kadar açık anlattığınla sonucun nasıl çıktığı arasındaki bağı düşün.",
-          "aciklama": "Doğru. Dersin özeti istemini olabildiğince tarif edici yazmanı söyler.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-101/your-first-prompt",
-            "kopya": "ders-101-04-your-first-prompt.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Claude Code kullanırken istemini olabildiğince tarif edici yazmaya çalış."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Claude itiraz etse de kullanıcı ısrar ederse onun dediği şekilde yapılır.",
+            "soz": "Israr edersem benim dediğim şekilde yaparız"
           }
         }
       ]
@@ -164,35 +155,38 @@
       "baslik": "Claude'un göremediğini söylemek",
       "hedefler": [
         "Somut bir istemin dosyayı, belirtiyi ve düzelmiş hali neden taşıdığını anlatabilir.",
-        "Belirsiz bir istemle somut bir istemi ayırt edebilir.",
+        "Claude'un koddan okuyamadığı bilgiyi ayırt edebilir.",
         "Elindeki dosyayı ya da görüntüyü tarif etmek yerine vermeyi anlatabilir."
       ],
       "anlatim": [
         "Claude işe kodunu okuyarak başlar. Bulamadığı şey depoda hiç olmayan bilgidir: toplantıda alınan bir karar, tek kişinin kafasındaki bir adım.",
         "Somut bir istem (specific prompt) dosyanın adını, belirtiyi ve düzelmiş halin neye benzediğini baştan söyler. Bu çoğu zaman bir düzeltme turunu kurtarır.",
-        "Örnek: 'giriş hatasını düzelt' yerine 'oturum süresi dolunca giriş bozuluyor; girişle ilgili klasöre bak, hatayı gösteren bir test yaz, sonra düzelt'.",
         "İki makul yol arasında tercihin varsa baştan söyle. Claude bunu koddan okuyamaz.",
         "Keşif yapıyor, belli bir şeyi düzeltmiyorsan 'bu dosyada neyi iyileştirirsin?' gibi belirsiz bir istem de yerindedir. Bedeli, yolda biraz daha çok düzeltmektir.",
-        "Elindeki şeyi tarif etme, ver. Masaüstünde hata görüntüsünü + düğmesiyle eklersin ya da isteme sürükleyip bırakırsın.",
+        "Elindeki şeyi tarif etme, ver. Masaüstünde hata görüntüsünü ya da bir PDF'yi + düğmesiyle ya da sürükleyerek isteme eklersin.",
         "Bizde bir kural daha var: mesajlarını çoğu zaman sesle yazdırıyorsun. İsim, oran ya da tarih işe girecekse Claude önce teyit eder."
       ],
       "terimler": [
-        {"tr": "somut istem", "en": "specific prompt", "aciklama": "Dosyayı, belirtiyi ve düzelmiş halin neye benzediğini söyleyen istem."}
+        {
+          "tr": "somut istem",
+          "en": "specific prompt",
+          "aciklama": "Dosyayı, belirtiyi ve düzelmiş halin neye benzediğini söyleyen istem."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d2-s1",
           "tur": "coktan",
           "kart": 1,
-          "soru": "Somut bir istem hangi üç şeyi baştan söyler?",
+          "soru": "'Formu düzelt' yazdın; Claude bir şey düzeltti ama senin derdin başkaydı. İstemde ne eksikti?",
           "secenekler": [
-            "Model, efor ve oturum süresi",
-            "Dosya adı, belirti ve düzelmiş hal",
-            "Renk, yazı tipi ve ekran boyu"
+            "Hatanın ne kadar acil olduğu",
+            "Formun neden önemli olduğu",
+            "Ne olunca bozulduğu, düzelince ne görüleceği"
           ],
-          "dogru": 1,
-          "ipucu": "Bir hatayı düzelttirirken Claude'un hangi bilgileri koddan çıkaramayacağını düşün.",
-          "aciklama": "Bu üçü baştan söylenince Claude neyi aradığını ve ne zaman bittiğini bilir. Sayfa bunun çoğu zaman bir düzeltme turunu kurtardığını söyler.",
+          "dogru": 2,
+          "ipucu": "Claude hangi hatayı kastettiğini nereden anlayacaktı?",
+          "aciklama": "Belirtiyi ve düzelmiş hali söylemeyince Claude hangi hatayı aradığını bilemez, kendi bulduğunu düzeltir. Aciliyet ya da önem hangi hatayı kastettiğini söylemez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -204,15 +198,15 @@
           "id": "b10-d2-s2",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Claude'un kodu okuyarak bulamadığı bilgi hangisi?",
+          "soru": "Claude'a fiyat sayfasını düzelttireceksin. Hangisini istemde mutlaka söylemelisin?",
           "secenekler": [
-            "Bir dosyada yazan işlevin adı",
-            "Test dosyalarının hangi klasörde durduğu",
-            "Ekibin toplantıda aldığı bir karar"
+            "Dün kendi kendine verdiğin 'KDV dahil' kararını",
+            "Fiyat dosyasının hangi klasörde olduğunu",
+            "Sayfanın hangi yazı tipini kullandığını"
           ],
-          "dogru": 2,
-          "ipucu": "Claude neyi okuyabilir, neyi okuyamaz, onu ayır.",
-          "aciklama": "Toplantı kararı ya da birinin kafasındaki adım depoda yazılı değilse Claude onu okuyarak bulamaz. Dosyadaki ad ve klasör düzeni ise koddan okunur.",
+          "dogru": 0,
+          "ipucu": "Claude bunlardan hangisini dosyaları okuyarak bulamaz?",
+          "aciklama": "Kendi kendine verdiğin karar hiçbir dosyada yazmaz; Claude onu ancak sen söylersen bilir. Dosyanın yeri ve yazı tipi koddan okunur.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -221,34 +215,18 @@
           }
         },
         {
-          "id": "b10-d2-s3",
+          "id": "b10-d2-s4",
           "tur": "coktan",
           "kart": 2,
-          "soru": "Hangisi somut bir istem?",
+          "soru": "Bir hatanın iki makul çözümü vardı; Claude istemediğin yolu seçti, kod doğru çalışıyor. Kaynağı ne?",
           "secenekler": [
-            "Giriş hatasını düzelt.",
-            "Girişte bir sorun var galiba, kullanıcılar şikayet ediyor; bakıp düzeltir misin?",
-            "Süre dolunca giriş bozuluyor; girişle ilgili klasöre bak, hatayı gösteren test yaz."
+            "Claude kodu eksik okudu",
+            "Tercihini söylemedin; koddan okunmaz",
+            "Claude hep daha kısa çözümü seçer"
           ],
-          "dogru": 2,
-          "ipucu": "Hangisinde belirti ve bakılacak yer var?",
-          "aciklama": "Girişle ilgili klasörü anan istem belirtiyi, bakılacak yeri ve hatayı gösteren testi söyler. Öteki ikisinde belirti ya da bakılacak yer yok, Claude tahmine kalır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "'Giriş hatasını düzelt' yerine 'kullanıcılar oturum süresi dolunca girişin başarısız olduğunu söylüyor; src/auth/ altındaki token yenilemeye bak, hatayı yeniden üreten başarısız bir test yaz, sonra düzelt' dene."
-          }
-        },
-        {
-          "id": "b10-d2-s4",
-          "tur": "bosluk",
-          "kart": 3,
-          "soru": "İki makul yol arasında bir tercihin varsa onu ___ söyle, çünkü Claude bunu koddan okuyamaz.",
-          "secenekler": ["iş bitince", "baştan", "yalnız sorarsa"],
           "dogru": 1,
-          "ipucu": "Tercih ne zaman söylenirse Claude yanlış yola hiç girmez?",
-          "aciklama": "Tercih koddan okunamadığı için Claude onu ancak sen söylersen bilir. Önceden söylenince yanlış yolla zaman kaybedilmez.",
+          "ipucu": "Senin hangi yolu sevdiğin kodun neresinde yazıyor?",
+          "aciklama": "İki makul yol arasındaki tercih kodda yazmaz; söylemezsen Claude birini seçer. Kodu daha çok okumak bu tercihi göstermez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -257,18 +235,38 @@
           }
         },
         {
+          "id": "b10-d2-s7",
+          "tur": "coktan",
+          "kart": 3,
+          "soru": "Yeni bir klasörde hata aramıyorsun, fikir istiyorsun. 'Burada ne eksik?' yazmak yerinde mi?",
+          "secenekler": [
+            "Hayır; istem dosyayı ve belirtiyi taşımalı",
+            "Evet; fikir ararken belirsiz istem uygun",
+            "Hayır; Claude belirsiz istemle başlamaz"
+          ],
+          "dogru": 1,
+          "ipucu": "Belli bir hatayı düzeltmekle fikir toplamak arasındaki farkı düşün.",
+          "aciklama": "Keşifte belirsiz istem yerindedir; bedeli yolda biraz daha çok düzeltmektir. Dosya ve belirti, belli bir hatayı düzelttirirken gerekir.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/best-practices",
+            "kopya": "best-practices.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Belli bir şeyi düzeltmek yerine keşif yaparken 'bu dosyada neyi iyileştirirsin?' gibi belirsiz bir istem tamamen yerindedir; yolda biraz daha çok düzeltirsin, bedeli budur."
+          }
+        },
+        {
           "id": "b10-d2-s5",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "Masaüstündesin, elinde hatanın ekran görüntüsü var. Ne yaparsın?",
+          "kart": 4,
+          "soru": "Claude'a bir PDF faturadaki tutarları kontrol ettireceksin. Masaüstünde nasıl verirsin?",
           "secenekler": [
-            "Görüntüyü + düğmesiyle ekle ya da sürükleyip bırak",
-            "Hatayı kendi sözlerinle uzun uzun anlat",
-            "Hiç söyleme; Claude kodu okuyunca hatayı bulur"
+            "Önce metne çevirip yapıştırırım; PDF okunmaz",
+            "Dosyayı olduğu gibi isteme eklerim",
+            "Tutarları kendim tek tek yazarım"
           ],
-          "dogru": 0,
-          "ipucu": "Claude'un ihtiyaç duyduğu şey zaten elindeyse onu nasıl verirsin?",
-          "aciklama": "Resmi sayfalar elindeki şeyi tarif etmek yerine vermeni söyler. Masaüstünde görüntü istem kutusunun yanındaki + düğmesiyle ya da sürükleyip bırakarak eklenir.",
+          "dogru": 1,
+          "ipucu": "Claude'un ihtiyaç duyduğu şey zaten elinde mi?",
+          "aciklama": "Elindeki şeyi tarif etmek yerine ver: görüntü ve PDF + düğmesiyle ya da sürükleyerek isteme eklenir. Çevirmek ya da elle yazmak yeni yanlışa açıktır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -279,32 +277,21 @@
         {
           "id": "b10-d2-s6",
           "tur": "bosluk",
-          "kart": 6,
-          "soru": "Sesle yazdırdığın mesajda işe girecek bir tarih var. Bizim kurala göre Claude o tarihi ___.",
-          "secenekler": ["olduğu gibi kullanır", "önce teyit eder", "kendisi düzeltir"],
-          "dogru": 1,
-          "ipucu": "Bizim kuralın sesle yazdırılan mesajlar için ne istediğini düşün.",
-          "aciklama": "Kural, isim, oran ya da tarih işleme girecekse Claude'un önce teyit etmesini ister.",
+          "kart": 5,
+          "soru": "Mesajında 'oranı yüzde on beş yap' yazıyordu; Claude 'yüzde 15, doğru mu?' diye sordu. Bunu ___ yüzünden sordu.",
+          "secenekler": [
+            "oranı yanlış bulduğu",
+            "her sayının onay istediği",
+            "mesajın sesle yazılmış olabileceği"
+          ],
+          "dogru": 2,
+          "ipucu": "Bu mesajın nasıl yazılmış olabileceğini düşün.",
+          "aciklama": "Mesajların çoğu sesle yazıldığı için isim, oran ya da tarih işe girmeden teyit edilir. Claude oranı yanlış bulmuyor, doğru duyulup duyulmadığını soruyor.",
           "kaynak": {
-            "adres": "CLAUDE.md:74",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Kullanıcı mesajlarını çoğu zaman sesle yazdırır; isim, oran ya da tarih işleme girecekse önce teyit edilir.",
             "soz": "İsim, oran veya tarih işleme girecekse önce teyit et"
-          }
-        },
-        {
-          "id": "b10-d2-s7",
-          "tur": "dogru-yanlis",
-          "kart": 4,
-          "soru": "Belli bir şeyi düzeltmek yerine keşif yapıyorsan 'bu dosyada neyi iyileştirirsin?' gibi belirsiz bir istem de tamamen uygundur.",
-          "dogru": true,
-          "ipucu": "Keşif ile belli bir hatayı düzeltmenin farkını düşün.",
-          "aciklama": "Doğru. Keşifte belirsiz istem uygundur; bedeli, yol boyunca biraz daha çok düzeltme yapmaktır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Belli bir şeyi düzeltmek yerine keşif yaparken 'bu dosyada neyi iyileştirirsin?' gibi belirsiz bir istem tamamen yerindedir; yolda biraz daha çok düzeltirsin, bedeli budur."
           }
         }
       ]
@@ -318,64 +305,53 @@
         "Bizdeki kural yazma ilkesinde sebebin yerini anlatabilir."
       ],
       "anlatim": [
-        "Talimatın arkasındaki gerekçeyi (motivation) söylemek Claude'a amacını anlatır. Böylece daha hedefe yönelik cevap verir.",
-        "Resmi örnek: 'ASLA üç nokta kullanma' yerine 'Cevabın sesli okunacak, okuma motoru üç noktayı nasıl söyleyeceğini bilmez, bu yüzden kullanma.' Claude açıklamadan genelleme yapabilir.",
-        "Bizim CLAUDE.md'de de yazılı: 'Kural kaydederken bir sebep olmalı; istisnai durum kural yapılmaz.'",
-        "Plan kapısındaki plan da neyin çıkacağını yazarken her biri için gerekçe taşır."
+        "Talimatın arkasındaki gerekçeyi (motivation) söylemek Claude'a amacını anlatır. Claude bu açıklamadan genelleme yapabilir.",
+        "Resmi örnek: 'ASLA üç nokta kullanma' yerine 'Cevabın sesli okunacak, okuma motoru üç noktayı nasıl söyleyeceğini bilmez, bu yüzden kullanma.'",
+        "Bizim CLAUDE.md'de: 'Kural kaydederken bir sebep olmalı; istisnai durum kural yapılmaz.' Sebep kuralın yanına değil, KARARLAR maddesine yazılır.",
+        "Plan kapısındaki plan da neyin çıkacağını yazarken her biri için gerekçe taşır.",
+        "Bu klasörde kural yazılırken büyük harf, 'asla', 'her zaman' gibi vurgu yalnız gerçek bir sınır için kullanılır."
       ],
       "terimler": [
-        {"tr": "gerekçe", "en": "motivation", "aciklama": "Bir talimatın neden istendiğini söyleyen açıklama."}
+        {
+          "tr": "gerekçe",
+          "en": "motivation",
+          "aciklama": "Bir talimatın neden istendiğini söyleyen açıklama."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d3-s1",
           "tur": "coktan",
-          "kart": 0,
-          "soru": "Talimatın nedenini söylemek ne sağlar?",
+          "kart": 4,
+          "soru": "Claude 'başlıklar kısa olsun' kuralına 'ASLA' ve 'her zaman' sözlerini bilerek koymadı. Neden?",
           "secenekler": [
-            "Claude'un cevabı daha kısa ve maddeler halinde yazmasını",
-            "Claude'un daha hızlı çalışmasını",
-            "Talimatın uzun oturumda hiçbir turda çiğnenmemesini",
-            "Claude'un amacı anlayıp hedefe yönelik cevap vermesini"
-          ],
-          "dogru": 3,
-          "ipucu": "Neden bilinince Claude hangi bilgiye sahip olur?",
-          "aciklama": "Gerekçe Claude'a hedeflerin hakkında daha çok bilgi verir, o da cevabını buna göre yöneltir.",
-          "kaynak": {
-            "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
-            "kopya": "prompting-best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Talimatların arkasındaki bağlamı ya da gerekçeyi vermek, örneğin bir davranışın neden önemli olduğunu açıklamak, Claude'a hedeflerin hakkında daha çok bilgi verir ve daha hedefe yönelik cevaplar vermesine yardım eder."
-          }
-        },
-        {
-          "id": "b10-d3-s2",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Hangi talimat rehberin önerdiği biçimde?",
-          "secenekler": [
-            "ASLA üç nokta kullanma.",
-            "Cevabın sesli okunacak, okuma motoru üç noktayı okuyamaz; kullanma.",
-            "Üç nokta kullanma; bu çok önemli, KESİNLİKLE ve HİÇBİR ZAMAN kullanma."
+            "Kural satırları büyük harf taşıyamaz",
+            "Bu satır gerçek bir sınır değil",
+            "Claude vurgu sözcüklerini hiç kullanmaz"
           ],
           "dogru": 1,
-          "ipucu": "Hangi talimat Claude'a nedenini de söylüyor?",
-          "aciklama": "Sesli okumayı anan talimat yasağın nedenini söyler, Claude da bu açıklamadan genelleme yapabilir. Büyük harf ve vurgu neden söylemez.",
+          "ipucu": "Bu klasörde vurgunun hangi kurallara ayrıldığını düşün.",
+          "aciklama": "Vurgu bu klasörde yalnız gerçek sınırlar için kullanılır; başlık uzunluğu bir üslup kuralıdır.",
           "kaynak": {
-            "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
-            "kopya": "prompting-best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Rehberin örneğinde 'ASLA üç nokta kullanma' yerine, cevabın sesli okunacağını ve okuma motorunun üç noktayı telaffuz edemeyeceğini söyleyen talimat daha etkili sayılır."
+            "adres": ".claude/skills/sistem-metni/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Vurgu ve kaygı sözleri (büyük harf, 'her zaman', 'asla') yalnız gerçek bir sınır için kullanılır.",
+            "soz": "yalnız gerçek bir sınır için"
           }
         },
         {
           "id": "b10-d3-s3",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 1,
-          "soru": "Rehbere göre Claude, bir talimatın açıklamasından genelleme yapabilir.",
-          "dogru": true,
-          "ipucu": "Sesli okuma örneğinin hemen ardındaki cümleyi düşün.",
-          "aciklama": "Doğru. Neden bilinince Claude yalnız o satırı değil, arkasındaki amacı da göz önüne alabilir.",
+          "soru": "'Üç nokta kullanma; cevap sesli okunacak' dedin. Claude ok işaretini de kullanmadı. Neden?",
+          "secenekler": [
+            "Yasağın amacını bilip benzerine uyguladı",
+            "Talimatı yanlış anlayıp fazlasını yasakladı",
+            "Ok işaretini zaten hiç kullanmaz"
+          ],
+          "dogru": 0,
+          "ipucu": "Claude yasağın arkasındaki amacı biliyor muydu?",
+          "aciklama": "Claude talimatın nedenini bilince yalnız o satırı değil amacı da uygular. Sesli okunamayan başka işaretten de kaçınması bu genellemedir.",
           "kaynak": {
             "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
             "kopya": "prompting-best-practices.md",
@@ -384,54 +360,82 @@
           }
         },
         {
-          "id": "b10-d3-s4",
-          "tur": "bosluk",
-          "kart": 2,
-          "soru": "Bizim CLAUDE.md'ye göre kural kaydederken bir ___ olmalı; istisnai durum kural yapılmaz.",
-          "secenekler": ["sebep", "tarih", "onay numarası"],
-          "dogru": 0,
-          "ipucu": "Kartta tırnak içindeki satırın ilk yarısını hatırla.",
-          "aciklama": "Satır, nedeni olmayan kuralın kaydedilmemesini ister. Tek seferlik istisnai durum da kural yapılmaz.",
+          "id": "b10-d3-s5",
+          "tur": "coktan",
+          "kart": 0,
+          "soru": "'Müşteri adlarını rapora yazma' dedin; Claude bir e-posta taslağına ad yazdı. En kalıcı düzeltme hangisi?",
+          "secenekler": [
+            "'ASLA' sözüyle büyük harflerle yazarım",
+            "Adların neden gizli olduğunu eklerim",
+            "E-posta için ayrı yasak eklerim"
+          ],
+          "dogru": 1,
+          "ipucu": "Claude yasağı başka yerlere nasıl taşıyabilir?",
+          "aciklama": "Nedeni bilen Claude yasağı benzer yerlere de uygular. Ayrı yasak yalnız o yeri kapatır, büyük harf ise nedeni söylemez.",
           "kaynak": {
-            "adres": "CLAUDE.md:101",
-            "okuma": "2026-11-17",
+            "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+            "kopya": "prompting-best-practices.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Talimatın gerekçesini vermek Claude'un hedefe yönelik cevap vermesine yardım eder ve Claude açıklamadan genelleme yapabilir."
+          }
+        },
+        {
+          "id": "b10-d3-s4",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "Acil bir müşteri için 'bugün raporu İngilizce yaz' dedin. Bu kalıcı kural olmalı mı?",
+          "secenekler": [
+            "Evet; her isteğin kural olur",
+            "Evet; sebebi var, acil müşteri",
+            "Hayır; bir kerelik istisna"
+          ],
+          "dogru": 2,
+          "ipucu": "Kuralın tek seferlik durumlar için ne dediğini düşün.",
+          "aciklama": "Kural kaydı bir sebep ister ama istisnai durum kural yapılmaz. Acil müşteri bir sebeptir, yine de bu istek o güne aittir.",
+          "kaynak": {
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Kural kaydederken bir sebep olmalı; istisnai durum kural yapılmaz.",
             "soz": "Kural kaydederken bir sebep olmalı; istisnai durum kural yapılmaz"
           }
         },
         {
-          "id": "b10-d3-s5",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Soruların kısa olmasını istiyorsun. Hangisi gerekçe taşır?",
+          "id": "b10-d3-s7",
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "CLAUDE.md'de bir kuralın neden konduğu yazmıyor. Nedenini bulmak için ___ bakarsın.",
           "secenekler": [
-            "En çok 200 karakter tut; bu kural kesindir, tartışılmaz.",
-            "SORULAR KISA OLSUN, bu çok önemli.",
-            "En çok 200 karakter tut, çünkü telefonda okunacaklar."
+            "satırın altındaki nota",
+            "KARARLAR'daki maddesine",
+            "kuralın skill dosyasına"
           ],
-          "dogru": 2,
-          "ipucu": "Hangisinde 'neden' sorusunun cevabı var?",
-          "aciklama": "Telefonu anan tarif hem ölçüyü hem nedenini söyler. Yalnız ölçü vermek, kesinlik vurgusu ya da büyük harf neden söylemez.",
+          "dogru": 1,
+          "ipucu": "Bu klasörde sebebin kural satırında durup durmadığını düşün.",
+          "aciklama": "Kuralın sebebi, tarihi ve mekanizması kural satırına değil KARARLAR maddesine yazılır; kural metni yalnız kuralı taşır.",
           "kaynak": {
-            "adres": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
-            "kopya": "prompting-best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Talimatın arkasındaki gerekçeyi, örneğin bir davranışın neden önemli olduğunu açıklamak Claude'un daha hedefe yönelik cevap vermesine yardım eder."
+            "adres": ".claude/skills/sistem-metni/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kuralın gerekçesi, tarihi ve mekanizması kuralın yanına değil KARARLAR maddesine yazılır.",
+            "soz": "kuralın yanına değil KARARLAR maddesine yazılır"
           }
         },
         {
           "id": "b10-d3-s6",
           "tur": "coktan",
           "kart": 3,
-          "soru": "CLAUDE.md'deki plan kapısına göre plan, neyin çıkacağını yazarken her biri için ne ekler?",
-          "secenekler": ["Bir teslim tarihi", "Bir sorumlu adı", "Bir gerekçe"],
+          "soru": "Claude'un planında bir dosyanın silineceği yazıyor, nedeni yok. Kurala göre bu plan nasıl?",
+          "secenekler": [
+            "Tamam; plan sunulması yeter",
+            "Tamam; neden yalnız sorulursa yazılır",
+            "Eksik; çıkan her şeyin nedeni yazılmalı"
+          ],
           "dogru": 2,
-          "ipucu": "Kartta planın, çıkacak her şey için neyi taşıdığına bak.",
-          "aciklama": "Plan, neyin çıkacağını ve her biri için nedenini yazar. Böylece yalnız ne olacağını değil neden olacağını da görürsün.",
+          "ipucu": "Planın çıkan şeylerden hangileri için gerekçe taşıdığını düşün.",
+          "aciklama": "Plan kapısındaki plan çıkan her şey için gerekçe taşır; nedeni yazmayan madde eksiktir. Planın sunulmuş olması bu eksiği kapatmaz.",
           "kaynak": {
-            "adres": "CLAUDE.md:43",
-            "okuma": "2026-11-17",
-            "dayanak": "Plan kapısındaki plan bulgu özeti, yapılacaklar sırası, neyin çıkacağı ve her biri için gerekçe, riskler, en güçlü karşı argüman ve en az iki seçenek taşır.",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Plan kapısındaki plan neyin çıkacağını ve her biri için gerekçeyi taşır.",
             "soz": "neyin çıkacağı ve her biri için gerekçe"
           }
         }
@@ -451,26 +455,29 @@
         "Kontrolü istemde verirsen ne zaman yeterli olduğuna Claude karar verir. Stop kancasını ise Claude Code zorlar; üçüncü yol, kodu yazmamış yeni bir alt ajandır.",
         "Hangi yolu seçersen seç, kanıt iste: koşulan komut ve çıktısı ya da ekran görüntüsü. 'Bütün testler geçti' tek başına az şey söyler.",
         "Testlerin geçmesi de tek başına yetmez: bir test sırf geçsin diye gevşetilmiş olabilir. Bu yüzden değişiklik farkı da okunur.",
-        "Bizim ajan görev kalıbında bitti ölçütü ölçülebilir, komutla sınanabilir bir şarttır. Örnek: dosya var, her derste en az 6 soru, ünlem sayısı 0.",
-        "CLAUDE.md'de de yazılı: 'Değiştirdiğin şeyi basit bir testle sına ve sonucunu yaz. Sınanmamış değişiklik bitmiş sayılmaz.'"
+        "Bizim ajan görev kalıbında bitti ölçütü ölçülebilir, komutla sınanabilir bir şarttır. Örnek: dosya var, her derste en az 6 soru, ünlem sayısı 0."
       ],
       "terimler": [
-        {"tr": "kontrol", "en": "check", "aciklama": "Claude'un koşup geçti ya da kaldı sonucunu okuyabildiği şey: test, betik, ekran görüntüsü."}
+        {
+          "tr": "kontrol",
+          "en": "check",
+          "aciklama": "Claude'un koşup geçti ya da kaldı sonucunu okuyabildiği şey: test, betik, ekran görüntüsü."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d4-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Claude'un elinde işin bitip bitmediğini söyleyen bir şey yoksa ne olur?",
+          "soru": "Claude 'bitti' dedi; sayfayı açınca bir düğme çalışmıyor. Claude bunu neden fark etmedi?",
           "secenekler": [
-            "İşi hiç bitirmez, sen durdurana dek sürer",
-            "Bitmiş görününce durur, hatayı sen fark edersin",
-            "Durmadan önce kendi test dosyasını yazmak zorunda kalır"
+            "Model düğme işinde zayıf kaldı",
+            "Elinde işi sınayacak bir şey yoktu",
+            "Düğme işini bilerek sonraki tura bıraktı"
           ],
           "dogru": 1,
-          "ipucu": "Claude'un durma kararı neye dayanır, onu düşün.",
-          "aciklama": "Kontrol yoksa Claude'un elinde yalnız işin bitmiş görünmesi vardır. Bu durumda test eden sen olursun ve hata sen fark edene kadar kalır.",
+          "ipucu": "Claude durma kararını neye bakarak verir?",
+          "aciklama": "Claude iş bitmiş göründüğünde durur; sınayacak bir şeyi yoksa hatayı ancak sen görürsün. Sorun modelde değil, kontrolün yokluğundadır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -479,17 +486,38 @@
           }
         },
         {
-          "id": "b10-d4-s2",
-          "tur": "eslestir",
-          "kart": 2,
-          "soru": "Kontrolün yollarını, son sözün kimde olduğuyla eşleştir.",
-          "ciftler": [
-            ["İstemde 'testleri koş, geçene dek sürdür'", "Ne zaman yeterli olduğuna Claude karar verir"],
-            ["Stop kancası", "Claude Code her seferinde zorlar"],
-            ["Kodu yazmayan biri", "Konuşmayı görmemiş yeni bir alt ajan inceler"]
+          "id": "b10-d4-s6",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Doğru sonucunu bildiğin beş örnekle bir hesaplamayı düzelttireceksin. Örnekleri nasıl kullanırsın?",
+          "secenekler": [
+            "İsteme koyup sonuçları onlarla sınamasını isterim",
+            "İş bitince örnekleri kendim denerim",
+            "Vermem; Claude kendi örneğini bulur"
           ],
-          "ipucu": "Bir uçta Claude'un kendi kararı, öbür uçta Claude Code'un zorlaması var.",
-          "aciklama": "İstemdeki kontrolde son söz Claude'dadır, Stop kancasını ise Claude Code her seferinde uygular. Kodu yazmamış gözden geçirici, kodu üreten düşünceden etkilenmez.",
+          "dogru": 0,
+          "ipucu": "Hatayı kimin yakalamasını istersin: senin mi, Claude'un mu?",
+          "aciklama": "Örnekler Claude'un koşup geçti ya da kaldı diye okuyabildiği bir kontroldür; bozulanı kendisi düzeltir. Sonradan sen denersen hatayı yine sen yakalarsın.",
+          "kaynak": {
+            "adres": "https://code.claude.com/docs/en/best-practices",
+            "kopya": "best-practices.md",
+            "okuma": "2026-11-15",
+            "dayanak": "Claude'a işin bitip bitmediğini söyleyen koşulabilir bir şey vermezsen test takımı sen olursun; istemde testleri koşup geçene kadar sürdürmesini söylemek kurulumsuz çalışan yoldur."
+          }
+        },
+        {
+          "id": "b10-d4-s2",
+          "tur": "bosluk",
+          "kart": 2,
+          "soru": "'Testler geçene dek sürdür' dedin; Claude iki test kalmışken durdu. Çünkü istemdeki kontrolde durma kararını ___ verir.",
+          "secenekler": [
+            "Claude'un kendisi",
+            "Stop kancası",
+            "Claude Code"
+          ],
+          "dogru": 0,
+          "ipucu": "Kontrolü nereye koydun ve orada son söz kimde?",
+          "aciklama": "Kontrol istemdeyse ne zaman yeteceğine Claude kendisi karar verir. Her seferinde zorlanmasını istiyorsan Claude Code'un uyguladığı Stop kancası gerekir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -498,39 +526,18 @@
           }
         },
         {
-          "id": "b10-d4-s3",
-          "tur": "coktan",
-          "kart": 5,
-          "soru": "Hangisi ölçülebilir, komutla sınanabilir bir bitti ölçütü?",
-          "secenekler": [
-            "Sayfa güzel ve düzenli görünsün, herkes beğensin.",
-            "İş düzgün bitsin.",
-            "Testler geçsin ve dosyada ünlem sayısı 0 olsun.",
-            "Claude memnun kalana kadar sürsün."
-          ],
-          "dogru": 2,
-          "ipucu": "Hangisini bir komutla sayıp evet ya da hayır diyebilirsin?",
-          "aciklama": "Test sonucu ve ünlem sayısı bir komutla ölçülür. Güzel ya da düzgün olmak ölçülemez, kişiye göre değişir.",
-          "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:21",
-            "okuma": "2026-11-17",
-            "dayanak": "Görev kalıbındaki bitti ölçütü ölçülebilir, komutla sınanabilir bir şarttır.",
-            "soz": "ölçülebilir, komutla sınanabilir şart"
-          }
-        },
-        {
           "id": "b10-d4-s4",
           "tur": "coktan",
           "kart": 3,
-          "soru": "Claude 'bütün testler geçti' dedi. Resmi sayfaya göre kanıt olarak ne istersin?",
+          "soru": "Claude 'bütün bağlantılar çalışıyor' dedi. Kanıt olarak hangisi en iyisi?",
           "secenekler": [
-            "Bu sözü yeterli sayar, başka şey istemezsin",
-            "Koşulan komutu ve çıktısını",
-            "Kaç testin geçtiğini söylemesini"
+            "Hangi bağlantıları düzelttiğinin listesi",
+            "Kaç bağlantıya baktığını ayrıntısıyla yazması",
+            "Bağlantıları sınayan komutun çıktısı"
           ],
-          "dogru": 1,
-          "ipucu": "Bir söz ile görebildiğin bir kanıt arasındaki farkı düşün.",
-          "aciklama": "Sayfa koşulan komutu ve çıktısını ya da ekran görüntüsünü istemeni söyler. 'Bütün testler geçti' tek başına çok az şey anlatır.",
+          "dogru": 2,
+          "ipucu": "Bir söz ile senin görebildiğin bir şey arasındaki farkı düşün.",
+          "aciklama": "Kanıt görebildiğin şeydir: koşulan komut ve çıktısı ya da ekran görüntüsü. Düzeltme listesi ve bakılan sayı yapılanı söyler, sonucu göstermez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -539,54 +546,43 @@
           }
         },
         {
-          "id": "b10-d4-s5",
-          "tur": "bosluk",
-          "kart": 6,
-          "soru": "CLAUDE.md'ye göre ___ değişiklik bitmiş sayılmaz.",
-          "secenekler": ["küçük", "sınanmamış", "gece yapılan"],
-          "dogru": 1,
-          "ipucu": "Satırın baş kısmı değişikliğin basit bir testle yoklanmasını ister.",
-          "aciklama": "Kural, değişikliğin basit bir testle sınanmasını ve sonucunun yazılmasını ister. Test yoksa iş bitmiş sayılmaz.",
-          "kaynak": {
-            "adres": "CLAUDE.md:52",
-            "okuma": "2026-11-17",
-            "dayanak": "Değiştirdiğin şeyi basit bir testle sına ve sonucunu yaz; sınanmamış değişiklik bitmiş sayılmaz.",
-            "soz": "Sınanmamış değişiklik bitmiş sayılmaz"
-          }
-        },
-        {
-          "id": "b10-d4-s6",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Hangi istem Claude'a koşabileceği bir kontrol veriyor?",
-          "secenekler": [
-            "Düzelt, testleri koş, geçene dek sürdür; çıktıyı göster.",
-            "Düzelt, emin olunca bana kısaca 'bitti' de.",
-            "Düzelt, ben sonra bakarım."
-          ],
-          "dogru": 0,
-          "ipucu": "Hangisinde geçti ya da kaldı diye dönen bir şey var?",
-          "aciklama": "Testleri koşturan istem kontrolü isteme koyar ve çıktıyı kanıt olarak ister. Sayfaya göre bu yol kurulum gerektirmeden her işte çalışır.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "İstemde 'sonra testleri koş ve geçene kadar sürdür' demek, Claude'un ne zaman yeterli olduğuna kendisinin karar verdiği ve her işte kurulumsuz çalışan yoldur."
-          }
-        },
-        {
           "id": "b10-d4-s7",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 4,
-          "soru": "Testlerin geçmesi tek başına yetmez; bir test sırf geçsin diye gevşetilmiş olabilir, bu yüzden fark da okunur.",
-          "dogru": true,
-          "ipucu": "Kartın testler ve değişiklik farkı hakkında ne dediğini hatırla.",
-          "aciklama": "Doğru. Fark okunarak hiçbir testin sırf geçsin diye zayıflatılmadığı da kontrol edilir.",
+          "soru": "Claude 'testler geçiyor' dedi ve çıktıyı gösterdi. Onaylamadan önce ne daha istersin?",
+          "secenekler": [
+            "Testleri bir kez daha koşmasını",
+            "Birkaç yeni test daha yazmasını",
+            "Testlerde neyin değiştiğini göstermesini"
+          ],
+          "dogru": 2,
+          "ipucu": "Testin kendisinin de değişmiş olabileceğini düşün.",
+          "aciklama": "Bir test sırf geçsin diye gevşetilmiş olabilir; bunu yalnız değişiklik farkı gösterir. Aynı testi yeniden koşmak gevşetilmiş testi de geçirir.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-in-action/verification-skills",
             "kopya": "ders-action-03-verification-skills.md",
             "okuma": "2026-11-15",
             "dayanak": "Bir test ne olursa olsun geçecek biçimde sessizce gevşetilebilir; bu yüzden beceri farkı okur ve testlerin zayıflatılmadığını doğrular."
+          }
+        },
+        {
+          "id": "b10-d4-s3",
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Ajan görevinde 'Bitti ölçütü: sayfa güzel görünsün' yazıyor. Kalıba göre bu ölçüt nasıl?",
+          "secenekler": [
+            "Kalıba uymaz; bir komutla sınanamaz",
+            "Uyar; ajan ekran görüntüsüyle gösterir",
+            "Uyar; işi denetleyen ajan beğenirse biter"
+          ],
+          "dogru": 0,
+          "ipucu": "Kalıbın bitti ölçütünden neyi şart koştuğunu düşün.",
+          "aciklama": "Kalıpta bitti ölçütü komutla sınanabilir bir şarttır; güzellik geçti ya da kaldı diye ölçülmez. Ekran görüntüsü de beğeniyi değil görünüşü gösterir.",
+          "kaynak": {
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Görev kalıbındaki bitti ölçütü ölçülebilir, komutla sınanabilir bir şarttır.",
+            "soz": "ölçülebilir, komutla sınanabilir şart"
           }
         }
       ]
@@ -595,35 +591,39 @@
       "id": "b10-d5",
       "baslik": "Ne istediğini bilmezken: Claude seni sorgulasın",
       "hedefler": [
-        "'Beni sorgula, sonra tarifi dosyaya yaz' isteminin nasıl kurulduğunu anlatabilir.",
+        "Ne istediğini bilmezken Claude'dan seni sorgulamasını istemeyi anlatabilir.",
         "Tarif dosyası yazıldıktan sonra yeni oturum açmanın nedenini anlatabilir.",
         "Bizde Claude'un sana soru sorma biçimini anlatabilir."
       ],
       "anlatim": [
-        "Ne istediğini tam bilmiyorsan her şeyi önceden çözmen gerekmez. Claude'dan seni sorgulamasını (interview) iste.",
-        "Örnek istem: 'Bunu henüz düşünmedim. Tarifi yazabilecek hale gelene kadar beni sorgula, sonra SPEC.md dosyasına yaz.'",
+        "Ne istediğini tam bilmiyorsan her şeyi önceden çözmen gerekmez. Claude'dan seni sorgulamasını (interview), sonra tarifi bir dosyaya yazmasını iste.",
         "Claude karar vermediğin yerler için çoktan seçmeli sorular sorar. Cevaplar bir tarif oluşturana kadar sürer.",
-        "SPEC.md yazılınca işi yeni bir oturumda başlat. Yapım temiz bir bağlamla ve yazılı bir bitti tanımıyla başlar.",
-        "Bizde 'durum diskte yaşar': önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez.",
-        "Bizim soru biçimi kuralı: Claude notunu anlamadıysa tahmin etmez, seçenekli sorar. Seçenekler a, b, c harfiyle gelir, önerdiği '(önerilen)' diye işaretlenir."
+        "Tarif dosyası yazılınca işi yeni bir oturumda başlat. Yapım temiz bir bağlamla ve yazılı bir bitti tanımıyla başlar.",
+        "Bizde 'durum diskte yaşar': önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez. Ara bulgu DURUM dosyasına tek satır girer.",
+        "Soru biçimi: Claude notunu anlamadıysa tahmin etmez, seçenekli sorar. Seçenekler a, b, c harfiyle gelir; önerdiği '(önerilen)' diye işaretlenir.",
+        "Bir seçimi yapacak bilgin yoksa 'bilgim yok' de. Claude önce ayrı 3-5 maddeyle neye bakılacağını anlatır, seçimi sana bırakır."
       ],
       "terimler": [
-        {"tr": "sorgulamak", "en": "interview", "aciklama": "Claude'un, tarif yazılabilecek hale gelene kadar sana soru sorması."}
+        {
+          "tr": "sorgulamak",
+          "en": "interview",
+          "aciklama": "Claude'un, tarif yazılabilecek hale gelene kadar sana soru sorması."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d5-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Ne istediğini tam bilmiyorsan resmi sayfa ne öneriyor?",
+          "soru": "Bildirim özelliği istiyorsun ama nasıl olacağını hiç düşünmedin. İlk mesajın ne olur?",
           "secenekler": [
-            "Her şeyi kendin çözene kadar Claude'a hiç yazmamak",
-            "Claude'dan seni sorgulamasını istemek",
-            "Claude'a 'en iyisini sen bil' deyip serbest bırakmak"
+            "Önce her ayrıntıyı kendim çözerim",
+            "Beni sorularla netleştirmesini isterim",
+            "'En iyisini sen bil' derim"
           ],
           "dogru": 1,
-          "ipucu": "Eksik kararları kimin, nasıl ortaya çıkaracağını düşün.",
-          "aciklama": "Sayfa, işi önceden çözmen gerekmediğini, Claude'un seni sorgulayabileceğini söyler. Sorular karar vermediğin yerleri ortaya çıkarır.",
+          "ipucu": "Henüz vermediğin kararları kim, nasıl ortaya çıkarabilir?",
+          "aciklama": "Her şeyi önceden çözmen gerekmez; Claude seni sorgulayıp eksik kararları ortaya çıkarır. 'En iyisini sen bil' ayrıntıyı tahmine bırakır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -632,34 +632,18 @@
           }
         },
         {
-          "id": "b10-d5-s2",
-          "tur": "sirala",
-          "kart": 3,
-          "soru": "Ne istediğini bilmediğin bir işte adımları sıraya koy.",
-          "adimlar": [
-            "Fikrini ve henüz düşünmediğini Claude'a söyle",
-            "Tarif yazılabilene kadar seni sorgulamasını iste",
-            "Claude'un çoktan seçmeli sorularını cevapla",
-            "Claude tarifi SPEC.md dosyasına yazsın",
-            "Yeni bir oturum aç ve işi bu dosyadan yaptır"
-          ],
-          "ipucu": "Dosya yazılmadan yeni oturuma geçilmez.",
-          "aciklama": "Önce sorgulama tarifi çıkarır, tarif dosyaya yazılır, yapım yeni oturumda başlar. Böylece yapım temiz bağlamla ve yazılı bir bitti tanımıyla başlar.",
-          "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Claude'dan, tarifi yazabilecek hale gelene kadar seni sorgulamasını ve sonra SPEC.md'ye yazmasını iste; SPEC.md oluşunca yapım için yeni bir oturum başlat."
-          }
-        },
-        {
           "id": "b10-d5-s3",
-          "tur": "dogru-yanlis",
-          "kart": 2,
-          "soru": "Sorgulama sırasında Claude, karar vermediğin noktalar için çoktan seçmeli sorular getirir.",
-          "dogru": true,
-          "ipucu": "Kartta Claude'un sorgulama sırasında sorduğu soruların biçimine bak.",
-          "aciklama": "Doğru. Claude henüz netleştirmediğin yerler için çoktan seçmeli sorularla döner ve cevaplar bir tarif oluşturana kadar sorar.",
+          "tur": "coktan",
+          "kart": 1,
+          "soru": "Sorgulamada Claude 'giriş e-postayla mı, telefonla mı?' diye sordu. Bu soru neden geldi?",
+          "secenekler": [
+            "Claude bu konuyu bilmediği için sana soruyor",
+            "İsteğin anlaşılmadı, baştan soruyor",
+            "Bunu henüz seçmedin; tarif için gerekiyor"
+          ],
+          "dogru": 2,
+          "ipucu": "Claude'un sorgulamada hangi yerleri sorduğunu düşün.",
+          "aciklama": "Sorgulamada Claude senin henüz karar vermediğin yerleri seçenekli sorularla sorar; cevaplar tarifi oluşturur. Soru bilgisizlikten ya da yanlış anlamadan gelmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -670,16 +654,16 @@
         {
           "id": "b10-d5-s4",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "SPEC.md yazılınca işi neden yeni oturumda başlatırsın?",
+          "kart": 2,
+          "soru": "Sorgulamanın oturumunda yapıma geçtin; Claude konuşmada geçen ama tarifte olmayan bir fikri uyguladı. Neden?",
           "secenekler": [
-            "Eski oturum yazılan SPEC.md dosyasını artık okuyamadığı için",
-            "Yeni oturum daha ucuz olduğu için",
-            "Temiz bağlamla ve yazılı bitti tanımıyla başlamak için"
+            "Konuşmadaki her söz tarife kendiliğinden eklenir",
+            "Oturum bütün konuşmayı taşıyordu",
+            "Claude tarifi yalnız öneri sayar"
           ],
-          "dogru": 2,
-          "ipucu": "Uzun bir sorgulamadan sonra oturumda neler birikmiş olur?",
-          "aciklama": "Yeni oturum sorgulamanın kalabalığını taşımaz ve elinde yazılı tarif vardır. Aynı dosya sonra gözden geçirmede de ölçü olur.",
+          "dogru": 1,
+          "ipucu": "Yeni bir oturumun eskisinden farkı neydi?",
+          "aciklama": "Aynı oturum sorgulamadaki bütün konuşmayı bağlamında taşır. Yeni oturum temiz bağlamla ve yalnız yazılı tarifle başlar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/best-practices",
             "kopya": "best-practices.md",
@@ -688,59 +672,63 @@
           }
         },
         {
-          "id": "b10-d5-s5",
-          "tur": "coktan",
-          "kart": 1,
-          "soru": "Uygulamaya hatırlatma eklemek istiyorsun, ayrıntıyı düşünmedin. Hangi istemle başlarsın?",
+          "id": "b10-d5-s7",
+          "tur": "bosluk",
+          "kart": 3,
+          "soru": "Claude araştırmanın ortasında bir ara bulgu çıkardı. Kurala göre bu bulgu ___ yazılır.",
           "secenekler": [
-            "Henüz düşünmedim; beni sorgula, sonra tarifi dosyaya yaz.",
-            "Hatırlatma özelliği ekle; bütün ayrıntıları sen kendin belirle.",
-            "Hatırlatma ekle, en iyisini sen bil."
+            "kapanışta, rapora",
+            "hemen, DURUM'a kısa bir satırla",
+            "hemen, ayrı bir rapor dosyasına"
           ],
-          "dogru": 0,
-          "ipucu": "Hangi istem Claude'a henüz karar vermediğini söylüyor?",
-          "aciklama": "Sorgulama isteyen istem eksik kararları sorularla ortaya çıkarır ve sonucu dosyaya yazdırır. Öteki ikisi ayrıntıyı Claude'un tahminine bırakır.",
+          "dogru": 1,
+          "ipucu": "Kuralın ara bulgunun zamanı ve yeri için ne dediğini düşün.",
+          "aciklama": "Önemli çıktı beklemeden diske yazılır; ara bulgu ayrı rapor değil, DURUM'a tek satırdır. Rapor yalnız bir kararı değiştirecekse yazılır.",
           "kaynak": {
-            "adres": "https://code.claude.com/docs/en/best-practices",
-            "kopya": "best-practices.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Ne istediğini tam bilmediğinde Claude'dan, tarifi yazabilecek hale gelene kadar seni sorgulamasını ve sonra dosyaya yazmasını iste."
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Rapor ancak bir kararı değiştirecekse yazılır; ara bulgu DURUM'a tek satır girer.",
+            "soz": "Ara bulgu DURUM'a tek satır"
           }
         },
         {
           "id": "b10-d5-s6",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "Claude notunu anlamadı. Bizim soru biçimi kuralına göre ne yapar?",
+          "kart": 4,
+          "soru": "'Şu rapor işi, geçen sefer gibi' diye yarım bir not yazdın. Kurala göre Claude ne yapar?",
           "secenekler": [
-            "En makul anlamı tahmin edip devam eder",
-            "Tahmin etmez, seçenekli bir soru sorar",
-            "Notu atlar, sonraki işe geçer"
+            "Son raporu bulup yeniden yapar",
+            "Raporu seçenek sunarak sorar",
+            "Ne demek istediğini açık uçlu sorar"
           ],
           "dogru": 1,
-          "ipucu": "Soru biçimi kuralının anlaşılmayan not için ne dediğini düşün.",
-          "aciklama": "Not anlaşılmadıysa Claude tahmin etmez, seçenekli bir soru sorar.",
+          "ipucu": "Kuralın anlaşılmayan not için ne dediğini düşün.",
+          "aciklama": "Not anlaşılmadıysa Claude tahmin etmez, a, b, c seçenekli sorar. Son raporu kendiliğinden yapmak tahmindir; açık uçlu soru da kuralın biçimi değil.",
           "kaynak": {
-            "adres": "CLAUDE.md:47",
-            "okuma": "2026-11-17",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
             "dayanak": "Kullanıcının notu anlaşılmadıysa tahmin edilmez, seçenekli sorulur.",
             "soz": "Notumu anlamadıysan tahmin etme, seçenekli sor"
           }
         },
         {
-          "id": "b10-d5-s7",
-          "tur": "bosluk",
-          "kart": 4,
-          "soru": "CLAUDE.md'ye göre durum diskte yaşar: önemli çıktı ___ diske yazılır, kapanış beklenmez.",
-          "secenekler": ["kapanışta", "üretildiği anda", "kullanıcı onaylayınca"],
-          "dogru": 1,
-          "ipucu": "Satırın sonu kapanışın beklenmediğini söylüyor; buna göre zamanı düşün.",
-          "aciklama": "Satır, önemli çıktının hemen diske yazılmasını ister, kapanışı beklemez. SPEC.md gibi bir tarif dosyası da bu ilkeye uyar.",
+          "id": "b10-d5-s8",
+          "tur": "coktan",
+          "kart": 5,
+          "soru": "Claude 'önbellek a) 1 saat b) 1 gün' diye sordu; anlamını bilmiyorsun. En iyi hamlen?",
+          "secenekler": [
+            "Bilmediğini yazarsın; Claude önce açıklar",
+            "Önerileni seçersin; anlaman gerekmez",
+            "Bilmediğini yazarsın; Claude önerileni seçer"
+          ],
+          "dogru": 0,
+          "ipucu": "Kuralın, bilmediğin bir seçimde Claude'a ne yaptırdığını düşün.",
+          "aciklama": "'Bilgim yok' dersen Claude önce 3-5 maddeyle neye bakılacağını anlatır, seçimi sana bırakır. Claude seçip geçmez, anlamadan seçmek de bu yolu boşa çıkarır.",
           "kaynak": {
-            "adres": "CLAUDE.md:37",
-            "okuma": "2026-11-17",
-            "dayanak": "Durum diskte yaşar; önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez.",
-            "soz": "Önemli çıktı üretildiği anda diske yazılır, kapanış beklenmez"
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Kullanıcı 'anlamadım' ya da 'bilgim yok' dediğinde sorudan önce ayrı 3-5 maddeyle neye bakılacağı anlatılır, seçim ona bırakılır.",
+            "soz": "sorudan önce ayrı 3-5 maddeyle neye bakılacağını anlat"
           }
         }
       ]
@@ -749,38 +737,44 @@
       "id": "b10-d6",
       "baslik": "Keşfet, planla, kodla, kaydet",
       "hedefler": [
-        "Keşfet, planla, kodla, kaydet adımlarını sırasıyla anlatabilir.",
-        "Her adımda Claude'dan ne istendiğini ayırt edebilir.",
-        "Masaüstünde plan moduna nasıl geçildiğini anlatabilir."
+        "Keşfet, planla, kodla, kaydet akışında koddan önce plan istemenin nedenini anlatabilir.",
+        "Plan modunda ve plan gelince ne yapacağını ayırt edebilir.",
+        "Bizde Claude'un okuma satırını ve plan kapısını anlatabilir."
       ],
       "anlatim": [
         "Claude Code 101 kursu, kurstan tek şey alacaksan bu akış olsun der: keşfet (explore), planla, kodla, kaydet. Çoğu kişi doğrudan kod isteyip sonra çok düzeltir.",
         "İlk iki adımın en hızlı yolu plan modudur (plan mode): Claude dosyaları okur, inceler, bir eylem planı getirir; sen onaylayana kadar düzenleme yapmaz.",
         "Masaüstünde modu istem kutusunun altındaki mod seçiciden Plan diye seçersin. Terminaldeki Shift+Tab masaüstünde mod değiştirmez.",
         "Plan gelince oku; yön düzeltmenin en iyi yeri burasıdır, çünkü henüz kod yazılmadı. Plan iyiyse onayla, Claude maddeleri uygular.",
-        "Kaydet adımında önce bir alt ajan işi gözden geçirir. Sonra Claude kayıt (commit) mesajını senin üslubunla yazar.",
-        "Bizde büyük iş başlatan mesajdan sonra Claude ilk satırda okumasını yazar: ne yapacağı, neyi yapmayacağı, çıktı nasıl görünecek.",
-        "Plan kapısı: iş birden çok oturuma yayılacaksa, silme gibi geri alınamaz bir şeye dokunuyorsa ya da yazılı bir kuralı değiştiriyorsa Claude önce plan sunup durur."
+        "Bizde büyük iş başlatan mesajdan sonra Claude ilk satırda okumasını yazar: ne yapacağı, neyi yapmayacağı, çıktı nasıl görünecek. Sonra sormadan başlar.",
+        "Plan kapısı: iş birkaç oturuma yayılıyorsa, geri alınamazsa (silme, takvim gibi dış sisteme yazma) ya da yazılı kuralı değiştiriyorsa Claude önce plan sunar, durur."
       ],
       "terimler": [
-        {"tr": "keşfet", "en": "explore", "aciklama": "Claude'un işe başlamadan ilgili dosyaları okuyup bağlam toplaması."},
-        {"tr": "plan modu", "en": "plan mode", "aciklama": "Claude'un dosya düzenlemeden inceleyip plan önerdiği mod."},
-        {"tr": "kayıt", "en": "commit", "aciklama": "Değişikliğin git'e mesajıyla birlikte kaydedilmesi."}
+        {
+          "tr": "keşfet",
+          "en": "explore",
+          "aciklama": "Claude'un işe başlamadan ilgili dosyaları okuyup bağlam toplaması."
+        },
+        {
+          "tr": "plan modu",
+          "en": "plan mode",
+          "aciklama": "Claude'un dosya düzenlemeden inceleyip plan önerdiği mod."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d6-s1",
-          "tur": "sirala",
+          "tur": "coktan",
           "kart": 0,
-          "soru": "Claude Code 101'deki akışın adımlarını sıraya koy.",
-          "adimlar": [
-            "Keşfet: Claude ilgili dosyaları okur",
-            "Planla: Claude bir eylem planı getirir, sen incelersin",
-            "Kodla: onaylanan plan uygulanır",
-            "Kaydet: iş gözden geçirilir, commit atılır"
+          "soru": "Büyük bir özelliği tek mesajla yazdırdın; sonra üç tur düzeltme gitti. Akışa göre neyi atladın?",
+          "secenekler": [
+            "Önce okutup bir plan istemeyi",
+            "Daha güçlü bir model seçmeyi",
+            "Kodu yazdırıp hemen kaydetmeyi"
           ],
-          "ipucu": "Kod yazılmadan önce iki adım var.",
-          "aciklama": "Önce bağlam toplanır ve plan kurulur, kod ancak ondan sonra gelir. Kayıt en sona kalır.",
+          "dogru": 0,
+          "ipucu": "Kod yazılmadan önce gelen adımları düşün.",
+          "aciklama": "Akış koddan önce keşfet ve planla adımlarını koyar; doğrudan kod isteyen sonra çok düzeltir. Kaydetmek ya da model değiştirmek atlanan planın yerini tutmaz.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/the-explore-plan-code-commit-workflow",
             "kopya": "ders-101-05-explore-plan-code-commit.md",
@@ -792,15 +786,15 @@
           "id": "b10-d6-s2",
           "tur": "coktan",
           "kart": 3,
-          "soru": "Kursa göre yön düzeltmenin en iyi yeri neresi?",
+          "soru": "Plan geldi; bir maddede Claude hiç kullanmadığın bir klasöre yazacak. Ne yaparsın?",
           "secenekler": [
-            "Kod yazıldıktan sonra, kayıttan önce",
-            "Plan adımı, kod yazılmadan önce",
-            "Kayıttan sonra, yeni işe geçerken"
+            "Onaylarım; kod bitince o kısmı düzelttiririm",
+            "Planı reddedip işi yeni oturumda isterim",
+            "Onaylamadan o maddeyi düzeltmesini yazarım"
           ],
-          "dogru": 1,
-          "ipucu": "Hangi anda değiştirilecek kod henüz yoktur?",
-          "aciklama": "Kurs, plan adımını kod yazılmadan önce geldiği için yön düzeltmenin en iyi yeri sayar.",
+          "dogru": 2,
+          "ipucu": "Yön değiştirmek hangi anda en ucuz?",
+          "aciklama": "Kod henüz yazılmadığı için yön düzeltmenin en iyi yeri plandır. Bütün planı atmak gerekmez, yalnız o madde düzelir.",
           "kaynak": {
             "adres": "https://academy.claude.com/courses/claude-code-101/the-explore-plan-code-commit-workflow",
             "kopya": "ders-101-05-explore-plan-code-commit.md",
@@ -809,38 +803,18 @@
           }
         },
         {
-          "id": "b10-d6-s3",
-          "tur": "eslestir",
-          "kart": 4,
-          "soru": "Her adımı, o adımda Claude'dan istenenle eşleştir.",
-          "ciftler": [
-            ["Keşfet", "Proje için gereken bağlamı topla"],
-            ["Planla", "Başarıyı ölçeceğin bir eylem planı çıkar"],
-            ["Kodla", "Son sonuca varana dek benimle karşılıklı çalış"],
-            ["Kaydet", "Gözden geçir, kayıt mesajını yaz"]
-          ],
-          "ipucu": "Her adımın adı, o adımda ne yapıldığını zaten söylüyor.",
-          "aciklama": "Keşfet bağlamı verir, planla ölçüyü kurar, kodla karşılıklı çalışmadır, kaydet gözden geçirip gönderir. Her adımda Claude'dan başka bir şey istenir.",
-          "kaynak": {
-            "adres": "https://academy.claude.com/courses/claude-code-101/the-explore-plan-code-commit-workflow",
-            "kopya": "ders-101-05-explore-plan-code-commit.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Keşfet Claude'a gereken bağlamı verir, planla başarıyı ölçeceği eylem planını kurar, kodla son sonuca varana kadar karşılıklı çalışmadır, kaydet de kodu gözden geçirip göndermeye yarar."
-          }
-        },
-        {
           "id": "b10-d6-s4",
-          "tur": "coktan",
+          "tur": "bosluk",
           "kart": 2,
-          "soru": "Masaüstündeki Code sekmesinde plan moduna geçmek istiyorsun. Ne yaparsın?",
+          "soru": "Masaüstünde Shift+Tab'a bastın, mod değişmedi. Çünkü bu kısayol modu yalnız ___ değiştirir.",
           "secenekler": [
-            "Shift+Tab tuşlarına basarsın",
-            "Ayarlar menüsünden yeni bir Plan projesi açarsın",
-            "İstem kutusunun altındaki mod seçiciden Plan'ı seçersin"
+            "terminalde",
+            "yeni oturumda",
+            "izin ayarı açıkken"
           ],
-          "dogru": 2,
-          "ipucu": "Masaüstü ile terminal bu konuda farklı çalışıyor.",
-          "aciklama": "Masaüstünde mod, istem kutusunun altındaki mod seçiciyle değişir. Shift+Tab modlar arasında yalnız terminalde dolaşır.",
+          "dogru": 0,
+          "ipucu": "Masaüstü ile terminal mod değiştirmede aynı mı çalışıyor?",
+          "aciklama": "Shift+Tab modları yalnız terminalde değiştirir; masaüstünde mod, istem kutusunun altındaki mod seçiciden seçilir.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/desktop",
             "kopya": "desktop.md",
@@ -850,12 +824,17 @@
         },
         {
           "id": "b10-d6-s5",
-          "tur": "dogru-yanlis",
+          "tur": "coktan",
           "kart": 1,
-          "soru": "Plan modunda Claude dosyaları okur ve bir plan önerir, ama sen onaylayana kadar dosyalarda düzenleme yapmaz.",
-          "dogru": true,
-          "ipucu": "Modun adı neyi öne koyduğunu söylüyor.",
-          "aciklama": "Doğru. Plan modu, değişikliği diske dokunmadan önce görmek içindir.",
+          "soru": "Plan modu açıkken 'başlığı düzelt' dedin; Claude dosyayı değiştirmeden bir plan yazdı. Ne yaparsın?",
+          "secenekler": [
+            "Hata sanıp isteği yinelerim",
+            "Planı okuyup onaylarım",
+            "Başlığı kendim düzeltirim; bu modda yazamaz"
+          ],
+          "dogru": 1,
+          "ipucu": "Bu moddaki Claude'un dosyaya ne zaman dokunduğunu düşün.",
+          "aciklama": "Plan modunda Claude okur ve plan önerir, sen onaylayana kadar düzenleme yapmaz. Onaylayınca planı uygular; isteği yinelemek ya da kendin yazmak gerekmez.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/common-workflows",
             "kopya": "common-workflows.md",
@@ -865,37 +844,41 @@
         },
         {
           "id": "b10-d6-s6",
-          "tur": "coktan",
-          "kart": 6,
-          "soru": "Plan kapısına göre Claude hangi işte önce plan sunup durur?",
+          "tur": "bosluk",
+          "kart": 5,
+          "soru": "Tek dosyadaki uzun bir metni baştan yazdırdın; Claude plan sunmadan işe başladı. Çünkü bu iş ___.",
           "secenekler": [
-            "Tek dosyadaki bir yazım hatasını düzeltirken",
-            "Silme gibi geri alınamayan bir işte",
-            "Bir dosyayı okuyup kısa özet çıkarırken"
+            "geri alınabilir ve tek oturumda biter",
+            "plan kapısı yalnız Auto modda açılır",
+            "Claude uzun metinde planı atlayabilir"
           ],
-          "dogru": 1,
-          "ipucu": "Kapının saydığı durumları hatırla: oturum sayısı, geri dönüş, kural değişikliği.",
-          "aciklama": "Plan kapısı birden çok oturuma yayılan, geri alınamayan ya da yazılmış bir kuralı değiştiren işte açılır. Öteki işlere Claude sormadan başlar.",
+          "dogru": 0,
+          "ipucu": "Plan kapısını açan üç durumu bu işle tek tek karşılaştır.",
+          "aciklama": "Plan kapısı iş birkaç oturuma yayılınca, geri alınamayınca ya da yazılı kural değişince açılır; tek oturumluk, geri alınabilir bir yeniden yazım bunlardan değildir. Kapı her modda geçerlidir.",
           "kaynak": {
-            "adres": "CLAUDE.md:43",
-            "okuma": "2026-11-17",
-            "dayanak": "İş birden fazla oturuma yayılacaksa, silme gibi geri alınamayan bir şeye dokunuyorsa ya da yazılmış bir kuralı değiştiriyorsa önce plan sunulur ve orada durulur.",
-            "soz": "geri alınamayan bir şeye dokunuyorsa"
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Plan kapısı iş birden fazla oturuma yayılınca, geri alınamayan bir şeye dokununca ya da yazılı kural değişince açılır.",
+            "soz": "iş birden fazla oturuma yayılacaksa, geri alınamayan bir şeye dokunuyorsa"
           }
         },
         {
           "id": "b10-d6-s7",
-          "tur": "bosluk",
-          "kart": 5,
-          "soru": "Büyük iş başlatan mesajdan sonra Claude ilk satırda ___ yazar: ne yapacağı, neyi yapmayacağı, çıktının nasıl görüneceği.",
-          "secenekler": ["okumasını", "teşekkürünü", "tahmini süreyi"],
-          "dogru": 0,
-          "ipucu": "Claude isteği nasıl anladığını gösteriyor.",
-          "aciklama": "Bu satır Claude'un isteği nasıl anladığını işin başında gösterir. Sonra sormadan başlar.",
+          "tur": "coktan",
+          "kart": 4,
+          "soru": "Claude'un okuma satırı 'yalnız giriş bölümünü yazacağım' diyor; sen bütününü istiyordun. Ne yaparsın?",
+          "secenekler": [
+            "Bitince eksik kalan bölümleri ayrıca isterim",
+            "Hemen durdurup bütününü istediğimi yazarım",
+            "Bir şey demem; yanlışsa Claude sorar"
+          ],
+          "dogru": 1,
+          "ipucu": "Okuma satırından sonra Claude soru sorar mı?",
+          "aciklama": "Claude okumasını yazdıktan sonra sormadan başlar; yanlış okumayı yakalamanın en ucuz anı o satırdır. Bitince istemek işi iki kez yaptırır.",
           "kaynak": {
-            "adres": "CLAUDE.md:22",
-            "okuma": "2026-11-17",
-            "dayanak": "Büyük iş başlatan mesajdan sonra Claude ilk satırda okumasını yazar: ne yapacağı, neyi yapmayacağı ve çıktının nasıl görüneceği; sonra sormadan başlar.",
+            "adres": "CLAUDE.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Büyük iş başlatan mesajdan sonra Claude ilk satırda okumasını yazar ve sormadan başlar.",
             "soz": "ilk satırda okumamı yazarım"
           }
         }
@@ -906,90 +889,78 @@
       "baslik": "Bizde görev tarifi: ajan görev kalıbı",
       "hedefler": [
         "Görev kalıbının Amaç, Dokunulacak yollar, Bitti ölçütü ve Kenar durumları alanlarını anlatabilir.",
-        "Küçük bir değişikliğin bu kalıpla Claude'a nasıl tarif edileceğini anlatabilir.",
-        "Sonucu tarif etmekle adımları tek tek yazmayı ayırt edebilir."
+        "Sonucu tarif etmekle adımları tek tek yazmayı ayırt edebilir.",
+        "Bir işte söylediğin net sözün denetimde nasıl izlendiğini anlatabilir."
       ],
       "anlatim": [
         "Bizde ana oturum bir ajana iş verirken görev kalıbını kullanır. İlk kural: görev kısa yazılır, nasıl yapılacağı yazılmaz.",
         "Kalıptaki alanlardan dördü: Amaç işin kimin için olduğunu, Dokunulacak yollar sınırı, Bitti ölçütü bitişi, Kenar durumları beklenmeyen hali söyler.",
-        "Örnek görev: amaç, birim 10 dosyasını yazmak; yol, yalnız ogrenme/icerik/birim-10.js; bitti, her derste en az 6 soru ve ünlem sayısı 0.",
         "Resmi istem kütüphanesi aynı yere varır: adımları değil sonucu tarif et, dosyaları Claude bulsun.",
-        "Kütüphane ölçülebilir hedef de ister: ölçütle birlikte eşiği de ver, ör. paket boyutu 200 KB altında olsun.",
-        "AI Fluency kursu, işi yapay zekâya açıkça anlatma becerisine tarif (Description) der. Bu, kursun dört yetkinliğinden biridir."
+        "Kütüphane ölçülebilir hedef de ister: ölçütle birlikte eşiği (threshold) de ver, ör. paket boyutu 200 KB altında olsun.",
+        "İşi denetleyen ajanın (doğrulayıcı) görevinde 'kullanıcının sözü' alanı var: işe ait net sözlerin. Tutmayan söz sana 'bitti' denmeden söylenir; iş geri çevrilmez.",
+        "Kalıpta 'Sayı ve iddia kaynakları' alanı da var: görevdeki her sayı dosya satırı ya da sayan komutla gelir. Plandan kopyalanan sayı kaynak sayılmaz."
       ],
       "terimler": [
-        {"tr": "tarif", "en": "Description", "aciklama": "AI Fluency kursunun dört yetkinliğinden biri: yapay zekâyla açık iletişim kurmak."}
+        {
+          "tr": "eşik",
+          "en": "threshold",
+          "aciklama": "Bir ölçütte işi bitmiş saymak için geçilmesi gereken değer, ör. 200 KB altı."
+        }
       ],
       "sorular": [
         {
           "id": "b10-d7-s1",
           "tur": "coktan",
           "kart": 0,
-          "soru": "Bizim görev kalıbına göre ajana verilen görevde ne yazılmaz?",
+          "soru": "Ana oturumun bir ajana verdiği görevi okudun: amaç, yollar, bitti ölçütü var; adımlar yok. Bu ne?",
           "secenekler": [
-            "İşin amacı ve nedeni",
-            "Dokunulacak yollar",
-            "İşin nasıl yapılacağı",
-            "Ölçülebilir bitti ölçütü"
+            "Eksik; ajan adımsız başlayamaz",
+            "Kalıba uygun; yolu ajan seçer",
+            "Yarım; adımlar yazılmayı unutulmuş"
           ],
-          "dogru": 2,
-          "ipucu": "Kalıp görevin kısa yazılmasını ister; kısa kalsın diye neyi ajana bırakırsın?",
-          "aciklama": "Görev sonucu ve sınırı söyler, yolu ajana bırakır. Resmi istem kütüphanesi de adımları değil sonucu tarif etmeyi önerir.",
+          "dogru": 1,
+          "ipucu": "Kalıbın görev uzunluğu için koyduğu kuralı düşün.",
+          "aciklama": "Görev kalıbı sonucu ve sınırı yazar, nasıl yapılacağını ajana bırakır. Adımların olmaması eksik değil, kuralın gereğidir.",
           "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:16",
-            "okuma": "2026-11-17",
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
             "dayanak": "Görev kısa yazılır; nasıl yapılacağı yazılmaz.",
             "soz": "Görev kısa yazılır; nasıl yapılacağı yazılmaz"
           }
         },
         {
           "id": "b10-d7-s2",
-          "tur": "eslestir",
-          "kart": 1,
-          "soru": "Görev kalıbının alanlarını taşıdıkları bilgiyle eşleştir.",
-          "ciftler": [
-            ["Amaç", "Kimin için, hangi iş ya da karar bekliyor"],
-            ["Dokunulacak yollar", "Yalnız bu yollar; dokunulmayacaklar adıyla"],
-            ["Bitti ölçütü", "Komutla sınanabilen, ölçülebilir şart"],
-            ["Kenar durumları", "Beklenmeyen hal gelince ne yapılacağı"]
-          ],
-          "ipucu": "Her alanın adı neyi taşıdığına dair ipucu verir.",
-          "aciklama": "Amaç nedeni ve kimin için olduğunu, yollar sınırı, bitti ölçütü işin ne zaman bittiğini, kenar durumları beklenmeyen hali karşılar.",
-          "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:16",
-            "okuma": "2026-11-17",
-            "dayanak": "Görev kalıbı amaç ve nedeni, yalnız dokunulacak yolları, komutla sınanabilir bitti ölçütünü ve beklenmeyen hal için kenar durumlarını alan olarak sayar.",
-            "soz": "Alanlar: - Amaç ve neden (kimin için, ne karar ya da iş bekliyor)"
-          }
-        },
-        {
-          "id": "b10-d7-s3",
           "tur": "coktan",
-          "kart": 2,
-          "soru": "Hangisi 'Dokunulacak yollar' alanına uygun bir satır?",
+          "kart": 5,
+          "soru": "Görevde 'eski birimde 40 soru var (kaynak: plan)' yazıyor. Kalıba göre bu sayı ne durumda?",
           "secenekler": [
-            "Gerekli gördüğün her dosyaya yazabilirsin.",
-            "Yalnız ogrenme/icerik/birim-10.js; başka dosya değişmez.",
-            "Bitince bana haber ver."
+            "Geçerli; plan yazılı bir kaynaktır",
+            "Kaynaksız; sayı yeniden ölçülmeli",
+            "Geçerli; yanlışsa doğrulayıcı yakalar"
           ],
           "dogru": 1,
-          "ipucu": "Alan, yolları adıyla ve sınırlı ister.",
-          "aciklama": "Alan yalnız yazılacak yolları adıyla verir ve ötekileri dışarıda tutar. Her dosyaya izin vermek sınır koymaz.",
+          "ipucu": "Kalıbın sayıların kaynağı için neyi kabul etmediğini düşün.",
+          "aciklama": "Görevdeki her sayı dosya satırı ya da sayan komutla gelir; plandan kopyalanan sayı kaynak sayılmaz. Doğrulayıcıya bırakmak yanlış sayıyla iş yaptırır.",
           "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:19",
-            "okuma": "2026-11-17",
-            "dayanak": "Dokunulacak yollar yalnız bunlardır, dokunulmayacak yollar da adıyla yazılır.",
-            "soz": "Dokunulacak yollar (yalnız bunlar) ve dokunulmayacak yollar, adıyla"
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Görevdeki her sayı kaynağıyla yazılır; plandan ya da eski rapordan kopyalanan sayı kaynak sayılmaz.",
+            "soz": "plandan ya da eski rapordan kopyalanan sayı kaynak sayılmaz"
           }
         },
         {
           "id": "b10-d7-s4",
-          "tur": "dogru-yanlis",
-          "kart": 3,
-          "soru": "Resmi istem kütüphanesine göre iyi bir istem, Claude'un izleyeceği her adımı tek tek yazmalıdır.",
-          "dogru": false,
-          "ipucu": "Kütüphanenin Claude'a neyi tarif etmeni önerdiğini hatırla.",
-          "aciklama": "Yanlış. Kütüphane adımları değil sonucu tarif etmeni, dosyaları Claude'un bulmasını önerir.",
+          "tur": "coktan",
+          "kart": 2,
+          "soru": "On adımlık bir tarif yazdın; bir adımdaki dosya adı yanlıştı ve iş takıldı. Daha iyi yol hangisi?",
+          "secenekler": [
+            "Adımları daha ayrıntılı yazmak",
+            "Sonucu yazıp dosyayı ona buldurmak",
+            "Adı düzeltip aynı adımları yollamak"
+          ],
+          "dogru": 1,
+          "ipucu": "Claude'a yolu mu, varılacak yeri mi tarif etmek daha az kırılır?",
+          "aciklama": "Adımları değil sonucu tarif etmen, dosyaları Claude'un bulması önerilir. Her yazılan adım yeni bir yanlışa açıktır.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/prompt-library",
             "kopya": "prompt-library.md",
@@ -1000,32 +971,36 @@
         {
           "id": "b10-d7-s5",
           "tur": "coktan",
-          "kart": 3,
-          "soru": "Kapanış skill'inde bir cümle netleşsin istiyorsun. Hangi tarif kalıba uyar?",
+          "kart": 1,
+          "soru": "Amacın kapanış skill'inde bir cümleyi netleştirmek. Görevin geri kalanı hangisi olursa kalıba uyar?",
           "secenekler": [
-            "Amaç: cümle netleşsin. Yol: yalnız kapanis/SKILL.md. Bitti: denetim temiz.",
-            "Kapanış skill'ini düzelt, nasıl istersen.",
-            "Dosyayı aç, cümleyi bul, eski sözcüğü sil, yenisini yaz, sonra kaydet."
+            "Yol: yalnız kapanış skill'i. Bitti: denetim temiz.",
+            "Adımlar: dosyayı aç, cümleyi bul, yenisini yaz.",
+            "Yol: gereken her dosya. Bitti: sen karar ver."
           ],
           "dogru": 0,
-          "ipucu": "Hangisi amacı, sınırı ve bitişi söylüyor, yolu Claude'a bırakıyor?",
-          "aciklama": "Doğru tarif amacı, yazılacak yolu ve ölçülebilir bitişi verir, nasıl yapılacağını yazmaz. Öteki ikisinden biri sınır koymaz, biri yalnız adım sayar.",
+          "ipucu": "Kalıbın sınır ve bitiş için ne istediğini, neyi yazdırmadığını düşün.",
+          "aciklama": "Kalıp yolu adıyla sınırlar, bitişi ölçülebilir yazar ve nasıl yapılacağını ajana bırakır. Adım saymak ve sınırsız yol kalıba uymaz.",
           "kaynak": {
-            "adres": ".claude/skills/ajan-gorevi/SKILL.md:16",
-            "okuma": "2026-11-17",
-            "dayanak": "Görev kısa yazılır, nasıl yapılacağı yazılmaz ve amaç, dokunulacak yollar ile ölçülebilir bitti ölçütü alanlarını taşır.",
-            "soz": "Görev kısa yazılır; nasıl yapılacağı yazılmaz"
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Görev kalıbı yalnız dokunulacak yolları adıyla ve ölçülebilir bir bitti ölçütünü taşır, nasıl yapılacağını yazmaz.",
+            "soz": "Dokunulacak yollar (yalnız bunlar) ve dokunulmayacak yollar, adıyla"
           }
         },
         {
           "id": "b10-d7-s6",
           "tur": "bosluk",
-          "kart": 4,
-          "soru": "İstem kütüphanesine göre hedef performans ya da kapsamsa ölçütü ve ___ ver ki işin ne zaman bittiği belirsiz kalmasın.",
-          "secenekler": ["rengi", "yazarı", "eşiği"],
-          "dogru": 2,
-          "ipucu": "Kartta paket boyutu için verilen sayının ne işe yaradığını düşün.",
-          "aciklama": "Ölçüt ile eşik birlikte verilince bitiş tartışmasız olur. Kütüphanedeki örnek paket boyutunu 200 KB altına indirmeyi ister.",
+          "kart": 3,
+          "soru": "Bitti ölçütü 'sayfa hızlı açılsın' idi; ajan bitti dedi, sen yavaş buluyorsun. Bu anlaşmazlık ___ yüzünden çıktı.",
+          "secenekler": [
+            "ajanın ölçütü hiç sınamaması",
+            "ölçütte bir eşik olmaması",
+            "sayfanın yanlış cihazda denenmesi"
+          ],
+          "dogru": 1,
+          "ipucu": "'Hızlı' sözünü bir komut nasıl sınar?",
+          "aciklama": "Ölçütle birlikte eşik verilmeyince 'hızlı' kişiye göre değişir, bitiş tartışmalı olur. Eşik, ör. 2 saniyenin altı, sınamayı herkes için aynı yapar.",
           "kaynak": {
             "adres": "https://code.claude.com/docs/en/prompt-library",
             "kopya": "prompt-library.md",
@@ -1034,24 +1009,23 @@
           }
         },
         {
-          "id": "b10-d7-s7",
+          "id": "b10-d7-s8",
           "tur": "coktan",
-          "kart": 5,
-          "soru": "AI Fluency kursunun dört yetkinliğinden hangisi yapay zekâya ne istediğini açıkça anlatmakla ilgili?",
+          "kart": 4,
+          "soru": "'Yazılar büyük olsun' demiştin; iş bitti dendi ama yazılar küçük. Kurala göre ne olmalıydı?",
           "secenekler": [
-            "Delegation (devretme)",
-            "Description (tarif)",
-            "Discernment (ayırt etme)",
-            "Diligence (özen)"
+            "Denetleyici işi kendiliğinden geri çevirmeliydi",
+            "Sözün tutmadığı önceden sana bildirilmeliydi",
+            "Bu söz göreve girmez, sohbette kalır"
           ],
           "dogru": 1,
-          "ipucu": "Kartta kursun, işi açıkça anlatma becerisine verdiği adı hatırla.",
-          "aciklama": "Kurs açık iletişimi Description başlığında öğretir: ürünü, süreci ve beklenen performansı tarif etmek. Görev kalıbı da işi Claude'a tarif etmenin bizdeki yoludur.",
+          "ipucu": "Denetleyen ajan bir sözün tutmadığını görünce ne yapar, ne yapmaz?",
+          "aciklama": "Denetleyen ajan senin sözünü raporlar, işi geri çevirmez; tutmayan söz sana 'bitti' denmeden söylenir. Burada bitti dendiyse söz atlanmış demektir.",
           "kaynak": {
-            "adres": "https://academy.claude.com/courses/ai-fluency-framework-foundations",
-            "kopya": "kurs-ai-fluency.md",
-            "okuma": "2026-11-15",
-            "dayanak": "Kurs dört yetkinliği Delegation, Description, Discernment ve Diligence diye sayar ve yapay zekâyla açık iletişimi Ürün, Süreç ve Performans Tarifi (Description) üzerinden öğretir."
+            "adres": ".claude/skills/ajan-gorevi/SKILL.md",
+            "okuma": "2026-11-24",
+            "dayanak": "Doğrulayıcı kullanıcının sözlerini raporlar, işi geri çevirmez; karşılanmayan söz kullanıcıya 'bitti' denmeden söylenir.",
+            "soz": "Doğrulayıcı sözleri raporlar, işi geri çevirmez"
           }
         }
       ]

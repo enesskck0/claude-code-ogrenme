@@ -263,7 +263,8 @@
   function kartGecerli(k, kartSayisi) { return typeof k === 'number' && Math.floor(k) === k && k >= 0 && k < kartSayisi; }
   // Döner: { kartli, sira: soru kimlikleri, once: { soruId: [kart no] } (o sorudan hemen önce gösterilecek kartlar),
   // son: [kart no] (son sorudan sonra; sorusu olmayan son kartlar ya da hiç soru yoksa bütün kartlar) }.
-  // Dersin bütün sorularında geçerli kart varsa kart 0, soruları, kart 1, soruları; yoksa (ya da yarım kullanımda) önce bütün
+  // Dersin bütün sorularında geçerli kart varsa kart 0, kart 1, kart 0'ın soruları, kart 2, kart 1'in soruları ... son kartın
+  // soruları en sonda (bir kart gecikme); yoksa (ya da yarım kullanımda) önce bütün
   // kartlar, sonra dersSorulari sırası. Yarım ya da geçersiz kullanımı içerik denetimi yakalar; burada eski akışa düşülür.
   function dersAkisi(dizin, dersId) {
     var ders = dizin.dersMap[dersId];
@@ -272,11 +273,22 @@
     var kartli = K > 0 && ders.soruIdleri.length > 0 && ders.soruIdleri.every(function (id) { return kartGecerli(dizin.soruMap[id].kart, K); });
     var sira = [], once = {}, bekleyen = [];
     if (kartli) {
+      // Bir kart gecikme (KARARLAR 1567'nin yan sohbeti, 24.11): kart k'nın soruları kart k+1'den sonra gelir; son kartın
+      // soruları en sonda. Cevap az önce okunan cümleden okunmasın diye.
+      var gruplar = [];
+      for (var g = 0; g < K; g++) {
+        gruplar.push(turSirasi(dizin, ders.soruIdleri.filter(function (id) { return dizin.soruMap[id].kart === g; })));
+      }
+      var grupEkle = function (grup) {
+        if (!grup.length) return;
+        if (bekleyen.length) { once[grup[0]] = bekleyen; bekleyen = []; }
+        sira = sira.concat(grup);
+      };
       for (var k = 0; k < K; k++) {
         bekleyen.push(k);
-        var grup = turSirasi(dizin, ders.soruIdleri.filter(function (id) { return dizin.soruMap[id].kart === k; }));
-        if (grup.length) { once[grup[0]] = bekleyen; bekleyen = []; sira = sira.concat(grup); }
+        if (k >= 1) grupEkle(gruplar[k - 1]);
       }
+      grupEkle(gruplar[K - 1]);
     } else {
       sira = dersSorulari(dizin, dersId);
       bekleyen = sirali(K);

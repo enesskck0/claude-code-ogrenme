@@ -417,14 +417,15 @@
     return cihazGece === true;
   }
 
-  // Karar 5: resmi adres (https) bağlantı olur, klasör kaynağı (dosya:satır) düz metin kalır. Başka biçim bağlantı olmaz.
+  // Karar 5: resmi adres (https) bağlantı olur, klasör kaynağı düz metin kalır. Başka biçim bağlantı olmaz.
+  // Klasör kaynağı yalnız depo kökünden dosya yoludur, satır numarası yok (KARARLAR 1418): "Kaynak, bu klasörde: CLAUDE.md".
   function kaynakParcasi(kaynak) {
     if (!kaynak || typeof kaynak.adres !== 'string' || !kaynak.adres) return null;
     if (/^https:\/\/[^\s"'<>]+$/.test(kaynak.adres)) return { tur: 'baglanti', adres: kaynak.adres, metin: METIN.geri.kaynakAc };
     return { tur: 'metin', metin: yaz(METIN.geri.kaynakKlasor, { adres: kaynak.adres }) };
   }
 
-  // Klavye (T9, TASARIM bölüm 3): 1-4 seçenek seçer, Enter kontrol eder ve devam ettirir.
+  // Klavye (T9, TASARIM bölüm 3): 1-5 seçenek seçer, Enter kontrol eder ve devam ettirir.
   // b: { ekran: 'kart' | 'soru' | 'sinav' | null, tur, secenekSayisi, secimVar, panelAcik, altSayfaAcik,
   //      hedef: 'alan' | 'secenek' | 'dugme' | null (odaktaki öğe), degistirici }.
   // Odakta düğme varken Enter düğmenin kendi işini yapar (null). Seçenekteyken ve seçim varsa Enter kontrol eder.
@@ -434,7 +435,7 @@
     if (tus === 'Escape') return b.altSayfaAcik ? { eylem: 'kapat' } : null;
     if (b.altSayfaAcik) return null;
     var soruEkrani = b.ekran === 'soru' || b.ekran === 'sinav';
-    if (/^[1-4]$/.test(tus)) {
+    if (/^[1-5]$/.test(tus)) {  // en çok 5 şık (ICERIK-BICIMI.md "Şık sayısı", 24.11)
       var n = Number(tus);
       if (!soruEkrani || b.panelAcik || !TUSLA_SECILEN[b.tur] || n > (b.secenekSayisi || 0)) return null;
       return { eylem: 'sec', sira: n - 1 };
